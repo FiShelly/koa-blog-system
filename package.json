@@ -1,0 +1,26 @@
+{
+  "name": "koa-blog-system",
+  "version": "1.0.0",
+  "description": "The blog system. And the server use koa and the front end use angular6.\t",
+  "main": "bin/www",
+  "repository": "git@github.com:FiShelly/koa-blog-system.git",
+  "author": "Fishelly.",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-cors": "^0.0.16",
+    "koa-csrf": "^3.0.6",
+    "koa-jwt": "^3.3.2",
+    "koa-multer": "^1.0.2",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.8.2",
+    "koa-socket": "^4.4.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.1.4",
+    "log4js": "^2.11.0",
+    "socket.io": "^2.1.1",
+    "swig": "^1.4.2"
+  }
+}
