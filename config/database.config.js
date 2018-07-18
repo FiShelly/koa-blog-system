@@ -8,9 +8,11 @@ const dbConfig = {
         'dialect': 'mysql',
         'timezone': '+08:00',
         'pool': {
-            'max': 15,
+            'max': 3,
             'min': 0,
             'idle': 10000
         }
     }
 };
+
+module.exports = dbConfig;

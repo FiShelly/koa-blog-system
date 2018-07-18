@@ -22,6 +22,4 @@ const categoryTagService = {
     }
 };
 
-export default function () {
-    return categoryTagService;
-}
+module.exports = categoryTagService;

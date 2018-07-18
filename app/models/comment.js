@@ -1,25 +1,17 @@
-const mysql = require('./mysql');
+const mysql = require('./db');
 const Sequelize = require('sequelize');
 
-this.article = comment.article;
-this.content = comment.content;
-this.date = comment.date;
-this.visitor = comment.visitor;
-this.quotes = comment.quotes;
-
 const Comment = mysql.define('blog_comment', {
-    id: {type: Sequelize.BIGINT, primaryKey: true},
+    id: {type: Sequelize.BIGINT, primaryKey: true,autoIncrement: true},
     article: {type: Sequelize.BIGINT},
-    content: {type: Sequelize.Text},
+    content: {type: Sequelize.TEXT},
     date: {type: Sequelize.BIGINT},
     visitor: {type: Sequelize.STRING(256)},
-    quotes: {type: Sequelize.Text}
+    quotes: {type: Sequelize.TEXT}
 }, {
     tableName: 'blog_comment',
     timestamps: false,
     freezeTableName: true
 });
 
-export default function () {
-    return Comment;
-}
+module.exports = Comment;

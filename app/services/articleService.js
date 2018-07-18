@@ -1,5 +1,4 @@
 const articleModel = require('../models/article');
-
 const articleService = {
     create: function (model) {
         return articleModel.create(model);
@@ -22,6 +21,4 @@ const articleService = {
     }
 };
 
-export default function () {
-    return articleService;
-}
+module.exports = articleService;

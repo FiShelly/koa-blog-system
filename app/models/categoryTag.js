@@ -1,10 +1,8 @@
-const mysql = require('./mysql');
+const mysql = require('./db');
 const Sequelize = require('sequelize');
-this.date = typeTag.date;
-this.count = typeTag.count;
 
 const CategoryTag = mysql.define('blog_cat_tag', {
-    id: {type: Sequelize.BIGINT, primaryKey: true},
+    id: {type: Sequelize.BIGINT, primaryKey: true,autoIncrement: true},
     type: {type: Sequelize.INTEGER},
     name: {type: Sequelize.STRING(256)},
     date: {type: Sequelize.BIGINT},
@@ -15,6 +13,4 @@ const CategoryTag = mysql.define('blog_cat_tag', {
     freezeTableName: true
 });
 
-export default function () {
-    return CategoryTag;
-}
+module.exports = CategoryTag;

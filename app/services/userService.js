@@ -18,6 +18,4 @@ const userService = {
     }
 };
 
-export default function () {
-    return userService;
-}
+module.exports = userService;
