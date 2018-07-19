@@ -49,6 +49,7 @@ const findUserByLoginId = async function (ctx) {
     }
     try {
         const user = await userService.findOne({account});
+        delete user.dataValues.password;
         return packData(200, 'success', user);
     } catch (e) {
         return packData(500, 'error', 'mysql-error');

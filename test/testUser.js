@@ -50,5 +50,5 @@ async function testUpdatePwd () {
 // testUpdatePwd();
 // testUpdate();
 // testLogin();
-// testFindOneByLoginId();
+testFindOneByLoginId();
 // testCreate();

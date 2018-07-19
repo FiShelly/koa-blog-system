@@ -3,7 +3,8 @@ const errorMap = {
     'mysql-error': '数据库错误',
     'input-invalidate': '输入不合法',
     'input-invalidate-empty': '输入参数为空',
-    'input-invalidate-oldPwd':'旧密码输入不正确'
+    'input-invalidate-oldPwd':'旧密码输入不正确',
+    'data-not-find': '数据未找到或不存在'
 };
 
 const deepClone = function (data) {
