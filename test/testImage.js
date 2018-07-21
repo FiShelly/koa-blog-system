@@ -4,12 +4,14 @@ const moment = require('moment');
 async function testCreate () {
     const image = await imageController.create({
         request: {
-            name: 'tag1',
-            date: moment().unix(),
-            ext: 'ext-1',
-            size: 1000,
-            mime: 'image/png',
-            path: '/local/image/tag1.png'
+           body:{
+               name: 'tag1',
+               date: moment().unix(),
+               ext: 'ext-1',
+               size: 1000,
+               mime: 'image/png',
+               path: '/local/image/tag1.png'
+           }
         }
     });
     console.log(image);
@@ -41,8 +43,10 @@ async function testFindAll () {
 async function testFindAllByPage () {
     const image = await imageController.findAllByPage({
         request: {
-            offset: 0,
-            limit: 20
+           body:{
+               offset: 0,
+               limit: 20
+           }
         }
     });
     console.log(image);
@@ -54,7 +58,9 @@ async function testUpdate () {
             id: 1
         },
         request: {
-            name: 'new-tag-1',
+            body:{
+                name: 'new-tag-1',
+            }
         }
     });
     console.log(image);

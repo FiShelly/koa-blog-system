@@ -4,7 +4,8 @@ const errorMap = {
     'input-invalidate': '输入不合法',
     'input-invalidate-empty': '输入参数为空',
     'input-invalidate-oldPwd': '旧密码输入不正确',
-    'data-not-find': '数据未找到或不存在'
+    'data-not-find': '数据未找到或不存在',
+    'no-logined': '未登录'
 };
 
 const deepClone = function (data) {
@@ -12,11 +13,11 @@ const deepClone = function (data) {
 };
 
 const _changeData = function (data) {
-    if (data.hasOwnProperty('count') && data.hasOwnProperty('rows')) {
+    if (data && data.hasOwnProperty('count') && data.hasOwnProperty('rows')) {
         data = {
             total: data.count,
             list: data.rows
-        }
+        };
     }
     return deepClone(data);
 };

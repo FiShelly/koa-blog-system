@@ -3,7 +3,7 @@ const validator = require('../../utils/normal').validator;
 const commentService = require('../services/commentService');
 
 const create = async function(ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     try {
         const comment = await commentService.create(request);
         return packData(200, 'success', comment);
@@ -13,7 +13,7 @@ const create = async function(ctx) {
 };
 
 const findOneById = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     try {
         const comment = await commentService.findOne({id: params.id});
@@ -27,7 +27,7 @@ const findOneById = async function (ctx) {
 };
 
 const remove = async function(ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     try {
         const comment = await commentService.delete({id: params.id});
@@ -38,7 +38,7 @@ const remove = async function(ctx) {
 };
 
 const findAll = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     try {
         const comments = await commentService.findAll();
@@ -49,7 +49,7 @@ const findAll = async function (ctx) {
 };
 
 const findAllByPage = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     const limit = request.limit;
     const offset = request.offset;
@@ -66,7 +66,7 @@ const findAllByPage = async function (ctx) {
 };
 
 const update = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     const id = params.id;
     try {

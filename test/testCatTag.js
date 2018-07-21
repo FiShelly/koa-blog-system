@@ -4,10 +4,12 @@ const moment = require('moment');
 async function testCreate () {
     const catTag = await categoryTagController.create({
         request: {
-            type: 'tag',
-            name: 'tag1',
-            date: moment().unix(),
-            count: 0
+            body: {
+                type: 'tag',
+                name: 'tag1',
+                date: moment().unix(),
+                count: 0
+            }
         }
     });
     console.log(catTag);
@@ -46,12 +48,13 @@ async function testUpdate () {
             id: 1
         },
         request: {
-            name: 'new-tag-1',
+            body: {
+                name: 'new-tag-1',
+            }
         }
     });
     console.log(catTag);
 }
-
 
 async function testIncrement () {
     const catTag = await categoryTagController.increment({

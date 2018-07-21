@@ -9,7 +9,9 @@ async function testCreate () {
 async function testFindOneByLoginId () {
     const user = await userController.findUserByLoginId({
         request: {
-            account: 'account-test11'
+            body:{
+                account: 'account-test11'
+            }
         }
     });
     console.log(user);
@@ -18,8 +20,10 @@ async function testFindOneByLoginId () {
 async function testLogin () {
     const user = await userController.login({
         request: {
-            account: 'account-test11',
-            password: 'test1-password'
+            body:{
+                account: 'account-test11',
+                password: 'test1-password'
+            }
         }
     });
     console.log(user);
@@ -28,8 +32,10 @@ async function testLogin () {
 async function testUpdate () {
     const user = await userController.updateUser({
         request: {
-            id: 1,
-            name: 'name-test11-update'
+            body:{
+                id: 1,
+                name: 'name-test11-update'
+            }
         }
     });
 }
@@ -40,8 +46,10 @@ async function testUpdatePwd () {
             id: 1
         },
         request: {
-            oldPassword: 'password-test1',
-            newPassword: 'test1-password'
+           body:{
+               oldPassword: 'password-test1',
+               newPassword: 'test1-password'
+           }
         }
     });
     console.log(user);

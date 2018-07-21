@@ -2,7 +2,7 @@ const packData = require('../../utils/normal').packData;
 const categoryTagService = require('../services/categoryTagService');
 
 const create = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     try {
         const categoryTag = await categoryTagService.create(request);
         return packData(200, 'success', categoryTag);
@@ -13,7 +13,7 @@ const create = async function (ctx) {
 };
 
 const findOneById = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     try {
         const categoryTag = await categoryTagService.findOne({id: params.id});
@@ -27,7 +27,7 @@ const findOneById = async function (ctx) {
 };
 
 const remove = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     try {
         const categoryTag = await categoryTagService.delete({id: params.id});
@@ -38,7 +38,7 @@ const remove = async function (ctx) {
 };
 
 const findAllByType = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     try {
         const categoryTag = await categoryTagService.findAll({type: params.type});
@@ -49,7 +49,7 @@ const findAllByType = async function (ctx) {
 };
 
 const update = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     const id = params.id;
     try {
@@ -61,7 +61,7 @@ const update = async function (ctx) {
 };
 
 const increment = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     const id = params.id;
     try {

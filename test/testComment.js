@@ -4,11 +4,13 @@ const moment = require('moment');
 async function testCreate () {
     const comment = await commentController.create({
         request: {
-            comment: 1,
-            content: 'This is comment content',
-            date: moment().unix(),
-            visitor: JSON.stringify({email: 'ad@m.in', name: 'Fishelly', index: 'http://www.fishelly.top'}),
-            quotes: ''
+            body:{
+                comment: 1,
+                content: 'This is comment content',
+                date: moment().unix(),
+                visitor: JSON.stringify({email: 'ad@m.in', name: 'Fishelly', index: 'http://www.fishelly.top'}),
+                quotes: ''
+            }
         }
     });
     console.log(comment);
@@ -40,8 +42,10 @@ async function testFindAll () {
 async function testFindAllByPage () {
     const comment = await commentController.findAllByPage({
         request: {
-            offset: 0,
-            limit: 20
+          body:{
+              offset: 0,
+              limit: 20
+          }
         }
     });
     console.log(comment);
@@ -53,7 +57,9 @@ async function testUpdate () {
             id: 1
         },
         request: {
-            content: 'new-title-1',
+            body:{
+                content: 'new-title-1',
+            }
         }
     });
     console.log(comment);

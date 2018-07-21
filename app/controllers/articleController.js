@@ -3,7 +3,7 @@ const validator = require('../../utils/normal').validator;
 const articleService = require('../services/articleService');
 
 const create = async function(ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     try {
         const article = await articleService.create(request);
         return packData(200, 'success', article);
@@ -13,7 +13,7 @@ const create = async function(ctx) {
 };
 
 const findOneById = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     try {
         const article = await articleService.findOne({id: params.id});
@@ -27,7 +27,7 @@ const findOneById = async function (ctx) {
 };
 
 const remove = async function(ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     try {
         const article = await articleService.delete({id: params.id});
@@ -38,7 +38,7 @@ const remove = async function(ctx) {
 };
 
 const findAll = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     try {
         const articles = await articleService.findAll();
@@ -49,12 +49,12 @@ const findAll = async function (ctx) {
 };
 
 const findAllByPage = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     const limit = request.limit;
     const offset = request.offset;
     if (validator.isEmpty(limit) || validator.isEmpty(offset)) {
-        return packData(412, 'error', 'input-invalidate-empty')
+        return packData(412, 'error', 'input-invalidate-empty');
     }
     try {
         const articles = await articleService.findAndCountAll(limit, offset);
@@ -66,7 +66,7 @@ const findAllByPage = async function (ctx) {
 };
 
 const update = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     const id = params.id;
     try {

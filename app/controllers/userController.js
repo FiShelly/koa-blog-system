@@ -1,16 +1,22 @@
-const packData = require('../../utils/normal').packData;
+const normalUtil = require('../../utils/normal');
+const packData = normalUtil.packData;
+const validator = normalUtil.validator;
 const userService = require('../services/userService');
 const md5 = require('md5');
 
 const login = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const account = request.account;
-    const password = md5(request.password);
-    let user = null;
+    let password = request.password;
+    if (validator.isEmpty(password) || validator.isEmpty(account)) {
+        return packData(412, 'error', 'input-invalidate-empty');
+    }
+    password = md5(password);
     try {
-        user = await userService.findOne({account});
+        const user = await userService.findOne({account});
         if (user.password === password) {
-            return packData(200, 'success', {});
+            delete user.dataValues.password;
+            return packData(200, 'success', user);
         } else {
             return packData(401.1, 'error', 'login-invalidate');
         }
@@ -20,19 +26,8 @@ const login = async function (ctx) {
 };
 
 const create = async function (ctx) {
-    const data = {
-        account: 'account-test1',
-        name: 'name-test1',
-        position: 'position-test1',
-        signature: 'signature-test1',
-        label: 'label-test1',
-        introduce: 'introduce-test1',
-        password: 'password-test1',
-        headImg: 1
-    };
-
     try {
-        const user = await userService.create(data);
+        const user = await userService.create();
 
         return packData(200, 'success', user);
     } catch (e) {
@@ -42,22 +37,26 @@ const create = async function (ctx) {
 };
 
 const findUserByLoginId = async function (ctx) {
-    const request = ctx.request;
-    const account = request.account;
+    const request = ctx.request.body;
+    const params = ctx.params;
+    const account = params.account;
     if (!account) {
         return packData(412, 'error', 'input-invalidate-empty');
     }
     try {
         const user = await userService.findOne({account});
-        delete user.dataValues.password;
+        if (user) {
+            delete user.dataValues.password;
+        }
         return packData(200, 'success', user);
     } catch (e) {
+        console.log(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
 
 const updateUser = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     const id = params.id;
     if (!id) {
@@ -72,7 +71,7 @@ const updateUser = async function (ctx) {
 };
 
 const updatePwd = async function (ctx) {
-    const request = ctx.request;
+    const request = ctx.request.body;
     const params = ctx.params;
     const id = params.id;
     const oldPwd = md5(request.oldPassword);

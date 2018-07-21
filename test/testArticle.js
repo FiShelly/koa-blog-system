@@ -4,15 +4,17 @@ const moment = require('moment');
 async function testCreate () {
     const article = await articleController.create({
         request: {
-            title: 'article-title' + Math.random(),
-            type: '1,2,3',
-            tag: 'a,s,d',
-            abstract: 'abstract' + Math.random(),
-            date: moment().unix(),
-            articleHTML: 'articleHTML',
-            articleMd: 'articleMd',
-            coverImg: 1,
-            status: 'audit'
+            body: {
+                title: 'article-title' + Math.random(),
+                type: '1,2,3',
+                tag: 'a,s,d',
+                abstract: 'abstract' + Math.random(),
+                date: moment().unix(),
+                articleHTML: 'articleHTML',
+                articleMd: 'articleMd',
+                coverImg: 1,
+                status: 'audit'
+            }
 
         }
     });
@@ -45,8 +47,10 @@ async function testFindAll () {
 async function testFindAllByPage () {
     const article = await articleController.findAllByPage({
         request: {
-            offset: 0,
-            limit: 20
+            boyd: {
+                offset: 0,
+                limit: 20
+            }
         }
     });
     console.log(article);
@@ -58,7 +62,9 @@ async function testUpdate () {
             id: 1
         },
         request: {
-            title: 'new-title-1',
+            boyd: {
+                title: 'new-title-1',
+            }
         }
     });
     console.log(article);
