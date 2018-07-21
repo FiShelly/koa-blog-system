@@ -3,7 +3,7 @@ const errorMap = {
     'mysql-error': '数据库错误',
     'input-invalidate': '输入不合法',
     'input-invalidate-empty': '输入参数为空',
-    'input-invalidate-oldPwd':'旧密码输入不正确',
+    'input-invalidate-oldPwd': '旧密码输入不正确',
     'data-not-find': '数据未找到或不存在'
 };
 
@@ -11,20 +11,75 @@ const deepClone = function (data) {
     return JSON.parse(JSON.stringify(data));
 };
 
+const _changeData = function (data) {
+    if (data.hasOwnProperty('count') && data.hasOwnProperty('rows')) {
+        data = {
+            total: data.count,
+            list: data.rows
+        }
+    }
+    return deepClone(data);
+};
+
 const packData = function (code, status, data) {
     if (status === 'success') {
         return {
             code: code,
             status: status,
-            data: deepClone(data)
-        }
-    }   else {
+            data: _changeData(data)
+        };
+    } else {
         return {
             code: code,
             status: status,
             msg: errorMap[data]
-        }
+        };
     }
 };
 
-module.exports = {packData, deepClone};
+const validator = {
+    isEmpty (obj) {
+        return typeof obj === 'undefined' || obj === null || (typeof obj === 'string' && obj.length === 0);
+    },
+    isNumeric (obj) {
+        return !isNaN(parseFloat(obj)) && isFinite(obj);
+    },
+    numberic (obj) {
+        return this.isNumeric(obj);
+    },
+    email (obj) {
+        return /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(obj);
+    },
+    chinese (obj) {
+        return /^[\u4e00-\u9fa5]{0,}$/.test(obj);
+    },
+    english (obj) {
+        return /^[a-zA-Z]+$/.test(obj);
+    },
+    url (obj) {
+        return /(^#)|(^http(s*):\/\/[^\s]+\.[^\s]+)/.test(obj);
+    },
+    idcard (obj) {
+        return /(^\d{15}$)|(^\d{17}(x|X|\d)$)/.test(obj);
+    },
+    mobile (obj) {
+        return /^1(3|4|5|7|8)[0-9]\d{8}$/.test(obj);
+    },
+    document (obj) {
+        return /\.doc(x?)$|\.xls(x?)$|\.ppt(x?)$|\.wps$|\.pef$|\.txt$/i.test(obj);
+    },
+    image (obj) {
+        return /\.png|\.jpg$|\.jpeg$|\.bmp$|\.gif$/i.test(obj);
+    },
+    video (obj) {
+        return /\.wmv$|\.avi$|\.mkv$|\.mp4$|\.rmvb$/i.test(obj);
+    },
+    audio (obj) {
+        return /\.mp3/i.test(obj);
+    },
+    archive (obj) {
+        return /\.rar$|\.zip$|\.7z$|\.gzip$|\.tar$|\.iso$/i.test(obj);
+    }
+};
+
+module.exports = {packData, deepClone, validator};

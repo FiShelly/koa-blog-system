@@ -1,31 +1,31 @@
-const commentModel = require('../models/comment');
+const imageModel = require('../models/image');
 
-const commentService = {
+const imageService = {
     create: function (model) {
-        return commentModel.create(model);
+        return imageModel.create(model);
     },
     findOne: function (opt) {
         opt = {where: opt};
-        return commentModel.findOne(opt);
+        return imageModel.findOne(opt);
     },
     findAll: function (opt) {
         opt = {where: opt};
-        return commentModel.findAll(opt);
+        return imageModel.findAll(opt);
     },
     delete: function (opt) {
         opt = {where: opt};
-        return commentModel.destroy(opt);
+        return imageModel.destroy(opt);
     },
     findAndCountAll: function (limit, offset, opt) {
-        return commentModel.findAndCountAll({
+        return imageModel.findAndCountAll({
             where: opt,
             limit, offset
         })
     },
     update: function (val, con) {
         con = {where: con};
-        return commentModel.update(val, con);
+        return imageModel.update(val, con);
     }
 };
 
-module.exports = commentService;
+module.exports = imageService;

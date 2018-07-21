@@ -18,6 +18,12 @@ const articleService = {
     delete: function (opt) {
         opt = {where: opt};
         return articleModel.destroy(opt);
+    },
+    findAndCountAll: function (limit, offset, opt) {
+        return articleModel.findAndCountAll({
+            where: opt,
+            limit, offset
+        })
     }
 };
 
