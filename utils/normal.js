@@ -3,9 +3,11 @@ const errorMap = {
     'mysql-error': '数据库错误',
     'input-invalidate': '输入不合法',
     'input-invalidate-empty': '输入参数为空',
+    'input-invalidate-number': '输入参数必须为数字',
     'input-invalidate-oldPwd': '旧密码输入不正确',
     'data-not-find': '数据未找到或不存在',
-    'no-logined': '未登录'
+    'no-logined': '未登录',
+    'too-frequent': '访问太频繁'
 };
 
 const deepClone = function (data) {
@@ -19,7 +21,14 @@ const _changeData = function (data) {
             list: data.rows
         };
     }
-    return deepClone(data);
+    data = deepClone(data);
+    if (!data) {
+        return null;
+    }
+    if (data instanceof Array) {
+        data = {list: data};
+    }
+    return data;
 };
 
 const packData = function (code, status, data) {

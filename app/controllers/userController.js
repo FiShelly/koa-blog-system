@@ -16,6 +16,7 @@ const login = async function (ctx) {
         const user = await userService.findOne({account});
         if (user.password === password) {
             delete user.dataValues.password;
+            ctx.session.user = user;
             return packData(200, 'success', user);
         } else {
             return packData(401.1, 'error', 'login-invalidate');
@@ -37,9 +38,8 @@ const create = async function (ctx) {
 };
 
 const findUserByLoginId = async function (ctx) {
-    const request = ctx.request.body;
-    const params = ctx.params;
-    const account = params.account;
+    const user = ctx.session.user;
+    const account =  user.account;
     if (!account) {
         return packData(412, 'error', 'input-invalidate-empty');
     }
@@ -57,12 +57,15 @@ const findUserByLoginId = async function (ctx) {
 
 const updateUser = async function (ctx) {
     const request = ctx.request.body;
-    const params = ctx.params;
-    const id = params.id;
+    const user = ctx.session.user;
+    const id =  user.id;
     if (!id) {
         return packData(412, 'error', 'input-invalidate-empty');
     }
     try {
+        delete request.password;
+        delete request.account;
+        delete request.id;
         const user = await userService.update(request, {id});
         return packData(200, 'success', user);
     } catch (e) {
@@ -72,8 +75,8 @@ const updateUser = async function (ctx) {
 
 const updatePwd = async function (ctx) {
     const request = ctx.request.body;
-    const params = ctx.params;
-    const id = params.id;
+    const user = ctx.session.user;
+    const id =  user.id;
     const oldPwd = md5(request.oldPassword);
     const newPwd = md5(request.newPassword);
 

@@ -24,6 +24,7 @@ const imageService = {
     },
     update: function (val, con) {
         con = {where: con};
+        delete val.id;
         return imageModel.update(val, con);
     }
 };

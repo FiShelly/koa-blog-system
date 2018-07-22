@@ -2,11 +2,13 @@ const Koa = require('koa');
 const app = new Koa();
 
 const bodyParser = require('koa-bodyparser');
+const koaBody = require('koa-body');
 const cors = require('koa2-cors');
 const session = require('koa-session');
 const apiRoute = require('./app/routes/api');
 const webRoute = require('./app/routes/web');
 const loginMiddleware = require('./middleware/loginMiddleware');
+const path = require('path');
 
 app.use(cors({
     origin: function (ctx) {
@@ -21,6 +23,7 @@ app.use(cors({
     allowMethods: ['GET', 'POST'],
     allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }));
+
 app.keys = ['user logined secret'];
 app.use(session({
     key: 'koa:sess', /** cookie的名称，可以不管 */
@@ -29,11 +32,20 @@ app.use(session({
     httpOnly: true, /** (boolean) httpOnly or not (default true) */
     signed: true, /** (boolean) signed or not (default true) */
 }, app));
-app.use(bodyParser());
+// app.use(bodyParser());
 app.use(loginMiddleware());
+app.use(async function (ctx, next) {
+    ctx._dir_path = __dirname;
+    await next();
+});
+app.use(koaBody({
+    multipart: true,
+    'formLimit': '5mb',
+    'jsonLimit': '5mb',
+    'textLimit': '5mb'
+}));
 app.use(apiRoute.routes(), apiRoute.allowedMethods());
 app.use(webRoute.routes(), webRoute.allowedMethods());
-
 
 app.on('error', function (err, ctx) {
     console.log('server error', err, ctx);

@@ -11,7 +11,9 @@ const Article = mysql.define('blog_article', {
     articleHtml: {type: Sequelize.TEXT, allowNull: false},
     articleMd: {type: Sequelize.TEXT, allowNull: false},
     coverImg: {type: Sequelize.INTEGER, allowNull: false},
-    status: {type: Sequelize.STRING(10), allowNull: false}
+    status: {type: Sequelize.STRING(10), allowNull: false},
+    readCount: {type: Sequelize.INTEGER, allowNull: false, defaultValue: 0},
+    commentCount: {type: Sequelize.INTEGER, allowNull: false, defaultValue: 0}
 }, {
     tableName: 'blog_article',
     timestamps: false,

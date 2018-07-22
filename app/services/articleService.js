@@ -13,6 +13,7 @@ const articleService = {
     },
     update: function (val, con) {
         con = {where: con};
+        delete val.id;
         return articleModel.update(val, con);
     },
     delete: function (opt) {

@@ -1,9 +1,11 @@
 const packData = require('../../utils/normal').packData;
 const categoryTagService = require('../services/categoryTagService');
+const moment = require('moment');
 
 const create = async function (ctx) {
     const request = ctx.request.body;
     try {
+        request.date = moment().unix();
         const categoryTag = await categoryTagService.create(request);
         return packData(200, 'success', categoryTag);
     } catch (e) {
@@ -38,7 +40,6 @@ const remove = async function (ctx) {
 };
 
 const findAllByType = async function (ctx) {
-    const request = ctx.request.body;
     const params = ctx.params;
     try {
         const categoryTag = await categoryTagService.findAll({type: params.type});
@@ -61,7 +62,6 @@ const update = async function (ctx) {
 };
 
 const increment = async function (ctx) {
-    const request = ctx.request.body;
     const params = ctx.params;
     const id = params.id;
     try {

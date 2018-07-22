@@ -1,16 +1,20 @@
 const router = require('koa-router')();
 const userController = require('../../controllers/userController');
 
-router.get('/:account', async function (ctx, next) {
+router.get('/', async function (ctx, next) {
     ctx.body = await userController.findUserByLoginId(ctx);
 });
 
 router.post('/login', async function (ctx, next) {
-    const result = await userController.login(ctx);
-    if (result.code === 200) {
-        ctx.session.user = result.data.account;
-    }
-    ctx.body = result;
+    ctx.body = await userController.login(ctx);
+});
+
+router.put('/update', async function(ctx, next) {
+    ctx.body = await userController.updateUser(ctx);
+});
+
+router.put('/updatepwd', async function(ctx, next) {
+    ctx.body = await userController.updatePwd(ctx);
 });
 
 module.exports = router;

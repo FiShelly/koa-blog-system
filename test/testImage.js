@@ -70,5 +70,5 @@ async function testUpdate () {
 // testFindOneById();
 // testFindAll();
 // testFindAllByPage();
-testUpdate();
+// testUpdate();
 // testRemove();

@@ -14,6 +14,7 @@ const categoryTagService = {
     },
     update: function (val, con) {
         con = {where: con};
+        delete val.id;
         return categoryTagModel.update(val, con);
     },
     delete: function (opt) {

@@ -14,6 +14,7 @@ const userService = {
     },
     update: function (val, con) {
         con = {where: con};
+        delete val.id;
         return userModel.update(val, con);
     }
 };

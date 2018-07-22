@@ -1,10 +1,17 @@
 const packData = require('../../utils/normal').packData;
 const validator = require('../../utils/normal').validator;
 const imageService = require('../services/imageService');
+const moment = require('moment');
 
-const create = async function(ctx) {
+const create = async function(ctx, file) {
     const request = ctx.request.body;
+    request.path = file.path;
+    request.mime = file.type;
+    request.name = file.name;
+    request.size = file.size;
+    request.name = file.name;
     try {
+        request.date = moment().unix();
         const image = await imageService.create(request);
         return packData(200, 'success', image);
     } catch (e) {
@@ -44,23 +51,39 @@ const findAll = async function (ctx) {
     const params = ctx.params;
     try {
         const images = await imageService.findAll();
-        return packData(200, 'success', images);
+        const result = packData(200, 'success', images);
+        result.data.list = result.data.list.map(v => {
+            v.url = `${ctx.origin}/web/image/view/${v.id}` ;
+            delete v.path;
+            return v;
+        });
+        return result;
     } catch (e) {
         return packData(500, 'error', 'mysql-error');
     }
 };
 
 const findAllByPage = async function (ctx) {
-    const request = ctx.request.body;
-    const params = ctx.params;
-    const limit = request.limit;
-    const offset = request.offset;
+    const request = ctx.request.query;
+    let limit = request.limit;
+    let offset = request.offset;
     if (validator.isEmpty(limit) || validator.isEmpty(offset)) {
         return packData(412, 'error', 'input-invalidate-empty')
     }
+    if (!validator.isNumeric(limit) || !validator.isNumeric(offset)) {
+        return packData(412, 'error', 'input-invalidate-number');
+    }
+    limit = Number(limit);
+    offset = Number(offset);
     try {
         const images = await imageService.findAndCountAll(limit, offset);
-        return packData(200, 'success', images);
+        const result = packData(200, 'success', images);
+        result.data.list = result.data.list.map(v => {
+            v.url = `${ctx.origin}/web/image/view/${v.id}` ;
+            delete v.path;
+            return v;
+        });
+        return result;
     } catch (e) {
         console.log(e);
         return packData(500, 'error', 'mysql-error');
