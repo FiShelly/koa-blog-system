@@ -5,19 +5,19 @@ router.get('/list/:type', async function (ctx, next) {
     ctx.body = await categoryTagController.findAllByType(ctx);
 });
 
-router.post('/create', async function (ctx, next) {
+router.post('/', async function (ctx, next) {
     ctx.body = await categoryTagController.create(ctx);
 });
 
-router.delete('/remove/:id', async function (ctx, next) {
+router.delete('/:id', async function (ctx, next) {
     ctx.body = await categoryTagController.remove(ctx);
 });
 
-router.get('/one/:id', async function (ctx, next) {
+router.get('/:id', async function (ctx, next) {
     ctx.body = await categoryTagController.findOneById(ctx);
 });
 
-router.put('/update/:id', async function (ctx, next) {
+router.put('/:id', async function (ctx, next) {
     ctx.body = await categoryTagController.update(ctx);
 });
 

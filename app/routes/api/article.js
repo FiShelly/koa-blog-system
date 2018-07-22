@@ -5,6 +5,10 @@ router.get('/list', async function (ctx, next) {
     ctx.body = await articleController.findAllByPage(ctx);
 });
 
+router.get('/:id', async function (ctx, next) {
+    ctx.body = await articleController.findOneById(ctx);
+});
+
 router.put('/increment/:id', async function (ctx, next) {
     ctx.body = await articleController.incrementRead(ctx);
 });

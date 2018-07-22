@@ -1,12 +1,24 @@
 const packData = require('../../utils/normal').packData;
 const validator = require('../../utils/normal').validator;
 const articleService = require('../services/articleService');
-const commentService = require('../services/commentService');
+const categoryTagService = require('../services/categoryTagService');
 const moment = require('moment');
+
 const create = async function (ctx) {
     const request = ctx.request.body;
     try {
         const article = await articleService.create(request);
+        const tagArray = article.tag.split(',').map(val => {
+            return {name: val, type: 'tag'};
+        });
+        tagArray.push({name: article.type, type: 'category'});
+        let allPromise = tagArray.map(val => categoryTagService.findOne({name: val.name, type: val.type}));
+        Promise.all(allPromise).then(results => {
+            allPromise = results.map(val => categoryTagService.update({count: val.count + 1}, {id: val.id}));
+            return Promise.all(allPromise);
+        }).then(data => {
+            console.log(data);
+        });
         return packData(200, 'success', article);
     } catch (e) {
         return packData(500, 'error', 'mysql-error');
@@ -14,7 +26,6 @@ const create = async function (ctx) {
 };
 
 const findOneById = async function (ctx) {
-    const request = ctx.request.query;
     const params = ctx.params;
     try {
         const article = await articleService.findOne({id: params.id});
@@ -30,7 +41,7 @@ const findOneById = async function (ctx) {
 const remove = async function (ctx) {
     const params = ctx.params;
     try {
-        const article = await articleService.delete({id: params.id});
+        const article = await articleService.update({status: 'delete'}, {id: params.id});
         return packData(200, 'success', article);
     } catch (e) {
         return packData(500, 'error', 'mysql-error');
@@ -58,6 +69,17 @@ const findAllByPage = async function (ctx) {
     }
     limit = Number(limit);
     offset = Number(offset);
+    const args = {};
+    const status = request.status || 'all';
+    const kw = request.keyword;
+    if (status !== 'all') {
+        args.status = status;
+    }
+    if (!validator.isEmpty(kw)) {
+        args.title = {
+            $like: `%${kw}%`,
+        };
+    }
     try {
         const articles = await articleService.findAndCountAll(limit, offset);
         return packData(200, 'success', articles);

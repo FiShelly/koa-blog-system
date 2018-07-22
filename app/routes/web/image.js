@@ -29,7 +29,7 @@ router.get('/all', async function (ctx, next) {
     ctx.body = await imageController.findAll(ctx);
 });
 
-router.post('/create', async function (ctx, next) {
+router.post('/', async function (ctx, next) {
     const file = ctx.request.files.file;
     const reader = fs.createReadStream(file.path);
     const nowTime = moment().format('YYYY-MM-DD');
@@ -46,11 +46,11 @@ router.post('/create', async function (ctx, next) {
     ctx.body = await imageController.create(ctx, file);
 });
 
-router.put('update/:id', async function (ctx, next) {
+router.put('/:id', async function (ctx, next) {
     ctx.body = await imageController.update(ctx);
 });
 
-router.delete('remove/:id', async function (ctx, next) {
+router.delete('/:id', async function (ctx, next) {
     ctx.body = await imageController.remove(ctx);
 });
 

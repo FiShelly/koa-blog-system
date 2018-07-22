@@ -5,7 +5,7 @@ router.get('/all/:id', async function (ctx, next) {
     ctx.body = await commentController.findAllByArticle(ctx);
 });
 
-router.post('/create', async function (ctx, next) {
+router.post('/', async function (ctx, next) {
     ctx.body = await commentController.create(ctx);
 });
 
