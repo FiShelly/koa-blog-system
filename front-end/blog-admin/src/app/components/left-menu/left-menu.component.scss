@@ -1,0 +1,62 @@
+@import "../../../assets/var";
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.menu-box {
+    min-width: 200px;
+    > .item {
+        display: block;
+        text-decoration: none;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        clear: both;
+        margin: 0;
+        color: #777;
+        position: relative;
+        transition: all ease .3s;
+        cursor: pointer;
+        font-size: 15px;
+        text-indent: 60px;
+
+        &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background-color: $borderColor;
+        }
+
+        &.selected {
+            background-color: $bgGrey;
+
+            &:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 5px;
+                background-color: $ccBlue;
+            }
+        }
+
+        > .icon{
+            font-family: 'blog-icon';
+            position: absolute;
+            left: 0;
+            top: 0;
+            text-indent: 20px;
+            width: 60px;
+            height: 40px;
+        }
+    }
+
+}
