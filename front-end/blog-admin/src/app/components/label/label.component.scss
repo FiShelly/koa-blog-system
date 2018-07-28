@@ -1,0 +1,55 @@
+@import "../../../assets/var";
+
+.el-label{
+    height: 40px;
+    line-height: 40px;
+    box-sizing: border-box;
+    color: $grey700;
+    display: inline-block;
+    font-size: 16px;
+    padding: 0 15px;
+    position: relative;
+    .el-input__icon{
+        width: 25px;
+        line-height: 40px;
+        height: 100%;
+        text-align: center;
+        transition: all .3s;
+    }
+
+    &.el-input--prefix{
+        .el-input__inner{
+            padding-left: 30px;
+        }
+
+        .el-input__prefix{
+            position: absolute;
+            height: 100%;
+            left: 5px;
+            top: 0;
+            text-align: center;
+            color: $ccGrey;
+            transition: all .3s;
+            pointer-events: none;
+        }
+    }
+
+    &.el-input--suffix{
+        .el-input__inner{
+            padding-right: 30px;
+        }
+
+        .el-input__suffix{
+            position: absolute;
+            height: 100%;
+            right: 5px;
+            top: 0;
+            text-align: center;
+            color: $ccGrey;
+            transition: all .3s;
+            pointer-events: none;
+        }
+    }
+}
+
+

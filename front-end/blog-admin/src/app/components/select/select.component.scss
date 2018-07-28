@@ -1,0 +1,127 @@
+@import "../../../assets/var";
+
+.el-select {
+    display: inline-block;
+    position: relative;
+
+    &.is-disabled {
+        .el-input.is-disabled {
+
+            .el-input__inner {
+                cursor: not-allowed;
+                background-color: $grey100;
+                border-color: $grey200;
+                color: $ccGrey;
+                &:hover {
+                    border-color: $grey200;
+                }
+            }
+        }
+    }
+
+    &.is-focus {
+        .el-input {
+            &.is-focus {
+                .el-input__inner {
+                    border-color: $blue400;
+                }
+            }
+        }
+    }
+
+    .el-input--suffix {
+        .el-input__inner {
+            padding-right: 30px;
+        }
+
+        .el-input__suffix {
+            position: absolute;
+            height: 100%;
+            right: 5px;
+            top: 0;
+            text-align: center;
+            color: $ccGrey;
+            transition: all .3s;
+            pointer-events: none;
+
+            .el-input__suffix-inner {
+                pointer-events: all;
+            }
+
+            .el-input__icon {
+                width: 25px;
+                line-height: 40px;
+                height: 100%;
+                text-align: center;
+                color: #c0c4cc;
+                font-size: 14px;
+                transition: transform .3s;
+                transform: rotate(180deg);
+                cursor: pointer;
+
+                &:after {
+                    content: "";
+                    height: 100%;
+                    width: 0;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+
+    .el-input {
+        position: relative;
+        font-size: 14px;
+        display: block;
+        width: 100%;
+
+        .el-input__inner {
+            -webkit-appearance: none;
+            background-color: $whiteBg;
+            border-radius: 4px;
+            border: $border-weak;
+            box-sizing: border-box;
+            color: $grey700;
+            display: inline-block;
+            font-size: inherit;
+            height: 40px;
+            line-height: 40px;
+            outline: none;
+            padding: 0 15px;
+            transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+            width: 100%;
+            cursor: pointer;
+
+            &:focus {
+                border-color: $blue400;
+                outline: none;
+            }
+        }
+    }
+}
+
+.el-select-dropdown {
+    min-width: 240px;
+    position: absolute;
+    z-index: 1001;
+    border: $border-weak;
+    border-radius: 4px;
+    background-color: $whiteBg;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    margin: 5px 0;
+
+    .el-scrollbar {
+        position: relative;
+    }
+
+    .el-select-dropdown__list {
+        list-style: none;
+        padding: 6px 0;
+        margin: 0;
+        box-sizing: border-box;
+
+
+    }
+}

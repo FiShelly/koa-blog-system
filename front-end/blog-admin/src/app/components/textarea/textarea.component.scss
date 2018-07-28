@@ -1,0 +1,32 @@
+@import "../../../assets/var";
+
+.el-textarea{
+    display: inline-block;
+    width: 100%;
+    vertical-align: bottom;
+    font-size: 14px;
+
+    .el-textarea__inner {
+        display: block;
+        resize: vertical;
+        padding: 5px 15px;
+        line-height: 1.5;
+        box-sizing: border-box;
+        width: 100%;
+        font-size: inherit;
+        color: #606266;
+        background-color: $whiteBg;
+        border: $border-weak;
+        border-radius: 4px;
+        transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+
+        &:hover{
+            border-color: $ccGrey;
+        }
+
+        &:focus{
+            outline: none;
+            border-color: $blue400;
+        }
+    }
+}

@@ -1,0 +1,81 @@
+@import "../../../assets/var";
+
+.el-input{
+    position: relative;
+    font-size: 14px;
+    display: inline-block;
+
+    &.el-input--prefix{
+        .el-input__inner{
+            padding-left: 30px;
+        }
+
+        .el-input__prefix{
+            position: absolute;
+            height: 100%;
+            left: 5px;
+            top: 0;
+            text-align: center;
+            color: $ccGrey;
+            transition: all .3s;
+            pointer-events: none;
+        }
+    }
+
+    &.el-input--suffix{
+        .el-input__inner{
+            padding-right: 30px;
+        }
+
+        .el-input__suffix{
+            position: absolute;
+            height: 100%;
+            right: 5px;
+            top: 0;
+            text-align: center;
+            color: $ccGrey;
+            transition: all .3s;
+            pointer-events: none;
+        }
+    }
+
+    &.is-disabled{
+        .el-input__inner{
+            background-color: $bgGrey;
+            border-color: $grey200;
+            color: $ccGrey;
+            cursor: not-allowed;
+        }
+    }
+
+    .el-input__icon{
+        width: 25px;
+        line-height: 40px;
+        height: 100%;
+        text-align: center;
+        transition: all .3s;
+    }
+
+    .el-input__inner{
+        -webkit-appearance: none;
+        background-color: $whiteBg;
+        background-image: none;
+        border-radius: 4px;
+        border: $border-weak;
+        box-sizing: border-box;
+        color: $grey700;
+        display: inline-block;
+        font-size: inherit;
+        height: 40px;
+        line-height: 40px;
+        outline: none;
+        padding: 0 15px;
+        transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+        width: 100%;
+
+        &:focus{
+            outline: none;
+            border-color: $blue400;
+        }
+    }
+}

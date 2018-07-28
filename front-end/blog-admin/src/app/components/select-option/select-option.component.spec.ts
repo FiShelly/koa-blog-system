@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FileButtonComponent } from './file-button.component';
+import { SelectOptionComponent } from './select-option.component';
 
-describe('FileButtonComponent', () => {
-  let component: FileButtonComponent;
-  let fixture: ComponentFixture<FileButtonComponent>;
+describe('SelectOptionComponent', () => {
+  let component: SelectOptionComponent;
+  let fixture: ComponentFixture<SelectOptionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FileButtonComponent ]
+      declarations: [ SelectOptionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FileButtonComponent);
+    fixture = TestBed.createComponent(SelectOptionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
