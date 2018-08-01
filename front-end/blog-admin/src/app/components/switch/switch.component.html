@@ -1,4 +1,23 @@
-<div role="switch" class="el-switch is-checked">
-    <input type="checkbox" name="" class="el-switch__input">
+<label class="el-switch"
+       [class.is-disabled]="disabled"
+       [class.is-checked]="model"
+>
+    <input type="checkbox"
+           class="el-switch__input"
+           [disabled]="disabled"
+           [name]="name"
+           [(ngModel)]="model"
+           (ngModelChange)="handleInputChange($event)"
+    >
+    <span class="el-switch__label el-switch__label--left"
+          [class.is-active]="!model"
+          *ngIf="inactiveText">
+        <span>{{inactiveText}}</span>
+    </span>
     <span class="el-switch__core"></span>
-</div>
+    <span class="el-switch__label el-switch__label--right"
+          [class.is-active]="model"
+          *ngIf="activeText" >
+        <span>{{activeText}}</span>
+    </span>
+</label>

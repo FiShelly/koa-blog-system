@@ -21,7 +21,7 @@
         .el-switch__core{
             border-color: $blue400;
             background-color: $blue400;
-            :after{
+            &:after{
                 left: 100%;
                 margin-left: -17px;
             }
@@ -64,4 +64,35 @@
 
         }
     }
+
+    .el-switch__label{
+        transition: .2s;
+        height: 20px;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        vertical-align: middle;
+        color: #303133;
+
+        *{
+            line-height: 1;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        &.is-active{
+            color: $blue400;
+        }
+
+        &--left{
+            margin-right: 10px;
+        }
+
+        &--right{
+            margin-left: 10px;
+        }
+    }
+
+
 }

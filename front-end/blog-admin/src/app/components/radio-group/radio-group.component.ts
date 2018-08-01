@@ -1,4 +1,4 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
@@ -11,12 +11,13 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
         multi: true
     }],
 })
-export class RadioGroupComponent implements OnInit, ControlValueAccessor {
+export class RadioGroupComponent implements OnInit, ControlValueAccessor, OnChanges {
     
     @Input() disabled: Boolean = false;
     @Input() model: any;
+    
     @Output() modelChange: EventEmitter<any> = new EventEmitter<any>();
-  
+    disabledChange: EventEmitter<any> = new EventEmitter<any>();
     subscriber: Function[] = [];
     
     constructor() {
@@ -34,6 +35,12 @@ export class RadioGroupComponent implements OnInit, ControlValueAccessor {
     
     writeValue(value: any): void {
         this.model = value;
+    }
+    
+    ngOnChanges(changes): void {
+        if (changes.hasOwnProperty('disabled')) {
+            this.disabledChange.emit(changes['disabled']);
+        }
     }
     
     registerOnChange(fn: Function): void {

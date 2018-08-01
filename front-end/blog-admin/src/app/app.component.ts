@@ -11,11 +11,9 @@ export class AppComponent {
     labels = ['checkBox1', 'checkBox2', 'checkBox3', 'checkBox4'];
     radio = 0;
     cbDisabled: Boolean = false;
+    switch: Boolean = false;
     
     constructor() {
-        setTimeout(() => {
-            this.cbDisabled = true;
-        }, 2000);
     }
     
     clickEvent($event: Event) {
@@ -23,6 +21,5 @@ export class AppComponent {
     }
     
     changeEvent($event: Event) {
-        console.log(this.radio);
     }
 }

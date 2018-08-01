@@ -44,7 +44,11 @@ export class RadioComponent implements OnInit, OnChanges, ControlValueAccessor, 
     
     
     ngOnInit() {
-    
+        if (this.group) {
+            this.group.disabledChange.subscribe(($e) => {
+                this.disabled = $e.currentValue;
+            });
+        }
     }
     
     ngAfterViewInit(): void {

@@ -43,10 +43,6 @@ export class CheckboxComponent implements OnInit, OnChanges, ControlValueAccesso
     
     }
     
-    handleDisabledChange($e) {
-        console.log($e);
-    }
-    
     isChecked() {
         if (this.isHasGroup) {
             this.model = this.group.model.includes(this.label);
@@ -59,9 +55,11 @@ export class CheckboxComponent implements OnInit, OnChanges, ControlValueAccesso
     }
     
     ngOnInit() {
-        this.group.disabledChange.subscribe(($e) => {
-            this.disabled = $e.currentValue;
-        });
+        if (this.group) {
+            this.group.disabledChange.subscribe(($e) => {
+                this.disabled = $e.currentValue;
+            });
+        }
     }
     
     ngAfterViewInit(): void {
@@ -80,7 +78,6 @@ export class CheckboxComponent implements OnInit, OnChanges, ControlValueAccesso
     }
     
     ngOnChanges(): void {
-        console.log('edc');
     }
     
     handleInputChange(val: string): void {

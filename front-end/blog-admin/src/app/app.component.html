@@ -38,7 +38,13 @@
     </app-radio-group>
 </div>
 
+<br>
 
+<div style="text-align: center" >
+    <app-switch active-text="aaaaa"  inactive-text="bbbbbb" [disabled]="true"
+                [(ngModel)]="!switch"
+                (modelChange)="changeEvent($event)"></app-switch>
+</div>
 
 
 
