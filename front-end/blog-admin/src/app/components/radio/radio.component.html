@@ -1,7 +1,24 @@
-<label class="el-radio is-checked">
-    <span class="el-radio__input is-checked">
+<label class="el-radio"
+       [class.is-disabled]="disabled"
+       [class.is-checked]="model==label"
+>
+    <span class="el-radio__input"
+          [class.is-disabled]="disabled"
+          [class.is-checked]="model==label"
+    >
         <span class="el-radio__inner"></span>
-        <input type="radio" class="el-radio__original" value="1">
+        <input type="radio" class="el-radio__original"
+               [value]="label"
+               [disabled]="disabled"
+               [name]="name"
+               [(ngModel)]="model"
+               (ngModelChange)="handleInputChange($event)"
+        >
     </span>
-    <span class="el-radio__label"></span>
+    <span class="el-radio__label">
+        <ng-container *ngIf="showLabel">{{label}}</ng-container>
+        <span *ngIf="!showLabel" #content>
+            <ng-content></ng-content>
+        </span>
+    </span>
 </label>

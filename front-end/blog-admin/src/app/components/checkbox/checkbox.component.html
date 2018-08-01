@@ -1,7 +1,26 @@
-<label class="el-checkbox is-checked">
-    <span class="el-checkbox__input is-checked">
+<label class="el-checkbox "
+       (disabledChange)="handleDisabledChange($event)"
+       [class.is-disabled]="disabled"
+       [class.is-checked]="checked"
+>
+    <span class="el-checkbox__input"
+          [class.is-disabled]="disabled"
+          [class.is-checked]="checked"
+    >
         <span class="el-checkbox__inner"></span>
-        <input type="checkbox" class="el-checkbox__original" value="">
+        <input type="checkbox"
+               class="el-checkbox__original"
+               [value]="label"
+               [disabled]="disabled"
+               [name]="name"
+               [(ngModel)]="model"
+               (ngModelChange)="handleInputChange($event)"
+        >
     </span>
-    <span class="el-checkbox__label"></span>
+    <span class="el-checkbox__label">
+        <ng-container *ngIf="showLabel">{{label}}</ng-container>
+        <span *ngIf="!showLabel" #content>
+            <ng-content></ng-content>
+        </span>
+    </span>
 </label>

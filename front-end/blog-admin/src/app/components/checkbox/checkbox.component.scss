@@ -10,7 +10,28 @@
     white-space: nowrap;
     user-select: none;
 
+    &.is-checked {
+        & + .el-checkbox__label {
+            color: $blue400;
+        }
+
+        .el-checkbox__input {
+
+            &.is-checked {
+                .el-checkbox__inner {
+                    border-color: $blue400;
+                    background: $blue400;
+
+                    &:after {
+                        transform: rotate(45deg) scaleY(1)
+                    }
+                }
+            }
+        }
+    }
+
     &.is-disabled {
+        cursor: not-allowed;
         & + span.el-checkbox__label {
             color: $ccGrey;
             cursor: not-allowed;
@@ -27,26 +48,6 @@
                     &::after {
                         cursor: not-allowed;
                         border-color: $ccGrey;
-                    }
-                }
-            }
-        }
-    }
-
-    &.is-checked {
-        & + .el-checkbox__label {
-            color: $blue400;
-        }
-
-        .el-checkbox__input {
-
-            &.is-checked {
-                .el-checkbox__inner {
-                    border-color: $blue400;
-                    background: $blue400;
-
-                    &:after {
-                        transform: rotate(45deg) scaleY(1)
                     }
                 }
             }

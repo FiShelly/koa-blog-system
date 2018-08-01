@@ -1,11 +1,13 @@
 <div class="el-label">
-    <span></span>
-    <span class="el-input__suffix">
+    <span>
+        <ng-content></ng-content>
+    </span>
+    <span class="el-input__suffix" *ngIf="suffix_icon">
         <span class="el-input__suffix-inner">
-            <i class="el-input__icon"></i>
+            <i class="el-input__icon icon-font">{{suffix_icon}}</i>
         </span>
     </span>
-    <span class="el-input__prefix">
-        <i class="el-input__icon"></i>
+    <span class="el-input__prefix" *ngIf="prefix_icon">
+        <i class="el-input__icon icon-font">{{prefix_icon}}</i>
     </span>
 </div>

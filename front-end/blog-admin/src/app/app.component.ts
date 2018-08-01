@@ -1,10 +1,28 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+    title = 'app';
+    check = ['checkBox1', 'checkBox2'];
+    labels = ['checkBox1', 'checkBox2', 'checkBox3', 'checkBox4'];
+    radio = 0;
+    cbDisabled: Boolean = false;
+    
+    constructor() {
+        setTimeout(() => {
+            this.cbDisabled = true;
+        }, 2000);
+    }
+    
+    clickEvent($event: Event) {
+        console.log('click event ', $event);
+    }
+    
+    changeEvent($event: Event) {
+        console.log(this.radio);
+    }
 }

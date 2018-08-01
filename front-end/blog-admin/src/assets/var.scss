@@ -64,3 +64,14 @@ $borderColor: #dde1e3;
 $border-weak: 1px $grey300 solid;
 $blue-hover: lighten($blue600, 5%);
 $blue-active: darken($blue600, 10%);
+
+
+@keyframes rotating {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+
