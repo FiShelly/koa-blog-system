@@ -1,17 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-    <app-button theme="primary" (click)="clickEvent($event)">
-        测试1
-    </app-button>
-    <app-button disabled="true" theme="primary" (click)="clickEvent($event)">
-        测试2
-    </app-button>
+    <!--<app-button theme="primary" (click)="clickEvent($event)">-->
+        <!--测试1-->
+    <!--</app-button>-->
+    <!--<app-button theme="primary" (click)="clickEvent($event)">-->
+        <!--测试2-->
+    <!--</app-button>-->
 </div>
 <br>
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-    <app-button type="file" disabled="true" (change)="changeEvent($event)" text="测试-File">
-    </app-button>
+    <!--<app-button type="file" disabled="true" (change)="changeEvent($event)" text="测试-File">-->
+    <!--</app-button>-->
 </div>
 
 <br>
@@ -46,5 +46,16 @@
                 (modelChange)="changeEvent($event)"></app-switch>
 </div>
 
+<br>
+
+<div style="text-align: center">
+    <app-textarea [(ngModel)]="textarea" [readonly]="true"></app-textarea>
+</div>
+
+<br>
+
+<div style="text-align: center">
+    <app-pagination [current]="1" [limit]="10" [total]="10" (changeLimit)="changeEvent($event)" (changePage)="changeEvent($event)"></app-pagination>
+</div>
 
 

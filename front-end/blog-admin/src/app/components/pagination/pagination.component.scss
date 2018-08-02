@@ -1,30 +1,42 @@
 @import "../../../assets/var";
 
-.el-pagination{
+
+
+.el-pagination {
     overflow: hidden;
     height: 40px;
     width: 100%;
-    .el-pagination-part{
+
+    .el-pagination-part {
         width: 50%;
         float: left;
         font-size: 0;
         height: 40px;
+        &.left {
+            text-align: left;
+        }
 
-        *{
+        &.right {
+            text-align: right;
+        }
+        > * {
             font-size: 14px;
             box-sizing: border-box;
             height: 26px;
             line-height: 26px;
             margin: 6px 4px;
             display: inline-block;
+            vertical-align: bottom;
+            outline: none;
         }
-    }
-
-    .el-pagination-label{
 
     }
 
-    .el-pagination-input{
+    .el-pagination-label {
+
+    }
+
+    .el-pagination-input {
         width: 56px;
         padding: 0 8px;
         border: $border-weak;
@@ -38,19 +50,26 @@
         text-align: center;
     }
 
-    .el-pagination-button{
-        width: auto;
-        min-width: 1px;
-        overflow: hidden;
-        padding: 0 16px;
-        border: $border-weak;
-        font-size: 14px;
-        cursor: pointer;
-        background-color: $whiteBg;
-        transition: all .2s ease-in;
-        text-decoration: none;
-        position: relative;
-        color: $grey800;
-        border-radius: 3px;
+    &::ng-deep {
+        .el-button{
+            width: auto;
+            min-width: 1px;
+            padding: 0 16px;
+            height: 26px;
+            line-height: 26px;
+            vertical-align: bottom;
+
+            &:hover {
+                background: $whiteBg;
+                border-color: $ccBlue;
+                color: $ccBlue;
+            }
+            &:active {
+                border-color: #3a8ee6;
+                color: #3a8ee6;
+            }
+        }
     }
+
+
 }

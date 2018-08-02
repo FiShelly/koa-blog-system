@@ -12,6 +12,7 @@ export class AppComponent {
     radio = 0;
     cbDisabled: Boolean = false;
     switch: Boolean = false;
+    textarea = 'textarea';
     
     constructor() {
     }
@@ -21,5 +22,6 @@ export class AppComponent {
     }
     
     changeEvent($event: Event) {
+        console.log('change event ', $event);
     }
 }

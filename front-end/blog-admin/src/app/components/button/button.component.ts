@@ -26,6 +26,7 @@ export class ButtonComponent implements OnInit {
     }
     
     clickEventHandle($e) {
+        console.log($e);
         $e.stopPropagation();
         this.click.emit($e);
     }

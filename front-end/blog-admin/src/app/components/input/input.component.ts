@@ -30,6 +30,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     @Input() disabled: Boolean = false;
     @Input() readonly: Boolean = false;
     @Input() model: String = '';
+    @Input() placeholder: String = '';
     
     @Output() modelChange: EventEmitter<any> = new EventEmitter<any>();
     @Output() focus: EventEmitter<any> = new EventEmitter<any>();

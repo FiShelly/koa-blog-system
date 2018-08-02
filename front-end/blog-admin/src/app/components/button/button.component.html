@@ -7,7 +7,7 @@
         [class.is-plain]="plain"
         [class.is-circle]="circle"
         [class.is-round]="round"
-        [disabled]="disabled || loading ? 'disabled' : 'false'"
+        [disabled]="disabled || loading ? 'disabled' : false"
         (click)="clickEventHandle($event)"
     >
         <i *ngIf="loading">&#xe60f;</i>

@@ -6,6 +6,16 @@
     vertical-align: bottom;
     font-size: 14px;
 
+
+    &.is-disabled{
+        .el-textarea__inner{
+            background-color: $bgGrey;
+            border-color: $grey200;
+            color: $ccGrey;
+            cursor: not-allowed;
+        }
+    }
+
     .el-textarea__inner {
         display: block;
         resize: vertical;

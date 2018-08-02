@@ -1,18 +1,17 @@
 <div class="el-pagination">
-    <div class="el-pagination-part">
+    <div class="el-pagination-part left">
         <span class="el-pagination-label">每页显示</span>
-        <input class="el-pagination-input">
+        <input class="el-pagination-input" [(ngModel)]="limit">
         <span class="el-pagination-label">条</span>
-        <div class="el-pagination-button">修改</div>
+        <app-button (click)="modifyLimit($event)" >修改</app-button>
     </div>
 
-    <div class="el-pagination-part">
+    <div class="el-pagination-part right">
+        <app-button (click)="prePage($event)" [disabled]="current <= 1"><span class="icon-font">&#xe634;</span></app-button>
         <span class="el-pagination-label">页码</span>
-        <div class="el-pagination-label">1 / 56</div>
-        <div class="el-pagination-button">
-            <span class="icon"></span>
-        </div>
-        <input class="el-pagination-input">
-        <div class="el-pagination-button">跳转</div>
+        <span class="el-pagination-label">{{current}} / {{total}}</span>
+        <app-button (click)="nextPage($event)" [disabled]="current >= total"><span class="icon-font">&#xe633;</span></app-button>
+        <input class="el-pagination-input" (value)="jumper" [(ngModel)]="jumper" (ngModelChange)="modifyJumper($event)">
+        <app-button (click)="jumperPage($event)">跳转</app-button>
     </div>
 </div>
