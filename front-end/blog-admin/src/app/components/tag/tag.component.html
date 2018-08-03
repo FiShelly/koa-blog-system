@@ -1,4 +1,17 @@
-<span class="el-tag">
-
-    <i class="el-tag__close el-icon-close"></i>
+<span [class]="'el-tag' + ' el-tag--' + type"
+      [class.is-hover]="isHover"
+>
+    <i class="el-tag__icon el-tag__icon__left"
+       [class.is-hover]="isHover"
+       (click)="handlerClick($event,'left')"
+       *ngIf="leftIcon">
+        {{leftIcon}}
+    </i>
+    <ng-content></ng-content>
+    <i class="el-tag__icon el-tag__icon__right"
+       [class.is-hover]="isHover"
+       (click)="handlerClick($event,'right')"
+       *ngIf="rightIcon">
+        {{rightIcon}}
+    </i>
 </span>

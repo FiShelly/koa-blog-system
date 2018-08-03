@@ -21,34 +21,13 @@
         }
         > * {
             font-size: 14px;
-            box-sizing: border-box;
-            height: 26px;
-            line-height: 26px;
-            margin: 6px 4px;
+            margin: 7px 4px;
             display: inline-block;
             vertical-align: bottom;
-            outline: none;
         }
 
     }
 
-    .el-pagination-label {
-
-    }
-
-    .el-pagination-input {
-        width: 56px;
-        padding: 0 8px;
-        border: $border-weak;
-        overflow: hidden;
-        margin: 8px 0;
-        position: relative;
-        border-radius: 0;
-        box-sizing: border-box;
-        outline: none;
-        font-size: 14px;
-        text-align: center;
-    }
 
     &::ng-deep {
         .el-button{
@@ -68,6 +47,38 @@
                 border-color: #3a8ee6;
                 color: #3a8ee6;
             }
+        }
+
+        .el-input {
+            .el-input__inner{
+                width: 56px;
+                padding: 0 8px;
+                border: $border-weak;
+                overflow: hidden;
+                position: relative;
+                border-radius: 0;
+                box-sizing: border-box;
+                outline: none;
+                font-size: 14px;
+                text-align: center;
+                height: 26px;
+                line-height: 26px;
+                margin: 0;
+            }
+        }
+
+        .el-label{
+            font-size: 14px;
+            box-sizing: border-box;
+            height: 26px;
+            line-height: 26px;
+            //margin: 6px 4px;
+            display: inline-block;
+            vertical-align: bottom;
+            outline: none;
+            padding: 0;
+            color: #000;
+            margin: 0;
         }
     }
 
