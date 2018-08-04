@@ -13,6 +13,7 @@ export class AppComponent {
     cbDisabled: Boolean = false;
     switch: Boolean = false;
     textarea = 'textarea';
+    selected = 1;
     
     constructor() {
     }

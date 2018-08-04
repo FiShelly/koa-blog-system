@@ -1,15 +1,131 @@
-import { Component, OnInit } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    Renderer2,
+    EventEmitter,
+    forwardRef,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    ViewChild
+} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {trigger, state, style, animate, transition} from '@angular/animations';
 
 @Component({
-  selector: 'app-select',
-  templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss']
+    selector: 'app-select',
+    templateUrl: './select.component.html',
+    styleUrls: ['./select.component.scss'],
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => SelectComponent),
+        multi: true
+    }],
+    animations: [
+        trigger('state', [
+            state('true', style({
+                opacity: 1,
+                height: '*',
+                display: 'block',
+            })),
+            state('false', style({
+                opacity: 0,
+                height: 0,
+                display: 'none',
+            })),
+            transition('* => *', animate(`250ms ease-in-out`)),
+        ])
+    ]
 })
-export class SelectComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor, AfterViewInit {
+    @ViewChild('frame') frame: any;
+    
+    @Input() disabled: Boolean = false;
+    @Input() model: any = '';
+    text: any = '';
+    @Input() placeholder: string = '请选择';
+    @Output() modelChange: EventEmitter<any> = new EventEmitter<any>();
+    isActived: boolean = false;
+    disabledChange: EventEmitter<any> = new EventEmitter<any>();
+    subscriber: Function[] = [];
+    globalListener: Function;
+    
+    constructor(
+        private $el: ElementRef,
+        private $renderer2: Renderer2
+    ) {
+    }
+    
+    private computePosition() {
+        const timer = setTimeout(() => {
+            const $body = document.querySelector('body');
+            const elFrame = this.frame.nativeElement;
+            $body.appendChild(elFrame);
+            const rect = this.$el.nativeElement.getBoundingClientRect();
+            const dropX = Math.round(rect.left) + (window.scrollX || window.pageXOffset);
+            const dropY = Math.round(rect.top) + 32 + (window.scrollY || window.pageYOffset);
+            this.$renderer2.setStyle(elFrame, 'left', `${dropX}px`);
+            this.$renderer2.setStyle(elFrame, 'top', `${dropY}px`);
+            clearTimeout(timer);
+        });
+    }
+    
+    ngOnInit() {
+        this.computePosition();
+        this.globalListener = this.$renderer2.listen('document', 'click', () => {
+            this.isActived && this.toggleDrop();
+        });
+        // this.$renderer2.setStyle()
+    }
+    
+    ngOnChanges(changes): void {
+        if (changes.hasOwnProperty('disabled')) {
+            this.disabledChange.emit(changes['disabled']);
+        }
+    }
+    
+    ngAfterViewInit(): void {
+        this.subscriber.forEach(sub => sub());
+    }
+    
+    toggleDrop($e?: Event) {
+        if (this.disabled) {
+            return;
+        }
+        $e && $e.stopPropagation();
+        this.isActived = !this.isActived;
+    }
+    
+    updateText(label: string) {
+        this.text = label;
+    }
+    
+    handleInputChange(val: any): void {
+        this.model = val;
+        this.controlChange(val);
+        this.modelChange.emit(val);
+        this.subscriber.forEach(sub => sub());
+        this.toggleDrop();
+    }
+    
+    writeValue(value: any): void {
+        this.model = value;
+    }
+    
+    registerOnChange(fn: Function): void {
+        this.controlChange = fn;
+    }
+    
+    registerOnTouched(fn: Function): void {
+        this.controlTouch = fn;
+    }
+    
+    private controlChange: Function = () => {
+    };
+    
+    private controlTouch: Function = () => {
+    };
+    
 }

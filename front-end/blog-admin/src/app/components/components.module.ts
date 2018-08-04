@@ -19,11 +19,13 @@ import {TagComponent} from './tag/tag.component';
 import {PaginationComponent} from './pagination/pagination.component';
 import {DateTimePickerComponent} from './date-time-picker/date-time-picker.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        BrowserAnimationsModule
     ],
     declarations: [
         CommonHeaderComponent,

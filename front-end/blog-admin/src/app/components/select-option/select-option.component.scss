@@ -1,5 +1,6 @@
 @import "../../../assets/var";
 .el-select-dropdown__item {
+    text-align: left;
     font-size: 14px;
     padding: 0 20px;
     position: relative;
@@ -12,9 +13,20 @@
     box-sizing: border-box;
     cursor: pointer;
 
-    &.selected{
+    &.is-selected{
         color: $blue400;
         font-weight: 700;
+    }
+
+    &.is-{
+        &disabled{
+            color: #c0c4cc;
+            cursor: not-allowed;
+            font-weight: 100;
+            &:hover{
+                background-color: transparent;
+            }
+        }
     }
 
     &:hover{

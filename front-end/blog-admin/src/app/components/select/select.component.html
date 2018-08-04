@@ -1,10 +1,28 @@
-<div class="el-select">
-    <div class="el-input el-input--suffix is-focus">
-        <input type="text" readonly="readonly" autocomplete="off" placeholder="请选择" class="el-input__inner">
+<div class="el-select"
+    [class.is-disabled]="disabled"
+>
+    <div class="el-input el-input--suffix is-focus"
+         [class.is-disabled]="disabled"
+         (click)="toggleDrop($event)">
+        <input type="text"
+               readonly="readonly"
+               autocomplete="off"
+               [placeholder]="placeholder"
+               [value]="text"
+               [disabled]="disabled"
+               class="el-input__inner">
         <span class="el-input__suffix">
             <span class="el-input__suffix-inner">
-                <i class="el-select__caret el-input__icon el-icon-arrow-up is-reverse"></i>
+                <i class="el-select__caret el-input__icon icon-font"
+                    [class.is-reverse]="isActived"
+                >&#xe635;</i>
             </span>
         </span>
     </div>
+    <ul class="el-select-dropdown"
+        #frame
+        [@state]="isActived"
+    >
+        <ng-content></ng-content>
+    </ul>
 </div>

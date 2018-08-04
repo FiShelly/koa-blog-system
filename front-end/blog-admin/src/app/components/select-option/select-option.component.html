@@ -1,1 +1,12 @@
-<li class="el-select-dropdown__item"><span></span></li>
+<li class="el-select-dropdown__item"
+    [class.is-selected]="selected"
+    [class.is-disabled]="disabled"
+    (click)="handleClick($event)"
+>
+    <span *ngIf="showLabel">
+        <ng-container>{{label}}</ng-container>
+    </span>
+    <span *ngIf="!showLabel" #content>
+        <ng-content></ng-content>
+    </span>
+</li>

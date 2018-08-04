@@ -9,7 +9,7 @@
 
             .el-input__inner {
                 cursor: not-allowed;
-                background-color: $grey100;
+                background-color: $grey50;
                 border-color: $grey200;
                 color: $ccGrey;
                 &:hover {
@@ -58,7 +58,9 @@
                 transition: transform .3s;
                 transform: rotate(180deg);
                 cursor: pointer;
-
+                &.is-reverse{
+                    transform: rotate(0);
+                }
                 &:after {
                     content: "";
                     height: 100%;
@@ -102,8 +104,9 @@
 }
 
 .el-select-dropdown {
-    min-width: 240px;
+    opacity: 0;
     position: absolute;
+    min-width: 180px;
     z-index: 1001;
     border: $border-weak;
     border-radius: 4px;
@@ -111,7 +114,8 @@
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
     box-sizing: border-box;
     margin: 5px 0;
-
+    padding: 0;
+    transition: all .25s ease;
     .el-scrollbar {
         position: relative;
     }

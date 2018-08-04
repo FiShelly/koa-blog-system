@@ -64,3 +64,13 @@
 <div style="text-align: center">
     <app-tag leftIcon="&#xe60f;" [isHover]="true" type="success" rightIcon="&#xe60f;">测试A</app-tag>
 </div>
+
+<br>
+
+<div style="text-align: center">
+    <app-select [(model)]="selected"  (modelChange)="changeEvent($event)">
+        <app-select-option  [label]="1">测试A</app-select-option>
+        <app-select-option [label]="2">测试B</app-select-option>
+        <app-select-option [label]="3">测试C</app-select-option>
+    </app-select>
+</div>
