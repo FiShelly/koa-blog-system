@@ -9,6 +9,7 @@
            [readonly]="readonly"
            [(ngModel)]="model"
            [placeholder]="placeholder"
+           [autocomplete]="autocomplete"
            (ngModelChange)="handleInputChange($event)"
            (focus)="focus.emit($event)"
            (blur)="blur.emit($event)"

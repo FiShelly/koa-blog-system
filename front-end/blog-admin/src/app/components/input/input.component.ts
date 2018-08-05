@@ -31,6 +31,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     @Input() readonly: Boolean = false;
     @Input() model: String = '';
     @Input() placeholder: String = '';
+    @Input() autocomplete: String = 'on';
     
     @Output() modelChange: EventEmitter<any> = new EventEmitter<any>();
     @Output() focus: EventEmitter<any> = new EventEmitter<any>();

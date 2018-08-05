@@ -14,6 +14,7 @@ export class AppComponent {
     switch: Boolean = false;
     textarea = 'textarea';
     selected = 1;
+    date = '2019-09-09';
     
     constructor() {
     }
@@ -23,6 +24,6 @@ export class AppComponent {
     }
     
     changeEvent($event: Event) {
-        console.log('change event ', $event);
+        console.log('change event ', this.date);
     }
 }

@@ -1,24 +1,16 @@
 <div class="el-select"
-    [class.is-disabled]="disabled"
+     [class.is-disabled]="disabled"
+     (click)="toggleDrop($event)"
 >
-    <div class="el-input el-input--suffix is-focus"
-         [class.is-disabled]="disabled"
-         (click)="toggleDrop($event)">
-        <input type="text"
-               readonly="readonly"
-               autocomplete="off"
+    <app-input [readonly]="true"
                [placeholder]="placeholder"
-               [value]="text"
+               [model]="text"
                [disabled]="disabled"
-               class="el-input__inner">
-        <span class="el-input__suffix">
-            <span class="el-input__suffix-inner">
-                <i class="el-select__caret el-input__icon icon-font"
-                    [class.is-reverse]="isActived"
-                >&#xe635;</i>
-            </span>
-        </span>
-    </div>
+               autocomplete="off"
+               suffix_icon="&#xe635;"
+               [class.is-reverse]="isActived"
+    ></app-input>
+
     <ul class="el-select-dropdown"
         #frame
         [@state]="isActived"

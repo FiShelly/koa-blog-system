@@ -9,7 +9,8 @@ import {
     OnChanges,
     OnInit,
     Output,
-    ViewChild
+    ViewChild,
+    OnDestroy
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {trigger, state, style, animate, transition} from '@angular/animations';
@@ -39,7 +40,7 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
         ])
     ]
 })
-export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor, AfterViewInit {
+export class SelectComponent implements OnInit, OnChanges, OnDestroy, ControlValueAccessor, AfterViewInit {
     @ViewChild('frame') frame: any;
     
     @Input() disabled: Boolean = false;
@@ -52,17 +53,19 @@ export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor,
     subscriber: Function[] = [];
     globalListener: Function;
     
+    private $body: Element = null;
+    
     constructor(
         private $el: ElementRef,
         private $renderer2: Renderer2
     ) {
+        this.$body = document.querySelector('body');
     }
     
     private computePosition() {
         const timer = setTimeout(() => {
-            const $body = document.querySelector('body');
             const elFrame = this.frame.nativeElement;
-            $body.appendChild(elFrame);
+            this.$body.appendChild(elFrame);
             const rect = this.$el.nativeElement.getBoundingClientRect();
             const dropX = Math.round(rect.left) + (window.scrollX || window.pageXOffset);
             const dropY = Math.round(rect.top) + 32 + (window.scrollY || window.pageYOffset);
@@ -86,6 +89,11 @@ export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor,
         }
     }
     
+    ngOnDestroy() {
+        this.globalListener && this.globalListener();
+        this.$renderer2.removeChild(this.$body, this.frame.nativeElement);
+    }
+    
     ngAfterViewInit(): void {
         this.subscriber.forEach(sub => sub());
     }
@@ -95,6 +103,7 @@ export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor,
             return;
         }
         $e && $e.stopPropagation();
+        this.computePosition();
         this.isActived = !this.isActived;
     }
     
