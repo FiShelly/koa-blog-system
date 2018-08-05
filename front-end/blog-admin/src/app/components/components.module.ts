@@ -17,7 +17,7 @@ import {SelectComponent} from './select/select.component';
 import {SelectOptionComponent} from './select-option/select-option.component';
 import {TagComponent} from './tag/tag.component';
 import {PaginationComponent} from './pagination/pagination.component';
-import {DatePickerComponent} from './date-picker/date-picker.component';
+import {DateTimePickerComponent} from './date-time-picker/date-time-picker.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -45,7 +45,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         SelectOptionComponent,
         TagComponent,
         PaginationComponent,
-        DatePickerComponent
+        DateTimePickerComponent
     ],
     exports: [
         CommonHeaderComponent,
@@ -65,7 +65,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         SelectOptionComponent,
         TagComponent,
         PaginationComponent,
-        DatePickerComponent
+        DateTimePickerComponent
     ]
 })
 export class ComponentsModule {

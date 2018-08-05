@@ -11,6 +11,7 @@
            [placeholder]="placeholder"
            [autocomplete]="autocomplete"
            (ngModelChange)="handleInputChange($event)"
+           #input
            (focus)="focus.emit($event)"
            (blur)="blur.emit($event)"
            class="el-input__inner" />

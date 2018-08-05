@@ -16,7 +16,6 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {trigger, state, style, animate, transition} from '@angular/animations';
 import * as moment from 'moment';
 import {validator} from '../../shared/utils/normal';
-import {a, st} from '@angular/core/src/render3';
 
 export type DateRowItem = {
     day: number,
@@ -26,12 +25,12 @@ export type DateRowItem = {
 export type DateRow = DateRowItem[];
 
 @Component({
-    selector: 'app-date-picker',
-    templateUrl: './date-picker.component.html',
-    styleUrls: ['./date-picker.component.scss'],
+    selector: 'app-date-time-picker',
+    templateUrl: './date-time-picker.component.html',
+    styleUrls: ['./date-time-picker.component.scss'],
     providers: [{
         provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => DatePickerComponent),
+        useExisting: forwardRef(() => DateTimePickerComponent),
         multi: true
     }],
     animations: [
@@ -50,13 +49,16 @@ export type DateRow = DateRowItem[];
         ])
     ]
 })
-export class DatePickerComponent implements OnInit, OnChanges, OnDestroy, ControlValueAccessor, AfterViewInit {
+export class DateTimePickerComponent implements OnInit, OnChanges, OnDestroy, ControlValueAccessor, AfterViewInit {
     @ViewChild('frame') frame: any;
     
     @Input() disabled: Boolean = false;
     @Input() model: any = '';
-    @Input() format: string = 'YYYY-MM-DD';
+    @Input() dateFormat: string = 'YYYY-MM-DD';
+    @Input() timeFormat: string = 'HH:mm:ss';
+    
     @Input() placeholder: string = '请选择';
+    @Input() showTime: boolean = true;
     @Output() modelChange: EventEmitter<any> = new EventEmitter<any>();
     
     dateObj: any = {};
@@ -72,6 +74,16 @@ export class DatePickerComponent implements OnInit, OnChanges, OnDestroy, Contro
         nextMonth: 1
     };
     private $body: Element = null;
+    
+    static Compare(val: number, max: number, min: number = 0): number {
+        console.log(val, max, min);
+        if (val < min) {
+            return min;
+        } else if (val >= max) {
+            return max;
+        }
+        return val;
+    }
     
     constructor(
         private $el: ElementRef,
@@ -97,20 +109,29 @@ export class DatePickerComponent implements OnInit, OnChanges, OnDestroy, Contro
         let m = null;
         if (validator.isNumeric(args)) {
             m = moment.unix(args);
-        } else if (args instanceof Array && args.length === 3) {
-            m = moment(`${args[0]}-${args[1] - 1}-${args[2]}`);
         } else if (typeof args === 'object' && args) {
-            m = moment({year: args.year, month: args.month - 1, date: args.date});
-        } else {
-            args = args || '';
+            m = moment({
+                year: args.year,
+                month: args.month - 1,
+                date: args.date,
+                hour: args.hour || 0,
+                minute: args.minute || 0,
+                second: args.second
+            });
+        } else if (args) {
             m = moment(args);
+        } else {
+            m = moment();
         }
+        
         if (args) {
-            this.text = m.format(this.format);
+            this.text = m.format(this.showTime ? `${this.dateFormat} ${this.timeFormat}` : this.dateFormat);
         }
-        this.text = m.format(this.format);
         this.dateArray = [];
         const dateObj = this.dateObj;
+        dateObj.hour = m.hour();
+        dateObj.minute = m.minute();
+        dateObj.second = m.second();
         dateObj.year = m.year();
         dateObj.month = m.month() + 1;
         dateObj.date = m.date();
@@ -162,9 +183,6 @@ export class DatePickerComponent implements OnInit, OnChanges, OnDestroy, Contro
     }
     
     ngOnChanges(changes): void {
-        if (changes.hasOwnProperty('disabled')) {
-            this.disabledChange.emit(changes['disabled']);
-        }
     }
     
     ngAfterViewInit(): void {
@@ -182,12 +200,8 @@ export class DatePickerComponent implements OnInit, OnChanges, OnDestroy, Contro
             return;
         }
         $e && $e.stopPropagation();
+        this.computePosition();
         this.isActived = !this.isActived;
-    }
-    
-    updateText() {
-        const args = this.dateObj;
-        const m = moment({year: args.year, month: args.month - 1, date: args.date});
     }
     
     clickSelectDate($e, item) {
@@ -196,8 +210,16 @@ export class DatePickerComponent implements OnInit, OnChanges, OnDestroy, Contro
         this.dateObj.month = this.dateObj.month + step;
         this.dateObj.date = item.day;
         this.handleInputChange(this.dateObj);
-        this.initDateObj(this.dateObj);
-        this.toggleDrop($e);
+    }
+    
+    clickToNowTime($e) {
+        $e.stopPropagation();
+        this.initDateObj();
+    }
+    
+    clickOk($e) {
+        $e.stopPropagation();
+        this.handleInputChange(this.dateObj);
     }
     
     clickHandler($e, type, step) {
@@ -206,12 +228,60 @@ export class DatePickerComponent implements OnInit, OnChanges, OnDestroy, Contro
         this.initDateObj(this.dateObj);
     }
     
+    timeInputHandler($e, type) {
+        if (!validator.isNumeric($e)) {
+            $e = Number.parseInt($e);
+            if (!validator.isNumeric($e)) {
+                $e = 0;
+            }
+            this.dateObj[type] = $e;
+        }
+        this.setRightData(type);
+        if (['year', 'month', 'date'].includes(type)) {
+            this.initDateObj(this.dateObj);
+        }
+    }
+    
+    private setRightData(type) {
+        const dateObj = this.dateObj;
+        let max = Infinity, min = 0;
+        if (type === 'hour') {
+            max = 23;
+        } else if (type === 'second' || type === 'minute') {
+            max = 59;
+        } else if (type === 'year') {
+            min = 1;
+        } else if (type === 'month') {
+            max = 12;
+            min = 1;
+        } else {
+            min = 1;
+        }
+        dateObj[type] = DateTimePickerComponent.Compare(Number.parseInt(dateObj[type]), max, min);
+        if (type === 'month' || type === 'date') {
+            const m = moment({year: dateObj.year, month: dateObj.month - 1});
+            max = m.daysInMonth();
+            dateObj['date'] = DateTimePickerComponent.Compare(Number.parseInt(dateObj['date']), max, 1);
+        }
+    }
+    
     handleInputChange(args: any): void {
-        const time = moment({year: args.year, month: args.month - 1, date: args.date}).unix();
+        const momentObj: any = {
+            year: args.year,
+            month: args.month - 1,
+            date: args.date,
+        };
+        if (this.showTime) {
+            momentObj.hour = args.hour || 0;
+            momentObj.minute = args.minute || 0;
+            momentObj.second = args.second;
+        }
+        const time = moment(momentObj).unix();
         this.model = time;
         this.controlChange(time);
         this.modelChange.emit(time);
-        // this.toggleDrop();
+        this.initDateObj(this.dateObj);
+        this.toggleDrop();
     }
     
     writeValue(value: any): void {

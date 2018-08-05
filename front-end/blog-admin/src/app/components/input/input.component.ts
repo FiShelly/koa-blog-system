@@ -8,7 +8,8 @@ import {
     EventEmitter,
     forwardRef,
     ViewChild,
-    ChangeDetectorRef
+    ChangeDetectorRef,
+    OnChanges, SimpleChanges
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
@@ -22,7 +23,9 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
         multi: true
     }],
 })
-export class InputComponent implements OnInit, ControlValueAccessor {
+export class InputComponent implements OnInit, OnChanges, ControlValueAccessor {
+    
+    @ViewChild('input') input: any;
     
     @Input() type: String = 'type';
     @Input() suffix_icon: String = '';
@@ -45,10 +48,15 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     ngOnInit() {
     }
     
+    ngOnChanges(changes: SimpleChanges) {
+    }
+    
     handleInputChange(val: string): void {
         this.model = val;
-        this.modelChange.emit(val);
         this.controlChange(val);
+        setTimeout(() => {
+            this.modelChange.emit(val);
+        });
     }
     
     writeValue(value: any): void {

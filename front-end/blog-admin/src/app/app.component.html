@@ -1,17 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-    <!--<app-button theme="primary" (click)="clickEvent($event)">-->
-        <!--测试1-->
-    <!--</app-button>-->
-    <!--<app-button theme="primary" (click)="clickEvent($event)">-->
-        <!--测试2-->
-    <!--</app-button>-->
+    <app-button theme="primary" (btnClick)="clickEvent($event)">
+        测试1
+    </app-button>
+    <app-button theme="primary" (btnClick)="clickEvent($event)">
+        测试2
+    </app-button>
 </div>
 <br>
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-    <!--<app-button type="file" disabled="true" (change)="changeEvent($event)" text="测试-File">-->
-    <!--</app-button>-->
+    <app-button type="file" disabled="true" (filesChange)="changeEvent($event)" text="测试-File">
+    </app-button>
 </div>
 
 <br>
@@ -75,11 +75,10 @@
         <app-select-option [label]="3">测试C</app-select-option>
     </app-select>
 
-    <app-date-picker [(model)]="date" (modelChange)="changeEvent($event)"></app-date-picker>
 </div>
 
 <br>
 
 <div style="text-align: center">
-
+    <app-date-time-picker [(model)]="date" [showTime]="false" (modelChange)="changeEvent($event)"></app-date-time-picker>
 </div>

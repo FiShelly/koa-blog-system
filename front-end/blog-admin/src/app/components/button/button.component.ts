@@ -16,8 +16,8 @@ export class ButtonComponent implements OnInit {
     @Input() round: Boolean = false;
     @Input() circle: Boolean = false;
     @Input() multiple: Boolean = false;
-    @Output() click: EventEmitter<any> = new EventEmitter<any>();
-    @Output() change: EventEmitter<any> = new EventEmitter<any>();
+    @Output() btnClick: EventEmitter<any> = new EventEmitter<any>();
+    @Output() filesChange: EventEmitter<any> = new EventEmitter<any>();
     
     constructor() {
     }
@@ -26,13 +26,12 @@ export class ButtonComponent implements OnInit {
     }
     
     clickEventHandle($e) {
-        console.log($e);
         $e.stopPropagation();
-        this.click.emit($e);
+        this.btnClick.emit($e);
     }
     
     changeEventHandle($e) {
         $e.stopPropagation();
-        this.change.emit($e);
+        this.filesChange.emit($e);
     }
 }

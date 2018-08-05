@@ -14,7 +14,7 @@ export class AppComponent {
     switch: Boolean = false;
     textarea = 'textarea';
     selected = 1;
-    date = '2019-09-09';
+    date = '2018-08-01 09:55:33';
     
     constructor() {
     }
