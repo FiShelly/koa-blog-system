@@ -1,13 +1,13 @@
 <header class="common-header">
     <div class="container">
         <a href="http://www.fishelly.top" class="left-part">
-            Fishelly Idx.
+            <ng-content></ng-content>
         </a>
 
         <div class="right-part">
-            <img data-v-113d1a54="" src="https://cloud.southcn.com/api/user/avatar/1" class="avatar">
+            <img data-v-113d1a54="" [src]="author.headImg" class="avatar">
             <div data-v-113d1a54="" class="text-item">
-                Fishelly
+                {{author.name}}
             </div>
             <div data-v-113d1a54="" class="icon-item">
                 &#xe628;

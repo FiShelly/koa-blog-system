@@ -1,84 +1,93 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-    <app-button theme="primary" (btnClick)="clickEvent($event)">
-        测试1
-    </app-button>
-    <app-button theme="primary" (btnClick)="clickEvent($event)">
-        测试2
-    </app-button>
-</div>
-<br>
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-    <app-button type="file" disabled="true" (filesChange)="changeEvent($event)" text="测试-File">
-    </app-button>
-</div>
+<app-common-header>Fishelly Idx</app-common-header>
+<div style="margin-top: 100px">
+    <div style="width: 200px">
+        <app-left-menu style="width: 200px"></app-left-menu>
+    </div>
+    <div style="text-align:center">
+        <app-button theme="primary" (btnClick)="clickEvent($event)">
+            测试1
+        </app-button>
+        <app-button theme="primary" (btnClick)="clickEvent($event)">
+            测试2
+        </app-button>
+    </div>
+    <br>
+    <!--The content below is only a placeholder and can be replaced.-->
+    <div style="text-align:center">
+        <app-button type="file" disabled="true" (filesChange)="changeEvent($event)" text="测试-File">
+        </app-button>
+    </div>
 
-<br>
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-    <app-checkbox-group [(ngModel)]="check" [disabled]="cbDisabled" (change)="changeEvent($event)">
-        <app-checkbox *ngFor="let item of labels; index as i; " [label]="item">{{item + i}}</app-checkbox>
-    </app-checkbox-group>
+    <br>
+    <!--The content below is only a placeholder and can be replaced.-->
+    <div style="text-align:center">
+        <app-checkbox-group [(ngModel)]="check" [disabled]="cbDisabled" (change)="changeEvent($event)">
+            <app-checkbox *ngFor="let item of labels; index as i; " [label]="item">{{item + i}}</app-checkbox>
+        </app-checkbox-group>
 
-</div>
-<br>
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-    <app-label suffix_icon='&#xe60f;'>demo1</app-label>
-    <app-input></app-input>
-</div>
-<br>
+    </div>
+    <br>
+    <!--The content below is only a placeholder and can be replaced.-->
+    <div style="text-align:center">
+        <app-label suffix_icon='&#xe60f;'>demo1</app-label>
+        <app-input></app-input>
+    </div>
+    <br>
 
-<div style="text-align: center" >
-    <app-radio-group  [(ngModel)]="radio" [disabled]="cbDisabled">
-        <app-radio [label]="0">demo0</app-radio>
-        <app-radio [label]="1">demo1</app-radio>
-        <app-radio [label]="2">demo2</app-radio>
-    </app-radio-group>
-</div>
+    <div style="text-align: center">
+        <app-radio-group [(ngModel)]="radio" [disabled]="cbDisabled">
+            <app-radio [label]="0">demo0</app-radio>
+            <app-radio [label]="1">demo1</app-radio>
+            <app-radio [label]="2">demo2</app-radio>
+        </app-radio-group>
+    </div>
 
-<br>
+    <br>
 
-<div style="text-align: center" >
-    <app-switch active-text="aaaaa"  inactive-text="bbbbbb" [disabled]="true"
-                [(ngModel)]="!switch"
-                (modelChange)="changeEvent($event)"></app-switch>
-</div>
+    <div style="text-align: center">
+        <app-switch active-text="aaaaa" inactive-text="bbbbbb" [disabled]="true"
+                    [(ngModel)]="!switch"
+                    (modelChange)="changeEvent($event)"></app-switch>
+    </div>
 
-<br>
+    <br>
 
-<div style="text-align: center">
-    <app-textarea [(ngModel)]="textarea" [readonly]="true"></app-textarea>
-</div>
+    <div style="text-align: center">
+        <app-textarea [(ngModel)]="textarea" [readonly]="true"></app-textarea>
+    </div>
 
-<br>
+    <br>
 
-<div style="text-align: center">
-    <app-pagination [current]="1" [limit]="10" [total]="10" (changeLimit)="changeEvent($event)" (changePage)="changeEvent($event)"></app-pagination>
-</div>
+    <div style="text-align: center">
+        <app-pagination [current]="1" [limit]="10" [total]="10" (changeLimit)="changeEvent($event)"
+                        (changePage)="changeEvent($event)"></app-pagination>
+    </div>
 
 
-<br>
+    <br>
 
-<div style="text-align: center">
-    <app-tag leftIcon="&#xe60f;" [isHover]="true" type="success" rightIcon="&#xe60f;">测试A</app-tag>
-</div>
+    <div style="text-align: center">
+        <app-tag leftIcon="&#xe60f;" [isHover]="true" type="success" rightIcon="&#xe60f;">测试A</app-tag>
+    </div>
 
-<br>
+    <br>
 
-<div style="text-align: center">
+    <div style="text-align: center">
 
-    <app-select [(model)]="selected" (modelChange)="changeEvent($event)">
-        <app-select-option [label]="1">测试A</app-select-option>
-        <app-select-option [label]="2">测试B</app-select-option>
-        <app-select-option [label]="3">测试C</app-select-option>
-    </app-select>
+        <app-select [(model)]="selected" (modelChange)="changeEvent($event)">
+            <app-select-option [label]="1">测试A</app-select-option>
+            <app-select-option [label]="2">测试B</app-select-option>
+            <app-select-option [label]="3">测试C</app-select-option>
+        </app-select>
 
-</div>
+    </div>
 
-<br>
+    <br>
 
-<div style="text-align: center">
-    <app-date-time-picker [(model)]="date" [showTime]="false" (modelChange)="changeEvent($event)"></app-date-time-picker>
+    <div style="text-align: center">
+        <app-date-time-picker [(model)]="date" [showTime]="false"
+                              (modelChange)="changeEvent($event)"></app-date-time-picker>
+    </div>
+
 </div>

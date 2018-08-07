@@ -1,11 +1,12 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = 'app';
     check = ['checkBox1', 'checkBox2'];
     labels = ['checkBox1', 'checkBox2', 'checkBox3', 'checkBox4'];
@@ -16,8 +17,15 @@ export class AppComponent {
     selected = 1;
     date = '2018-08-01 09:55:33';
     
-    constructor() {
+    constructor(
+        private route: ActivatedRoute
+    ) {
     }
+    
+    ngOnInit() {
+        this.route.params.subscribe((params) => console.log(params));
+    }
+    
     
     clickEvent($event: Event) {
         console.log('click event ', $event);
