@@ -8,7 +8,7 @@ import {TabViewComponent} from './tab-view/tab-view.component';
 import {LabelComponent} from './label/label.component';
 import {CheckboxComponent} from './checkbox/checkbox.component';
 import {RadioComponent} from './radio/radio.component';
-import {TabBarComponent} from './tab-bar/tab-bar.component';
+import {TabsComponent} from './tabs/tabs.component';
 import {CheckboxGroupComponent} from './checkbox-group/checkbox-group.component';
 import {SwitchComponent} from './switch/switch.component';
 import {TextareaComponent} from './textarea/textarea.component';
@@ -37,7 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         LabelComponent,
         CheckboxComponent,
         RadioComponent,
-        TabBarComponent,
+        TabsComponent,
         CheckboxGroupComponent,
         SwitchComponent,
         TextareaComponent,
@@ -57,7 +57,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         LabelComponent,
         CheckboxComponent,
         RadioComponent,
-        TabBarComponent,
+        TabsComponent,
         CheckboxGroupComponent,
         SwitchComponent,
         TextareaComponent,
