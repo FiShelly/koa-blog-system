@@ -2,15 +2,15 @@
 <app-common-header>Fishelly Idx</app-common-header>
 <div style="margin-top: 100px">
     <div style="text-align: center">
-        <app-tabs>
-            <app-tab-view label="第一个" name="one">
-                <p>Hello World!</p>
+        <app-tabs [(model)]='tab' [disabled]="true" (modelChange)="changeEvent($event)">
+            <app-tab-view label="第一个" name="one" >
+                <p style="width: 100%;height: 50px">Hello World!</p>
             </app-tab-view>
-            <app-tab-view label="第二个" name="two">
-                <p>Hello Web!</p>
+            <app-tab-view label="第二个" name="two"  >
+                <p style="width: 100%;height: 50px">Hello Web!</p>
             </app-tab-view>
-            <app-tab-view label="第三个" name="three">
-                <p>Hello Fe!</p>
+            <app-tab-view label="第三个" name="three" >
+                <p style="width: 100%;height: 50px">Hello Fe!</p>
             </app-tab-view>
         </app-tabs>
     </div>

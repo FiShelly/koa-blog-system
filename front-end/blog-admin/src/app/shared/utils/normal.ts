@@ -26,6 +26,8 @@ const validator = {
             return !obj;
         } else if (obj === undefined) {
             return true;
+        } else if (typeof obj === 'string' && !obj.length) {
+            return true;
         }
         return false;
     },
@@ -70,8 +72,23 @@ const validator = {
     }
 };
 
+function randomString(len: number = 10, charSet?: string) {
+    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let str = '';
+    for (let i = 0; i < len; i++) {
+        const randomPoz = Math.floor(Math.random() * charSet.length);
+        str += charSet.substring(randomPoz, randomPoz + 1);
+    }
+    return str;
+}
+
+const util = {
+    randomString,
+    deepCopy
+};
+
 export {
     validator,
-    deepCopy,
+    util,
     brower
 };

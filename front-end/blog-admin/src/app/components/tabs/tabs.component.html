@@ -1,6 +1,13 @@
 <div class="el-tab-bar">
-    <div class="el-tab-bar__nav">
-
+    <div class="el-tab-bar__nav" #tabbar>
+        <div class="el-tab-bar__items"
+             [class.is-selected]="model==item.name"
+             [class.is-disabled]="item.disabled"
+             *ngFor="let item of tabItems"
+             (click)="click2ChangeTab($event, item)"
+        >
+            {{item.label}}
+        </div>
     </div>
     <div class="el-tab-bar__views">
         <ng-content></ng-content>

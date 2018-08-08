@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
     textarea = 'textarea';
     selected = 1;
     date = '2018-08-01 09:55:33';
+    tab = 'three';
     
     constructor(
         private route: ActivatedRoute
@@ -32,6 +33,6 @@ export class AppComponent implements OnInit {
     }
     
     changeEvent($event: Event) {
-        console.log('change event ', this.date);
+        console.log('change event ', $event);
     }
 }
