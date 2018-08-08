@@ -1,0 +1,14 @@
+.el-dialog__footer{
+    padding: 10px 20px 20px 20px;
+    text-align: right;
+    box-sizing: border-box;
+
+    &::ng-deep{
+        button:first-child {
+            margin-right: 10px;
+        }
+        .el-button+.el-button {
+            margin-left: 10px;
+        }
+    }
+}

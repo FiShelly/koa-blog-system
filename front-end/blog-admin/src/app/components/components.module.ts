@@ -20,6 +20,10 @@ import {PaginationComponent} from './pagination/pagination.component';
 import {DateTimePickerComponent} from './date-time-picker/date-time-picker.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalAlertComponent } from './modal/modal-alert/modal-alert.component';
+import { ModalHeaderComponent } from './modal/modal-header/modal-header.component';
+import { ModalFooterComponent } from './modal/modal-footer/modal-footer.component';
+import { MaskComponent } from './mask/mask.component';
 
 
 @NgModule({
@@ -28,7 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         FormsModule,
         BrowserAnimationsModule
     ],
-    declarations: [
+        declarations: [
         CommonHeaderComponent,
         LeftMenuComponent,
         InputComponent,
@@ -46,7 +50,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         SelectOptionComponent,
         TagComponent,
         PaginationComponent,
-        DateTimePickerComponent
+        DateTimePickerComponent,
+        ModalAlertComponent,
+        ModalHeaderComponent,
+        ModalFooterComponent,
+        MaskComponent
     ],
     exports: [
         CommonHeaderComponent,
@@ -66,7 +74,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         SelectOptionComponent,
         TagComponent,
         PaginationComponent,
-        DateTimePickerComponent
+        DateTimePickerComponent,
+        ModalAlertComponent,
+        MaskComponent
     ]
 })
 export class ComponentsModule {

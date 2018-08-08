@@ -1,6 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <app-common-header>Fishelly Idx</app-common-header>
+<app-mask></app-mask>
 <div style="margin-top: 100px">
+    <div style="text-align: center">
+        <app-modal-alert></app-modal-alert>
+    </div>
     <div style="text-align: center">
         <app-tabs [(model)]='tab' [disabled]="true" (modelChange)="changeEvent($event)">
             <app-tab-view label="第一个" name="one" >
