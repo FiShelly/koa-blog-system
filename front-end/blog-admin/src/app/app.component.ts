@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {EventBusService} from './services/eventBus/event-bus.service';
 
 @Component({
     selector: 'app-root',
@@ -19,7 +20,8 @@ export class AppComponent implements OnInit {
     tab = 'three';
     
     constructor(
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private eventBus: EventBusService
     ) {
     }
     
