@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {EventBusService} from './services/eventBus/event-bus.service';
+import {ModalService} from './services/modal/modal.service';
 
 @Component({
     selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
     
     constructor(
         private route: ActivatedRoute,
-        private eventBus: EventBusService
+        private eventBus: EventBusService,
+        private modalService: ModalService
     ) {
     }
     
@@ -30,8 +32,31 @@ export class AppComponent implements OnInit {
     }
     
     
-    clickEvent($event: Event) {
-        console.log('click event ', $event);
+    clickEvent($event: any) {
+        this.modalService.modal.alert({
+            input: {
+                title: '警告',
+                text: 'This is alert modal text content',
+            },
+            output: {
+                okCallback: () => {
+                    console.log('en');
+                }
+            }
+        });
+        setTimeout(() => {
+            this.modalService.modal.alert({
+                input: {
+                    title: '警告',
+                    text: 'This is alert modal text content',
+                },
+                output: {
+                    okCallback: () => {
+                        console.log('en');
+                    }
+                }
+            });
+        });
     }
     
     changeEvent($event: Event) {

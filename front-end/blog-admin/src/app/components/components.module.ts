@@ -77,6 +77,9 @@ import { MaskComponent } from './mask/mask.component';
         DateTimePickerComponent,
         ModalAlertComponent,
         MaskComponent
+    ],
+    entryComponents: [
+        ModalAlertComponent
     ]
 })
 export class ComponentsModule {

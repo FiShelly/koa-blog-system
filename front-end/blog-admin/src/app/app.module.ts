@@ -4,12 +4,15 @@ import {FormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {ComponentsModule} from './components/components.module';
 import {RouterModule} from '@angular/router';
+import {ModalService} from './services/modal/modal.service';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
     declarations: [
         AppComponent
     ],
     imports: [
+        CommonModule,
         BrowserModule,
         FormsModule,
         ComponentsModule,
@@ -20,8 +23,8 @@ import {RouterModule} from '@angular/router';
             {path: '**', redirectTo: '/index', pathMatch: 'full'},
         ])
     ],
-    providers: [],
-    bootstrap: [AppComponent]
+    providers: [ModalService],
+    bootstrap: [AppComponent],
 })
 export class AppModule {
 }
