@@ -4,17 +4,17 @@ import {
     EmbeddedViewRef,
     EventEmitter,
     Injectable,
-    Injector,
-    ViewContainerRef
+    Injector
 } from '@angular/core';
 import {ModalAlertComponent} from '../../components/modal/modal-alert/modal-alert.component';
-import {Component} from '@angular/core/src/metadata/directives';
-import set = Reflect.set;
 import {EventBusService} from '../eventBus/event-bus.service';
-
-const modalMap = {
-    ModalAlertComponent
-};
+import {ModalConfirmComponent} from '../../components/modal/modal-confirm/modal-confirm.component';
+import {ModalPromptComponent} from '../../components/modal/modal-prompt/modal-prompt.component';
+const modalMap = [
+    ModalAlertComponent,
+    ModalConfirmComponent,
+    ModalPromptComponent
+];
 
 @Injectable({
     providedIn: 'root'
@@ -32,14 +32,14 @@ export class ModalService {
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private appRef: ApplicationRef,
-        private eventBus: EventBusService
+        private eventBus: EventBusService,
+        private injector: Injector
     ) {
         this.createModal();
     }
     
     adjustPosition(instance: any) {
         const el = instance.modal.nativeElement;
-        
         const currentStyle = window.getComputedStyle(el);
         const w = Number.parseInt(currentStyle['width']);
         const h = Number.parseInt(currentStyle['height']) +
@@ -70,7 +70,7 @@ export class ModalService {
     }
     
     createModal() {
-        Object.values(modalMap).forEach((modal: any, idx: number) => {
+        modalMap.forEach((modal: any, idx: number) => {
             const $alias = modal.$alias;
             this._vcMap[$alias] = this.componentFactoryResolver.resolveComponentFactory(modal);
             this.constructModal(this._vcMap[$alias], $alias);
@@ -86,7 +86,8 @@ export class ModalService {
     
     build(modal: any, opts: any = {}) {
         const {inputs, outputs} = modal;
-        const componentRef = modal.create(Injector);
+        
+        const componentRef = modal.create(this.injector);
         this.appRef.attachView(componentRef.hostView);
         const componentRoot: HTMLElement = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0];
         const instance = componentRef.instance;
@@ -102,7 +103,7 @@ export class ModalService {
                     }
                 }
                 this.checkMask();
-                document.body.removeChild(componentRoot);
+                this.appRef.detachView(componentRef.hostView);
                 componentRef.destroy();
             });
         };
@@ -135,7 +136,6 @@ export class ModalService {
     
     
     showMask() {
-        console.log(this._nextZIndex);
         this.eventBus.emit('mask-show-change', {
             useway: 'modal',
             isShow: true,

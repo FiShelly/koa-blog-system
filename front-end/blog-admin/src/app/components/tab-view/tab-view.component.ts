@@ -73,7 +73,6 @@ export class TabViewComponent implements OnInit, OnDestroy, OnChanges {
     }
     
     computeData() {
-        console.log(this._id);
         this.group.setTabItemData(this._id, this._name, this._label, this.disabled);
     }
     

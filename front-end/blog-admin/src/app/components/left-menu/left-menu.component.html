@@ -1,6 +1,19 @@
 <div class="menu-box">
-    <div class="item" *ngFor="let item of menuData" (click)="clickHandle($event, item)">
-        <span *ngIf="item.icon" class="icon" [innerHTML]="item.icon"></span>
-        <span>{{item.text}}</span>
+
+    <div *ngFor="let item of menuData">
+        <a class="item"
+           (click)="clickHandle($event, item)"
+           routerLinkActive="selected"
+           *ngIf="item.link"
+           [routerLink]="item.link">
+            <span *ngIf="item.icon" class="icon" [innerHTML]="item.icon"></span>
+            <span>{{item.text}}</span>
+        </a>
+        <div class="item"
+           (click)="clickHandle($event, item)"
+           *ngIf="!item.link">
+            <span *ngIf="item.icon" class="icon" [innerHTML]="item.icon"></span>
+            <span>{{item.text}}</span>
+        </div>
     </div>
 </div>

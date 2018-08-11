@@ -65,7 +65,6 @@ export class SelectOptionComponent implements OnInit, AfterViewInit {
             return;
         }
         this.selected = true;
-        console.log(this.label);
         this.group.handleInputChange(this.label);
     }
     

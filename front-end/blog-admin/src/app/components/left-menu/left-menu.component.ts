@@ -23,9 +23,6 @@ export class LeftMenuComponent implements OnInit {
     }
     
     clickHandle($e, item: MenuItem) {
-        if (item.isLink) {
-            this.router.navigate([item.link]);
-        }
         this.menuSelect.emit(item);
     }
     

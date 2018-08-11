@@ -6,15 +6,32 @@
     margin: 0;
 }
 
+html{
+    background-color: #f8f8f8;
+}
+
+body{
+    min-width: 1200px;
+}
+
 .el-dialog {
     position: fixed;
     background-color: $whiteBg;
     min-width: 400px;
+    width: auto;
     left: 50%;
     top: 50%;
     &__body {
         padding: 30px 20px;
         color: #606266;
         font-size: 14px;
+
+        .text{
+            min-height: 40px;
+            height: auto;
+            width: 360px;
+            padding-bottom: 20px;
+            box-sizing: border-box;
+        }
     }
 }

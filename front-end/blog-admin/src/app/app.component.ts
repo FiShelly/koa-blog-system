@@ -33,29 +33,16 @@ export class AppComponent implements OnInit {
     
     
     clickEvent($event: any) {
-        this.modalService.modal.alert({
+        this.modalService.modal.prompt({
             input: {
                 title: '警告',
                 text: 'This is alert modal text content',
             },
             output: {
-                okCallback: () => {
-                    console.log('en');
+                okCallback: (v) => {
+                    console.log('en', v);
                 }
             }
-        });
-        setTimeout(() => {
-            this.modalService.modal.alert({
-                input: {
-                    title: '警告',
-                    text: 'This is alert modal text content',
-                },
-                output: {
-                    okCallback: () => {
-                        console.log('en');
-                    }
-                }
-            });
         });
     }
     

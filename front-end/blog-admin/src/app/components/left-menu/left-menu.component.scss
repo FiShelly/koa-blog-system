@@ -9,7 +9,7 @@
 
 .menu-box {
     min-width: 200px;
-    > .item {
+     .item {
         display: block;
         text-decoration: none;
         width: 100%;
@@ -48,7 +48,7 @@
             }
         }
 
-        > .icon{
+         .icon{
             font-family: blog-icon;
             position: absolute;
             left: 0;
@@ -57,6 +57,11 @@
             width: 60px;
             height: 40px;
         }
+    }
+
+    a{
+        color: #777;
+        text-decoration: none;
     }
 
 }

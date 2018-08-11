@@ -1,0 +1,44 @@
+.container{
+    width: 1200px;
+    height: auto;
+    min-height: 600px;
+    background-color: #fff;
+    border: 1px #dde1e3 solid;
+    margin: 100px auto 100px auto;
+    border-radius: 0 5px 5px 5px;
+    position: relative;
+    z-index: 1000;
+}
+
+.left-part{
+    width: 200px;
+    position: relative;
+    float: left;
+    min-height: 600px;
+
+    &::after{
+
+    }
+}
+
+.right-part{
+    width: 1000px;
+    padding: 0 19px;
+    box-sizing: border-box;
+    height: auto;
+    min-height: 600px;
+    overflow: hidden;
+    float: right;
+    position: relative;
+    z-index: 100;
+
+    &::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0px;
+        width: 1px;
+        background-color: #dde1e3;
+    }
+}

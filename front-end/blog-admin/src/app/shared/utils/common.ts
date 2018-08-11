@@ -40,15 +40,15 @@ const MENUDATA = [
         icon: '&#xe73f;',
         text: '素材库',
         isLink: true,
-        type: 'material',
-        link: '/material'
+        type: 'materials',
+        link: '/materials'
     },
     {
         icon: '&#xe65d;',
         text: '评论管理',
         isLink: true,
-        type: 'comment',
-        link: '/comment'
+        type: 'comments',
+        link: '/comments'
     },
     {
         icon: '&#xe625;',

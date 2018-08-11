@@ -3,9 +3,12 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {ComponentsModule} from './components/components.module';
+import {PagesModule} from './pages/pages.module';
 import {RouterModule} from '@angular/router';
 import {ModalService} from './services/modal/modal.service';
 import {CommonModule} from '@angular/common';
+import {EventBusService} from './services/eventBus/event-bus.service';
+import {appRoutes} from './app.routes';
 
 @NgModule({
     declarations: [
@@ -16,14 +19,10 @@ import {CommonModule} from '@angular/common';
         BrowserModule,
         FormsModule,
         ComponentsModule,
-        RouterModule.forRoot([
-            {path: 'index', component: AppComponent},
-            {path: 'post/list/:id', component: AppComponent},
-            {path: 'about/:id', component: AppComponent},
-            {path: '**', redirectTo: '/index', pathMatch: 'full'},
-        ])
+        PagesModule,
+        RouterModule.forRoot(appRoutes)
     ],
-    providers: [ModalService],
+    providers: [ModalService, EventBusService],
     bootstrap: [AppComponent],
 })
 export class AppModule {

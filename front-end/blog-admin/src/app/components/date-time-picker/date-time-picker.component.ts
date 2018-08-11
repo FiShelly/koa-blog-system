@@ -76,7 +76,6 @@ export class DateTimePickerComponent implements OnInit, OnChanges, OnDestroy, Co
     private $body: Element = null;
     
     static Compare(val: number, max: number, min: number = 0): number {
-        console.log(val, max, min);
         if (val < min) {
             return min;
         } else if (val >= max) {

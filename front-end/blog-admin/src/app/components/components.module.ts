@@ -19,20 +19,24 @@ import {TagComponent} from './tag/tag.component';
 import {PaginationComponent} from './pagination/pagination.component';
 import {DateTimePickerComponent} from './date-time-picker/date-time-picker.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModalAlertComponent } from './modal/modal-alert/modal-alert.component';
-import { ModalHeaderComponent } from './modal/modal-header/modal-header.component';
-import { ModalFooterComponent } from './modal/modal-footer/modal-footer.component';
-import { MaskComponent } from './mask/mask.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ModalAlertComponent} from './modal/modal-alert/modal-alert.component';
+import {ModalHeaderComponent} from './modal/modal-header/modal-header.component';
+import {ModalFooterComponent} from './modal/modal-footer/modal-footer.component';
+import {MaskComponent} from './mask/mask.component';
+import {ModalConfirmComponent} from './modal/modal-confirm/modal-confirm.component';
+import {ModalPromptComponent} from './modal/modal-prompt/modal-prompt.component';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        RouterModule
     ],
-        declarations: [
+    declarations: [
         CommonHeaderComponent,
         LeftMenuComponent,
         InputComponent,
@@ -54,7 +58,9 @@ import { MaskComponent } from './mask/mask.component';
         ModalAlertComponent,
         ModalHeaderComponent,
         ModalFooterComponent,
-        MaskComponent
+        MaskComponent,
+        ModalConfirmComponent,
+        ModalPromptComponent
     ],
     exports: [
         CommonHeaderComponent,
@@ -75,11 +81,12 @@ import { MaskComponent } from './mask/mask.component';
         TagComponent,
         PaginationComponent,
         DateTimePickerComponent,
-        ModalAlertComponent,
         MaskComponent
     ],
     entryComponents: [
-        ModalAlertComponent
+        ModalAlertComponent,
+        ModalConfirmComponent,
+        ModalPromptComponent
     ]
 })
 export class ComponentsModule {
