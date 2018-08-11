@@ -1,3 +1,27 @@
-<p>
-  post-list works!
-</p>
+<div class="frame">
+    <div class="mine-info">
+        <div class="cat-name">文章列表</div>
+        <app-input placeholder="请输入关键词"
+                   class="search-input"
+                   suffix_icon="&#xe67f;"
+        >
+        </app-input>
+        <div class="cat-info">
+            <div class="post-count left">
+                <app-label>文章数量：</app-label>
+                <app-label>18350</app-label>
+            </div>
+        </div>
+    </div>
+    <div class="list-container">
+        <app-table-shown-list
+            width="960"
+            [tableBorder]="true"
+            [format]="listFormat"
+            [operations]="listOperations"
+        ></app-table-shown-list>
+    </div>
+    <div class="ft">
+        <app-pagination></app-pagination>
+    </div>
+</div>

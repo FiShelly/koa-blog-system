@@ -1,0 +1,22 @@
+.frame{
+    padding: 0 20px;
+    box-sizing: border-box;
+    position: relative;
+    height: auto;
+
+    .mine-info{
+        ::ng-deep{
+            .search-input{
+                .el-input{
+                    position: absolute;
+                    right: 0;
+                    top: 13px;
+                    width: 230px;
+                }
+            }
+            .el-label {
+                padding: 9px 0;
+            }
+        }
+    }
+}

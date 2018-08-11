@@ -1,0 +1,65 @@
+<div class="data-container">
+    <div class="data-shown-list"
+         [style.width]="width+'px'"
+         [style.minHeight]="minHeight+'px'"
+    >
+        <table class="table "
+               [class.table-bordered]="tableBorder"
+               [class.td-bordered]="tdBorder"
+        >
+            <thead>
+            <tr class="bg-grey">
+                <td
+                    *ngIf="checkable"
+                    style="width: 30px"
+                >
+                    <app-checkbox
+                        class="checkbox"
+                    >
+                    </app-checkbox>
+                </td>
+                <td
+                    *ngFor="let k of format"
+                    [style.width]="k.width+'px'"
+                >{{ k.text }}
+                </td>
+                <td class="k"
+                    *ngIf="operations"
+                    [style.widht]="operations.width+'px'"
+                >{{ operations.text }}
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of dataList">
+                <td *ngIf="checkable"
+                    style="width: 30px">
+                    <app-checkbox
+                        class="checkbox"
+                        [(ngModel)]="item.checked"
+                    ></app-checkbox>
+                </td>
+                <td
+                    *ngFor="let k of format"
+                    [style.width]="k.width+'px'"
+                    [innerHTML]="item[k.name] || k.defaultText"
+                ></td>
+                <td class="ops"
+                    *ngIf="operations"
+                    [style.widht]="operations.width+'px'"
+                >
+                        <span
+                            class="op"
+                            *ngFor="let k of operations.list"
+                        >
+                                <span
+                                    [innerHTML]="k.text"
+                                    (click)="opClick($event, item, k)">
+                                </span>
+                            </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

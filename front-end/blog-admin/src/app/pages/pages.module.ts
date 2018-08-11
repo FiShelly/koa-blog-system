@@ -10,13 +10,15 @@ import {PostPublishComponent} from './post-publish/post-publish.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {pagesRoutes} from './pages.routes';
 import {RouterModule} from '@angular/router';
+import {ComponentsModule} from '../components/components.module';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         BrowserAnimationsModule,
-        RouterModule.forRoot(pagesRoutes)
+        RouterModule.forRoot(pagesRoutes),
+        ComponentsModule
     ],
     declarations: [
         AboutComponent,

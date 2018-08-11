@@ -1,0 +1,93 @@
+@import "../../../assets/var";
+
+.frame {
+    //padding: 0 20px 0 10px;
+    box-sizing: border-box;
+    position: relative;
+    height: auto;
+
+    .mine-info {
+        padding: 0 20px;
+        ::ng-deep {
+            .search-input {
+                .el-input {
+                    position: absolute;
+                    right: 20px;
+                    top: 13px;
+                    width: 230px;
+                }
+            }
+            .el-label {
+                padding: 9px 0;
+            }
+
+            .upload-btn {
+                button {
+                    position: absolute;
+                    right: 260px;
+                    top: 13px;
+                }
+            }
+        }
+    }
+
+    .materials-box {
+        min-height: 300px;
+        height: auto;
+        overflow: hidden;
+        box-sizing: border-box;
+        padding: 0 7px;
+        .materials-item {
+            width: 220px;
+            height: 240px;
+            box-sizing: border-box;
+            border: 1px #E0E0E0 solid;
+            border-radius: 5px;
+            float: left;
+            margin: 10px 13px;
+            > * {
+                box-sizing: border-box;
+            }
+            .img-box {
+                cursor: pointer;
+                width: 220px;
+                height: 140px;
+
+                img {
+                    width: 220px;
+                    height: 140px;
+                }
+            }
+            .title-box {
+                margin: 10px 0 0 0;
+                height: 40px;
+                font-size: 14px;
+                padding: 0 10px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+            }
+
+            .date-box {
+                height: 40px;
+                padding: 0 15px;
+            }
+
+            ::ng-deep {
+                .el-label {
+                    padding: 9px 0;
+                }
+                .el-button {
+                    margin-top: 1px ;
+                    float: right;
+                }
+            }
+        }
+    }
+    .ft {
+        box-sizing: border-box;
+        padding: 0 20px;
+        margin-top: 100px;
+    }
+}

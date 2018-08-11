@@ -27,6 +27,8 @@ import {MaskComponent} from './mask/mask.component';
 import {ModalConfirmComponent} from './modal/modal-confirm/modal-confirm.component';
 import {ModalPromptComponent} from './modal/modal-prompt/modal-prompt.component';
 import {RouterModule} from '@angular/router';
+import { TableShownListComponent } from './table-shown-list/table-shown-list.component';
+import { MarkDownComponent } from './mark-down/mark-down.component';
 
 
 @NgModule({
@@ -60,7 +62,9 @@ import {RouterModule} from '@angular/router';
         ModalFooterComponent,
         MaskComponent,
         ModalConfirmComponent,
-        ModalPromptComponent
+        ModalPromptComponent,
+        TableShownListComponent,
+        MarkDownComponent
     ],
     exports: [
         CommonHeaderComponent,
@@ -81,7 +85,9 @@ import {RouterModule} from '@angular/router';
         TagComponent,
         PaginationComponent,
         DateTimePickerComponent,
-        MaskComponent
+        MaskComponent,
+        TableShownListComponent,
+        MarkDownComponent
     ],
     entryComponents: [
         ModalAlertComponent,

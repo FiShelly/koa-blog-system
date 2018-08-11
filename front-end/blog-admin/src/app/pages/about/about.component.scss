@@ -1,0 +1,104 @@
+@import "../../../assets/var";
+
+.frame {
+    padding: 40px 20px 0 200px;
+    box-sizing: border-box;
+    position: relative;
+    height: auto;
+
+    .avatar-box {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1;
+        cursor: pointer;
+
+        &:hover{
+            .avatar-mask{
+                opacity: 1;
+            }
+        }
+
+        .avatar {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: top;
+            background-color: #fff;
+            border-radius: 8px;
+            position: relative;
+            img{
+                vertical-align: top;
+                width: 160px;
+                height: 160px;
+            }
+        }
+
+        .avatar-mask{
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 11;
+            opacity: 0;
+            transition: opacity .2s ease-in;
+            background-color: rgba(0,0,0,0.5);
+
+            .btn{
+                margin-top: 40px;
+            }
+
+            span{
+                display: block;
+                color: #fff;
+                font-size: 16px;
+                text-align: center;
+                line-height: 40px;
+                height: 40px;
+                &.icon-font{
+                    font-size: 32px;
+                }
+            }
+
+        }
+    }
+
+    .row{
+        padding: 30px 0;
+        border-bottom: $border-weak;
+
+        &:last-child{
+            border-bottom: none;
+        }
+
+        &:hover{
+            .modify-btn{
+                display: inline-block;
+            }
+        }
+    }
+    .modify-btn{
+        display: none;
+    }
+    ::ng-deep{
+        .key{
+            .el-label{
+                float: left;
+                width: 150px;
+                color: #333;
+                font-weight: bold;
+            }
+        }
+
+        .value{
+            .el-label{
+                float: left;
+            }
+        }
+
+        .modify-btn{
+            float: left;
+        }
+    }
+}
+

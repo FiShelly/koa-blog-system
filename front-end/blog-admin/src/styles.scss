@@ -35,3 +35,24 @@ body{
         }
     }
 }
+
+.row{
+    display: block;
+    clear: both;
+    width: 100%;
+    position: relative;
+    height: auto;
+    overflow: hidden;
+    min-height: 1px;
+}
+
+.frame{
+    .mine-info {
+        margin: 16px 0;
+        position: relative;
+        .cat-name {
+            font-size: 24px;
+            line-height: 30px;
+        }
+    }
+}

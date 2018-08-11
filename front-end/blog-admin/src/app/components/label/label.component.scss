@@ -1,13 +1,12 @@
 @import "../../../assets/var";
 
 .el-label{
-    height: 40px;
-    line-height: 40px;
+    height: auto;
     box-sizing: border-box;
     color: $grey700;
     display: inline-block;
     font-size: 16px;
-    padding: 0 15px;
+    padding: 9px 15px;
     position: relative;
     .el-input__icon{
         width: 25px;

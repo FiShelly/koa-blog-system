@@ -1,0 +1,82 @@
+@import "../../../assets/var";
+
+.table-bordered {
+    border: 1px solid #ddd;
+
+    &.td-bordered{
+        td{
+            border: 1px solid #ddd;
+        }
+    }
+}
+
+.data-container {
+    width: 100%;
+    overflow: auto;
+}
+
+.table-box {
+    box-sizing: border-box;
+    padding: 8px 16px 16px 16px;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    /*margin-bottom: 20px;*/
+}
+
+table {
+    background-color: transparent;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+tr {
+    min-height: 40px;
+    &.bg-grey {
+        background-color: $bgGrey;
+    }
+}
+
+.checkbox {
+    margin: 0;
+}
+
+.drop-frame {
+    margin: 0;
+    font-size: 14px;
+}
+
+.ops {
+    font-size: 13px;
+    > .op {
+        display: inline;
+        margin: 0 4px;
+        cursor: pointer;
+        color: $ccBlue;
+
+        &.disabled {
+            color: #BDBDBD
+        }
+
+    }
+}
+
+td, th {
+    border-bottom: 1px solid #ddd;
+    min-height: 40px;
+    padding: 10px 7px;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 14px;
+    position: relative;
+    &.bg-grey {
+        background-color: $bgGrey;
+    }
+
+
+}

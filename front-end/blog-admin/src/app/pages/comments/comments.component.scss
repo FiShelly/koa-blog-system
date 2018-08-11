@@ -1,0 +1,79 @@
+@import "../../../assets/var";
+
+.frame {
+    padding: 0 20px;
+    box-sizing: border-box;
+    position: relative;
+    height: auto;
+
+    .mine-info{
+        ::ng-deep{
+            .search-input{
+                .el-input{
+                    position: absolute;
+                    right: 0;
+                    top: 13px;
+                    width: 230px;
+                }
+            }
+            .el-label {
+                padding: 9px 0;
+            }
+        }
+    }
+
+    .comment-box {
+        .comment-item {
+            border-top: $border-weak;
+            padding: 15px 0;
+
+            .title {
+                ::ng-deep {
+                    .el-label {
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: #333;
+                    }
+                }
+
+                a {
+                    color: $blue400;
+
+                    ::ng-deep{
+                        .post-title {
+                            .el-label{
+                                color: $blue400;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .content {
+
+            }
+
+            .commenter {
+                ::ng-deep {
+                    .el-label {
+                        padding-right: 10px;
+                        max-width: 22%;
+                        overflow: hidden;
+                        text-overflow:ellipsis;
+                        white-space: nowrap;
+                    }
+                }
+            }
+            ::ng-deep {
+                .el-label {
+                    padding: 9px 0;
+                }
+            }
+
+        }
+    }
+
+    .ft{
+        margin-top: 100px;
+    }
+}

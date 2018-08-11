@@ -26,7 +26,6 @@
         background-color: $blue50;
     }
 
-
     &.is-disabled {
         color: #c0c4cc;
         cursor: not-allowed;
@@ -70,7 +69,7 @@
 
         i {
             display: inline-block;
-            font-style:  normal;
+            font-style: normal;
             animation: rotating 3s linear infinite;
         }
     }
@@ -86,6 +85,24 @@
         line-height: 40px;
         width: 100%;
         z-index: 10;
+    }
+}
+
+.el-button--text {
+    border-color: transparent;
+    color: $blue400;
+    background: transparent;
+    padding-left: 0;
+    padding-right: 0;
+    &:active {
+        border-color: transparent;
+        color: #3a8ee6;
+        background-color: transparent;
+    }
+    &:hover {
+        color: #66b1ff;
+        border-color: transparent;
+        background-color: transparent;
     }
 }
 
@@ -110,6 +127,23 @@
         color: $green400;
         background: $green50;
         border-color: $green100;
+        &:hover {
+            background: $green400;
+            border-color: $green400;
+            color: $whiteBg;
+        }
+    }
+
+    &:active {
+        background: $green300;
+        border-color: $green300;
+        color: $whiteBg;
+    }
+
+    &:hover {
+        background: $green300;
+        border-color: $green300;
+        color: $whiteBg;
     }
 }
 
@@ -122,30 +156,83 @@
         color: $grey500;
         background: $grey100;
         border-color: $grey300;
+        &:hover {
+            background: $grey500;
+            border-color: $grey500;
+            color: $whiteBg;
+        }
+    }
+
+    &:active {
+        background: $grey400;
+        border-color: $grey400;
+        color: $whiteBg;
+    }
+
+    &:hover {
+        background: $grey400;
+        border-color: $grey400;
+        color: $whiteBg;
     }
 }
 
 .el-button--warning {
-    color: #fff;
+    color: $whiteBg;
     background-color: #e6a23c;
     border-color: #e6a23c;
-    .is-plain {
+    &.is-plain {
         color: #e6a23c;
         background: #fdf6ec;
         border-color: #f5dab1;
+        &:hover {
+            background: #e6a23c;
+            border-color: #e6a23c;
+            color: $whiteBg;
+        }
+    }
+
+    &:active {
+        background: #ebb563;
+        border-color: #ebb563;
+        color: $whiteBg;
+    }
+
+    &:hover {
+        background: #ebb563;
+        border-color: #ebb563;
+        color: $whiteBg;
     }
 
 }
 
 .el-button--danger {
-    color: #fff;
+    color: $whiteBg;
     background-color: $red500;
     border-color: $red500;
 
-    .is-plain {
+    &.is-plain {
         color: $red500;
         background: $red50;
         border-color: $red100;
+
+        &:hover {
+            background: $red400;
+            border-color: $red400;
+            color: $whiteBg;
+        }
     }
+
+    &:active {
+        background: $red400;
+        border-color: $red400;
+        color: $whiteBg;
+    }
+
+    &:hover {
+        background: $red400;
+        border-color: $red400;
+        color: $whiteBg;
+    }
+
 }
 
