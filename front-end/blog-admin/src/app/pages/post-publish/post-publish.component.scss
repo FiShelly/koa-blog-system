@@ -1,10 +1,113 @@
+@import "../../../assets/var";
+
 .frame {
     padding: 0 20px;
     box-sizing: border-box;
     position: relative;
     height: auto;
 
+    ::ng-deep {
+        .row-checkbox + .row-checkbox {
+            margin-left: 30px;
+        }
+    }
+
     .mine-info {
-        
+
+    }
+
+    .post-info {
+        overflow: hidden;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: $border-weak;
+        border-bottom-style: dotted;
+        > * {
+            box-sizing: border-box;
+        }
+        > .left-part {
+            float: left;
+            width: 700px;
+            overflow: hidden;
+            .row {
+                padding-bottom: 30px;
+                &.spec {
+                    padding-bottom: 20px;
+                }
+                ::ng-deep {
+                    .post-title {
+                        .el-input {
+                            float: left;
+                            width: 680px;
+
+                            input {
+                                outline: none;
+                                border: none;
+                                font-size: 20px;
+                                border-radius: 0;
+                                border-bottom: $border-weak;
+                            }
+                        }
+                    }
+
+                    .post-abstract {
+                        .el-textarea {
+                            width: 680px;
+                            float: left;
+                        }
+                        textarea {
+                            resize: none;
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+
+        > .right-part {
+            float: left;
+            width: 260px;
+            padding: 0 10px;
+            overflow: hidden;
+            .row {
+                padding-bottom: 15px;
+
+                .img {
+                    width: 240px;
+                    height: 120px;
+                    margin-top: 10px;
+                }
+
+                ::ng-deep {
+                    .el-select, .el-date-picker, .el-input, .el-button {
+                        width: 240px;
+                    }
+                }
+            }
+        }
+    }
+
+    .post-btn-group {
+        text-align: center;
+        ::ng-deep {
+            .el-button {
+                width: 150px;
+            }
+
+            .el-button {
+                margin: 15px;
+            }
+        }
+    }
+    ::ng-deep {
+        .key {
+            .el-label {
+                padding-left: 0;
+                float: left;
+                width: 100%;
+                color: #333;
+                font-weight: bold;
+            }
+        }
     }
 }

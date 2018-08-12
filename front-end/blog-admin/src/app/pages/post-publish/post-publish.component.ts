@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-post-publish',
-  templateUrl: './post-publish.component.html',
-  styleUrls: ['./post-publish.component.scss']
+    selector: 'app-post-publish',
+    templateUrl: './post-publish.component.html',
+    styleUrls: ['./post-publish.component.scss']
 })
 export class PostPublishComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+    labels = ['checkBox1', 'checkBox2', 'checkBox3', 'checkBox4'];
+    
+    constructor() {
+    }
+    
+    ngOnInit() {
+    }
+    
 }

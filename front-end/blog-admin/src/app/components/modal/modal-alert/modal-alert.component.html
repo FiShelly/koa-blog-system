@@ -1,5 +1,5 @@
 <div class="el-dialog" #modal>
-    <app-modal-header (close)="closeModal($event)">{{title}}</app-modal-header>
+    <app-modal-header (close)="closeModal()">{{title}}</app-modal-header>
     <div class="el-dialog__body"><span>{{text}}</span></div>
     <app-modal-footer>
         <app-button theme="primary" (btnClick)="closeModal($event)">确定</app-button>

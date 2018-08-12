@@ -115,6 +115,18 @@
         color: $blue400;
         background: $blue50;
         border-color: $blue100;
+
+        &:hover {
+            background: $blue400;
+            border-color: $blue400;
+            color: #fff;
+        }
+    }
+
+    &:hover{
+        background: #66b1ff;
+        border-color: #66b1ff;
+        color: $whiteBg;
     }
 }
 

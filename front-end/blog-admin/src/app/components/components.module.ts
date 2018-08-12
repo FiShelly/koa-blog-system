@@ -19,7 +19,7 @@ import {TagComponent} from './tag/tag.component';
 import {PaginationComponent} from './pagination/pagination.component';
 import {DateTimePickerComponent} from './date-time-picker/date-time-picker.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+// import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ModalAlertComponent} from './modal/modal-alert/modal-alert.component';
 import {ModalHeaderComponent} from './modal/modal-header/modal-header.component';
 import {ModalFooterComponent} from './modal/modal-footer/modal-footer.component';
@@ -35,7 +35,7 @@ import { MarkDownComponent } from './mark-down/mark-down.component';
     imports: [
         CommonModule,
         FormsModule,
-        BrowserAnimationsModule,
+        // BrowserAnimationsModule,
         RouterModule
     ],
     declarations: [

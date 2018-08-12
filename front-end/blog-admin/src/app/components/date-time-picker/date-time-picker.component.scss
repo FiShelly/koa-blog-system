@@ -1,33 +1,5 @@
 @import "../../../assets/var";
 
-::ng-deep{
-    .el-right-part__top{
-        .el-label{
-            margin: 9px 0;
-        }
-    }
-
-    .el-right-part__to-now{
-        position: relative;
-        margin-bottom: 5px;
-        .el-button{
-            padding: 7px 12px;
-            float: right;
-            margin: 4px 12px;
-        }
-
-        &:before{
-            position: absolute;
-            content: '';
-            left: 12px;
-            right: 12px;
-            bottom: 0;
-            height: 1px;
-            background-color: #ebeef5;
-        }
-    }
-
-}
 
 
 
@@ -151,6 +123,32 @@
     }
 
     &::ng-deep{
+        .el-right-part__to-now{
+            position: relative;
+            margin-bottom: 5px;
+            .el-button{
+                padding: 7px 12px;
+                float: right;
+                margin: 8px 12px;
+            }
+
+            &:before{
+                position: absolute;
+                content: '';
+                left: 12px;
+                right: 12px;
+                bottom: 0;
+                height: 1px;
+                background-color: #ebeef5;
+            }
+        }
+
+        .el-right-part__top{
+            .el-label{
+                margin-top: 4px;
+            }
+        }
+
         .el-picker-panel__right-part{
             .el-input{
                 > .el-input__inner{

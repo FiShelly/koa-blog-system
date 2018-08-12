@@ -1,4 +1,3 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
@@ -9,14 +8,19 @@ import {ModalService} from './services/modal/modal.service';
 import {CommonModule} from '@angular/common';
 import {EventBusService} from './services/eventBus/event-bus.service';
 import {appRoutes} from './app.routes';
+import { LoginComponent } from './login/login.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        LoginComponent
     ],
     imports: [
         CommonModule,
-        BrowserModule,
+        // BrowserModule,
+        BrowserAnimationsModule,
         FormsModule,
         ComponentsModule,
         PagesModule,

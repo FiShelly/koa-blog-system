@@ -1,0 +1,66 @@
+@import "../../assets/var";
+
+.login-frame {
+    background: #fff;
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
+    box-sizing: border-box;
+    width: 432px;
+    margin: 150px auto 0 auto;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    .frame-header {
+        color: #0084ff;
+        .title {
+            font-size: 38px;
+            font-weight: bold;
+        }
+
+        .slogen {
+            font-size: 22px;
+            margin-top: 10px;
+        }
+    }
+
+    .frame-body {
+        padding: 0 40px 36px;
+        .row {
+            line-height: 40px;
+            margin-top: 20px;
+            text-align: left;
+
+            &.error{
+                box-sizing: border-box;
+                padding-left: 10px;
+                margin-top: 0;
+                color: $red400;
+            }
+        }
+        ::ng-deep {
+            .el-input {
+                input {
+                    font-size: 16px;
+                    width: 352px;
+                    outline: none;
+                    border: none;
+                    border-bottom: $border-weak;
+                    border-radius: 0;
+                }
+                .el-input__prefix {
+                    left: 3px;
+                }
+            }
+
+            .el-checkbox{
+                margin-left: 8px;
+            }
+
+            .el-button{
+                width: 352px;
+            }
+        }
+    }
+
+}
