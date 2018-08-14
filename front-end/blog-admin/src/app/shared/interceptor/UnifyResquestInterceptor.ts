@@ -1,4 +1,4 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {Injectable, Injector} from '@angular/core';
@@ -27,6 +27,14 @@ export class UnifyResquestInterceptor implements HttpInterceptor {
                 throw new Error('未登录');
             }
         }
+        const header = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        };
+        req = req.clone(header);
+        
         return next.handle(req);
     }
 }
+

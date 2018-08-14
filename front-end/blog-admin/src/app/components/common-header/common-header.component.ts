@@ -5,6 +5,7 @@ import {StorageService} from '../../shared/utils/storage.service';
 import {validator} from '../../shared/utils/normal';
 import {ActivatedRoute, Router, RoutesRecognized} from '@angular/router';
 import {filter, pairwise} from 'rxjs/operators';
+import {UserService} from '../../shared/model/user.service';
 
 @Component({
     selector: 'app-common-header',
@@ -20,8 +21,8 @@ export class CommonHeaderComponent implements OnInit, AfterViewInit {
     constructor(
         private eventBus: EventBusService,
         private storage: StorageService,
-        private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private userService: UserService
     ) {
     }
     
@@ -56,6 +57,18 @@ export class CommonHeaderComponent implements OnInit, AfterViewInit {
                 this.user = loginedUser;
             }
         }
+    }
+    
+    logout() {
+        this.userService.getLogout().subscribe(
+            {
+                complete: () => {
+                    this.storage.create(false).clear();
+                    this.eventBus.emit('logout');
+                    this.router.navigateByUrl('/login');
+                }
+            }
+        );
     }
     
 }

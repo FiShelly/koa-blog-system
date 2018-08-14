@@ -9,12 +9,16 @@ router.post('/login', async function (ctx, next) {
     ctx.body = await userController.login(ctx);
 });
 
-router.put('/', async function(ctx, next) {
+router.put('/update', async function(ctx, next) {
     ctx.body = await userController.updateUser(ctx);
 });
 
 router.put('/updatepwd', async function(ctx, next) {
     ctx.body = await userController.updatePwd(ctx);
+});
+
+router.get('/logout', async function (ctx, next) {
+    ctx.body = await userController.logout(ctx);
 });
 
 module.exports = router;

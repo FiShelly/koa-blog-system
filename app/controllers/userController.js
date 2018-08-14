@@ -98,6 +98,11 @@ const updatePwd = async function (ctx) {
     }
 };
 
+const logout = async function(ctx) {
+    ctx.session.user = null;
+    return packData(200, 'success', {});
+};
+
 module.exports = {
-    login, create, updateUser, findUserByLoginId, updatePwd
+    login, create, updateUser, findUserByLoginId, updatePwd, logout
 };

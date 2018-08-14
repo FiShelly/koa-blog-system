@@ -5,7 +5,8 @@
 export const environment = {
     production: false,
     apiURL: {
-        login: 'http://localhost:3200/web/user/login'
+        login: 'http://localhost:3200/web/user/login',
+        logout: 'http://localhost:3200/web/user/logout'
     }
 };
 

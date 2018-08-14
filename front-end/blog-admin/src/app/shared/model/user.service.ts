@@ -11,14 +11,11 @@ import {map, tap} from 'rxjs/operators';
 export class UserService extends CommonService {
     
     public postLogin(user: User): Observable<any> {
-        const header = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            })
-        };
         
-        return this.hc.post<User>(this.apiURL.login, user, header);
-            // .pipe(tap((item) => {
-        // }));
+        return this.hc.post<User>(this.apiURL.login, user);
+    }
+    
+    public getLogout(): Observable<any> {
+        return this.hc.get<any>(this.apiURL.logout);
     }
 }

@@ -7,7 +7,7 @@
             Web Front End
         </div>
     </div>
-    <div class="frame-body">
+    <div class="frame-body" (keyup.enter)="handleLogin()">
         <div class="row">
             <app-input [(ngModel)]="user.account" placeholder="账号" prefix_icon="&#xe693;"></app-input>
         </div>
