@@ -4,10 +4,10 @@
             <ng-content></ng-content>
         </a>
 
-        <div class="right-part">
-            <img data-v-113d1a54="" [src]="author.headImg" class="avatar">
+        <div class="right-part" *ngIf="showRight">
+            <img data-v-113d1a54="" [src]="user.headImg" class="avatar">
             <div data-v-113d1a54="" class="text-item">
-                {{author.name}}
+                {{user.name}}
             </div>
             <div data-v-113d1a54="" class="icon-item">
                 &#xe628;

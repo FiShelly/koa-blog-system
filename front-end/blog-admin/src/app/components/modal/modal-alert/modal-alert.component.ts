@@ -25,7 +25,7 @@ export class ModalAlertComponent extends BaseModal implements OnInit {
         });
     }
     
-    closeModal($event) {
+    closeModal() {
         this.close();
         this.okCallback.emit();
     }

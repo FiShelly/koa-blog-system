@@ -1,5 +1,5 @@
 <div class="el-dialog" #modal>
-    <app-modal-header (close)="cancelHandle($event)">{{title}}</app-modal-header>
+    <app-modal-header (close)="cancelHandle()">{{title}}</app-modal-header>
     <div class="el-dialog__body">
         <div class="text">
             {{text}}
@@ -7,7 +7,7 @@
         <app-input [(ngModel)]="value"></app-input>
     </div>
     <app-modal-footer>
-        <app-button (btnClick)="cancelHandle($event)">取消</app-button>
-        <app-button theme="primary" (btnClick)="okHandle($event)">确定</app-button>
+        <app-button (btnClick)="cancelHandle()">取消</app-button>
+        <app-button theme="primary" (btnClick)="okHandle()">确定</app-button>
     </app-modal-footer>
 </div>

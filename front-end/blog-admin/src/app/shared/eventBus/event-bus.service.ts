@@ -14,22 +14,22 @@ import {util} from '../../shared/utils/normal';
     providedIn: 'root'
 })
 export class EventBusService {
-    $bus = new Subject<Event>();
-    $busObs = this.$bus.asObservable();
+    bus = new Subject<Event>();
+    bus$ = this.bus.asObservable();
     _map: object = {};
     
     constructor() {
     }
     
-    emit(name: string, data: any) {
+    emit(name: string, data?: any) {
         const event = new Event(name, data);
-        this.$bus.next(event);
+        this.bus.next(event);
     }
     
     on(name: string, func: any) {
         const _id = util.randomString();
         this._map[name] = this._map[name] ? this._map[name] : {};
-        this._map[name][_id] = this.$busObs.pipe(filter((event: Event) => event.type === name))
+        this._map[name][_id] = this.bus$.pipe(filter((event: Event) => event.type === name))
             .subscribe(func);
         return _id;
     }

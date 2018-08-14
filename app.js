@@ -11,12 +11,13 @@ const loginMiddleware = require('./middleware/loginMiddleware');
 const path = require('path');
 
 app.use(cors({
-    origin: function (ctx) {
-        if (ctx.url.includes('/api/')) {
-            return '*';
-        }
-        return false;
-    },
+    // origin: function (ctx) {
+    //     if (ctx.url.includes('/api/')) {
+    //         return '*';
+    //     }
+    //     return false;
+    // },
+    origin: '*',
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
     maxAge: 5,
     credentials: true,

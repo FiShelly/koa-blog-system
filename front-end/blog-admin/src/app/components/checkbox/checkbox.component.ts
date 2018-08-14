@@ -70,7 +70,7 @@ export class CheckboxComponent implements OnInit, OnChanges, ControlValueAccesso
             if (validator.isEmpty(this.label)) {
                 this.label = contentText;
             }
-            if (this.group.disabled) {
+            if (this.isHasGroup && this.group.disabled) {
                 this.disabled = this.group.disabled;
             }
             this.checked = this.isChecked();

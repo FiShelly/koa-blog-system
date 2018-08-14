@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {EventBusService} from './services/eventBus/event-bus.service';
-import {ModalService} from './services/modal/modal.service';
+import {ActivatedRoute, NavigationEnd, Router, RoutesRecognized} from '@angular/router';
+import {EventBusService} from './shared/eventBus/event-bus.service';
+import {ModalService} from './shared/modal/modal.service';
+import {filter, pairwise} from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',
@@ -23,12 +24,17 @@ export class AppComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private eventBus: EventBusService,
-        private modalService: ModalService
+        private modalService: ModalService,
+        private router: Router
     ) {
     }
     
     ngOnInit() {
-        this.route.params.subscribe((params) => console.log(params));
+        this.router.events
+            .pipe(filter(e => e instanceof NavigationEnd),
+                pairwise()).subscribe(e => {
+            this.eventBus.emit('refresh-user');
+        });
     }
     
     

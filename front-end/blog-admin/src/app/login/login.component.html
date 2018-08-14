@@ -9,19 +9,19 @@
     </div>
     <div class="frame-body">
         <div class="row">
-            <app-input placeholder="账号" prefix_icon="&#xe693;"></app-input>
+            <app-input [(ngModel)]="user.account" placeholder="账号" prefix_icon="&#xe693;"></app-input>
         </div>
         <div class="row">
-            <app-input placeholder="密码" prefix_icon="&#xe683;"></app-input>
+            <app-input [(ngModel)]="user.password" type="password" placeholder="密码" prefix_icon="&#xe683;"></app-input>
         </div>
         <div class="row">
-            <app-checkbox>记住密码</app-checkbox>
+            <app-checkbox [(ngModel)]="remember">记住密码</app-checkbox>
         </div>
         <div class="row error">
-            xxxxx
+            {{errorMessage}}
         </div>
         <div class="row">
-            <app-button theme="primary">登录</app-button>
+            <app-button (btnClick)="handleLogin()" theme="primary">登录</app-button>
         </div>
     </div>
 </div>

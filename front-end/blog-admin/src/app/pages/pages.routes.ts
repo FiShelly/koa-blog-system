@@ -5,11 +5,12 @@ import {TypetagComponent} from './typetag/typetag.component';
 import {MaterialsComponent} from './materials/materials.component';
 import {CommentsComponent} from './comments/comments.component';
 import {IndexComponent} from './index/index.component';
+import {AuthGuard} from '../shared/guard/auth.guard';
 
 
 export const pagesRoutes = [
     {
-        path: 'admin',
+        path: '',
         component: IndexComponent,
         children: [
             {path: '', redirectTo: 'post/list', pathMatch: 'full'},

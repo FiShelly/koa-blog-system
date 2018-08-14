@@ -14,7 +14,7 @@ const login = async function (ctx) {
     password = md5(password);
     try {
         const user = await userService.findOne({account});
-        if (user.password === password) {
+        if (user && user.password === password) {
             delete user.dataValues.password;
             ctx.session.user = user;
             return packData(200, 'success', user);
@@ -22,6 +22,7 @@ const login = async function (ctx) {
             return packData(401.1, 'error', 'login-invalidate');
         }
     } catch (e) {
+        console.log(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
