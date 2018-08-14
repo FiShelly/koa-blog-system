@@ -21,7 +21,7 @@ export class UnifyResponseInterceptor implements HttpInterceptor {
                         body: item.data
                     });
                 } else {
-                    if (item.code === 401.1) {
+                    if (item.code === 401.1 || item.code === 401) {
                         this.router.navigateByUrl('/login');
                     }
                     // return event.clone({

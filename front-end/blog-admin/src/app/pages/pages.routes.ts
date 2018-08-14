@@ -15,6 +15,7 @@ export const pagesRoutes = [
         children: [
             {path: '', redirectTo: 'post/list', pathMatch: 'full'},
             {path: 'post/publish', component: PostPublishComponent},
+            {path: 'post/publish/:id', component: PostPublishComponent},
             {path: 'post/list', component: PostListComponent},
             {path: 'about', component: AboutComponent},
             {path: 'typetag', component: TypetagComponent},

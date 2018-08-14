@@ -62,6 +62,7 @@ export class CommonHeaderComponent implements OnInit, AfterViewInit {
     logout() {
         this.userService.getLogout().subscribe(
             {
+                error: () => {},
                 complete: () => {
                     this.storage.create(false).clear();
                     this.eventBus.emit('logout');
