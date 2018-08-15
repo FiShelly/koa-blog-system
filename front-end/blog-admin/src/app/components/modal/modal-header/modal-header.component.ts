@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, AfterViewInit, Output, ViewChild} from '@angular/core';
-import {validator} from '../../../shared/utils/normal';
+import {validator} from '../../../shared-services/utils/normal';
 
 @Component({
     selector: 'app-modal-header',

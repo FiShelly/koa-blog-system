@@ -1,3 +1,5 @@
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {PostPublishComponent} from './post-publish/post-publish.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {AboutComponent} from './about/about.component';
@@ -5,10 +7,8 @@ import {TypetagComponent} from './typetag/typetag.component';
 import {MaterialsComponent} from './materials/materials.component';
 import {CommentsComponent} from './comments/comments.component';
 import {IndexComponent} from './index/index.component';
-import {AuthGuard} from '../shared/guard/auth.guard';
 
-
-export const pagesRoutes = [
+const pagesRoute: Routes = [
     {
         path: '',
         component: IndexComponent,
@@ -24,3 +24,12 @@ export const pagesRoutes = [
         ]
     },
 ];
+
+@NgModule({
+    imports: [RouterModule.forChild(pagesRoute)],
+    exports: [RouterModule]
+})
+
+export class PagesRoutingModule {
+}
+

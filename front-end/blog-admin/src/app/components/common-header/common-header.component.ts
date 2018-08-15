@@ -1,11 +1,11 @@
 import {Component, Input, OnInit, AfterViewInit} from '@angular/core';
 import {User} from '../../models';
-import {EventBusService} from '../../shared/eventBus/event-bus.service';
-import {StorageService} from '../../shared/utils/storage.service';
-import {validator} from '../../shared/utils/normal';
+import {EventBusService} from '../../shared-services/eventBus/event-bus.service';
+import {StorageService} from '../../shared-services/utils/storage.service';
+import {validator} from '../../shared-services/utils/normal';
 import {ActivatedRoute, Router, RoutesRecognized} from '@angular/router';
 import {filter, pairwise} from 'rxjs/operators';
-import {UserService} from '../../shared/model/user.service';
+import {UserService} from '../../shared-services/model/user.service';
 
 @Component({
     selector: 'app-common-header',
@@ -51,6 +51,7 @@ export class CommonHeaderComponent implements OnInit, AfterViewInit {
             return;
         }
         this.showRight = true;
+        console.log(this.user);
         if (validator.isEmpty(this.user.name)) {
             const loginedUser = this.storage.create(false).getItem('logined-user');
             if (!validator.isEmpty(loginedUser)) {

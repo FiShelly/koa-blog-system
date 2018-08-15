@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {CheckboxGroupComponent} from '../checkbox-group/checkbox-group.component';
-import {validator} from '../../shared/utils/normal';
+import {validator} from '../../shared-services/utils/normal';
 
 @Component({
     selector: 'app-checkbox',

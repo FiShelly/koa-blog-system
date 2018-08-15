@@ -1,17 +1,11 @@
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
-import {ComponentsModule} from './components/components.module';
-import {PagesModule} from './pages/pages.module';
-import {RouterModule} from '@angular/router';
-import {ModalService} from './shared/modal/modal.service';
-import {CommonModule} from '@angular/common';
-import {EventBusService} from './shared/eventBus/event-bus.service';
-import {appRoutes} from './app.routes';
+import {AppRoutingModule} from './app-routing.module';
 import {LoginComponent} from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
-import {HTTP_INTERCEPTOR_PROVIDERS} from './shared/interceptor';
+import {SharedModule} from './shared-services/shared.module';
+import {ShareComponentsModule} from './share-components/share-components.module';
 
 @NgModule({
     declarations: [
@@ -19,15 +13,13 @@ import {HTTP_INTERCEPTOR_PROVIDERS} from './shared/interceptor';
         LoginComponent
     ],
     imports: [
-        CommonModule,
-        // BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        FormsModule,
-        ComponentsModule,
-        RouterModule.forRoot(appRoutes)
+        AppRoutingModule,
+        SharedModule,
+        ShareComponentsModule
     ],
-    providers: [ModalService, EventBusService, HTTP_INTERCEPTOR_PROVIDERS],
+    providers: [],
     bootstrap: [AppComponent],
 })
 export class AppModule {

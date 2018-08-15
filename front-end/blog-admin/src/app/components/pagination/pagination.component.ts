@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {validator} from '../../shared/utils/normal';
+import {validator} from '../../shared-services/utils/normal';
 
 @Component({
     selector: 'app-pagination',

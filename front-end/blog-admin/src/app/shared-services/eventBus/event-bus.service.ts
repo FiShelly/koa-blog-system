@@ -2,10 +2,8 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Subject} from 'rxjs';
 import {filter} from 'rxjs/operators';
-import {map} from 'rxjs/operators';
-import {Subscribable} from 'rxjs/src/internal/types';
 import {Subscription} from 'rxjs/src/internal/Subscription';
-import {util} from '../../shared/utils/normal';
+import {util} from '../utils/normal';
 
 /**
  * 事件总线，组件之间可以通过这个服务进行通讯
@@ -14,19 +12,19 @@ import {util} from '../../shared/utils/normal';
     providedIn: 'root'
 })
 export class EventBusService {
-    bus = new Subject<Event>();
-    bus$ = this.bus.asObservable();
+    bus: Subject<any> = new Subject<Event>();
+    bus$: Observable<any> = this.bus.asObservable();
     _map: object = {};
     
     constructor() {
     }
     
-    emit(name: string, data?: any) {
+    emit(name: string, data?: any): void {
         const event = new Event(name, data);
         this.bus.next(event);
     }
     
-    on(name: string, func: any) {
+    on(name: string, func: any): string {
         const _id = util.randomString();
         this._map[name] = this._map[name] ? this._map[name] : {};
         this._map[name][_id] = this.bus$.pipe(filter((event: Event) => event.type === name))
@@ -34,7 +32,7 @@ export class EventBusService {
         return _id;
     }
     
-    off(name: string, id?: string) {
+    off(name: string, id?: string): void {
         const subArray = this._map[name] || {};
         if (id) {
             const subItem: Subscription = subArray[id];

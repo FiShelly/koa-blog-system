@@ -15,7 +15,7 @@ import {
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {trigger, state, style, animate, transition} from '@angular/animations';
 import * as moment from 'moment';
-import {validator} from '../../shared/utils/normal';
+import {validator} from '../../shared-services/utils/normal';
 
 export type DateRowItem = {
     day: number,

@@ -1,6 +1,6 @@
 import {Component, AfterViewInit, EventEmitter, Input, OnInit, Optional, Output, ViewChild} from '@angular/core';
 import {SelectComponent} from '../select/select.component';
-import {validator} from '../../shared/utils/normal';
+import {validator} from '../../shared-services/utils/normal';
 import {$e} from 'codelyzer/angular/styles/chars';
 
 @Component({

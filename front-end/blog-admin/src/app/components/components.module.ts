@@ -19,7 +19,6 @@ import {TagComponent} from './tag/tag.component';
 import {PaginationComponent} from './pagination/pagination.component';
 import {DateTimePickerComponent} from './date-time-picker/date-time-picker.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-// import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ModalAlertComponent} from './modal/modal-alert/modal-alert.component';
 import {ModalHeaderComponent} from './modal/modal-header/modal-header.component';
 import {ModalFooterComponent} from './modal/modal-footer/modal-footer.component';
@@ -85,14 +84,42 @@ import { MarkDownComponent } from './mark-down/mark-down.component';
         TagComponent,
         PaginationComponent,
         DateTimePickerComponent,
+        ModalAlertComponent,
+        ModalHeaderComponent,
+        ModalFooterComponent,
         MaskComponent,
+        ModalConfirmComponent,
+        ModalPromptComponent,
         TableShownListComponent,
         MarkDownComponent
     ],
     entryComponents: [
+        CommonHeaderComponent,
+        LeftMenuComponent,
+        InputComponent,
+        ButtonComponent,
+        TabViewComponent,
+        LabelComponent,
+        CheckboxComponent,
+        RadioComponent,
+        TabsComponent,
+        CheckboxGroupComponent,
+        SwitchComponent,
+        TextareaComponent,
+        RadioGroupComponent,
+        SelectComponent,
+        SelectOptionComponent,
+        TagComponent,
+        PaginationComponent,
+        DateTimePickerComponent,
         ModalAlertComponent,
+        ModalHeaderComponent,
+        ModalFooterComponent,
+        MaskComponent,
         ModalConfirmComponent,
-        ModalPromptComponent
+        ModalPromptComponent,
+        TableShownListComponent,
+        MarkDownComponent
     ]
 })
 export class ComponentsModule {

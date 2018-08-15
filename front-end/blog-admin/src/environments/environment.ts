@@ -4,6 +4,10 @@
 
 export const environment = {
     production: false,
+    loginPageInfo: {
+        title: 'Fishelly Idx.',
+        sub_title: 'Web Front End'
+    },
     apiURL: {
         login: 'http://localhost:3200/web/user/login',
         logout: 'http://localhost:3200/web/user/logout'

@@ -7,17 +7,15 @@ import {CommentsComponent} from './comments/comments.component';
 import {TypetagComponent} from './typetag/typetag.component';
 import {PostPublishComponent} from './post-publish/post-publish.component';
 import {PostListComponent} from './post-list/post-list.component';
-import {pagesRoutes} from './pages.routes';
-import {RouterModule} from '@angular/router';
-import {ComponentsModule} from '../components/components.module';
-import { IndexComponent } from './index/index.component';
+import {PagesRoutingModule} from './pages-routing.module';
+import {IndexComponent} from './index/index.component';
+import {ShareComponentsModule} from '../share-components/share-components.module';
 
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule,
-        RouterModule.forChild(pagesRoutes),
-        ComponentsModule
+        PagesRoutingModule,
+        ShareComponentsModule
     ],
     declarations: [
         AboutComponent,
@@ -28,8 +26,7 @@ import { IndexComponent } from './index/index.component';
         PostListComponent,
         IndexComponent
     ],
-    exports: [
-    ]
+    exports: []
 })
 export class PagesModule {
 }

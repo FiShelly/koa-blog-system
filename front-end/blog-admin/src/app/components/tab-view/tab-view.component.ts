@@ -2,7 +2,7 @@ import {
     Component, EventEmitter, Input, OnInit, OnChanges, OnDestroy, Optional, Renderer2, ViewChild
 } from '@angular/core';
 import {TabsComponent} from '../tabs/tabs.component';
-import {validator, util} from '../../shared/utils/normal';
+import {validator, util} from '../../shared-services/utils/normal';
 
 @Component({
     selector: 'app-tab-view',

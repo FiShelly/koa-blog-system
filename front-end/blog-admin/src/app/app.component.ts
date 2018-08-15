@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router, RoutesRecognized} from '@angular/router';
-import {EventBusService} from './shared/eventBus/event-bus.service';
-import {ModalService} from './shared/modal/modal.service';
+import {EventBusService} from './shared-services/eventBus/event-bus.service';
+import {ModalService} from './shared-services/modal/modal.service';
 import {filter, pairwise} from 'rxjs/operators';
 
 @Component({

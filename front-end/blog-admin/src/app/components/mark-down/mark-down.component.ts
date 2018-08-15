@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, AfterViewInit} from '@angular/core';
-import {util} from '../../shared/utils/normal';
+import {util} from '../../shared-services/utils/normal';
 
 declare var editormd: any;
 

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MenuItem} from '../../models';
-import {common} from '../../shared/utils/common';
+import {common} from '../../shared-services/utils/common';
 import {Router} from '@angular/router';
 
 @Component({

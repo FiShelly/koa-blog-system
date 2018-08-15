@@ -1,6 +1,6 @@
 import {Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, OnInit, AfterViewInit, Output, ViewChild} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {validator} from '../../shared/utils/normal';
+import {validator} from '../../shared-services/utils/normal';
 
 export class TabItem {
     _id: string;
