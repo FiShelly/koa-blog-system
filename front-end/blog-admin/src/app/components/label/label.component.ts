@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
+import {validator} from '../../shared-services/utils/normal';
 
 @Component({
     selector: 'app-label',
@@ -7,13 +9,21 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class LabelComponent implements OnInit {
     
+    @Input() text: any = '';
     @Input() suffix_icon: String = '';
     @Input() prefix_icon: String = '';
+    @Input() isTrust: boolean = false;
     
-    constructor() {
+    constructor(private sanitizer: DomSanitizer) {
     }
     
     ngOnInit() {
+        if (this.isTrust) {
+            if (!validator.hasHtml(this.text)) {
+                this.text = `<span>${this.text}</span>`;
+            }
+            this.text = this.sanitizer.bypassSecurityTrustHtml(this.text);
+        }
     }
     
 }

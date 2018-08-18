@@ -1,7 +1,7 @@
 <div class="frame">
-    <div class="avatar-box">
+    <div class="avatar-box" (click)="updateAvatar($event)">
         <div class="avatar">
-            <img src="http://www.fishelly.top/upload/headImg_20170409151457.jpg" alt="">
+            <img [src]="user.avatar" alt="">
         </div>
         <div class="avatar-mask">
             <div class="btn">
@@ -10,32 +10,31 @@
             </div>
         </div>
     </div>
-    <div  class="mine-info">
-        <div  class="cat-name">关于我~</div>
+    <div class="mine-info">
+        <div class="cat-name">关于我~</div>
     </div>
     <div class="row">
         <app-label class="key">账号</app-label>
-        <app-label class="value">Fishelly.</app-label>
-        <app-button class="modify-btn" theme="text">修改</app-button>
+        <app-label class="value">{{user.account}}</app-label>
     </div>
     <div class="row">
         <app-label class="key">昵称</app-label>
-        <app-label class="value">Fishelly.</app-label>
-        <app-button class="modify-btn" theme="text">修改</app-button>
+        <app-label class="value">{{user.name}}</app-label>
+        <app-button class="modify-btn" theme="text" (btnClick)="onUpdate($event,'name')">修改</app-button>
     </div>
     <div class="row">
         <app-label class="key">职位</app-label>
-        <app-label class="value">Fishelly.</app-label>
-        <app-button class="modify-btn" theme="text">修改</app-button>
+        <app-label class="value">{{user.position}}</app-label>
+        <app-button class="modify-btn" theme="text" (btnClick)="onUpdate($event,'position')">修改</app-button>
     </div>
     <div class="row">
         <app-label class="key">个性签名</app-label>
-        <app-label class="value">Fishelly.</app-label>
-        <app-button class="modify-btn" theme="text">修改</app-button>
+        <app-label class="value">{{user.signature}}</app-label>
+        <app-button class="modify-btn" theme="text" (btnClick)="onUpdate($event,'signature')">修改</app-button>
     </div>
     <div class="row">
         <app-label class="key">个人简介</app-label>
-        <app-label class="value">Fishelly.</app-label>
-        <app-button class="modify-btn" theme="text">修改</app-button>
+        <app-label class="value">{{user.introduce}}</app-label>
+        <app-button class="modify-btn" theme="text" (btnClick)="onUpdate($event,'introduce')">修改</app-button>
     </div>
 </div>

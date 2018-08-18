@@ -1,0 +1,35 @@
+<div class="el-dialog" #modal>
+    <app-modal-header (close)="cancelHandle()">{{title}}</app-modal-header>
+    <div class="el-dialog__body">
+        <app-loading [hidden]="!loading"></app-loading>
+        <div class="material-box">
+            <div class="materials-item"
+                 (click)="selectImage($event, item)"
+                 *ngFor="let item of materials">
+                <div class="mask" [hidden]="!item.status">
+                    <p class="text">{{item.progress}}</p>
+                </div>
+                <div class="img-box">
+                    <img [src]="item.src" alt=""/>
+                </div>
+                <div class="title-box">
+                    <app-checkbox [checked]="hasSelected(item)"></app-checkbox>
+                    <app-label [isTrust]="true" [text]="item.kw_text"></app-label>
+                </div>
+            </div>
+        </div>
+        <div class="ft">
+            <app-pagination
+                [showLimit]="false"
+                [total]="dataPage.total"
+                [current]="dataPage.current"
+                [limit]="dataPage.limit"
+                (changePage)="changePage($event)"
+            ></app-pagination>
+        </div>
+    </div>
+    <app-modal-footer>
+        <app-button (btnClick)="cancelHandle()">取消</app-button>
+        <app-button theme="primary" (btnClick)="okHandle()">确定</app-button>
+    </app-modal-footer>
+</div>

@@ -1,11 +1,16 @@
 const categoryTagModel = require('../models/categoryTag');
+const Op = require('sequelize').Op;
 
 const categoryTagService = {
     create: function (model) {
         return categoryTagModel.create(model);
     },
     findAll: function (opt) {
-        opt = {where: opt};
+        opt.name = {[Op.like]: `%${opt.name}%`};
+        opt = {
+            order: [['id', 'desc']],
+            where: opt,
+        };
         return categoryTagModel.findAll(opt);
     },
     findOne: function (opt) {

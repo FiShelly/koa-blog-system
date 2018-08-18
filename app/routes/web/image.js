@@ -21,7 +21,7 @@ router.get('/view/:id', async function (ctx, next) {
     }
 });
 
-router.get('/list', async function (ctx, next) {
+router.get('/', async function (ctx, next) {
     ctx.body = await imageController.findAllByPage(ctx);
 });
 
@@ -51,6 +51,7 @@ router.put('/:id', async function (ctx, next) {
 });
 
 router.delete('/:id', async function (ctx, next) {
+    //TODO REMOVE IMAGE IN DIR.
     ctx.body = await imageController.remove(ctx);
 });
 

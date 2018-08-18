@@ -1,6 +1,8 @@
 <div class="el-label">
-    <span>
+    <span *ngIf="!text">
         <ng-content></ng-content>
+    </span>
+    <span *ngIf="text" [innerHTML]="text">
     </span>
     <span class="el-input__suffix" *ngIf="suffix_icon">
         <span class="el-input__suffix-inner">

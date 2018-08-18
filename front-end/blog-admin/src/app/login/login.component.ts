@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     errorMessage: string = '';
     remember: boolean = false;
     info: any =  (<any>window).environment.loginPageInfo;
+    global: any = (<any>window).environment;
     
     constructor(
         private userService: UserService,
@@ -53,7 +54,8 @@ export class LoginComponent implements OnInit {
             this.storageService.create(true).setItem('remember-user', this.user);
         }
         this.userService.postLogin(this.user).subscribe({
-            next: (item) => {
+            next: (item: User) => {
+                item.avatar = `${this.global.apiURL.materialView}${item.headImg}`;
                 this.eventBus.emit('logined', item);
                 this.storageService.create(false).setItem('logined-user', item);
                 this.router.navigateByUrl('admin/post/list');

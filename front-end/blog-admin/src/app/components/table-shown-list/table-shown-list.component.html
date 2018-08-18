@@ -42,7 +42,7 @@
                 <td
                     *ngFor="let k of format"
                     [style.width]="k.width+'px'"
-                    [innerHTML]="item[k.name] || k.defaultText"
+                    [innerHTML]="getText(item[k.name] || k.defaultText, k.isForceHTML)"
                 ></td>
                 <td class="ops"
                     *ngIf="operations"

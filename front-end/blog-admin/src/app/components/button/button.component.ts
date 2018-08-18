@@ -7,6 +7,7 @@ import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
     
+    @Input() icon: String = '';
     @Input() type: String = 'normal';
     @Input() text: String = '';
     @Input() theme: String = 'default';
@@ -32,6 +33,6 @@ export class ButtonComponent implements OnInit {
     
     changeEventHandle($e) {
         $e.stopPropagation();
-        this.filesChange.emit($e);
+        this.filesChange.emit($e.target.files);
     }
 }

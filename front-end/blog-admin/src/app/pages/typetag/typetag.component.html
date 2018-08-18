@@ -1,41 +1,50 @@
 <div class="frame">
     <div class="mine-info">
-        <div class="cat-name">标签与分类管理</div>
+        <div class="cat-name">分类与标签管理</div>
+        <app-button class="upload-btn"
+                    icon="&#xe682;"
+                    (btnClick)="onAdd($event)">
+            新增{{currentObj.title}}
+        </app-button>
         <app-input placeholder="请输入关键词"
                    class="search-input"
                    suffix_icon="&#xe67f;"
+                   [(ngModel)]="keyword"
+                   (keyup.enter)="search()"
         >
         </app-input>
         <div class="cat-info">
             <div class="post-count left">
-                <app-label>评论数量：</app-label>
-                <app-label>18350</app-label>
+                <app-label>{{currentObj.title}}数量：</app-label>
+                <app-label>{{currentObj.total}}</app-label>
             </div>
         </div>
     </div>
-    <app-tabs>
-        <app-tab-view label="分类管理" name="category" >
-            <div class="list-container">
-                <app-table-shown-list
-                    width="960"
-                    [tableBorder]="true"
-                    [format]="listFormat"
-                    [operations]="listOperations"
-                ></app-table-shown-list>
-            </div>
-        </app-tab-view>
-        <app-tab-view label="标签管理" name="tag"  >
-            <div class="list-container">
-                <app-table-shown-list
-                    width="960"
-                    [tableBorder]="true"
-                    [format]="listFormat"
-                    [operations]="listOperations"
-                ></app-table-shown-list>
-            </div>
-        </app-tab-view>
-    </app-tabs>
-    <div class="ft">
-        <app-pagination></app-pagination>
+    <div class="list">
+        <app-loading [hidden]="!loading"></app-loading>
+        <app-tabs [(ngModel)]="currentObj.type" (modelChange)="changeTypeAndTag($event)">
+            <app-tab-view label="分类管理" name="type">
+                <div class="list-container">
+                    <app-table-shown-list
+                        width="958"
+                        [format]="listFormat"
+                        [operations]="listOperations"
+                        [dataList]="typeList"
+                        (op)="onOperation($event)"
+                    ></app-table-shown-list>
+                </div>
+            </app-tab-view>
+            <app-tab-view label="标签管理" name="tag">
+                <div class="list-container">
+                    <app-table-shown-list
+                        width="958"
+                        [format]="listFormat"
+                        [operations]="listOperations"
+                        [dataList]="tagList"
+                        (op)="onOperation($event)"
+                    ></app-table-shown-list>
+                </div>
+            </app-tab-view>
+        </app-tabs>
     </div>
 </div>

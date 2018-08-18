@@ -5,6 +5,8 @@ import {HTTP_INTERCEPTOR_PROVIDERS} from './interceptor';
 import {ModalService} from './modal/modal.service';
 import {UserService} from './model/user.service';
 import {StorageService} from './utils/storage.service';
+import {MaterialService} from './model/material.service';
+import {TypetagService} from './model/typetag.service';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import {StorageService} from './utils/storage.service';
         EventBusService,
         HTTP_INTERCEPTOR_PROVIDERS,
         UserService,
-        StorageService
+        MaterialService,
+        StorageService,
+        TypetagService
     ],
 })
 export class SharedModule {

@@ -10,10 +10,13 @@ import {ModalAlertComponent} from '../../components/modal/modal-alert/modal-aler
 import {EventBusService} from '../eventBus/event-bus.service';
 import {ModalConfirmComponent} from '../../components/modal/modal-confirm/modal-confirm.component';
 import {ModalPromptComponent} from '../../components/modal/modal-prompt/modal-prompt.component';
+import {ModalImageSelectComponent} from '../../components/modal/modal-image-select/modal-image-select.component';
+
 const modalMap = [
     ModalAlertComponent,
     ModalConfirmComponent,
-    ModalPromptComponent
+    ModalPromptComponent,
+    ModalImageSelectComponent
 ];
 
 @Injectable({
@@ -67,6 +70,7 @@ export class ModalService {
             default:
                 break;
         }
+        el.style.opacity = 1;
     }
     
     createModal() {
@@ -94,19 +98,21 @@ export class ModalService {
         this._queue.push(instance);
         instance.modal.nativeElement.style.zIndex = this._nextZIndex++;
         instance.close = () => {
-            setTimeout(() => {
-                for (let i = 0; i < this._queue.length; i++) {
-                    if (this._queue[i] === instance) {
-                        this._nextZIndex--;
-                        this._queue.splice(i, 1);
-                        break;
-                    }
+            // setTimeout(() => {
+            for (let i = 0; i < this._queue.length; i++) {
+                if (this._queue[i] === instance) {
+                    this._nextZIndex--;
+                    this._queue.splice(i, 1);
+                    break;
                 }
-                this.checkMask();
-                this.appRef.detachView(componentRef.hostView);
-                componentRef.destroy();
-            });
+            }
+            this.checkMask();
+            this.appRef.detachView(componentRef.hostView);
+            componentRef.destroy();
+            // });
         };
+        
+        opts.output = opts.output || {};
         
         outputs.forEach(row => {
             const {propName, templateName} = row;
@@ -124,13 +130,11 @@ export class ModalService {
             setTimeout(() => {
                 const defaultOpts = ('defaultOptions' in instance) ? instance.defaultOptions : {};
                 instance.modalCreated(Object.assign(defaultOpts, opts.input));
-                setTimeout(() => {
-                    this.adjustPosition(instance);
-                });
+                this.adjustPosition(instance);
             });
         }
         this.showMask();
-        
+    
         document.querySelector('body').appendChild(componentRoot);
     }
     

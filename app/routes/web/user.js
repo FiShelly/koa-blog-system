@@ -9,7 +9,7 @@ router.post('/login', async function (ctx, next) {
     ctx.body = await userController.login(ctx);
 });
 
-router.put('/update', async function(ctx, next) {
+router.put('/', async function(ctx, next) {
     ctx.body = await userController.updateUser(ctx);
 });
 

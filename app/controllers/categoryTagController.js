@@ -41,8 +41,9 @@ const remove = async function (ctx) {
 
 const findAllByType = async function (ctx) {
     const params = ctx.params;
+    const kw = ctx.request.query.keyword || '';
     try {
-        const categoryTag = await categoryTagService.findAll({type: params.type});
+        const categoryTag = await categoryTagService.findAll({type: params.type, name: kw});
         return packData(200, 'success', categoryTag);
     } catch (e) {
         return packData(500, 'error', 'mysql-error');

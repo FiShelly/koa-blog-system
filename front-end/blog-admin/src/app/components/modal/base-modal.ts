@@ -11,5 +11,6 @@ export class BaseModal {
     close() {
     }
     
-    
+    modalCreated(opt: any) {
+    }
 }

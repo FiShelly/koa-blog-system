@@ -21,7 +21,8 @@
          [class.is-circle]="circle"
          [class.is-round]="round"
     >
-        {{text}}
+        <span class="icon-font" *ngIf="icon" [innerHTML]="icon"></span>
+        <span>{{text}}</span>
         <input type="file"
                [multiple]="multiple"
                [disabled]="disabled"

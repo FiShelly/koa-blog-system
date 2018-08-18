@@ -69,6 +69,9 @@ const validator = {
     },
     archive(obj) {
         return /\.rar$|\.zip$|\.7z$|\.gzip$|\.tar$|\.iso$/i.test(obj);
+    },
+    hasHtml(obj) {
+        return /<[^>]+>/g.test(obj);
     }
 };
 
@@ -82,9 +85,19 @@ function randomString(len: number = 10, charSet?: string) {
     return str;
 }
 
+function hightLightKw(name, kw) {
+    if (!kw) {
+        return name;
+    }
+    const replaceStr = '<span style=\'color:#11a1f8\'>$1</span>';
+    const reg = new RegExp('(' + kw + ')', 'ig');
+    return name.replace(reg, replaceStr);
+}
+
 const util = {
     randomString,
-    deepCopy
+    deepCopy,
+    hightLightKw
 };
 
 export {

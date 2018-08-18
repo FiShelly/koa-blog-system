@@ -3,85 +3,51 @@
         <div class="cat-name">素材管理</div>
         <app-input placeholder="请输入关键词"
                    class="search-input"
+                   [(ngModel)]="keyword"
+                   (keyup.enter)="search()"
                    suffix_icon="&#xe67f;"
         >
         </app-input>
-        <app-button class="upload-btn">
-            <span class="icon-font">&#xe682;</span>
-            <span>上传图片</span>
+        <app-button class="upload-btn"
+                    type="file"
+                    [multiple]="true"
+                    icon="&#xe682;"
+                    text="上传图片"
+                    (filesChange)="onSelectFile($event)">
         </app-button>
         <div class="cat-info">
             <div class="post-count left">
                 <app-label>素材数量：</app-label>
-                <app-label>18350</app-label>
+                <app-label>{{dataTotal}}</app-label>
             </div>
         </div>
     </div>
 
     <div class="materials-box">
-        <div class="materials-item">
-            <div class="img-box">
-                <img src="http://www.fishelly.top/upload/headImg_20170409151457.jpg" alt="">
+        <app-loading [hidden]="!loading"></app-loading>
+        <div class="materials-item" *ngFor="let item of materials">
+            <div class="mask" [hidden]="!item.status">
+                <p class="text">{{item.progress}}</p>
             </div>
-            <div class="title-box">
-                <app-label>测试图片测试图片---test</app-label>
+            <div class="img-box">
+                <img [src]="item.src" alt=""/>
+            </div>
+            <div class="title-box" (click)="updateImage($event, item)">
+                <app-label [isTrust]="true" [text]="item.kw_text"></app-label>
             </div>
             <div class="date-box">
-                <app-label>2018-01-01 11:11</app-label>
-                <app-button theme="text">删除</app-button>
-            </div>
-        </div>
-        <div class="materials-item">
-            <div class="img-box">
-                <img src="http://www.fishelly.top/upload/headImg_20170409151457.jpg" alt="">
-            </div>
-            <div class="title-box">
-                <app-label>测试图片测试图片---test</app-label>
-            </div>
-            <div class="date-box">
-                <app-label>2018-01-01 11:11</app-label>
-                <app-button theme="text">删除</app-button>
-            </div>
-        </div>
-        <div class="materials-item">
-            <div class="img-box">
-                <img src="http://www.fishelly.top/upload/headImg_20170409151457.jpg" alt="">
-            </div>
-            <div class="title-box">
-                <app-label>测试图片测试图片---test</app-label>
-            </div>
-            <div class="date-box">
-                <app-label>2018-01-01 11:11</app-label>
-                <app-button theme="text">删除</app-button>
-            </div>
-        </div>
-        <div class="materials-item">
-            <div class="img-box">
-                <img src="http://www.fishelly.top/upload/headImg_20170409151457.jpg" alt="">
-            </div>
-            <div class="title-box">
-                <app-label>测试图片测试图片---test</app-label>
-            </div>
-            <div class="date-box">
-                <app-label>2018-01-01 11:11</app-label>
-                <app-button theme="text">删除</app-button>
-            </div>
-        </div>
-        <div class="materials-item">
-            <div class="img-box">
-                <img src="http://www.fishelly.top/upload/headImg_20170409151457.jpg" alt="">
-            </div>
-            <div class="title-box">
-                <app-label>测试图片测试图片---test</app-label>
-            </div>
-            <div class="date-box">
-                <app-label>2018-01-01 11:11</app-label>
-                <app-button theme="text">删除</app-button>
+                <app-label>{{item.date * 1000 | date: "yyyy-MM-dd HH:mm" }}</app-label>
+                <app-button theme="text" (btnClick)="deleteImage(item)">删除</app-button>
             </div>
         </div>
     </div>
 
     <div class="ft">
-        <app-pagination></app-pagination>
+        <app-pagination
+            [total]="dataPage.total"
+            [current]="dataPage.current"
+            [limit]="dataPage.limit"
+            (changePage)="changePage($event)"
+        ></app-pagination>
     </div>
 </div>

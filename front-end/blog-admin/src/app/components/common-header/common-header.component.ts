@@ -51,7 +51,6 @@ export class CommonHeaderComponent implements OnInit, AfterViewInit {
             return;
         }
         this.showRight = true;
-        console.log(this.user);
         if (validator.isEmpty(this.user.name)) {
             const loginedUser = this.storage.create(false).getItem('logined-user');
             if (!validator.isEmpty(loginedUser)) {

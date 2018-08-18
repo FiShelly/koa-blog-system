@@ -76,7 +76,7 @@ const findAllByPage = async function (ctx) {
     limit = Number(limit);
     offset = Number(offset);
     try {
-        const images = await imageService.findAndCountAll(limit, offset);
+        const images = await imageService.findAndCountAll(limit, offset,request.keyword);
         const result = packData(200, 'success', images);
         result.data.list = result.data.list.map(v => {
             v.url = `${ctx.origin}/web/image/view/${v.id}` ;

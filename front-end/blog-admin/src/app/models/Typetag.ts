@@ -3,7 +3,10 @@
  */
 export class Typetag {
     id: string;
-    _id: string;
-    type: number;
+    type: string;
     name: string;
+    kw_text: string;
+    date: number;
+    count: number;
+    time: 'string';
 }

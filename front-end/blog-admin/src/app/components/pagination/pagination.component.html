@@ -1,16 +1,20 @@
 <div class="el-pagination">
     <div class="el-pagination-part left">
-        <app-label>每页显示</app-label>
-        <app-input  [(ngModel)]="limit"></app-input>
-        <app-label>条</app-label>
-        <app-button (btnClick)="modifyLimit($event)" >修改</app-button>
+        <ng-container *ngIf="showLimit">
+            <app-label>每页显示</app-label>
+            <app-input [(ngModel)]="limit"></app-input>
+            <app-label>条</app-label>
+            <app-button (btnClick)="modifyLimit($event)">修改</app-button>
+        </ng-container>
     </div>
 
     <div class="el-pagination-part right">
-        <app-button (btnClick)="prePage($event)" [disabled]="current <= 1"><span class="icon-font">&#xe634;</span></app-button>
+        <app-button (btnClick)="prePage($event)" [disabled]="current <= 1"><span class="icon-font">&#xe634;</span>
+        </app-button>
         <app-label>页码</app-label>
         <app-label>{{current}} / {{total}}</app-label>
-        <app-button (btnClick)="nextPage($event)" [disabled]="current >= total"><span class="icon-font">&#xe633;</span></app-button>
+        <app-button (btnClick)="nextPage($event)" [disabled]="current >= total"><span class="icon-font">&#xe633;</span>
+        </app-button>
         <app-input [(ngModel)]="jumper" (ngModelChange)="modifyJumper($event)"></app-input>
         <app-button (btnClick)="jumperPage($event)">跳转</app-button>
     </div>

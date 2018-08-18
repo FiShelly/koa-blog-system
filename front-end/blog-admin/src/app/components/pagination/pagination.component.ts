@@ -12,6 +12,8 @@ export class PaginationComponent implements OnInit {
     @Input() total: number = 1;
     @Input() limit: number = 1;
     jumper: any;
+    @Input() showLimit: boolean = true;
+    
     @Output() changeLimit: EventEmitter<any> = new EventEmitter<any>();
     @Output() changePage: EventEmitter<any> = new EventEmitter<any>();
     

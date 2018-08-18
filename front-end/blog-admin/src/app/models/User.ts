@@ -11,4 +11,5 @@ export class User {
     introduce: string;
     headImg: number;
     password: string;
+    avatar: string;
 }

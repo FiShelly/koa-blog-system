@@ -27,14 +27,28 @@ export class UnifyResquestInterceptor implements HttpInterceptor {
                 throw new Error('未登录');
             }
         }
-        const header = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            })
-        };
-        req = req.clone(header);
+        // const header = {
+        //     headers: new HttpHeaders({
+        //         'Content-Type': 'application/json'
+        //     })
+        // };
+        // req = req.clone(header);
         
         return next.handle(req);
     }
 }
-
+// let hasFile = false;
+// Object.keys(data).forEach((x) => {
+//     if (data[x] instanceof window.File) {
+//         hasFile = true;
+//     } else if (data[x] instanceof window.Blob) {
+//         hasFile = true;
+//     }
+// });
+// if (hasFile) {
+//     let formData = new FormData();
+//     Object.keys(data).forEach((x) => {
+//         formData.append(x, data[x]);
+//     });
+//     return formData;
+// }

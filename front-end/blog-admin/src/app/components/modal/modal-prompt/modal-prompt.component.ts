@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {BaseModal} from '../base-modal';
-import {s} from '@angular/core/src/render3';
 
 @Component({
     selector: 'app-modal-prompt',

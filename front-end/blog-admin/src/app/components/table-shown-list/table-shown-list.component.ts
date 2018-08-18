@@ -1,4 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {validator} from '../../shared-services/utils/normal';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
     selector: 'app-table-shown-list',
@@ -10,16 +12,18 @@ export class TableShownListComponent implements OnInit {
     @Input() format: object = {};
     @Input() operations: any = {};
     @Input() width: string = '1000';
-    @Input() minHeight: string = '518';
+    @Input() minHeight: string = '418';
     @Input() checkable: boolean = false;
     @Input() tableBorder: boolean = false;
     @Input() tdBorder: boolean = false;
-    dataList: any[] = [];
+    @Input() dataList: any[] = [];
     
     @Output() op: EventEmitter<any> = new EventEmitter<any>();
     
     
-    constructor() {
+    constructor(
+        private sanitizer: DomSanitizer
+    ) {
     }
     
     ngOnInit() {
@@ -29,7 +33,17 @@ export class TableShownListComponent implements OnInit {
         $e.stopPropagation();
         this.op.emit({
             item: item,
-            op: k
+            op: k.name
         });
+    }
+    
+    getText(text, isForce) {
+        if (!isForce) {
+            return text;
+        }
+        if (!validator.hasHtml(text)) {
+            text = `<span>${text}</span>`;
+        }
+        return this.sanitizer.bypassSecurityTrustHtml(text);
     }
 }

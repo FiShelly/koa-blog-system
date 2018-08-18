@@ -28,6 +28,8 @@ import {ModalPromptComponent} from './modal/modal-prompt/modal-prompt.component'
 import {RouterModule} from '@angular/router';
 import { TableShownListComponent } from './table-shown-list/table-shown-list.component';
 import { MarkDownComponent } from './mark-down/mark-down.component';
+import { LoadingComponent } from './loading/loading.component';
+import { ModalImageSelectComponent } from './modal/modal-image-select/modal-image-select.component';
 
 
 @NgModule({
@@ -63,7 +65,9 @@ import { MarkDownComponent } from './mark-down/mark-down.component';
         ModalConfirmComponent,
         ModalPromptComponent,
         TableShownListComponent,
-        MarkDownComponent
+        MarkDownComponent,
+        LoadingComponent,
+        ModalImageSelectComponent
     ],
     exports: [
         CommonHeaderComponent,
@@ -91,7 +95,9 @@ import { MarkDownComponent } from './mark-down/mark-down.component';
         ModalConfirmComponent,
         ModalPromptComponent,
         TableShownListComponent,
-        MarkDownComponent
+        MarkDownComponent,
+        LoadingComponent,
+        ModalImageSelectComponent
     ],
     entryComponents: [
         CommonHeaderComponent,
@@ -119,7 +125,9 @@ import { MarkDownComponent } from './mark-down/mark-down.component';
         ModalConfirmComponent,
         ModalPromptComponent,
         TableShownListComponent,
-        MarkDownComponent
+        MarkDownComponent,
+        LoadingComponent,
+        ModalImageSelectComponent
     ]
 })
 export class ComponentsModule {

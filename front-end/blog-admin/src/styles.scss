@@ -15,12 +15,14 @@ body{
 }
 
 .el-dialog {
+    opacity: 0;
     position: fixed;
     background-color: $whiteBg;
     min-width: 400px;
     width: auto;
     left: 50%;
     top: 50%;
+    transition: opacity .3s ease;
     &__body {
         padding: 30px 20px;
         color: #606266;
@@ -47,12 +49,91 @@ body{
 }
 
 .frame{
+    padding: 20px 0 ;
     .mine-info {
         margin: 16px 0;
         position: relative;
+        .upload-btn {
+            .el-button {
+                position: absolute;
+                right: 260px;
+                top: 13px;
+            }
+        }
         .cat-name {
             font-size: 24px;
             line-height: 30px;
+        }
+    }
+}
+
+.materials-item {
+    width: 220px;
+    height: 240px;
+    box-sizing: border-box;
+    border: 1px #E0E0E0 solid;
+    border-radius: 5px;
+    float: left;
+    margin: 10px 13px;
+    position: relative;
+
+    &.is-selected{
+
+    }
+
+    .mask{
+        z-index: 99;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0,0,0,0.6);
+        line-height: 240px;
+        .text{
+            font-size: 18px;
+            text-align: center;
+            color: $whiteBg;
+        }
+    }
+
+    > * {
+        box-sizing: border-box;
+    }
+    .img-box {
+        cursor: pointer;
+        width: 220px;
+        height: 140px;
+
+        img {
+            width: 218px;
+            height: 140px;
+        }
+    }
+    .title-box {
+        margin: 10px 0 0 0;
+        height: 40px;
+        font-size: 14px;
+        padding: 0 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+
+    }
+
+    .date-box {
+        height: 40px;
+        padding: 0 10px;
+    }
+
+    ::ng-deep {
+        .el-label {
+            padding: 9px 0;
+        }
+        .el-button {
+            margin-top: 1px ;
+            float: right;
         }
     }
 }

@@ -11,11 +11,22 @@ import {map, tap} from 'rxjs/operators';
 export class UserService extends CommonService {
     
     public postLogin(user: User): Observable<any> {
-        
         return this.hc.post<User>(this.apiURL.login, user);
     }
     
     public getLogout(): Observable<any> {
         return this.hc.get<any>(this.apiURL.logout);
+    }
+    
+    public getUser(account: string): Observable<any> {
+        return this.hc.get<any>(this.apiURL.userResFul, {
+            params: {
+                account
+            }
+        });
+    }
+    
+    public putUser(user: User): Observable<any> {
+        return this.hc.put<User>(this.apiURL.userResFul, user);
     }
 }
