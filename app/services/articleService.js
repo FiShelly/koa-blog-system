@@ -1,4 +1,6 @@
 const articleModel = require('../models/article');
+const Op = require('sequelize').Op;
+
 const articleService = {
     create: function (model) {
         return articleModel.create(model);
@@ -21,7 +23,12 @@ const articleService = {
         return articleModel.destroy(opt);
     },
     findAndCountAll: function (limit, offset, opt) {
+        console.log(opt);
+        if (opt.title) {
+            opt.title = {[Op.like]: opt.title};
+        }
         return articleModel.findAndCountAll({
+            order: [['id', 'desc']],
             where: opt,
             limit, offset
         })

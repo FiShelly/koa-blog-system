@@ -7,6 +7,7 @@ import {UserService} from './model/user.service';
 import {StorageService} from './utils/storage.service';
 import {MaterialService} from './model/material.service';
 import {TypetagService} from './model/typetag.service';
+import {PostService} from './model/post.service';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {TypetagService} from './model/typetag.service';
         UserService,
         MaterialService,
         StorageService,
-        TypetagService
+        TypetagService,
+        PostService
     ],
 })
 export class SharedModule {

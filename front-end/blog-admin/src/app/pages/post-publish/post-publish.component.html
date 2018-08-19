@@ -6,16 +6,19 @@
     <div class="post-info">
         <div class="left-part">
             <div class="row">
-                <app-input placeholder="请输入标题" class="post-title"></app-input>
+                <app-input placeholder="请输入标题" [(ngModel)]="post.title" class="post-title"></app-input>
             </div>
             <div class="row spec">
-                <app-textarea rows="4" placeholder="请输入摘要" class="post-abstract"></app-textarea>
+                <app-textarea rows="4" placeholder="请输入摘要" [(ngModel)]="post.abstract"
+                              class="post-abstract"></app-textarea>
             </div>
             <div class="row">
                 <app-label class="key">选择标签</app-label>
                 <div>
-                    <app-checkbox-group>
-                        <app-checkbox class="row-checkbox" *ngFor="let item of labels; index as i; " [label]="item">{{item + i}}</app-checkbox>
+                    <app-checkbox-group [(ngModel)]="post.tag">
+                        <app-checkbox class="row-checkbox" *ngFor="let item of tagList; index as i; " [label]="item.id">
+                            {{item.name}}
+                        </app-checkbox>
                     </app-checkbox-group>
                 </div>
             </div>
@@ -23,33 +26,31 @@
         <div class="right-part">
             <div class="row">
                 <app-label class="key">分类</app-label>
-                <app-select class="value">
-                    <app-select-option [label]="1">测试A</app-select-option>
-                    <app-select-option [label]="2">测试B</app-select-option>
-                    <app-select-option [label]="3">测试C</app-select-option>
+                <app-select class="value" [(ngModel)]="post.type">
+                    <app-select-option *ngFor="let opt of typeList" [label]="opt.id">{{opt.name}}</app-select-option>
                 </app-select>
             </div>
             <div class="row">
                 <app-label class="key">发布时间</app-label>
-                <app-date-time-picker></app-date-time-picker>
+                <app-date-time-picker [(ngModel)]="post.date"></app-date-time-picker>
             </div>
             <div class="row">
                 <app-label class="key">封面图片</app-label>
-                <app-button [plain]="true">选择封面图片</app-button>
+                <app-button [plain]="true" (btnClick)="onSelectImage($event)">选择封面图片</app-button>
             </div>
-            <div class="row">
-                <img class="img" src="http://www.fishelly.top/upload/headImg_20170409151457.jpg" alt="">
+            <div class="row" [hidden]="!post.coverImg">
+                <img class="img" [src]="post.coverSrc" alt="">
             </div>
         </div>
     </div>
 
     <div class="post-editor">
-        <app-mark-down></app-mark-down>
+        <app-mark-down [post]="post"></app-mark-down>
     </div>
 
     <div class="post-btn-group">
-        <app-button [plain]="true" theme="primary">发布</app-button>
-        <app-button [plain]="true" theme="success">保存草稿</app-button>
-        <app-button [plain]="true" theme="info">返回列表</app-button>
+        <app-button [plain]="true" theme="primary" *ngIf="post.status != 'publish'" (btnClick)="onPublish('publish')">发布</app-button>
+        <app-button [plain]="true" theme="success" (btnClick)="onPublish('draft')">保存草稿</app-button>
+        <app-button [plain]="true" theme="info" (btnClick)="onGotoList()">返回列表</app-button>
     </div>
 </div>

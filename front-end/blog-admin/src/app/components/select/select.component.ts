@@ -42,6 +42,7 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
 })
 export class SelectComponent implements OnInit, OnChanges, OnDestroy, ControlValueAccessor, AfterViewInit {
     @ViewChild('frame') frame: any;
+    @ViewChild('select') select: any;
     
     @Input() disabled: Boolean = false;
     @Input() model: any = '';
@@ -56,7 +57,6 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy, ControlVal
     private $body: Element = null;
     
     constructor(
-        private $el: ElementRef,
         private $renderer2: Renderer2
     ) {
         this.$body = document.querySelector('body');
@@ -66,9 +66,9 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy, ControlVal
         const timer = setTimeout(() => {
             const elFrame = this.frame.nativeElement;
             this.$body.appendChild(elFrame);
-            const rect = this.$el.nativeElement.getBoundingClientRect();
+            const rect = this.select.nativeElement.getBoundingClientRect();
             const dropX = Math.round(rect.left) + (window.scrollX || window.pageXOffset);
-            const dropY = Math.round(rect.top) + 32 + (window.scrollY || window.pageYOffset);
+            const dropY = Math.round(rect.top) + 42 + (window.scrollY || window.pageYOffset);
             this.$renderer2.setStyle(elFrame, 'left', `${dropX}px`);
             this.$renderer2.setStyle(elFrame, 'top', `${dropY}px`);
             clearTimeout(timer);
@@ -76,7 +76,6 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy, ControlVal
     }
     
     ngOnInit() {
-        this.computePosition();
         this.globalListener = this.$renderer2.listen('document', 'click', () => {
             this.isActived && this.toggleDrop();
         });
@@ -96,6 +95,7 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy, ControlVal
     
     ngAfterViewInit(): void {
         this.subscriber.forEach(sub => sub());
+        this.computePosition();
     }
     
     toggleDrop($e?: Event) {
@@ -114,9 +114,9 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy, ControlVal
     handleInputChange(val: any): void {
         this.model = val;
         this.controlChange(val);
-        this.modelChange.emit(val);
         this.subscriber.forEach(sub => sub());
         this.toggleDrop();
+        this.modelChange.emit(val);
     }
     
     writeValue(value: any): void {

@@ -30,6 +30,9 @@ export class TableShownListComponent implements OnInit {
     }
     
     opClick($e, item, k) {
+        if ('disable' in k && (k.disable.includes(item.status) || k.disable.includes('all'))) {
+            return;
+        }
         $e.stopPropagation();
         this.op.emit({
             item: item,
@@ -45,5 +48,14 @@ export class TableShownListComponent implements OnInit {
             text = `<span>${text}</span>`;
         }
         return this.sanitizer.bypassSecurityTrustHtml(text);
+    }
+    
+    isDisable (item, op) {
+        if (!op.disable) {
+            return false;
+        } else if (op.disable.includes('all') || op.disable.includes(item.status)) {
+            return true;
+        }
+        return false;
     }
 }

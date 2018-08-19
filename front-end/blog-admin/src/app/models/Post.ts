@@ -1,16 +1,24 @@
 /**
  * Created by ddxfc on 2017/4/8.
  */
-export class Article {
+export class Post {
+    constructor() {
+    
+    }
+    
     id: string;
-    _id: string;
     title: string;
-    type: string;
-    tag: Object[];
+    kw_text: string;
+    type: number;
+    tag: number[] = [];
     abstract: string;
     date: string;
+    time: string;
     articleHtml: string;
+    articleMd: string = '';
     readCount: number;
     commentCount: number;
     coverImg: string;
+    status: string;
+    coverSrc: string;
 }

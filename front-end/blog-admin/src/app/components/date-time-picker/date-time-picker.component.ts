@@ -51,6 +51,7 @@ export type DateRow = DateRowItem[];
 })
 export class DateTimePickerComponent implements OnInit, OnChanges, OnDestroy, ControlValueAccessor, AfterViewInit {
     @ViewChild('frame') frame: any;
+    @ViewChild('select') select: any;
     
     @Input() disabled: Boolean = false;
     @Input() model: any = '';
@@ -85,7 +86,6 @@ export class DateTimePickerComponent implements OnInit, OnChanges, OnDestroy, Co
     }
     
     constructor(
-        private $el: ElementRef,
         private $renderer2: Renderer2
     ) {
         this.$body = document.querySelector('body');
@@ -95,7 +95,7 @@ export class DateTimePickerComponent implements OnInit, OnChanges, OnDestroy, Co
         const timer = setTimeout(() => {
             const elFrame = this.frame.nativeElement;
             this.$body.appendChild(elFrame);
-            const rect = this.$el.nativeElement.getBoundingClientRect();
+            const rect = this.select.nativeElement.getBoundingClientRect();
             const dropX = Math.round(rect.left) + (window.scrollX || window.pageXOffset);
             const dropY = Math.round(rect.top) + 32 + (window.scrollY || window.pageYOffset);
             this.$renderer2.setStyle(elFrame, 'left', `${dropX}px`);
@@ -182,6 +182,7 @@ export class DateTimePickerComponent implements OnInit, OnChanges, OnDestroy, Co
     }
     
     ngOnChanges(changes): void {
+        console.log(changes);
     }
     
     ngAfterViewInit(): void {
@@ -285,6 +286,9 @@ export class DateTimePickerComponent implements OnInit, OnChanges, OnDestroy, Co
     
     writeValue(value: any): void {
         this.model = value;
+        if (this.model) {
+            this.initDateObj(value);
+        }
     }
     
     registerOnChange(fn: Function): void {

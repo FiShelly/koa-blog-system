@@ -6,13 +6,16 @@ const moment = require('moment');
 
 const create = async function (ctx) {
     const request = ctx.request.body;
+    if (request.tag instanceof Array) {
+        request.tag = request.tag.join(',');
+    }
     try {
         const article = await articleService.create(request);
         const tagArray = article.tag.split(',').map(val => {
-            return {name: val, type: 'tag'};
+            return {id: val, type: 'tag'};
         });
-        tagArray.push({name: article.type, type: 'category'});
-        let allPromise = tagArray.map(val => categoryTagService.findOne({name: val.name, type: val.type}));
+        tagArray.push({id: article.type, type: 'type'});
+        let allPromise = tagArray.map(val => categoryTagService.findOne({id: val.id, type: val.type}));
         Promise.all(allPromise).then(results => {
             allPromise = results.map(val => categoryTagService.update({count: val.count + 1}, {id: val.id}));
             return Promise.all(allPromise);
@@ -21,6 +24,7 @@ const create = async function (ctx) {
         });
         return packData(200, 'success', article);
     } catch (e) {
+        console.log(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -32,6 +36,7 @@ const findOneById = async function (ctx) {
         if (!article) {
             return packData(404, 'error', 'data-not-find');
         }
+        article.tag = article.tag.split(',');
         return packData(200, 'success', article);
     } catch (e) {
         return packData(500, 'error', 'mysql-error');
@@ -42,6 +47,21 @@ const remove = async function (ctx) {
     const params = ctx.params;
     try {
         const article = await articleService.update({status: 'delete'}, {id: params.id});
+        return packData(200, 'success', article);
+    } catch (e) {
+        return packData(500, 'error', 'mysql-error');
+    }
+};
+
+const changeStatus = async function (ctx) {
+    const params = ctx.params;
+    const status = ctx.request.body.status;
+    const statusArray = ['delete', 'publish', 'draft'];
+    if (!statusArray.includes(status)) {
+        return packData(412, 'error', 'input-invalidate-status');
+    }
+    try {
+        const article = await articleService.update({status: 'publish'}, {id: params.id});
         return packData(200, 'success', article);
     } catch (e) {
         return packData(500, 'error', 'mysql-error');
@@ -69,34 +89,53 @@ const findAllByPage = async function (ctx) {
     }
     limit = Number(limit);
     offset = Number(offset);
+    const kw = request.keyword;
     const args = {};
     const status = request.status || 'all';
-    const kw = request.keyword;
+    if (!validator.isEmpty(kw)) {
+        args.title = `%${kw}%`;
+    }
     if (status !== 'all') {
         args.status = status;
     }
-    if (!validator.isEmpty(kw)) {
-        args.title = {
-            $like: `%${kw}%`,
-        };
-    }
     try {
-        const articles = await articleService.findAndCountAll(limit, offset);
+        const articles = await articleService.findAndCountAll(limit, offset, args);
         return packData(200, 'success', articles);
     } catch (e) {
-        console.log(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
 
 const update = async function (ctx) {
     const request = ctx.request.body;
+    const diff = JSON.parse(request.diff);
+
+    delete request.id;
+    delete request.diff;
+    if (request.tag instanceof Array) {
+        request.tag = request.tag.join(',');
+    }
+
     const params = ctx.params;
     const id = params.id;
+
+    let allPromise = diff.map(val => categoryTagService.findOne({id: val.id, type: val.type}));
+    Promise.all(allPromise).then(results => {
+        allPromise = results.map((val, idx) => {
+            const item = diff[idx];
+            let count = item.op === 'subtract' ? val.count - 1 : val.count + 1;
+            return categoryTagService.update({count}, {id: val.id});
+        });
+        return Promise.all(allPromise);
+    }).then(data => {
+        console.log(data);
+    });
+
     try {
         const article = await articleService.update(request, {id});
         return packData(200, 'success', article);
     } catch (e) {
+        console.log(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -136,7 +175,7 @@ const incrementRead = async function (ctx) {
 };
 
 module.exports = {
-    create, findOneById, update, remove, findAll, findAllByPage, incrementRead
+    create, findOneById, update, remove, findAll, findAllByPage, incrementRead, changeStatus
 };
 
 

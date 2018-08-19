@@ -54,7 +54,7 @@ body{
         margin: 16px 0;
         position: relative;
         .upload-btn {
-            .el-button {
+            .el-button, .el-select {
                 position: absolute;
                 right: 260px;
                 top: 13px;
@@ -136,4 +136,16 @@ body{
             float: right;
         }
     }
+}
+
+.delete-status{
+    color: $red400;
+}
+
+.publish-status{
+    color: $blue400;
+}
+
+.draft-status{
+    color: $green400;
 }

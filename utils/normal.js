@@ -4,6 +4,7 @@ const errorMap = {
     'input-invalidate': '输入不合法',
     'input-invalidate-empty': '输入参数为空',
     'input-invalidate-number': '输入参数必须为数字',
+    'input-invalidate-status': '非法的文章状态',
     'input-invalidate-oldPwd': '旧密码输入不正确',
     'data-not-find': '数据未找到或不存在',
     'no-logined': '未登录',

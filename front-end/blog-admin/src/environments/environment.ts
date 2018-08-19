@@ -17,7 +17,8 @@ export const environment = {
         materialView: `${pre_path}/web/image/view/`,
         typetagResFul: `${pre_path}/web/cattag/`,
         typetagListByType: `${pre_path}/web/cattag/list/`,
-        typetagIncrement: `${pre_path}/web/cattag/increment/`
+        typetagIncrement: `${pre_path}/web/cattag/increment/`,
+        articleResFul: `${pre_path}/web/article/`
     },
     webURL: {
         'index': pre_path

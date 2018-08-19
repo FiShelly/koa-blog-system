@@ -25,7 +25,7 @@
                 </td>
                 <td class="k"
                     *ngIf="operations"
-                    [style.widht]="operations.width+'px'"
+                    [style.width]="operations.width+'px'"
                 >{{ operations.text }}
                 </td>
             </tr>
@@ -46,10 +46,11 @@
                 ></td>
                 <td class="ops"
                     *ngIf="operations"
-                    [style.widht]="operations.width+'px'"
+                    [style.width]="operations.width+'px'"
                 >
                         <span
                             class="op"
+                            [class.is-disabled]="isDisable(item, k)"
                             *ngFor="let k of operations.list"
                         >
                                 <span

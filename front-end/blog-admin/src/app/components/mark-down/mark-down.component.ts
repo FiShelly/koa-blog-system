@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, AfterViewInit} from '@angular/core';
 import {util} from '../../shared-services/utils/normal';
+import {Post} from '../../models/Post';
 
 declare var editormd: any;
 
@@ -10,8 +11,8 @@ declare var editormd: any;
 })
 export class MarkDownComponent implements OnInit, AfterViewInit {
     
+    @Input() post: Post;
     @Input() editormdConfig: any;
-    markdown: string = '';
     editor: any; // editormd编辑器
     _id: string = util.randomString();
     
@@ -20,6 +21,7 @@ export class MarkDownComponent implements OnInit, AfterViewInit {
     
     ngOnInit() {
         if (!this.editormdConfig) {
+            const that = this;
             this.editormdConfig = {
                 width: '100%',
                 height: 540,
@@ -47,19 +49,20 @@ export class MarkDownComponent implements OnInit, AfterViewInit {
                 imageFormats: ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp'],
                 imageUploadURL: './blog/uploadBlogImg',
                 onload: function () {
-                    // this.setMarkdown('1');
-                    // var barHeight = document.querySelector('.editormd-toolbar-container').offsetHeight + 1;
-                    // document.querySelector('.CodeMirror').style.marginTop = barHeight + 'px';
+                    this.setMarkdown(that.post.articleMd);
                 }
             };
         }
     }
     
     ngAfterViewInit() {
-        setTimeout(() => {
-            console.log(this.editor.getHTML());
-        }, 7000);
         this.editor = editormd(this._id, this.editormdConfig);
     }
     
+    getContent() {
+        return {
+            html: this.editor.getHTML(),
+            md: this.editor.getMarkdown()
+        };
+    }
 }

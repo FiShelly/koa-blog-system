@@ -1,4 +1,4 @@
-export * from './Article';
+export * from './Post';
 export * from './Author';
 export * from './Comment';
 export * from './Quotes';

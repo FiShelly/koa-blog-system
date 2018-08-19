@@ -1,7 +1,7 @@
 const router = require('koa-router')();
 const articleController = require('../../controllers/articleController');
 
-router.get('/list', async function (ctx, next) {
+router.get('/', async function (ctx, next) {
     ctx.body = await articleController.findAllByPage(ctx);
 });
 
@@ -21,8 +21,13 @@ router.post('/', async function (ctx, next) {
     ctx.body = await articleController.create(ctx);
 });
 
+router.put('/:id/changestatus', async function (ctx, next) {
+    ctx.body = await articleController.changeStatus(ctx);
+});
+
 router.put('/:id', async function (ctx, next) {
     ctx.body = await articleController.update(ctx);
 });
+
 
 module.exports = router;

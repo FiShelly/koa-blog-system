@@ -1,3 +1,5 @@
+@import "../../../assets/var";
+
 .frame {
     padding: 0 20px;
     box-sizing: border-box;
@@ -6,6 +8,11 @@
 
     .mine-info {
         ::ng-deep {
+            .upload-btn{
+                .el-select{
+                    right: 240px;
+                }
+            }
             .search-input {
                 .el-input {
                     position: absolute;
@@ -18,5 +25,9 @@
                 padding: 9px 0;
             }
         }
+    }
+
+    .list-container{
+        border: $border-weak;
     }
 }
