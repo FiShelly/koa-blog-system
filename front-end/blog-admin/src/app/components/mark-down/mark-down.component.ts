@@ -1,6 +1,8 @@
 import {Component, Input, OnInit, AfterViewInit} from '@angular/core';
-import {util} from '../../shared-services/utils/normal';
+import {util, validator} from '../../shared-services/utils/normal';
 import {Post} from '../../models/Post';
+import {ModalService} from '../../shared-services/modal/modal.service';
+import {Material} from '../../models';
 
 declare var editormd: any;
 
@@ -16,7 +18,9 @@ export class MarkDownComponent implements OnInit, AfterViewInit {
     editor: any; // editormd编辑器
     _id: string = util.randomString();
     
-    constructor() {
+    constructor(
+        private modalService: ModalService
+    ) {
     }
     
     ngOnInit() {
@@ -29,7 +33,7 @@ export class MarkDownComponent implements OnInit, AfterViewInit {
                 markdown: '',
                 toolbarIcons: function () {
                     return ['bold', 'hr', 'del', 'italic', 'quote', '|', 'list-ul',
-                        'list-ol', '|', 'link', 'image', 'code', 'html-entities',
+                        'list-ol', '|', 'link', 'myImgBtn', 'code', 'html-entities',
                         'preformatted-text', 'code-block', 'table', '|', 'pagebreak',
                         'goto-line', 'preview', 'fullscreen', 'search'];
                 },
@@ -47,7 +51,32 @@ export class MarkDownComponent implements OnInit, AfterViewInit {
                 sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
                 imageUpload: true,
                 imageFormats: ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp'],
-                imageUploadURL: './blog/uploadBlogImg',
+                imageUploadURL: (<any>window).environment.apiURL.materialResFul,
+                toolbarHandlers: {
+                    myImgBtn: function (cm, icon, cursor, selection) {
+                        that.modalService.modal.imageSelect({
+                            output: {
+                                okCallback: (item: Material) => {
+                                    item = item[0];
+                                    const src = `${(<any>window).environment.apiURL.materialView}${item.id}`;
+                                    const md = `![${item.name}](${src} "${item.name}")`;
+                                    cm.replaceSelection(md);
+                                    if (validator.isEmpty(selection)) {
+                                        cm.setCursor(cursor.line, cursor.ch + 1);
+                                    }
+                                }
+                            }
+                        });
+                    },
+                },
+                toolbarIconsClass: {
+                    myImgBtn: 'fa-picture-o'  // 指定一个FontAawsome的图标类
+                },
+                lang: {
+                    toolbar: {
+                        myImgBtn: '选择图片',  // 自定义按钮的提示文本，即title属性
+                    }
+                },
                 onload: function () {
                     this.setMarkdown(that.post.articleMd);
                 }
