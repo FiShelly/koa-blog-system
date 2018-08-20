@@ -1,0 +1,24 @@
+<div  class="header">
+  Fishelly Idx.
+
+  <div class="mobile-menu-button mobile-menu-button-light lines-button x2" (click)="showMenu($event)" >
+    <span class="lines" ></span>
+  </div>
+
+  <nav class="header-nav">
+    <a routerLink="/index">首页</a>
+    <a routerLink="/blog"><span>博客</span></a>
+    <a routerLink="/typetag">分类与标签</a>
+    <a routerLink="/about">关于</a>
+  </nav>
+
+</div>
+<div class="dropdown-menu-m ease" id="dropdown-menu">
+  <ul>
+    <li><a routerLink="/index">首页</a></li>
+    <li><a routerLink="/blog">博客</a></li>
+    <li><a routerLink="/typetag">分类与标签</a></li>
+    <li><a routerLink="/about">关于</a></li>
+  </ul>
+</div>
+

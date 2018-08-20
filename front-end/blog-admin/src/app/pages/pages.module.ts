@@ -9,13 +9,13 @@ import {PostPublishComponent} from './post-publish/post-publish.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {PagesRoutingModule} from './pages-routing.module';
 import {IndexComponent} from './index/index.component';
-import {ShareComponentsModule} from '../share-components/share-components.module';
+import {SharedComponentsModule} from '../shared-components/shared-components.module';
 
 @NgModule({
     imports: [
         CommonModule,
         PagesRoutingModule,
-        ShareComponentsModule
+        SharedComponentsModule
     ],
     declarations: [
         AboutComponent,

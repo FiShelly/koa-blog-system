@@ -1,9 +1,24 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+const pre_path = 'http://localhost:3200';
 
 export const environment = {
-  production: false
+    production: false,
+    loginPageInfo: {
+        title: 'Fishelly Idx.',
+        sub_title: 'Web Front End'
+    },
+    apiURL: {
+        userResFul: `${pre_path}/api/user/`,
+        articleResFul: `${pre_path}/api/article/`,
+        materialView: `${pre_path}/api/image/view/`,
+        typetagResFul: `${pre_path}/api/cattag/`,
+        commentResFul: `${pre_path}/api/comment`
+    },
+    webURL: {
+        'index': pre_path
+    }
 };
 
 /*

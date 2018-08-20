@@ -1,4 +1,4 @@
-const allowed = ['/login'];
+const allowed = ['/web'];
 const packData = require('../utils/normal').packData;
 
 function isIgnore (url) {
@@ -7,11 +7,11 @@ function isIgnore (url) {
 
 module.exports = function () {
     return async function (ctx, next) {
-        let url = ctx.url;
-        if (!isIgnore(url) && !ctx.session.user) {
-            ctx.body = packData(401, 'error', 'no-logined');
-            return false;
-        }
+        // let url = ctx.url;
+        // if (!isIgnore(url) && !ctx.session.user) {
+        //     ctx.body = packData(401, 'error', 'no-logined');
+        //     return false;
+        // }
         await next();
     }
 };

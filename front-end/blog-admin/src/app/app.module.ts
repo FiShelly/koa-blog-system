@@ -5,7 +5,7 @@ import {LoginComponent} from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './shared-services/shared.module';
-import {ShareComponentsModule} from './share-components/share-components.module';
+import {SharedComponentsModule} from './shared-components/shared-components.module';
 
 @NgModule({
     declarations: [
@@ -17,7 +17,7 @@ import {ShareComponentsModule} from './share-components/share-components.module'
         HttpClientModule,
         AppRoutingModule,
         SharedModule,
-        ShareComponentsModule
+        SharedComponentsModule
     ],
     providers: [],
     bootstrap: [AppComponent],

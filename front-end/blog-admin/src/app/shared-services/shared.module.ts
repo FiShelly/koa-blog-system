@@ -11,19 +11,19 @@ import {PostService} from './model/post.service';
 
 
 @NgModule({
-    imports: [
-        CommonModule,
-    ],
-    providers: [
-        ModalService,
-        EventBusService,
-        HTTP_INTERCEPTOR_PROVIDERS,
-        UserService,
-        MaterialService,
-        StorageService,
-        TypetagService,
-        PostService
-    ],
+        imports: [
+            CommonModule,
+        ],
+        providers: [
+            ModalService,
+            EventBusService,
+            HTTP_INTERCEPTOR_PROVIDERS,
+            UserService,
+            MaterialService,
+            StorageService,
+            TypetagService,
+            PostService
+        ],
 })
 export class SharedModule {
 }
