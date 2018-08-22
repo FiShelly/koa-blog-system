@@ -1,8 +1,8 @@
 const router = require('koa-router')();
 const categoryTagController = require('../../controllers/categoryTagController');
 
-router.get('/:type', async function (ctx, next) {
-    ctx.body = await categoryTagController.findAllByType(ctx)
+router.get('/', async function (ctx, next) {
+    ctx.body = await categoryTagController.findAll(ctx)
 });
 
 module.exports = router;

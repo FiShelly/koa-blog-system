@@ -5,6 +5,10 @@ router.get('/', async function (ctx, next) {
     ctx.body = await articleController.findAllByPage(ctx);
 });
 
+router.get('/typetag', async function (ctx,next) {
+    ctx.body = await articleController.findAllByTypeTag(ctx);
+});
+
 router.get('/:id', async function (ctx, next) {
     ctx.body = await articleController.findOneById(ctx);
 });

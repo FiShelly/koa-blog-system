@@ -1,3 +1,51 @@
-<p>
-  typetag works!
-</p>
+<div class="typetag-container" [@flyInOut]="'in'">
+    <div class="typetag-article">
+        <div class="article" *ngFor="let article of postList" (click)="gotoArticle(article)">
+            <h2 class="title">{{article.title}}</h2>
+            <h4>{{article.date}}</h4>
+            <p>{{article.abstract}}</p>
+            <div class="article-footer">
+                <span class="read-more">阅读全文</span>
+            </div>
+        </div>
+
+        <div class="loading" *ngIf="hide">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="typetag-box">
+        <div class="type-box">
+            <h3>分类</h3>
+            <ul>
+                <li *ngFor="let type of typetags" (click)="onSelectType($event,type)"
+                    [class.active]="type.id == typetag.id"
+                    [ngStyle]="{'display':type.type === 'type' ? '' : 'none' }">
+                    <span class="ease">{{type.name}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="tag-box">
+            <h3>标签</h3>
+            <div class="tag-content">
+            <span class="tag-item ease"
+                  *ngFor="let type of typetags"
+                  (click)="onSelectType($event,type)"
+                  [class.active]="type.id == typetag.id"
+                  [ngStyle]="{'display':type.type === 'type' ? 'none' : '' }">
+                    {{type.name}}
+            </span>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,6 +6,9 @@ const articleService = {
         return articleModel.create(model);
     },
     findAll: function (opt) {
+        if (opt.tag) {
+            opt.tag = {[Op.like]: opt.tag};
+        }
         opt = {where: opt};
         return articleModel.findAll(opt);
     },
@@ -23,7 +26,6 @@ const articleService = {
         return articleModel.destroy(opt);
     },
     findAndCountAll: function (limit, offset, opt) {
-        console.log(opt);
         if (opt.title) {
             opt.title = {[Op.like]: opt.title};
         }

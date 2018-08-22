@@ -14,13 +14,13 @@ const create = async function (ctx) {
         const tagArray = article.tag.split(',').map(val => {
             return {id: val, type: 'tag'};
         });
+        request.tag = `,${request.tag},`;
         tagArray.push({id: article.type, type: 'type'});
         let allPromise = tagArray.map(val => categoryTagService.findOne({id: val.id, type: val.type}));
         Promise.all(allPromise).then(results => {
             allPromise = results.map(val => categoryTagService.update({count: val.count + 1}, {id: val.id}));
             return Promise.all(allPromise);
         }).then(data => {
-            console.log(data);
         });
         return packData(200, 'success', article);
     } catch (e) {
@@ -36,7 +36,24 @@ const findOneById = async function (ctx) {
         if (!article) {
             return packData(404, 'error', 'data-not-find');
         }
-        article.tag = article.tag.split(',');
+        article.tag = article.tag.split(',').filter(val => val);
+        if (ctx.request.url.includes('/api/')) {
+            const allPromise = [];
+            allPromise.push(categoryTagService.findOne({id: article.type}));
+            article.tag.forEach(val => {
+                allPromise.push(categoryTagService.findOne({id: val}));
+            });
+            const typetags = await Promise.all(allPromise);
+            const tags = [];
+            typetags.forEach((val, idx) => {
+                if (idx === 0) {
+                    article.type = val;
+                } else {
+                    tags.push(val);
+                }
+            });
+            article.tag = tags;
+        }
         return packData(200, 'success', article);
     } catch (e) {
         return packData(500, 'error', 'mysql-error');
@@ -77,6 +94,23 @@ const findAll = async function (ctx) {
     }
 };
 
+const findAllByTypeTag = async function (ctx) {
+    const request = ctx.request.query;
+    const args = {};
+    if (!validator.isEmpty(request.type)) {
+        args.type = request.type;
+    }
+    if (!validator.isEmpty(request.tag)) {
+        args.tag = `%,${request.tag},%`;
+    }
+    try {
+        const articles = await articleService.findAll(args);
+        return packData(200, 'success', articles);
+    } catch (e) {
+        return packData(500, 'error', 'mysql-error');
+    }
+};
+
 const findAllByPage = async function (ctx) {
     const request = ctx.request.query;
     let limit = request.limit;
@@ -92,6 +126,7 @@ const findAllByPage = async function (ctx) {
     const kw = request.keyword;
     const args = {};
     const status = request.status || 'all';
+    let queryParams = request.query || '';
     if (!validator.isEmpty(kw)) {
         args.title = `%${kw}%`;
     }
@@ -100,8 +135,20 @@ const findAllByPage = async function (ctx) {
     }
     try {
         const articles = await articleService.findAndCountAll(limit, offset, args);
+        const rows = articles.rows;
+        const allPromise = rows.map(val => {
+            if (!validator.isEmpty(val.tag)) {
+                val.tag = val.tag.split(',').filter(val => val).join(',');
+            }
+            return categoryTagService.findOne({id: val.type});
+        });
+        const typeResult = await Promise.all(allPromise);
+        typeResult.forEach((val, idx) => {
+            rows[idx].type = val.name;
+        });
         return packData(200, 'success', articles);
     } catch (e) {
+        console.log(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -128,10 +175,12 @@ const update = async function (ctx) {
         });
         return Promise.all(allPromise);
     }).then(data => {
-        console.log(data);
     });
 
     try {
+        if (!validator.isEmpty(request.tag)) {
+            request.tag = `,${request.tag},`;
+        }
         const article = await articleService.update(request, {id});
         return packData(200, 'success', article);
     } catch (e) {
@@ -175,7 +224,7 @@ const incrementRead = async function (ctx) {
 };
 
 module.exports = {
-    create, findOneById, update, remove, findAll, findAllByPage, incrementRead, changeStatus
+    create, findOneById, update, remove, findAll, findAllByPage, incrementRead, changeStatus, findAllByTypeTag
 };
 
 

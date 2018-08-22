@@ -1,3 +1,40 @@
-<p>
-  article-list works!
-</p>
+<div class="blog-container" [@flyInOut]="'in'">
+
+    <div class="blog-content">
+        <div class="blog-item ease" *ngFor="let post of postList" (click)="gotoPost(post)">
+            <a >
+                <div class="blog-item-content">
+                    <div class="blog-image ">
+                        <img class="ease" src="{{post.coverSrc}}" alt="">
+                        <div class="title"><h3>{{post.abstract}}</h3></div>
+                        <div class="frame-mark ease">
+                            <p>阅读全文</p>
+                        </div>
+                    </div>
+                    <div class="blog-msg">
+                        <h2 class="blog-title">{{post.title}}</h2>
+                        <h5 class="blog-date">{{post.date}}</h5>
+                        <div class="split"></div>
+                    </div>
+                    <div class="blog-footer">
+                        <div> <i class="icon-font">&#xe65d;</i>&nbsp;<span class="ng-binding">{{post.commentCount}}</span></div>
+                        <div> <i class="icon-font">&#xe6ab;</i>&nbsp;<span class="ng-binding">{{post.readCount}}</span></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="loading" *ngIf="hide">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+
+    </div>
+
+</div>

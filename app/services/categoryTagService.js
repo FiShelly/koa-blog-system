@@ -6,11 +6,13 @@ const categoryTagService = {
         return categoryTagModel.create(model);
     },
     findAll: function (opt) {
-        opt.name = {[Op.like]: `%${opt.name}%`};
-        opt = {
-            order: [['id', 'desc']],
-            where: opt,
-        };
+        if (opt) {
+            opt.name = {[Op.like]: `%${opt.name}%`};
+            opt = {
+                order: [['id', 'desc']],
+                where: opt,
+            };
+        }
         return categoryTagModel.findAll(opt);
     },
     findOne: function (opt) {

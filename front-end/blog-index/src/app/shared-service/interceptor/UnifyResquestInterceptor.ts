@@ -8,32 +8,32 @@ import {validator} from '../utils/normal';
 
 @Injectable()
 export class UnifyResquestInterceptor implements HttpInterceptor {
-    
+
     constructor(
         private router: Router,
         private storage: StorageService
     ) {
     }
-    
+
     static isIngore(url: string) {
         return url.includes('/web/user/login');
     }
-    
+
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (!UnifyResquestInterceptor.isIngore(req.url)) {
-            const loginUser = this.storage.create(false).getItem('logined-user');
-            if (validator.isEmpty(loginUser)) {
-                this.router.navigateByUrl('login');
-                throw new Error('未登录');
-            }
-        }
+        // if (!UnifyResquestInterceptor.isIngore(req.url)) {
+        //     const loginUser = this.storage.create(false).getItem('logined-user');
+        //     if (validator.isEmpty(loginUser)) {
+        //         this.router.navigateByUrl('login');
+        //         throw new Error('未登录');
+        //     }
+        // }
         // const header = {
         //     headers: new HttpHeaders({
         //         'Content-Type': 'application/json'
         //     })
         // };
         // req = req.clone(header);
-        
+
         return next.handle(req);
     }
 }

@@ -13,26 +13,26 @@
 ;(function(factory) {
     "use strict";
 
-	// CommonJS/Node.js
-	if (typeof require === "function" && typeof exports === "object" && typeof module === "object")
+    // CommonJS/Node.js
+    if (typeof require === "function" && typeof exports === "object" && typeof module === "object")
     {
         module.exports = factory;
     }
-	else if (typeof define === "function")  // AMD/CMD/Sea.js
-	{
+    else if (typeof define === "function")  // AMD/CMD/Sea.js
+    {
         if (define.amd) // for Require.js
         {
             /* Require.js define replace */
         }
         else
         {
-		    define(["jquery"], factory);  // for Sea.js
+            define(["jquery"], factory);  // for Sea.js
         }
-	}
-	else
-	{
+    }
+    else
+    {
         window.editormd = factory();
-	}
+    }
 
 }(function() {
 
@@ -42,9 +42,9 @@
 
     var $ = (typeof (jQuery) !== "undefined") ? jQuery : Zepto;
 
-	if (typeof ($) === "undefined") {
-		return ;
-	}
+    if (typeof ($) === "undefined") {
+        return ;
+    }
 
     /**
      * editormd
@@ -108,20 +108,20 @@
         gotoLine             : true,
         codeFold             : false,
         autoHeight           : false,
-		autoFocus            : true,
+        autoFocus            : true,
         autoCloseTags        : true,
         searchReplace        : true,
         syncScrolling        : true,           // true | false | "single", default true
         readOnly             : false,
         tabSize              : 4,
-		indentUnit           : 4,
+        indentUnit           : 4,
         lineNumbers          : true,
-		lineWrapping         : true,
-		autoCloseBrackets    : true,
-		showTrailingSpace    : true,
-		matchBrackets        : true,
-		indentWithTabs       : true,
-		styleSelectedText    : true,
+        lineWrapping         : true,
+        autoCloseBrackets    : true,
+        showTrailingSpace    : true,
+        matchBrackets        : true,
+        indentWithTabs       : true,
+        styleSelectedText    : true,
         matchWordHighlight   : true,           // options: true, false, "onselected"
         styleActiveLine      : true,           // Highlight the current line
         dialogLockScreen     : true,
@@ -443,6 +443,7 @@
             }
 
             this.htmlTextarea     = editor.children("." + classNames.textarea.html);
+            this.htmlDisplayArea  = editor.children(".editormd-preview");
             this.preview          = editor.children("." + classPrefix + "preview");
             this.previewContainer = this.preview.children("." + classPrefix + "preview-container");
 
@@ -702,10 +703,10 @@
                 lineNumbers               : settings.lineNumbers,
                 lineWrapping              : settings.lineWrapping,
                 extraKeys                 : {
-                                                "Ctrl-Q": function(cm) {
-                                                    cm.foldCode(cm.getCursor());
-                                                }
-                                            },
+                    "Ctrl-Q": function(cm) {
+                        cm.foldCode(cm.getCursor());
+                    }
+                },
                 foldGutter                : settings.codeFold,
                 gutters                   : ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
                 matchBrackets             : settings.matchBrackets,
@@ -1056,6 +1057,7 @@
             var editor   = this.editor;
             var toolbar  = this.toolbar;
             var settings = this.settings;
+
             if (typeof fixed !== "undefined")
             {
                 settings.toolbarAutoFixed = fixed;
@@ -1064,7 +1066,7 @@
             var autoFixedHandle = function(){
                 var $window = $(window);
                 var top     = $window.scrollTop();
-                var left    = editor.offset().left;
+                var left = editor.offset().left;
                 if (!settings.toolbarAutoFixed)
                 {
                     return false;
@@ -1075,7 +1077,8 @@
                     toolbar.css({
                         position : "fixed",
                         width    : editor.width() + "px",
-                        left     : left + "px"
+                        // top      : "60px",
+                        left     : left
                     });
                 }
                 else
@@ -1083,6 +1086,7 @@
                     toolbar.css({
                         position : "absolute",
                         width    : "100%",
+                        top      : 0,
                         left     : 0
                     });
                 }
@@ -1134,7 +1138,7 @@
             toolbar.show();
 
             var icons       = (typeof settings.toolbarIcons === "function") ? settings.toolbarIcons()
-                            : ((typeof settings.toolbarIcons === "string")  ? editormd.toolbarModes[settings.toolbarIcons] : settings.toolbarIcons);
+                : ((typeof settings.toolbarIcons === "string")  ? editormd.toolbarModes[settings.toolbarIcons] : settings.toolbarIcons);
 
             var toolbarMenu = toolbar.find("." + this.classPrefix + "menu"), menu = "";
             var pullRight   = false;
@@ -1305,7 +1309,7 @@
 
         createInfoDialog : function() {
             var _this        = this;
-			var editor       = this.editor;
+            var editor       = this.editor;
             var classPrefix  = this.classPrefix;
 
             var infoDialogHTML = [
@@ -1345,16 +1349,16 @@
         infoDialogPosition : function() {
             var infoDialog = this.infoDialog;
 
-			var _infoDialogPosition = function() {
-				infoDialog.css({
-					top  : ($(window).height() - infoDialog.height()) / 2 + "px",
-					left : ($(window).width()  - infoDialog.width()) / 2  + "px"
-				});
-			};
+            var _infoDialogPosition = function() {
+                infoDialog.css({
+                    top  : ($(window).height() - infoDialog.height()) / 2 + "px",
+                    left : ($(window).width()  - infoDialog.width()) / 2  + "px"
+                });
+            };
 
-			_infoDialogPosition();
+            _infoDialogPosition();
 
-			$(window).resize(_infoDialogPosition);
+            $(window).resize(_infoDialogPosition);
 
             return this;
         },
@@ -1371,9 +1375,9 @@
             $("html,body").css("overflow-x", "hidden");
 
             var _this       = this;
-			var editor      = this.editor;
+            var editor      = this.editor;
             var settings    = this.settings;
-			var infoDialog  = this.infoDialog = editor.children("." + this.classPrefix + "dialog-info");
+            var infoDialog  = this.infoDialog = editor.children("." + this.classPrefix + "dialog-info");
 
             if (infoDialog.length < 1)
             {
@@ -1383,13 +1387,13 @@
             this.lockScreen(true);
 
             this.mask.css({
-						opacity         : settings.dialogMaskOpacity,
-						backgroundColor : settings.dialogMaskBgColor
-					}).show();
+                opacity         : settings.dialogMaskOpacity,
+                backgroundColor : settings.dialogMaskBgColor
+            }).show();
 
-			infoDialog.css("z-index", editormd.dialogZindex).show();
+            infoDialog.css("z-index", editormd.dialogZindex).show();
 
-			this.infoDialogPosition();
+            this.infoDialogPosition();
 
             return this;
         },
@@ -1627,18 +1631,18 @@
                         switch (event.keyCode)
                         {
                             case 120:
-                                    $.proxy(toolbarHandlers["watch"], _this)();
-                                    return false;
+                                $.proxy(toolbarHandlers["watch"], _this)();
+                                return false;
                                 break;
 
                             case 121:
-                                    $.proxy(toolbarHandlers["preview"], _this)();
-                                    return false;
+                                $.proxy(toolbarHandlers["preview"], _this)();
+                                return false;
                                 break;
 
                             case 122:
-                                    $.proxy(toolbarHandlers["fullscreen"], _this)();
-                                    return false;
+                                $.proxy(toolbarHandlers["fullscreen"], _this)();
+                                return false;
                                 break;
 
                             default:
@@ -1735,23 +1739,23 @@
                 preview.unbind(mouseOrTouch("scroll", "touchmove"));
             };
 
-			codeMirror.bind({
-				mouseover  : cmBindScroll,
-				mouseout   : cmUnbindScroll,
-				touchstart : cmBindScroll,
-				touchend   : cmUnbindScroll
-			});
+            codeMirror.bind({
+                mouseover  : cmBindScroll,
+                mouseout   : cmUnbindScroll,
+                touchstart : cmBindScroll,
+                touchend   : cmUnbindScroll
+            });
 
             if (settings.syncScrolling === "single") {
                 return this;
             }
 
-			preview.bind({
-				mouseover  : previewBindScroll,
-				mouseout   : previewUnbindScroll,
-				touchstart : previewBindScroll,
-				touchend   : previewUnbindScroll
-			});
+            preview.bind({
+                mouseover  : previewBindScroll,
+                mouseout   : previewUnbindScroll,
+                touchstart : previewBindScroll,
+                touchend   : previewUnbindScroll
+            });
 
             return this;
         },
@@ -2312,8 +2316,7 @@
 
                 return false;
             }
-
-            return this.htmlTextarea.val();
+            return this.htmlDisplayArea.html();
         },
 
         /**
@@ -3615,7 +3618,7 @@
             var tocHTML = "<div class=\"markdown-toc editormd-markdown-toc\">" + text + "</div>";
 
             return (isToC) ? ( (isToCMenu) ? "<div class=\"editormd-toc-menu\">" + tocHTML + "</div><br/>" : tocHTML )
-                           : ( (pageBreakReg.test(text)) ? this.pageBreak(text) : "<p" + isTeXAddClass + ">" + this.atLink(this.emoji(text)) + "</p>\n" );
+                : ( (pageBreakReg.test(text)) ? this.pageBreak(text) : "<p" + isTeXAddClass + ">" + this.atLink(this.emoji(text)) + "</p>\n" );
         };
 
         markedRenderer.code = function (code, lang, escaped) {
@@ -3650,7 +3653,7 @@
             if (settings.taskList && /^\s*\[[x\s]\]\s*/.test(text))
             {
                 text = text.replace(/^\s*\[\s\]\s*/, "<input type=\"checkbox\" class=\"task-list-item-checkbox\" /> ")
-                           .replace(/^\s*\[x\]\s*/,  "<input type=\"checkbox\" class=\"task-list-item-checkbox\" checked disabled /> ");
+                    .replace(/^\s*\[x\]\s*/,  "<input type=\"checkbox\" class=\"task-list-item-checkbox\" checked disabled /> ");
 
                 return "<li style=\"list-style: none;\">" + this.atLink(this.emoji(text)) + "</li>";
             }
@@ -3956,7 +3959,7 @@
             smartypants : true
         };
 
-		markdownDoc = new String(markdownDoc);
+        markdownDoc = new String(markdownDoc);
 
         var markdownParsed = marked(markdownDoc, markedOptions);
 
@@ -4512,80 +4515,80 @@
         switch (format)
         {
             case "UNIX Time" :
-                    datefmt = date.getTime();
+                datefmt = date.getTime();
                 break;
 
             case "UTC" :
-                    datefmt = date.toUTCString();
+                datefmt = date.toUTCString();
                 break;
 
             case "yy" :
-                    datefmt = year2;
+                datefmt = year2;
                 break;
 
             case "year" :
             case "yyyy" :
-                    datefmt = year;
+                datefmt = year;
                 break;
 
             case "month" :
             case "mm" :
-                    datefmt = month;
+                datefmt = month;
                 break;
 
             case "cn-week-day" :
             case "cn-wd" :
-                    var cnWeekDays = ["日", "一", "二", "三", "四", "五", "六"];
-                    datefmt = "星期" + cnWeekDays[weekDay];
+                var cnWeekDays = ["日", "一", "二", "三", "四", "五", "六"];
+                datefmt = "星期" + cnWeekDays[weekDay];
                 break;
 
             case "week-day" :
             case "wd" :
-                    var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-                    datefmt = weekDays[weekDay];
+                var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                datefmt = weekDays[weekDay];
                 break;
 
             case "day" :
             case "dd" :
-                    datefmt = day;
+                datefmt = day;
                 break;
 
             case "hour" :
             case "hh" :
-                    datefmt = hour;
+                datefmt = hour;
                 break;
 
             case "min" :
             case "ii" :
-                    datefmt = min;
+                datefmt = min;
                 break;
 
             case "second" :
             case "ss" :
-                    datefmt = second;
+                datefmt = second;
                 break;
 
             case "ms" :
-                    datefmt = ms;
+                datefmt = ms;
                 break;
 
             case "yy-mm-dd" :
-                    datefmt = ymd;
+                datefmt = ymd;
                 break;
 
             case "yyyy-mm-dd" :
-                    datefmt = fymd;
+                datefmt = fymd;
                 break;
 
             case "yyyy-mm-dd h:i:s ms" :
             case "full + ms" :
-                    datefmt = fymd + " " + hms + " " + ms;
+                datefmt = fymd + " " + hms + " " + ms;
                 break;
 
             case "full" :
             case "yyyy-mm-dd h:i:s" :
-                default:
-                    datefmt = fymd + " " + hms;
+            default:
+                datefmt = fymd + " " + hms;
                 break;
         }
 

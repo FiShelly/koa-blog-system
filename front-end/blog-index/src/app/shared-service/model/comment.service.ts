@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {CommonService} from './common.service';
 import {Observable} from 'rxjs';
-import {Post} from '../../models';
+import {Comment, Post} from '../../models';
 
 @Injectable({
     providedIn: 'root'

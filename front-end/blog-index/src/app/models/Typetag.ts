@@ -9,4 +9,8 @@ export class Typetag {
     date: number;
     count: number;
     time: 'string';
+
+    constructor() {
+
+    }
 }

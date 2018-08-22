@@ -14,8 +14,16 @@ export class PostService extends CommonService {
         return `${url}${post.id}`;
     }
 
-    public getList(): Observable<any> {
-        return this.hc.get<any>(this.apiURL.articleResFul);
+    public getListByTypeTag(data: any): Observable<any> {
+        return this.hc.get<any>(`${this.apiURL.articleResFul}typetag`, {
+            params: data
+        });
+    }
+
+    public getList(data: any): Observable<any> {
+        return this.hc.get<any>(this.apiURL.articleResFul, {
+            params: data
+        });
     }
 
     public getPost(id: number): Observable<any> {
@@ -23,7 +31,7 @@ export class PostService extends CommonService {
     }
 
     public increment(id: number): Observable<any> {
-        return this.hc.post<Post>(
+        return this.hc.put<Post>(
             `${this.createUrl({id})}/increment`,
             {}
         );

@@ -1,3 +1,57 @@
-<p>
-  about works!
-</p>
+<div class="about-container" *ngIf="author" [@flyInOut]="'in'">
+    <div class="about-top">
+        <h1>Hello,I am Fishlly.</h1>
+        <h1>I like front-end technology.</h1>
+        <h1>And I hope one of my article can help you.</h1>
+        <h3>Thx.</h3>
+    </div>
+    <div class="about-me">
+        <h1>About me.</h1>
+        <div class="personal-box">
+            <div class="personal-headimg">
+                <img [src]="author.avatar" alt="">
+            </div>
+            <div class="personal-content">
+                <p>{{author.name}}</p>
+                <p>{{author.signature}}</p>
+                <p>{{author.position}}</p>
+                <p>{{author.introduce}}</p>
+                <p>喜欢梁静茹~</p>
+            </div>
+        </div>
+    </div>
+    <div class="about-me ">
+        <h1>Follow me.</h1>
+        <div class="personal-box">
+            <div class="personal-content">
+                <p><a href="https://github.com/FiShelly">Github:https://github.com/FiShelly</a></p>
+                <p><a href="http://weibo.com/420006782">Weibo:http://weibo.com/420006782</a></p>
+                <p><a href="https://www.zhihu.com/people/fishelly-0210/">Zhihu:https://www.zhihu.com/people/fishelly-0210/</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="about-me follow-me">
+        <h1>Others.</h1>
+        <div class="personal-box">
+            <div class="personal-content">
+                <p>感谢我的朋友黄伊燃的帮助，提供了页面的设计方向以及图片素材，这些图片都是他亲自拍摄的。他是一名交互设计师和自由拍摄者，如有需要可以与他联系。QQ：657930197</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="frame-mask">
+
+</div>
+<div class="cirtle-loading" *ngIf="hide">
+    <div class="loadEffect">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>

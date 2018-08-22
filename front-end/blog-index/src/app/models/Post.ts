@@ -3,16 +3,16 @@
  */
 export class Post {
     constructor() {
-    
+
     }
-    
-    id: string;
+
+    id: number;
     title: string;
     kw_text: string;
-    type: number;
-    tag: number[] = [];
+    type: any = {};
+    tag: any[] = [];
     abstract: string;
-    date: string;
+    date: number;
     time: string;
     articleHtml: string;
     articleMd: string = '';

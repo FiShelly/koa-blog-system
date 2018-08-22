@@ -9,8 +9,8 @@ import {t} from '@angular/core/src/render3';
 })
 export class TypetagService extends CommonService {
 
-    public getList(type: string, keyword: string): Observable<any> {
-        return this.hc.get<Typetag>(`${this.apiURL.typetagResFul}${type}`);
+    public getList(): Observable<any> {
+        return this.hc.get<Typetag>(`${this.apiURL.typetagResFul}`);
     }
 
 }

@@ -1,0 +1,160 @@
+.typetag-container{
+    margin-top: 64px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px 60px 20px 60px;
+    display: flex;
+    flex-direction: row;
+    p{
+        word-break: break-all;
+    }
+    .typetag-article{
+        flex: 1;
+        width: 67%;
+        height: auto;
+        background-color: #FFF;
+        box-sizing: border-box;
+        padding: 0 20px;
+        .article{
+            &:hover{
+                .read-more{
+                    background-color: #38b7ea!important;
+                    color: #fff!important;
+                }
+                h2{
+                    color: #38b7ea!important;
+                }
+            }
+            cursor: pointer;
+            border-bottom: 3px dotted #ddd;
+            text-align: center;
+            box-sizing: border-box;
+            padding: 50px 0 25px 0;
+
+            .article-footer{
+                box-sizing: border-box;
+                padding: 30px 0 ;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                .read-more{
+                    display: flex;
+                    align-items: center;
+                    width: auto;
+                    border: 1px solid #38b7ea;
+                    transition: all .2s ease;
+                    border-radius: 34px;
+                    color: #333;
+                    background-color: rgba(56,183,234,0.3);
+                    padding: 4px 22px;
+                    font-size: 16px;
+                }
+            }
+            h2,h4{
+                transition: all .2s ease;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .typetag-box{
+        padding-left: 20px;
+        box-sizing: border-box;
+        width: 33%;
+        a{
+            color: #000;
+        }
+        .type-box{
+            box-sizing: border-box;
+            width: 100%;
+            background-color: #FFF;
+            height: auto;
+            padding: 10px 10px 30px 25px;
+            h3{
+                box-sizing: border-box;
+                padding-bottom: 15px;
+                border-bottom: 1px solid #eaeaea;
+
+            }
+            ul{
+                padding: 10px;
+                li{
+                    cursor: pointer;
+                    padding: 3px 0;
+                    &:hover{
+                        a{
+                            color: #38b7ea;
+                        }
+                    }
+                }
+                .active{
+                    color: #38b7ea!important;
+                }
+            }
+        }
+
+
+        .tag-box{
+            @extend .type-box;
+            margin-top: 20px;
+            .tag-content{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                .active{
+                    background-color: #38b7ea!important;
+                    color: #fff;
+                }
+            }
+            .tag-item{
+                display: inline-block;
+                min-width: 8px;
+                background-color: #E64340;
+                line-height: 1.2;
+                text-align: center;
+                vertical-align: middle;
+                position: relative;
+                padding: .50em .9em;
+                margin-top: 10px;
+                margin-left: 5px;
+                margin-right: 8px;
+                background-color: rgba(239, 239, 244, 0.69);
+                color: #000;
+                border: 1px solid #d4d4d4;
+                border-radius: 7px;
+                font-size: 14px;
+                cursor: pointer;
+                &:hover{
+                    background-color: #38b7ea;
+                    color: #fff;
+                }
+            }
+        }
+
+    }
+
+}
+
+
+@media (max-width: 960px)  {
+    .typetag-container{
+        margin-top: 48px;
+        padding: 20px 0;
+        flex-direction: column;
+        .typetag-article{
+            margin-top: 20px;
+            order: 2;
+            width: 100%;
+        }
+
+        .typetag-box{
+            order: 1;
+            padding: 0;
+            width: 100%;
+        }
+    }
+
+}
+

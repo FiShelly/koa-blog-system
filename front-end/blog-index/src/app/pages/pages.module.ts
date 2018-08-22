@@ -5,10 +5,12 @@ import {ArticleListComponent} from './article-list/article-list.component';
 import {TypetagComponent} from './typetag/typetag.component';
 import {AboutComponent} from './about/about.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import {SharedComponentsModule} from '../shared-components/shared-components.module';
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        SharedComponentsModule
     ],
     declarations: [
         IndexComponent,

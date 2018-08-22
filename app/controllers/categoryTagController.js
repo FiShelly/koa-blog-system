@@ -50,6 +50,16 @@ const findAllByType = async function (ctx) {
     }
 };
 
+const findAll = async function (ctx) {
+    try {
+        const categoryTag = await categoryTagService.findAll();
+        return packData(200, 'success', categoryTag);
+    } catch (e) {
+        console.log(e);
+        return packData(500, 'error', 'mysql-error');
+    }
+};
+
 const update = async function (ctx) {
     const request = ctx.request.body;
     const params = ctx.params;
@@ -79,5 +89,5 @@ const increment = async function (ctx) {
 };
 
 module.exports = {
-    create, findOneById, update, remove, findAllByType, increment
+    create, findOneById, update, remove, findAllByType, increment, findAll
 };
