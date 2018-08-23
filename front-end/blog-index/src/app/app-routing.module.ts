@@ -13,7 +13,8 @@ const routes: Routes = [
     {path: 'article', component: ArticleListComponent},
     {path: 'article/:id', component: ArticleDetailComponent},
     {path: 'typetag', component: TypetagComponent},
-    {path: 'about', component: AboutComponent}
+    {path: 'about', component: AboutComponent},
+    {path: '**', redirectTo: '/index', pathMatch: 'full'},
 
 ];
 

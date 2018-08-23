@@ -143,7 +143,6 @@ export class PostListComponent implements OnInit, AfterViewInit {
     
     refresh(page: number = 0) {
         this.loading = true;
-        console.log(this.status);
         this.postService.getList({
             status: this.status,
             keyword: this.keyword,

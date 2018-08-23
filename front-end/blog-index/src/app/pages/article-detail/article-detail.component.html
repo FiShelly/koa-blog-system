@@ -3,18 +3,15 @@
         <img [src]="article.coverSrc" alt="">
         <div class="article-title">
             <h1 class="title">{{article.title}}</h1>
-            <p>{{(article.date * 1000) | date:"yyyy-MM-dd HH:mm" }}&nbsp;&nbsp;|&nbsp;&nbsp;分类：<span class="type-status" (click)="gotoTypetag(article.type, true)">{{article.type.name}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;标签：
+            <p>{{(article.date * 1000) | date:"yyyy-MM-dd HH:mm" }}&nbsp;&nbsp;|&nbsp;&nbsp;分类：<span class="type-status" (click)="gotoTypetag(article)">{{article.type.name}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;标签：
                 <span class="tag-item ease" *ngFor="let tag of article.tag"
-                      (click)="gotoTypetag(tag,true)">{{tag.name}}</span>
+                      (click)="gotoTypetag(tag)">{{tag.name}}</span>
             </p>
             <p class="abstract">摘要：{{article.abstract}}</p>
         </div>
     </div>
     <div class="article-content">
-        <div class="col-md-offset-2 col-md-8 content">
-            <div class="markdown-body editormd-preview-container" [innerHtml]="article.articleHtml">
-
-            </div>
+        <div class="col-md-offset-2 col-md-8 content" [innerHtml]="article.articleHtml">
         </div>
         <div class="col-md-offset-2 col-md-8 comment">
             <div class=" type-article-list border-shadow">
@@ -34,7 +31,7 @@
                     </p>
 
                     <p class="leave-msg-other">
-                        <span>{{comment.date}}</span>
+                        <span>{{(comment.date * 1000) | date:"yyyy-MM-dd HH:mm" }}</span>
                         <span>&nbsp;|&nbsp;</span>
                         <span>{{i+1}}</span>
                         <span>&nbsp;|&nbsp;</span>

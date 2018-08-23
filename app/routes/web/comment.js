@@ -5,11 +5,11 @@ router.get('/all', async function (ctx, next) {
     ctx.body = await commentController.findAll(ctx);
 });
 
-router.get('/all/:id', async function (ctx, next) {
+router.get('/:id/all', async function (ctx, next) {
     ctx.body = await commentController.findAllByArticle(ctx);
 });
 
-router.get('/list', async function (ctx, next) {
+router.get('/', async function (ctx, next) {
     ctx.body = await commentController.findAllByPage(ctx);
 });
 
@@ -21,7 +21,7 @@ router.put('/:id', async function (ctx, next) {
     ctx.body = await commentController.update(ctx);
 });
 
-router.put('/:id', async function (ctx, next) {
+router.delete('/:id', async function (ctx, next) {
     ctx.body = await commentController.remove(ctx);
 });
 

@@ -27,7 +27,7 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "src/assets/editor.md/css/editormd.min.css",
+                            "src/assets/editor.md/css/editormd.css",
                             "src/styles.scss"
                         ],
                         "scripts": [

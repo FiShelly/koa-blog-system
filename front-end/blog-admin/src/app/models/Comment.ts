@@ -3,13 +3,16 @@
  */
 import {Visitor} from './Visitor';
 import {Quotes} from './Quotes';
+import {Post} from './Post';
 
 export class Comment {
     _id: string;
     id: string;
-    article: Object;
-    content: string;
-    date: string;
+    kw_text: string = '';
+    article: number;
+    article_data: Post;
+    content: string = '';
+    date: number;
     visitor: Visitor;
     quotes: Quotes;
     

@@ -36,6 +36,9 @@ const findOneById = async function (ctx) {
         if (!article) {
             return packData(404, 'error', 'data-not-find');
         }
+        if (article.status !== 'publish') {
+            return packData(404, 'error', 'data-not-find');
+        }
         article.tag = article.tag.split(',').filter(val => val);
         if (ctx.request.url.includes('/api/')) {
             const allPromise = [];
@@ -96,7 +99,9 @@ const findAll = async function (ctx) {
 
 const findAllByTypeTag = async function (ctx) {
     const request = ctx.request.query;
-    const args = {};
+    const args = {
+        status: 'publish'
+    };
     if (!validator.isEmpty(request.type)) {
         args.type = request.type;
     }
@@ -125,13 +130,16 @@ const findAllByPage = async function (ctx) {
     offset = Number(offset);
     const kw = request.keyword;
     const args = {};
-    const status = request.status || 'all';
-    let queryParams = request.query || '';
-    if (!validator.isEmpty(kw)) {
-        args.title = `%${kw}%`;
-    }
-    if (status !== 'all') {
-        args.status = status;
+    if (ctx.request.url.includes('/api/')) {
+        args.status = 'publish'
+    } else {
+        const status = request.status || 'all';
+        if (!validator.isEmpty(kw)) {
+            args.title = `%${kw}%`;
+        }
+        if (status !== 'all') {
+            args.status = status;
+        }
     }
     try {
         const articles = await articleService.findAndCountAll(limit, offset, args);

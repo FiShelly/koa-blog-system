@@ -18,10 +18,11 @@ export const environment = {
         typetagResFul: `${pre_path}/web/cattag/`,
         typetagListByType: `${pre_path}/web/cattag/list/`,
         typetagIncrement: `${pre_path}/web/cattag/increment/`,
-        articleResFul: `${pre_path}/web/article/`
+        articleResFul: `${pre_path}/web/article/`,
+        commentResFul: `${pre_path}/web/comment/`
     },
     webURL: {
-        'index': pre_path
+        'index': pre_path,
     }
 };
 

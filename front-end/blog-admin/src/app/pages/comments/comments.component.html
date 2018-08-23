@@ -1,67 +1,57 @@
 <div class="frame">
     <div class="mine-info">
         <div class="cat-name">评论管理</div>
-        <app-input placeholder="请输入关键词"
+        <app-input placeholder="请输入搜索评论内容关键词"
                    class="search-input"
                    suffix_icon="&#xe67f;"
+                   [(ngModel)]="keyword"
+                   (keyup.enter)="search()"
         >
         </app-input>
         <div class="cat-info">
             <div class="post-count left">
                 <app-label>评论数量：</app-label>
-                <app-label>18350</app-label>
+                <app-label>{{dataTotal}}</app-label>
             </div>
         </div>
     </div>
 
     <div class="comment-box">
-        <div class="comment-item">
+        <app-loading [hidden]="!loading"></app-loading>
+        <div class="comment-item" *ngFor="let item of comments">
             <div class="row title">
                 <app-label>原文：</app-label>
-                <a href="">
-                    <app-label class="post-title">浏览器是如何工作的（解析篇）</app-label>
+                <a href="{{global.webURL.index}}/article/{{item.article}}">
+                    <app-label class="post-title">{{item.article_data.title}}</app-label>
                 </a>
+                <app-button (btnClick)="onDelete(item)" theme="text">删除</app-button>
+            </div>
+            <div class="row content" *ngIf="item.quotes">
+                <app-label>引用（{{item.quotes.name}}）：{{item.quotes.content}}</app-label>
             </div>
             <div class="row content">
-                <app-label>如有不对的地方欢迎指正。如有不对的地方欢迎指正。如有不对的地方欢迎指正。如有不对的地方欢迎指正。</app-label>
+                <app-label [isTrust]="true" [text]="item.kw_text"></app-label>
             </div>
             <div class="row commenter">
                 <!--来自： abc  /  abc@abc  /  http://abc.com  /  2018-04-08 13:10-->
                 <app-label>来自：</app-label>
-                <app-label>abc</app-label>
+                <app-label>{{item.visitor.name}}</app-label>
                 <app-label>/</app-label>
-                <app-label>ab@ab.com</app-label>
+                <app-label>{{item.visitor.email}}</app-label>
                 <app-label>/</app-label>
-                <app-label>hhtp://wwww.ad.com</app-label>
+                <app-label><a [href]="item.visitor.userIdx">{{item.visitor.userIdx}}</a></app-label>
                 <app-label>/</app-label>
-                <app-label>2018-04-08 12:10</app-label>
-            </div>
-        </div>
-        <div class="comment-item">
-            <div class="row title">
-                <app-label>原文：</app-label>
-                <a href="">
-                    <app-label class="post-title">浏览器是如何工作的（解析篇）</app-label>
-                </a>
-            </div>
-            <div class="row content">
-                <app-label>如有不对的地方欢迎指正。如有不对的地方欢迎指正。如有不对的地方欢迎指正。如有不对的地方欢迎指正。</app-label>
-            </div>
-            <div class="row commenter">
-                <!--来自： abc  /  abc@abc  /  http://abc.com  /  2018-04-08 13:10-->
-                <app-label>来自：</app-label>
-                <app-label>abc</app-label>
-                <app-label>/</app-label>
-                <app-label>ab@ab.com</app-label>
-                <app-label>/</app-label>
-                <app-label>hhtp://wwww.ad.com</app-label>
-                <app-label>/</app-label>
-                <app-label>2018-04-08 12:10</app-label>
+                <app-label>{{item.date * 1000 | date:"yyyy-MM-dd HH:mm" }}</app-label>
             </div>
         </div>
     </div>
 
     <div class="ft">
-        <app-pagination></app-pagination>
+        <app-pagination
+            [total]="dataPage.total"
+            [current]="dataPage.current"
+            [limit]="dataPage.limit"
+            (changePage)="changePage($event)"
+        ></app-pagination>
     </div>
 </div>

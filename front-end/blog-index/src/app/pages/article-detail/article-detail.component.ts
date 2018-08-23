@@ -6,6 +6,7 @@ import {PostService} from '../../shared-service/model/post.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Comment, Post} from '../../models';
 import * as moment from 'moment';
+import {validator} from '../../shared-service/utils/normal';
 
 @Component({
     selector: 'app-article-detail',
@@ -67,6 +68,7 @@ export class ArticleDetailComponent implements OnInit {
             },
             error: (err) => {
                 alert(err.message);
+                this.router.navigateByUrl('/article');
             }
         });
     }
@@ -75,8 +77,8 @@ export class ArticleDetailComponent implements OnInit {
         this.articleService.increment(this.article.id).subscribe();
     }
 
-    gotoTypetag(type, flag): void {
-        this.storageService.setItem('cache-type-tag', {name: type, type: flag});
+    gotoTypetag(type): void {
+        this.storageService.create(false).setItem('cache-type-tag', type);
         this.router.navigate(['/typetag']);
     }
 
@@ -98,24 +100,46 @@ export class ArticleDetailComponent implements OnInit {
         dom.focus();
     }
 
+    checkData() {
+        const comment = this.comment;
+        const email = comment.visitor.email;
+        const url = comment.visitor.userIdx;
+        let content = comment.content;
+        if (comment.content.indexOf('<quote') !== -1) {
+            comment.init();
+            comment.quotes.name = comment.content.match(/<quote-name>([\s\S]*?)<\/quote-name>/)[1];
+            comment.quotes.content = comment.content.match(/<quote-content>([\s\S]*?)<\/quote-content>/)[1];
+            content = comment.content.replace(/<quote-name>([\s\S]*?)<\/quote-content>\n/, '');
+        }
+        if (validator.isEmpty(content)) {
+            alert('请输入留言内容');
+            return false;
+        } else if (!validator.isEmpty(email) && !validator.email(email)) {
+            alert('请输入正确的邮箱');
+            return false;
+        } else if (!validator.isEmpty(url) && !validator.url(url)) {
+            alert('请输入正确的url');
+            return false;
+        }
+        comment.content = content;
+        return true;
+    }
+
     submitComment() {
+        if (!this.checkData()) {
+            return;
+        }
         this.issubmit = true;
         if (this.remember) {
-            this.storageService.setItem('visitor', this.comment.visitor);
+            this.storageService.create(true).setItem('visitor', this.comment.visitor);
         } else {
-            this.storageService.setItem('visitor', '');
+            this.storageService.create(true).removeItem('visitor');
         }
-        if (this.comment.content.indexOf('<quote') !== -1) {
-            this.comment.init();
-            this.comment.quotes.name = this.comment.content.match(/<quote-name>([\s\S]*?)<\/quote-name>/)[1];
-            this.comment.quotes.content = this.comment.content.match(/<quote-content>([\s\S]*?)<\/quote-content>/)[1];
-            this.comment.content = this.comment.content.replace(/<quote-name>([\s\S]*?)<\/quote-content>\n/, '');
-        }
-        this.comment.date = moment().format('YYYY-MM-DD HH:mm');
-        this.comment.article = {id: this.article.id, title: this.article.title};
+        this.comment.date = moment().unix();
+        this.comment.article = this.article.id;
         const comment: Comment = new Comment();
         this.comments.push(Object.assign(comment, this.comment));
-        this.commentService.postComment(this.comment).subscribe({
+        this.commentService.postComment(comment).subscribe({
             next: () => {
                 this.issubmit = false;
                 this.comment.content = '';

@@ -20,5 +20,5 @@ export class Post {
     commentCount: number;
     coverImg: string;
     status: string;
-    coverSrc: string;
+    coverSrc: string = '';
 }

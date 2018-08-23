@@ -1,10 +1,15 @@
 @import "../../../assets/var";
 
 .frame {
-    padding: 0 20px;
+    padding: 20px;
     box-sizing: border-box;
     position: relative;
     height: auto;
+
+    a{
+        color: $blue400;
+        text-decoration: none;
+    }
 
     .mine-info{
         ::ng-deep{
@@ -23,16 +28,29 @@
     }
 
     .comment-box {
+        position: relative;
+        min-height: 400px;
         .comment-item {
             border-top: $border-weak;
             padding: 15px 0;
-
+            position: relative;
             .title {
+                position: relative;
                 ::ng-deep {
                     .el-label {
                         font-size: 20px;
                         font-weight: bold;
                         color: #333;
+                    }
+
+                    .el-button{
+                        position: absolute;
+                        right: 0;
+                        top: 3px;
+
+                        span{
+                            color: $red400;
+                        }
                     }
                 }
 

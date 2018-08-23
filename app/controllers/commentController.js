@@ -8,6 +8,8 @@ const create = async function (ctx) {
     const request = ctx.request.body;
     try {
         request.date = moment().unix();
+        request.visitor = JSON.stringify(request.visitor);
+        request.quotes = JSON.stringify(request.quotes);
         const results = await Promise.all([
             commentService.create(request), articleService.findOne({id: request.article})
         ]);
@@ -16,6 +18,7 @@ const create = async function (ctx) {
         articleService.update({commentCount: article.commentCount + 1}, {id: request.article});
         return packData(200, 'success', comment);
     } catch (e) {
+        console.log(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -37,7 +40,13 @@ const remove = async function (ctx) {
     const request = ctx.request.body;
     const params = ctx.params;
     try {
-        const comment = await commentService.delete({id: params.id});
+        const results = await Promise.all([
+            commentService.delete({id: params.id}), articleService.findOne({id: request.article})
+        ]);
+        const comment = results[0];
+        const article = results[1];
+        articleService.update({commentCount: article.commentCount - 1}, {id: request.article});
+
         return packData(200, 'success', comment);
     } catch (e) {
         return packData(500, 'error', 'mysql-error');
@@ -67,8 +76,27 @@ const findAllByPage = async function (ctx) {
     }
     limit = Number(limit);
     offset = Number(offset);
+    const kw = request.keyword;
+    const args = {};
+    if (!validator.isEmpty(kw)) {
+        args.content = `%${kw}%`;
+    }
     try {
-        const comments = await commentService.findAndCountAll(limit, offset);
+        const comments = await commentService.findAndCountAll(limit, offset, args);
+        const articleMap = {};
+        comments.rows.forEach(val => {
+            val.visitor = JSON.parse(val.visitor);
+            val.quotes = JSON.parse(val.quotes);
+            articleMap[val.article] = val.article;
+        });
+        const allPromise = Object.keys(articleMap).map(val => articleService.findOne({id: val}));
+        const articleResults = await Promise.all(allPromise);
+        articleResults.forEach(val => {
+            articleMap[val.id] = val;
+        });
+        comments.rows.forEach(val => {
+            val.dataValues.article_data = articleMap[val.article];
+        });
         return packData(200, 'success', comments);
     } catch (e) {
         console.log(e);
@@ -81,6 +109,10 @@ const findAllByArticle = async function (ctx) {
     const articleId = params.id;
     try {
         const comments = await commentService.findAll({article: articleId});
+        comments.forEach(val => {
+            val.visitor = JSON.parse(val.visitor);
+            val.quotes = JSON.parse(val.quotes);
+        });
         return packData(200, 'success', comments);
     } catch (e) {
         console.log(e);

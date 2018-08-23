@@ -7,9 +7,9 @@ import {Quotes} from './Quotes';
 export class Comment {
     _id: string;
     id: string;
-    article: Object;
-    content: string;
-    date: string;
+    article: number;
+    content: string = '';
+    date: number;
     visitor: Visitor;
     quotes: Quotes;
     
