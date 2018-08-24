@@ -4,9 +4,10 @@ import {StorageService} from '../../shared-service/utils/storage.service';
 import {CommentService} from '../../shared-service/model/comment.service';
 import {PostService} from '../../shared-service/model/post.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Comment, Post} from '../../models';
+import {Comment, MyMeta, Post} from '../../models';
 import * as moment from 'moment';
 import {validator} from '../../shared-service/utils/normal';
+import {EventBusService} from '../../shared-service/eventBus/event-bus.service';
 
 @Component({
     selector: 'app-article-detail',
@@ -36,6 +37,7 @@ export class ArticleDetailComponent implements OnInit {
     global: any = (<any>window).environment;
 
     constructor(
+        private eventBus: EventBusService,
         private storageService: StorageService,
         private commentService: CommentService,
         private articleService: PostService,
@@ -60,10 +62,20 @@ export class ArticleDetailComponent implements OnInit {
         }
     }
 
+    setMetaData(data: Post) {
+        const keyword = Object.keys(data).map(val => data[val]).join(',');
+        const meta = new MyMeta();
+        meta.title = `${data.title} - Fishelly Idx.`;
+        meta.keyword = `${data.seo},${data.title}`;
+        meta.description = `${data.abstract}`;
+        this.eventBus.emit('update-meta', meta);
+    }
+
     getArticle() {
         this.articleService.getPost(this.article.id).subscribe({
             next: (data) => {
                 this.article = data;
+                this.setMetaData(data);
                 this.article.coverSrc = `${this.global.apiURL.materialView}${data.coverImg}`;
             },
             error: (err) => {

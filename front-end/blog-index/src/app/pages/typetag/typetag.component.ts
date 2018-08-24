@@ -1,10 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {Post, Typetag} from '../../models';
+import {MyMeta, Post, Typetag} from '../../models';
 import {TypetagService} from '../../shared-service/model/typetag.service';
 import {StorageService} from '../../shared-service/utils/storage.service';
 import {PostService} from '../../shared-service/model/post.service';
 import {Router} from '@angular/router';
+import {EventBusService} from '../../shared-service/eventBus/event-bus.service';
 
 const LIMIT = 9;
 
@@ -37,18 +38,25 @@ export class TypetagComponent implements OnInit, OnDestroy {
     private _scrollHander: EventListenerObject;
     global: any = (<any>window).environment;
 
-    constructor(private typetagService: TypetagService,
-                private storageService: StorageService,
-                private postService: PostService,
-                private router: Router) {
+    constructor(
+        private typetagService: TypetagService,
+        private storageService: StorageService,
+        private postService: PostService,
+        private router: Router,
+        private eventBus: EventBusService
+    ) {
         this._scrollHander = this.scrollHandler.bind(this);
     }
 
     ngOnInit() {
-        const cachePostList = this.storageService.create(false).getItem('cache-post-list');
-        const cacheTypeTags = this.storageService.create(false).getItem('cache-type-tag-list');
-        const cacheTypeTag = this.storageService.create(false).getItem('cache-type-tag');
+        let cacheTypeTag = null;
+        let cacheTypeTags = null;
+        if (this.storageService.create(true).getItem('is-browser')) {
+            cacheTypeTag = this.storageService.create(false).getItem('cache-type-tag');
+            cacheTypeTags = this.storageService.create(false).getItem('cache-type-tag-list');
+        }
         if (!cacheTypeTag) {
+            const cachePostList = this.storageService.create(false).getItem('cache-post-list');
             if (cachePostList) {
                 this.postList = cachePostList;
                 this.hide = false;
@@ -59,6 +67,7 @@ export class TypetagComponent implements OnInit, OnDestroy {
         } else {
             this.typetag = cacheTypeTag;
         }
+
         if (cacheTypeTags) {
             this.typetags = cacheTypeTags;
             this.getArticleByOtherPage();
@@ -140,11 +149,21 @@ export class TypetagComponent implements OnInit, OnDestroy {
         });
     }
 
+    setMetaData (data) {
+        const keyword = data.map(val => val.name).join(',');
+        const meta = new MyMeta();
+        meta.title = '分类与标签 - Fishelly Idx.';
+        meta.keyword = `Fishelly个人博客标签与分类:${keyword}`;
+        meta.description = `Fishelly个人博客的标签与分类页面。${keyword}`;
+        this.eventBus.emit('update-meta', meta);
+    }
+
     getTypetags(): void {
         this.typetagService.getList().subscribe({
             next: (data) => {
                 this.typetags = data.list;
                 this.storageService.create(false).setItem('cache-type-tag-list', this.typetags);
+                this.setMetaData(this.typetags);
                 this.getArticleByOtherPage();
             },
             error: (err) => {

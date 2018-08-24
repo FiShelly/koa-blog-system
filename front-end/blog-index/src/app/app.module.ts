@@ -8,10 +8,11 @@ import {isPlatformBrowser} from '@angular/common';
 import {SharedServiceModule} from './shared-service/shared-service.module';
 import {SharedComponentsModule} from './shared-components/shared-components.module';
 import {PagesModule} from './pages/pages.module';
+import {StorageService} from './shared-service/utils/storage.service';
 
 @NgModule({
     imports: [
-        BrowserModule.withServerTransition({appId: 'tour-of-heroes'}),
+        BrowserModule.withServerTransition({appId: 'blog-server'}),
         AppRoutingModule,
         HttpClientModule,
         SharedServiceModule,
@@ -27,9 +28,10 @@ import {PagesModule} from './pages/pages.module';
 export class AppModule {
     constructor(
         @Inject(PLATFORM_ID) private platformId: Object,
-        @Inject(APP_ID) private appId: string) {
-        const platform = isPlatformBrowser(platformId) ?
-            'in the browser' : 'on the server';
-        console.log(`Running ${platform} with appId=${appId}`);
+        @Inject(APP_ID) private appId: string,
+        private storageService: StorageService
+    ) {
+        const platform = isPlatformBrowser(platformId);
+        this.storageService.create(true).setItem('is-browser', platform);
     }
 }

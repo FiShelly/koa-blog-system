@@ -6,11 +6,13 @@ import {TypetagComponent} from './typetag/typetag.component';
 import {AboutComponent} from './about/about.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import {SharedComponentsModule} from '../shared-components/shared-components.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
     imports: [
         CommonModule,
-        SharedComponentsModule
+        SharedComponentsModule,
+        RouterModule
     ],
     declarations: [
         IndexComponent,

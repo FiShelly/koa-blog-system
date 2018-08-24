@@ -7,6 +7,7 @@ export class Post {
     }
     
     id: string;
+    seo: string;
     title: string;
     kw_text: string;
     type: number;

@@ -1,37 +1,28 @@
 const router = require('koa-router')();
-const {renderModuleFactory} = require('@angular/platform-server');
-const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('../../../public/blog-index/server/main');
-const {provideModuleMap} = require('@nguniversal/module-map-ngfactory-loader');
-const {readFileSync} = require('fs');
-const {join} = require('path');
-const DIST_FOLDER = join(process.cwd(), 'public');
-require('zone.js/dist/zone-node');
+const ssrUtil = require('../../../utils/ng-ssr-util');
 
 router.get('/', async function (ctx, next) {
-    const template = readFileSync(join(DIST_FOLDER, 'blog-index/browser', 'index.html')).toString();
-    ctx.body = await renderModuleFactory(AppServerModuleNgFactory, {
-        // Our index.html
-        document: template,
-        url: ctx.request.url,
-        // DI so that we can get lazy-loading to work differently (since we need it to just instantly render it)
-        extraProviders: [
-            provideModuleMap(LAZY_MODULE_MAP)
-        ]
-    });
+    ctx.body = await ssrUtil(ctx.request.url);
 });
 
-router.get('/dashboard', async function (ctx, next) {
-    console.log('edc');
-    const template = readFileSync(join(DIST_FOLDER, 'blog-index/browser', 'index.html')).toString();
-    ctx.body = await renderModuleFactory(AppServerModuleNgFactory, {
-        // Our index.html
-        document: template,
-        url: ctx.request.url,
-        // DI so that we can get lazy-loading to work differently (since we need it to just instantly render it)
-        extraProviders: [
-            provideModuleMap(LAZY_MODULE_MAP)
-        ]
-    });
+router.get('/index', async function (ctx, next) {
+    ctx.body = await ssrUtil(ctx.request.url);
+});
+
+router.get('/article', async function (ctx, next) {
+    ctx.body = await ssrUtil(ctx.request.url);
+});
+
+router.get('/article/:id', async function (ctx, next) {
+    ctx.body = await ssrUtil(ctx.request.url);
+});
+
+router.get('/typetag', async function (ctx, next) {
+    ctx.body = await ssrUtil(ctx.request.url);
+});
+
+router.get('/about', async function (ctx, next) {
+    ctx.body = await ssrUtil(ctx.request.url);
 });
 
 module.exports = router;

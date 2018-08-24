@@ -12,7 +12,7 @@ const brower = ((u) => {
         webApp: u.indexOf('Safari') === -1,
         wechat: u.indexOf('MicroMessenger') > -1
     };
-})(navigator.userAgent);
+})(window.navigator.userAgent);
 
 const deepCopy = (data) => {
     return JSON.parse(JSON.stringify(data));

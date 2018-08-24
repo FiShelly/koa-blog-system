@@ -5,5 +5,5 @@ export * from './Quotes';
 export * from './Typetag';
 export * from './Visitor';
 export * from './User';
-
+export * from './MyMeta';
 

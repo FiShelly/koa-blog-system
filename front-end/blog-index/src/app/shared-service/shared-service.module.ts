@@ -19,7 +19,7 @@ import {CommentService} from './model/comment.service';
         StorageService,
         TypetagService,
         PostService,
-        CommentService
+        CommentService,
     ],
     declarations: []
 })

@@ -22,6 +22,10 @@
                     </app-checkbox-group>
                 </div>
             </div>
+            <div class="row">
+                <app-label >seo关键词</app-label>
+                <app-input class="seo-input" [(ngModel)]="post.seo"></app-input>
+            </div>
         </div>
         <div class="right-part">
             <div class="row">
@@ -49,7 +53,7 @@
     </div>
 
     <div class="post-btn-group">
-        <app-button [plain]="true" theme="primary" *ngIf="post.status != 'publish'" (btnClick)="onPublish('publish')">发布</app-button>
+        <app-button [plain]="true" theme="primary"  (btnClick)="onPublish('publish')">发布</app-button>
         <app-button [plain]="true" theme="success" (btnClick)="onPublish('draft')">保存草稿</app-button>
         <app-button [plain]="true" theme="info" (btnClick)="onGotoList()">返回列表</app-button>
     </div>

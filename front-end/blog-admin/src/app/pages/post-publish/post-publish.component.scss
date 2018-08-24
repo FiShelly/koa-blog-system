@@ -100,13 +100,21 @@
         }
     }
     ::ng-deep {
+        .el-label{
+            color: #333;
+            font-weight: bold;
+            padding-left: 0;
+        }
         .key {
             .el-label {
-                padding-left: 0;
                 float: left;
                 width: 100%;
-                color: #333;
-                font-weight: bold;
+            }
+        }
+
+        .seo-input{
+            .el-input{
+                width: 400px;
             }
         }
     }

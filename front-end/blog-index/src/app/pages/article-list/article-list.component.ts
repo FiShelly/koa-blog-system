@@ -1,10 +1,11 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Post} from '../../models';
+import {MyMeta, Post} from '../../models';
 import {Router} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {PostService} from '../../shared-service/model/post.service';
 import {StorageService} from '../../shared-service/utils/storage.service';
 import {validator} from '../../shared-service/utils/normal';
+import {EventBusService} from '../../shared-service/eventBus/event-bus.service';
 
 const LIMIT = 9;
 
@@ -28,22 +29,32 @@ const LIMIT = 9;
 })
 export class ArticleListComponent implements OnInit, OnDestroy {
 
-    postList: Post[];
+    postList: Post[] = [];
     hide: boolean = true;
     page: number = 1;
     ls: number = 9;
     global: any = (<any>window).environment;
     private _scrollHander: EventListenerObject;
 
-    constructor(private postService: PostService,
-                private storageService: StorageService,
-                private router: Router) {
-        this.postList = [];
+    constructor(
+        private postService: PostService,
+        private storageService: StorageService,
+        private router: Router,
+        private eventBus: EventBusService
+    ) {
         this._scrollHander = this.scrollHandler.bind(this);
+        const meta = new MyMeta();
+        meta.title = '文章列表 - Fishelly Idx.';
+        meta.keyword = 'Fishelly个人博客的文章列表页面,前端技术分享,前端学习经验,前端技术博客,全栈开发,Front end developer,Fullstack,JavaScript,ECMAScript,HTML(5),CSS(3)';
+        meta.description = '一个开源自用的个人博客的文章列表页面。在这里，我会记录自己在前端路上的学习经验,技术分享；以及遇到的问题和解决方案。同时，会向着全栈方向不断靠近。';
+        this.eventBus.emit('update-meta', meta);
     }
 
     ngOnInit() {
-        const cachePosts = this.storageService.create(false).getItem('cache-post-list');
+        let cachePosts = null;
+        if (this.storageService.create(true).getItem('is-browser')) {
+            cachePosts = this.storageService.create(false).getItem('cache-post-list');
+        }
         if (validator.isEmpty(cachePosts)) {
             this.getPostList();
         } else {
@@ -65,7 +76,6 @@ export class ArticleListComponent implements OnInit, OnDestroy {
             offset: this.page * LIMIT
         }).subscribe({
             next: (data: any) => {
-                console.log(data);
                 this.postList = [...this.postList, ...data.list.map(val => {
                     val.coverSrc = `${this.global.apiURL.materialView}${val.coverImg}`;
                     return val;

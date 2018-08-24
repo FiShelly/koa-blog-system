@@ -13,7 +13,8 @@ const Article = mysql.define('blog_article', {
     coverImg: {type: Sequelize.INTEGER, allowNull: false},
     status: {type: Sequelize.STRING(10), allowNull: false},
     readCount: {type: Sequelize.INTEGER, allowNull: false, defaultValue: 0},
-    commentCount: {type: Sequelize.INTEGER, allowNull: false, defaultValue: 0}
+    commentCount: {type: Sequelize.INTEGER, allowNull: false, defaultValue: 0},
+    seo: {type: Sequelize.STRING(256),allowNull: true}
 }, {
     tableName: 'blog_article',
     timestamps: false,

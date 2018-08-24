@@ -9,6 +9,7 @@ export class Post {
     id: number;
     title: string;
     kw_text: string;
+    seo: string;
     type: any = {};
     tag: any[] = [];
     abstract: string;
