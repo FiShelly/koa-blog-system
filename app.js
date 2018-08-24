@@ -3,9 +3,9 @@ const app = new Koa();
 
 const send = require('koa-send');
 const views = require('koa-views');
-const bodyParser = require('koa-bodyparser');
 const koaBody = require('koa-body');
 const cors = require('koa2-cors');
+const CSRF = require('koa-csrf');
 const session = require('koa-session');
 const apiRoute = require('./app/routes/api');
 const webRoute = require('./app/routes/web');
@@ -14,17 +14,16 @@ const loginMiddleware = require('./middleware/loginMiddleware');
 const path = require('path');
 
 app.use(cors({
-    // origin: function (ctx) {
-    //     if (ctx.url.includes('/api/')) {
-    //         return '*';
-    //     }
-    //     return false;
-    // },
-    origin: '*',
+    origin: function (ctx) {
+        if (ctx.url.includes('/api/')) {
+            return '*';
+        }
+        return false;
+    },
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
     maxAge: 5,
     credentials: true,
-    allowMethods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowMethods: ['GET', 'POST', 'PUT'],
     allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }));
 
@@ -51,7 +50,7 @@ app.use(async function (ctx, next) {
 app.use(async (ctx, next) => {
     const path = ctx.request.url;
     if (path.includes('/public/')) {
-        await send(ctx, ctx.path, { root: `${__dirname}` });
+        await send(ctx, ctx.path, {root: `${__dirname}`});
     } else {
         await next();
     }
@@ -59,7 +58,7 @@ app.use(async (ctx, next) => {
 });
 
 // view middleware
-app.use(views(path.join(__dirname, '/views'), { extension: 'html' }));
+app.use(views(path.join(__dirname, '/views'), {extension: 'html'}));
 
 // parse http paras
 app.use(koaBody({
@@ -69,13 +68,90 @@ app.use(koaBody({
     'textLimit': '5mb'
 }));
 
+app.use(async function (ctx, next) {
+    try {
+        await next();
+    } catch (e) {
+        let status = e.status || 500;
+
+        ctx.status = status;
+        // 根据 status 渲染不同的页面
+        if (status === 403) {
+            switch (ctx.accepts('html', 'json')) {
+                case 'html':
+                    ctx.type = 'html';
+                    await ctx.render(`/error/error_403.html`);
+                    break;
+                case 'json':
+                    ctx.status = 200;
+                    ctx.body = {
+                        code: 403,
+                        status: 'error',
+                        msg: 'CSRF TOKEN或其他TOKEN不匹配'
+                    };
+                    break;
+                default:
+                    ctx.type = 'text';
+                    ctx.body = 'CSRF TOKEN或其他TOKEN不匹配';
+            }
+        }
+        if (status === 404) {
+            switch (ctx.accepts('html', 'json')) {
+                case 'html':
+                    ctx.type = 'html';
+                    await ctx.render(`/error/error_404.html`);
+                    break;
+                case 'json':
+                    ctx.status = 200;
+                    ctx.body = {
+                        code: 404,
+                        status: 'error',
+                        msg: '您访问的页面不存在'
+                    };
+                    break;
+                default:
+                    ctx.type = 'text';
+                    ctx.body = 'Page Not Found';
+            }
+        }
+        if (status === 500) {
+            switch (ctx.accepts('html', 'json')) {
+                case 'html':
+                    ctx.type = 'html';
+                    await ctx.render(`/error/error_500.html`);
+                    break;
+                case 'json':
+                    ctx.status = 200;
+                    ctx.body = {
+                        code: 500,
+                        status: 'error',
+                        msg: '服务器出错'
+                    };
+                    break;
+                default:
+                    ctx.type = 'text';
+                    ctx.body = '服务器出错';
+            }
+            // 触发 koa 统一错误事件，可以打印出详细的错误堆栈 log
+            ctx.app.emit('error', e, ctx);
+        }
+    }
+});
+app.use(new CSRF());
 // route.
 app.use(pageRoute.routes(), pageRoute.allowedMethods());
 app.use(apiRoute.routes(), apiRoute.allowedMethods());
 app.use(webRoute.routes(), webRoute.allowedMethods());
 
-app.on('error', function (err, ctx) {
-    console.log('server error', err, ctx);
+// app.use(async function pageNotFound (ctx, next) {
+//     if (ctx.status === 404) {
+//
+//     }
+// });
+
+app.on('error', async function (err, ctx) {
+    console.log('server error', err);
+
 });
 
 app.listen(3200);

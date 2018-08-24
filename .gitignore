@@ -9,6 +9,8 @@ package-lock.lock
 yarn.lock
 front-end/blog-admin/node_modules/
 front-end/blog-index/node_modules/
+front-end/blog-index/.idea/
+front-end/blog-admin/.idea/
 front-end/blog-admin/dist/
 front-end/blog-index/dist/
 front-end/blog-admin/yarn.lock

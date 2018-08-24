@@ -5,6 +5,7 @@ import {Injectable, Injector} from '@angular/core';
 import {Router} from '@angular/router';
 import {StorageService} from '../utils/storage.service';
 import {validator} from '../utils/normal';
+const EXCLUDED_METHOD = ['GET', 'HEAD', 'OPTIONS'];
 
 @Injectable()
 export class UnifyResquestInterceptor implements HttpInterceptor {
@@ -20,20 +21,14 @@ export class UnifyResquestInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // if (!UnifyResquestInterceptor.isIngore(req.url)) {
-        //     const loginUser = this.storage.create(false).getItem('logined-user');
-        //     if (validator.isEmpty(loginUser)) {
-        //         this.router.navigateByUrl('login');
-        //         throw new Error('未登录');
-        //     }
-        // }
-        // const header = {
-        //     headers: new HttpHeaders({
-        //         'Content-Type': 'application/json'
-        //     })
-        // };
-        // req = req.clone(header);
-
+        if (!EXCLUDED_METHOD.includes(req.method.toUpperCase())) {
+            const header = {
+                headers: new HttpHeaders({
+                    'x-csrf-token': (<any>window)._CSRF
+                })
+            };
+            req = req.clone(header);
+        }
         return next.handle(req);
     }
 }

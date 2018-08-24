@@ -43,11 +43,16 @@ export class AboutComponent implements OnInit {
         this.refreshUser();
     }
     
-    private errorHandle(error) {
+    private commonAlert(title: string, msg: string, cb?: Function) {
         this.modalService.modal.alert({
             input: {
-                title: '警告',
-                text: error.message,
+                title: title,
+                text: msg,
+            },
+            output: {
+                okCallback: () => {
+                    cb && cb();
+                }
             }
         });
     }
@@ -59,29 +64,25 @@ export class AboutComponent implements OnInit {
                 this.eventBusService.emit('logined', item);
                 this.storageService.create(false).setItem('logined-user', item);
             },
-            error: this.errorHandle
+            error: (e) => {
+                this.commonAlert('警告', e.message);
+            }
         });
     }
     
     updateUser() {
         this.userService.putUser(this.user).subscribe({
             next: (item) => {
-                this.modalService.modal.alert({
-                    input: {
-                        text: '修改用户信息成功'
-                    },
-                    output: {
-                        okCallback: () => {
-                            this.refreshUser();
-                        }
-                    }
-                });
+                this.commonAlert('提示', '修改用户信息成功');
+                this.refreshUser();
             },
-            error: this.errorHandle
+            error: (e) => {
+                this.commonAlert('警告', e.message);
+            }
         });
     }
     
-    updateAvatar ($event) {
+    updateAvatar($event) {
         $event.stopPropagation();
         this.modalService.modal.imageSelect({
             output: {

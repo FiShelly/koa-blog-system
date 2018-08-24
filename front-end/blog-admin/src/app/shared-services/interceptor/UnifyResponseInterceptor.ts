@@ -16,19 +16,17 @@ export class UnifyResponseInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(map(event => {
             if (event instanceof HttpResponse) {
                 const item = event.body;
-                if (item.code === 200) {
-                    return event.clone({
-                        body: item.data
-                    });
-                } else {
-                    if (item.code === 401.1 || item.code === 401) {
-                        this.router.navigateByUrl('/login');
+                if (event.status === 200) {
+                    if (item.code === 200) {
+                        return event.clone({
+                            body: item.data
+                        });
+                    } else {
+                        if (item.code === 401.1 || item.code === 401) {
+                            this.router.navigateByUrl('/login');
+                        }
+                        throw new Error(item.msg);
                     }
-                    // return event.clone({
-                    //     status: item.code,
-                    //     body: item.msg
-                    // });
-                    throw new Error(item.msg);
                 }
             }
             return event;

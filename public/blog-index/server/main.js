@@ -2015,6 +2015,7 @@ var http_1 = __webpack_require__(/*! @angular/common/http */ "@angular/common/ht
 var rxjs_1 = __webpack_require__(/*! rxjs */ "rxjs");
 var router_1 = __webpack_require__(/*! @angular/router */ "@angular/router");
 var storage_service_1 = __webpack_require__(/*! ../utils/storage.service */ "./src/app/shared-service/utils/storage.service.ts");
+var EXCLUDED_METHOD = ['GET', 'HEAD', 'OPTIONS'];
 var UnifyResquestInterceptor = /** @class */ (function () {
     function UnifyResquestInterceptor(router, storage) {
         this.router = router;
@@ -2024,19 +2025,14 @@ var UnifyResquestInterceptor = /** @class */ (function () {
         return url.includes('/web/user/login');
     };
     UnifyResquestInterceptor.prototype.intercept = function (req, next) {
-        // if (!UnifyResquestInterceptor.isIngore(req.url)) {
-        //     const loginUser = this.storage.create(false).getItem('logined-user');
-        //     if (validator.isEmpty(loginUser)) {
-        //         this.router.navigateByUrl('login');
-        //         throw new Error('未登录');
-        //     }
-        // }
-        // const header = {
-        //     headers: new HttpHeaders({
-        //         'Content-Type': 'application/json'
-        //     })
-        // };
-        // req = req.clone(header);
+        if (!EXCLUDED_METHOD.includes(req.method.toUpperCase())) {
+            var header = {
+                headers: new http_1.HttpHeaders({
+                    'x-csrf-token': window._CSRF
+                })
+            };
+            req = req.clone(header);
+        }
         return next.handle(req);
     };
     return UnifyResquestInterceptor;
