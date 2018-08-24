@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'blog-icon';  /* project id 760845 */
+    src: url('//at.alicdn.com/t/font_760845_127faw8fc6md.eot');
+    src: url('//at.alicdn.com/t/font_760845_127faw8fc6md.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_760845_127faw8fc6md.woff') format('woff'),
+    url('//at.alicdn.com/t/font_760845_127faw8fc6md.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_760845_127faw8fc6md.svg#blog-icon') format('svg');
+}
+
+.icon-font{
+    font-family: blog-icon;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: baseline;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+}

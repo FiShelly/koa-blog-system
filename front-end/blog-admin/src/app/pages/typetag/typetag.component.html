@@ -22,7 +22,7 @@
     </div>
     <div class="list">
         <app-loading [hidden]="!loading"></app-loading>
-        <app-tabs [(ngModel)]="currentObj.type" (modelChange)="changeTypeAndTag($event)">
+        <app-tabs [(ngModel)]="currentObj.type" (modelChange)="changeTypeAndTag()">
             <app-tab-view label="分类管理" name="type">
                 <div class="list-container">
                     <app-table-shown-list

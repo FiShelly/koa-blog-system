@@ -11,7 +11,7 @@
         <app-select
             class="upload-btn"
             [(ngModel)]="status"
-            (modelChange)="changeStatus($event)"
+            (modelChange)="changeStatus()"
         >
             <app-select-option *ngFor="let opt of statusArray" [label]="opt.value">{{opt.text}}</app-select-option>
         </app-select>
