@@ -26,13 +26,13 @@ export class MyImageInturnComponent implements OnInit {
             return;
         }
         const dom = <HTMLElement>document.querySelector('.image-inturn');
-        let idx = Math.round(Math.random() * 36 + 1);
+        let idx = Math.round(Math.random() * 29 + 1);
         let nextImage = `/public/images-bg/photo_${idx}.jpg`;
         dom.style.backgroundImage = `url('${nextImage}')`;
         MyImageInturnComponent.loadImage(nextImage);
         setInterval(() => {
             dom.style.backgroundImage = `url('${nextImage}')`;
-            idx = Math.round(Math.random() * 36 + 1);
+            idx = Math.round(Math.random() * 29 + 1);
             nextImage = `/public/images-bg/photo_${idx}.jpg`;
             MyImageInturnComponent.loadImage(nextImage);
         }, 30000);

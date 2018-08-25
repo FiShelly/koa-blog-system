@@ -1,6 +1,5 @@
 const Koa = require('koa');
-const app = new Koa();
-
+const compress = require('koa-compress');
 const send = require('koa-send');
 const views = require('koa-views');
 const koaBody = require('koa-body');
@@ -12,6 +11,13 @@ const webRoute = require('./app/routes/web');
 const pageRoute = require('./app/routes/page');
 const loginMiddleware = require('./middleware/loginMiddleware');
 const path = require('path');
+
+const app = new Koa();
+
+app.use(compress({
+    threshold: 2048,
+    flush: require('zlib').Z_SYNC_FLUSH
+}));
 
 app.use(cors({
     origin: function (ctx) {

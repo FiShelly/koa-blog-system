@@ -229,6 +229,7 @@ var AppComponent = /** @class */ (function () {
             _this.title.setTitle(meta.title);
             Object.keys(meta).forEach(function (val) {
                 _this.meta.updateTag({ name: val, content: meta[val] });
+                _this.meta.updateTag({ name: "og:" + val, content: meta[val] });
             });
         });
     };
@@ -566,13 +567,13 @@ var MyImageInturnComponent = /** @class */ (function () {
             return;
         }
         var dom = document.querySelector('.image-inturn');
-        var idx = Math.round(Math.random() * 36 + 1);
+        var idx = Math.round(Math.random() * 29 + 1);
         var nextImage = "/public/images-bg/photo_" + idx + ".jpg";
         dom.style.backgroundImage = "url('" + nextImage + "')";
         MyImageInturnComponent.loadImage(nextImage);
         setInterval(function () {
             dom.style.backgroundImage = "url('" + nextImage + "')";
-            idx = Math.round(Math.random() * 36 + 1);
+            idx = Math.round(Math.random() * 29 + 1);
             nextImage = "/public/images-bg/photo_" + idx + ".jpg";
             MyImageInturnComponent.loadImage(nextImage);
         }, 30000);

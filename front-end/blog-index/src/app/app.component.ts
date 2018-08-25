@@ -26,6 +26,7 @@ export class AppComponent implements OnInit, AfterViewInit {
             this.title.setTitle(meta.title);
             Object.keys(meta).forEach((val: string) => {
                 this.meta.updateTag({name: val, content: meta[val]});
+                this.meta.updateTag({name: `og:${val}`, content: meta[val]});
             });
         });
     }

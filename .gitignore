@@ -32,3 +32,4 @@ front-end/blog-admin/yarn.lock
 front-end/blog-index/yarn.lock
 logs/
 uploads/
+public/images-bg/
