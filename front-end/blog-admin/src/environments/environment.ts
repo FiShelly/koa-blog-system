@@ -23,6 +23,9 @@ export const environment = {
     },
     webURL: {
         'index': pre_path,
+    },
+    path: {
+        'editor': 'assets/editor.md/lib/'
     }
 };
 

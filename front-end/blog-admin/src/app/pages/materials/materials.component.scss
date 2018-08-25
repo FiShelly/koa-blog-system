@@ -31,6 +31,15 @@
         box-sizing: border-box;
         padding: 0 7px;
 
+        .materials-item{
+            .date-box, .title-box{
+                ::ng-deep{
+                    .el-label{
+                        padding-left: 0;
+                    }
+                }
+            }
+        }
 
     }
     .ft {

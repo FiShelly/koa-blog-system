@@ -31,7 +31,7 @@ export class PostService extends CommonService {
     }
 
     public increment(id: number): Observable<any> {
-        return this.hc.put<Post>(
+        return this.hc.put<any>(
             `${this.createUrl({id})}/increment`,
             {}
         );

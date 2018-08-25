@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {StorageService} from '../../shared-service/utils/storage.service';
 import {CommentService} from '../../shared-service/model/comment.service';
@@ -27,7 +27,7 @@ import {EventBusService} from '../../shared-service/eventBus/event-bus.service';
         ])
     ],
 })
-export class ArticleDetailComponent implements OnInit {
+export class ArticleDetailComponent implements OnInit, AfterViewInit {
 
     article: Post = new Post();
     comments: Comment[] = [];
@@ -48,10 +48,17 @@ export class ArticleDetailComponent implements OnInit {
 
     ngOnInit() {
         this.article.id = Number(this.route.snapshot.paramMap.get('id'));
-        this.getArticle();
-        this.updateCount();
-        this.getComment();
-        this.setVisitor();
+    }
+
+    ngAfterViewInit() {
+        setTimeout(() => {
+            this.getArticle();
+            if (this.storageService.create(true).getItem('is-browser')) {
+                this.updateCount();
+            }
+            this.getComment();
+            this.setVisitor();
+        });
     }
 
     setVisitor() {
@@ -86,7 +93,11 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     updateCount() {
-        this.articleService.increment(this.article.id).subscribe();
+        this.articleService.increment(this.article.id).subscribe({
+            error: (text) => {
+                console.warn(text);
+            }
+        });
     }
 
     gotoTypetag(type): void {

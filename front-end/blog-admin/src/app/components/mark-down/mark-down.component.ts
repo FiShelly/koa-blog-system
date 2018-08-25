@@ -29,7 +29,7 @@ export class MarkDownComponent implements OnInit, AfterViewInit {
             this.editormdConfig = {
                 width: '100%',
                 height: 540,
-                path: 'assets/editor.md/lib/',
+                path: (<any>window).environment.path.editor,
                 markdown: '',
                 toolbarIcons: function () {
                     return ['bold', 'hr', 'del', 'italic', 'quote', '|', 'list-ul',

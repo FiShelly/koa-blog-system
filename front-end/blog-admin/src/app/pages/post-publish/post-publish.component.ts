@@ -115,7 +115,6 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
     
     getContent(status) {
         const content = this.markdown.getContent();
-        console.log(content);
         this.post.status = status;
         this.post.articleMd = content.md;
         this.post.articleHtml = content.html;

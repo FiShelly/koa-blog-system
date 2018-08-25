@@ -7,8 +7,11 @@
     height: auto;
 
     ::ng-deep {
-        .row-checkbox + .row-checkbox {
-            margin-left: 30px;
+        .row-checkbox {
+            margin-right: 30px;
+        }
+        .el-checkbox{
+            margin-bottom: 8px;
         }
     }
 
@@ -30,7 +33,7 @@
             width: 700px;
             overflow: hidden;
             .row {
-                padding-bottom: 30px;
+                padding-bottom: 20px;
                 &.spec {
                     padding-bottom: 20px;
                 }
@@ -89,6 +92,12 @@
 
     .post-btn-group {
         text-align: center;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        z-index: 999;
+        width: 100%;
+        background-color: #fff;
         ::ng-deep {
             .el-button {
                 width: 150px;
@@ -100,7 +109,7 @@
         }
     }
     ::ng-deep {
-        .el-label{
+        .el-label {
             color: #333;
             font-weight: bold;
             padding-left: 0;
@@ -112,8 +121,8 @@
             }
         }
 
-        .seo-input{
-            .el-input{
+        .seo-input {
+            .el-input {
                 width: 400px;
             }
         }

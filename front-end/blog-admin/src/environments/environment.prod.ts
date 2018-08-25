@@ -20,5 +20,8 @@ export const environment = {
     },
     webURL: {
         'index': pre_path,
+    },
+    path: {
+        'editor': 'public/blog-admin/assets/editor.md/lib/'
     }
 };

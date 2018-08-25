@@ -33,3 +33,5 @@ front-end/blog-index/yarn.lock
 logs/
 uploads/
 public/images-bg/
+public/images/
+app/rm-data/
