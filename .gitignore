@@ -35,3 +35,6 @@ uploads/
 public/images-bg/
 public/images/
 app/rm-data/
+
+config/database.config.js
+config/server.config.js
