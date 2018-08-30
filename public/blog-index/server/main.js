@@ -1251,8 +1251,9 @@ var ArticleDetailComponent = /** @class */ (function () {
         var _this = this;
         setTimeout(function () {
             _this.article.id = Number(_this.route.snapshot.paramMap.get('id'));
+            console.log(_this.article.id);
             var article = _this.transferState.get(ARTICLE_DETAIL_KEY, null);
-            if (article) {
+            if (article && _this.article.id === article.id) {
                 _this.article = article;
                 if (_this.storageService.create(true).getItem('is-browser')) {
                     _this.updateCount();
