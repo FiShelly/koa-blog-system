@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:ssr": "npm run build:client-and-server-bundles ",
-    "build:client-and-server-bundles": "ng build --prod --deploy-url /public/blog-index/browser/ && ng run blog-index:server",
+    "build:client-and-server-bundles": "ng build --prod --deploy-url /public/blog-index/browser/ && ng run blog-index:server:production",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
   },
   "private": true,

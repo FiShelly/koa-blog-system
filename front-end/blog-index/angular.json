@@ -104,6 +104,16 @@
                         "outputPath": "../../public/blog-index/server",
                         "main": "src/main.server.ts",
                         "tsConfig": "src/tsconfig.server.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ]
+                        }
                     }
                 }
             }

@@ -2,6 +2,7 @@ const dbConfig = {
     username: 'root',
     password: 'root',
     dbname: 'koa-blog',
+    logging: true,
     options: {
         'host': 'localhost',
         'port': 3306,
