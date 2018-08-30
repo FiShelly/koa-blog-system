@@ -58,6 +58,7 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
             const article = this.transferState.get(ARTICLE_DETAIL_KEY, null as any);
             if (article) {
+                this.article = article;
                 if (this.storageService.create(true).getItem('is-browser')) {
                     this.updateCount();
                 }

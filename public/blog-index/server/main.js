@@ -1253,6 +1253,7 @@ var ArticleDetailComponent = /** @class */ (function () {
         setTimeout(function () {
             var article = _this.transferState.get(ARTICLE_DETAIL_KEY, null);
             if (article) {
+                _this.article = article;
                 if (_this.storageService.create(true).getItem('is-browser')) {
                     _this.updateCount();
                 }
