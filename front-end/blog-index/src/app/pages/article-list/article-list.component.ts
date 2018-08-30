@@ -6,7 +6,9 @@ import {PostService} from '../../shared-service/model/post.service';
 import {StorageService} from '../../shared-service/utils/storage.service';
 import {validator} from '../../shared-service/utils/normal';
 import {EventBusService} from '../../shared-service/eventBus/event-bus.service';
+import {TransferState, makeStateKey} from '@angular/platform-browser';
 
+const ARTICLE_LIST_KEY = makeStateKey('article-list');
 const LIMIT = 9;
 
 @Component({
@@ -37,6 +39,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     private _scrollHander: EventListenerObject;
 
     constructor(
+        private transferState: TransferState,
         private postService: PostService,
         private storageService: StorageService,
         private router: Router,
@@ -52,9 +55,13 @@ export class ArticleListComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         let cachePosts = null;
-        if (this.storageService.create(true).getItem('is-browser')) {
+
+        cachePosts = this.transferState.get(ARTICLE_LIST_KEY, null as any);
+        
+        if (!cachePosts && this.storageService.create(true).getItem('is-browser')) {
             cachePosts = this.storageService.create(false).getItem('cache-post-list');
         }
+        
         if (validator.isEmpty(cachePosts)) {
             this.getPostList();
         } else {
@@ -80,7 +87,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
                     val.coverSrc = `${this.global.apiURL.materialView}${val.coverImg}`;
                     return val;
                 })];
-
+                this.transferState.set(ARTICLE_LIST_KEY, this.postList);
                 this.storageService.create(false).setItem('cache-post-list', this.postList);
                 this.storageService.create(false).setItem('page', this.page + 1);
                 if (this.postList.length === LIMIT) {
@@ -97,7 +104,6 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     }
 
     gotoPost(post: Post): void {
-        // this.storageService.create(false).setItem('article',article);
         this.router.navigateByUrl(`/article/${post.id}`);
     }
 

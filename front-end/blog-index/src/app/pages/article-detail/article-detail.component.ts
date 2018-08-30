@@ -8,6 +8,9 @@ import {Comment, MyMeta, Post} from '../../models';
 import * as moment from 'moment';
 import {validator} from '../../shared-service/utils/normal';
 import {EventBusService} from '../../shared-service/eventBus/event-bus.service';
+import {TransferState, makeStateKey} from '@angular/platform-browser';
+
+const ARTICLE_DETAIL_KEY = makeStateKey('article-detail');
 
 @Component({
     selector: 'app-article-detail',
@@ -37,6 +40,7 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
     global: any = (<any>window).environment;
 
     constructor(
+        private transferState: TransferState,
         private eventBus: EventBusService,
         private storageService: StorageService,
         private commentService: CommentService,
@@ -52,12 +56,16 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         setTimeout(() => {
-            this.getArticle();
-            if (this.storageService.create(true).getItem('is-browser')) {
-                this.updateCount();
+            const article = this.transferState.get(ARTICLE_DETAIL_KEY, null as any);
+            if (article) {
+                if (this.storageService.create(true).getItem('is-browser')) {
+                    this.updateCount();
+                }
+            } else {
+                this.getArticle();
+                this.getComment();
+                this.setVisitor();
             }
-            this.getComment();
-            this.setVisitor();
         });
     }
 
@@ -84,6 +92,7 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
                 this.article = data;
                 this.setMetaData(data);
                 this.article.coverSrc = `${this.global.apiURL.materialView}${data.coverImg}`;
+                this.transferState.set(ARTICLE_DETAIL_KEY, this.article);
             },
             error: (err) => {
                 alert(err.message);

@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -13,6 +13,7 @@ import {StorageService} from './shared-service/utils/storage.service';
 @NgModule({
     imports: [
         BrowserModule.withServerTransition({appId: 'blog-server'}),
+        BrowserTransferStateModule,
         AppRoutingModule,
         HttpClientModule,
         SharedServiceModule,

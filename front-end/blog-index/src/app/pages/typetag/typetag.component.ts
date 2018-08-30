@@ -6,7 +6,9 @@ import {StorageService} from '../../shared-service/utils/storage.service';
 import {PostService} from '../../shared-service/model/post.service';
 import {Router} from '@angular/router';
 import {EventBusService} from '../../shared-service/eventBus/event-bus.service';
+import {TransferState, makeStateKey} from '@angular/platform-browser';
 
+const TYPE_TAG_KEY = makeStateKey('type-tag');
 const LIMIT = 9;
 
 @Component({
@@ -39,6 +41,7 @@ export class TypetagComponent implements OnInit, OnDestroy {
     global: any = (<any>window).environment;
 
     constructor(
+        private transferState: TransferState,
         private typetagService: TypetagService,
         private storageService: StorageService,
         private postService: PostService,
@@ -50,8 +53,8 @@ export class TypetagComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         let cacheTypeTag = null;
-        let cacheTypeTags = null;
-        if (this.storageService.create(true).getItem('is-browser')) {
+        let cacheTypeTags = this.transferState.get(TYPE_TAG_KEY, null as any);
+        if (!cacheTypeTags && this.storageService.create(true).getItem('is-browser')) {
             cacheTypeTag = this.storageService.create(false).getItem('cache-type-tag');
             cacheTypeTags = this.storageService.create(false).getItem('cache-type-tag-list');
         }
@@ -75,10 +78,6 @@ export class TypetagComponent implements OnInit, OnDestroy {
             this.getTypetags();
         }
     }
-
-    // ngOnDestroy(){
-    // }
-
 
     ngOnDestroy() {
         this.removeScroll();
@@ -165,6 +164,7 @@ export class TypetagComponent implements OnInit, OnDestroy {
                 this.storageService.create(false).setItem('cache-type-tag-list', this.typetags);
                 this.setMetaData(this.typetags);
                 this.getArticleByOtherPage();
+                this.transferState.set(TYPE_TAG_KEY, this.typetags);
             },
             error: (err) => {
                 alert(err.message);

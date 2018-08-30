@@ -4,6 +4,9 @@ import {MyMeta, User} from '../../models';
 import {UserService} from '../../shared-service/model/user.service';
 import {StorageService} from '../../shared-service/utils/storage.service';
 import {EventBusService} from '../../shared-service/eventBus/event-bus.service';
+import {TransferState, makeStateKey} from '@angular/platform-browser';
+
+const ABOUT_KEY = makeStateKey('about');
 
 @Component({
     selector: 'app-about',
@@ -28,6 +31,7 @@ export class AboutComponent implements OnInit {
     global: any = (<any>window).environment;
 
     constructor(
+        private transferState: TransferState,
         private authorService: UserService,
         private storageService: StorageService,
         private eventBus: EventBusService
@@ -36,13 +40,17 @@ export class AboutComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.storageService.create(true).getItem('is-browser')) {
-            this.author = this.storageService.create(true).getItem('author');
+        this.author = this.transferState.get(ABOUT_KEY, null as any);
+        if (!this.author) {
+            this.getAuthor();
+        } else {
+            if (this.storageService.create(true).getItem('is-browser')) {
+                this.author = this.storageService.create(true).getItem('author');
+            }
         }
         if (this.author) {
             this.hide = false;
         }
-        this.getAuthor();
     }
 
     setMetaData(data: User) {
@@ -62,6 +70,7 @@ export class AboutComponent implements OnInit {
                 this.author.avatar = `${this.global.apiURL.materialView}${author.headImg}`;
                 this.hide = false;
                 this.storageService.create(true).setItem('author', this.author);
+                this.transferState.set(ABOUT_KEY, author);
             },
             error: (error) => {
                 alert(error.message);
