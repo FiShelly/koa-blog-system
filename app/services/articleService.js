@@ -30,10 +30,11 @@ const articleService = {
             opt.title = {[Op.like]: opt.title};
         }
         return articleModel.findAndCountAll({
+            attributes: [`id`, `title`, `type`, `tag`, `abstract`, `date`, `coverImg`, `status`, `readCount`, `commentCount`, `seo`],
             order: [['id', 'desc']],
             where: opt,
             limit, offset
-        })
+        });
     }
 };
 
