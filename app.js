@@ -11,6 +11,7 @@ const webRoute = require('./app/routes/web');
 const pageRoute = require('./app/routes/page');
 const loginMiddleware = require('./middleware/loginMiddleware');
 const path = require('path');
+const config = require('./config/server.config');
 
 const app = new Koa();
 
@@ -160,4 +161,4 @@ app.on('error', async function (err, ctx) {
 
 });
 
-app.listen(3200);
+app.listen(config.prot || 3200);
