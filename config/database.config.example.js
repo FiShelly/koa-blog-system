@@ -2,8 +2,8 @@ const dbConfig = {
     username: 'root',
     password: 'root',
     dbname: 'koa-blog',
-    logging: true,
     options: {
+        logging: true,
         'host': 'localhost',
         'port': 3306,
         'dialect': 'mysql',
