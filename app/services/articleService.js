@@ -10,6 +10,7 @@ const articleService = {
             opt.tag = {[Op.like]: opt.tag};
         }
         opt = {where: opt};
+        opt.attributes = [`id`, `title`, `type`, `tag`, `abstract`, `date`, `coverImg`, `status`, `readCount`, `commentCount`, `seo`];
         return articleModel.findAll(opt);
     },
     findOne: function (opt) {
