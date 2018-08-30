@@ -2635,7 +2635,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var app_server_module_ngfactory_1 = __webpack_require__(/*! ./app/app.server.module.ngfactory */ "./src/app/app.server.module.ngfactory.js");
 exports.AppServerModuleNgFactory = app_server_module_ngfactory_1.AppServerModuleNgFactory;
 var environment_1 = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
+var core_1 = __webpack_require__(/*! @angular/core */ "@angular/core");
 window.environment = environment_1.environment;
+if (environment_1.environment.production) {
+    core_1.enableProdMode();
+}
 var app_server_module_1 = __webpack_require__(/*! ./app/app.server.module */ "./src/app/app.server.module.ts");
 exports.AppServerModule = app_server_module_1.AppServerModule;
 exports.LAZY_MODULE_MAP = {};
