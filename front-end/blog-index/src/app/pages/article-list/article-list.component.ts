@@ -36,6 +36,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     page: number = 1;
     ls: number = 9;
     global: any = (<any>window).environment;
+    isActive: string = '';
     private _scrollHander: EventListenerObject;
 
     constructor(
@@ -57,16 +58,19 @@ export class ArticleListComponent implements OnInit, OnDestroy {
         let cachePosts = null;
 
         cachePosts = this.transferState.get(ARTICLE_LIST_KEY, null as any);
-        
+
+        if (!cachePosts) {
+            this.isActive = 'in';
+        }
+
         if (!cachePosts && this.storageService.create(true).getItem('is-browser')) {
             cachePosts = this.storageService.create(false).getItem('cache-post-list');
         }
-        
+
         if (validator.isEmpty(cachePosts)) {
             this.getPostList();
         } else {
             this.postList = cachePosts;
-            this.hide = false;
             this.bindScroll();
         }
     }

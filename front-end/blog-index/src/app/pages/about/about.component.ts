@@ -29,27 +29,27 @@ export class AboutComponent implements OnInit {
     hide: boolean;
     author: User;
     global: any = (<any>window).environment;
-
+    isActive: string = '';
+    
     constructor(
         private transferState: TransferState,
         private authorService: UserService,
         private storageService: StorageService,
         private eventBus: EventBusService
     ) {
-        this.hide = true;
     }
 
     ngOnInit() {
         this.author = this.transferState.get(ABOUT_KEY, null as any);
         if (!this.author) {
-            this.getAuthor();
-        } else {
-            if (this.storageService.create(true).getItem('is-browser')) {
-                this.author = this.storageService.create(true).getItem('author');
-            }
+            this.isActive = 'in';
         }
-        if (this.author) {
-            this.hide = false;
+        if (this.author && this.storageService.create(true).getItem('is-browser')) {
+            this.author = this.storageService.create(true).getItem('author');
+        }
+        if (!this.author) {
+            this.hide = true;
+            this.getAuthor();
         }
     }
 

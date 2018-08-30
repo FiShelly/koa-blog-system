@@ -39,7 +39,7 @@ export class TypetagComponent implements OnInit, OnDestroy {
     ls: number = 9;
     private _scrollHander: EventListenerObject;
     global: any = (<any>window).environment;
-
+    isActive: string = '';
     constructor(
         private transferState: TransferState,
         private typetagService: TypetagService,
@@ -54,6 +54,9 @@ export class TypetagComponent implements OnInit, OnDestroy {
     ngOnInit() {
         let cacheTypeTag = null;
         let cacheTypeTags = this.transferState.get(TYPE_TAG_KEY, null as any);
+        if (!cacheTypeTags) {
+            this.isActive = 'in';
+        }
         if (!cacheTypeTags && this.storageService.create(true).getItem('is-browser')) {
             cacheTypeTag = this.storageService.create(false).getItem('cache-type-tag');
             cacheTypeTags = this.storageService.create(false).getItem('cache-type-tag-list');

@@ -38,7 +38,7 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
     remember: boolean;
     issubmit: boolean;
     global: any = (<any>window).environment;
-
+    isActive: string = 'in';
     constructor(
         private transferState: TransferState,
         private eventBus: EventBusService,
@@ -51,11 +51,11 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.article.id = Number(this.route.snapshot.paramMap.get('id'));
     }
 
     ngAfterViewInit() {
         setTimeout(() => {
+            this.article.id = Number(this.route.snapshot.paramMap.get('id'));
             const article = this.transferState.get(ARTICLE_DETAIL_KEY, null as any);
             if (article) {
                 this.article = article;

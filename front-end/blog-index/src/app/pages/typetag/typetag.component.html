@@ -1,4 +1,4 @@
-<div class="typetag-container" [@flyInOut]="'in'">
+<div class="typetag-container" [@flyInOut]="isActive">
     <div class="typetag-article">
         <div class="article" *ngFor="let article of postList" (click)="gotoArticle(article)">
             <h2 class="title">{{article.title}}</h2>
