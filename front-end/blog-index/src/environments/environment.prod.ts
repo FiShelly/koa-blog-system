@@ -1,7 +1,8 @@
-const pre_path = 'http://localhost:3200';
+const pre_path = 'http://www.fishelly.top';
+// const pre_path = 'http://localhost:3200';
 
 export const environment = {
-    production: false,
+    production: true,
     loginPageInfo: {
         title: 'Fishelly Idx.',
         sub_title: 'Web Front End'
