@@ -30,7 +30,7 @@ function createSiteMap (ids, host) {
             {
                 url: [
                     {
-                        loc: `${host}/index`
+                        loc: `${host}index`
                     },
                     {
                         changefreq: 'daily'
