@@ -112,7 +112,7 @@ router.get('/map', async function (ctx, next) {
     articles = createSiteMap(articles, ctx._server_config.host);
     articles = XML(articles);
 
-    // articles = `${articles}`;
+    articles = `<?xml version="1.0" encoding="UTF-8"?>${articles}`;
     ctx.body = articles;
 });
 
