@@ -25,7 +25,7 @@ router.get('/robots.txt', async function (ctx, next) {
         User-agent: *
         Allow: /
 
-        Sitemap: http://${ctx._server_config.host}/site/map
+        Sitemap: ${ctx._server_config.host}site/map
         `
 });
 
