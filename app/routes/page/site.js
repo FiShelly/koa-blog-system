@@ -116,4 +116,17 @@ router.get('/map', async function (ctx, next) {
     ctx.body = articles;
 });
 
+router.get('/robots.txt', async function (ctx, next) {
+    ctx.type = 'text';
+    ctx.body =
+        `
+        User-agent: Googlebot
+
+        User-agent: *
+        Allow: /
+
+        Sitemap: http://${ctx._server_config.host}/sitemap.xml
+        `
+});
+
 module.exports = router;
