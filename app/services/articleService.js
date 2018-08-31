@@ -5,12 +5,16 @@ const articleService = {
     create: function (model) {
         return articleModel.create(model);
     },
-    findAll: function (opt) {
+    findAll: function (opt,cols) {
         if (opt.tag) {
             opt.tag = {[Op.like]: opt.tag};
         }
         opt = {where: opt};
-        opt.attributes = [`id`, `title`, `type`, `tag`, `abstract`, `date`, `coverImg`, `status`, `readCount`, `commentCount`, `seo`];
+        if (!cols) {
+            opt.attributes = [`id`, `title`, `type`, `tag`, `abstract`, `date`, `coverImg`, `status`, `readCount`, `commentCount`, `seo`];
+        } else {
+            opt.attributes = cols;
+        }
         return articleModel.findAll(opt);
     },
     findOne: function (opt) {

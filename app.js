@@ -50,6 +50,7 @@ app.use(loginMiddleware());
 // project path;
 app.use(async function (ctx, next) {
     ctx._dir_path = __dirname;
+    ctx._server_config = config;
     await next();
 });
 
