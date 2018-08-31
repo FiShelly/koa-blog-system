@@ -80,8 +80,8 @@ app.use(async function (ctx, next) {
         await next();
     } catch (e) {
         let status = e.status || 500;
-
         ctx.status = status;
+
         // 根据 status 渲染不同的页面
         if (status === 403) {
             switch (ctx.accepts('html', 'json')) {
@@ -102,25 +102,7 @@ app.use(async function (ctx, next) {
                     ctx.body = 'CSRF TOKEN或其他TOKEN不匹配';
             }
         }
-        if (status === 404) {
-            switch (ctx.accepts('html', 'json')) {
-                case 'html':
-                    ctx.type = 'html';
-                    await ctx.render(`/error/error_404.html`);
-                    break;
-                case 'json':
-                    ctx.status = 200;
-                    ctx.body = {
-                        code: 404,
-                        status: 'error',
-                        msg: '您访问的页面不存在'
-                    };
-                    break;
-                default:
-                    ctx.type = 'text';
-                    ctx.body = 'Page Not Found';
-            }
-        }
+        await pageNotFound(ctx);
         if (status === 500) {
             switch (ctx.accepts('html', 'json')) {
                 case 'html':
@@ -144,17 +126,16 @@ app.use(async function (ctx, next) {
         }
     }
 });
+
+
+
 app.use(new CSRF());
 // route.
 app.use(pageRoute.routes(), pageRoute.allowedMethods());
 app.use(apiRoute.routes(), apiRoute.allowedMethods());
 app.use(webRoute.routes(), webRoute.allowedMethods());
+app.use(pageNotFound);
 
-// app.use(async function pageNotFound (ctx, next) {
-//     if (ctx.status === 404) {
-//
-//     }
-// });
 
 app.on('error', async function (err, ctx) {
     console.log('server error', err);
@@ -162,3 +143,28 @@ app.on('error', async function (err, ctx) {
 });
 
 app.listen(config.prot || 3200);
+
+
+async function pageNotFound (ctx, next) {
+    if (ctx.status === 404) {
+        ctx.status = 404;
+        switch (ctx.accepts('html', 'json')) {
+            case 'html':
+                ctx.type = 'html';
+                await ctx.render(`/error/error_404.html`);
+                break;
+            case 'json':
+                ctx.status = 200;
+                ctx.body = {
+                    code: 404,
+                    status: 'error',
+                    msg: '您访问的页面不存在'
+                };
+                break;
+            default:
+                ctx.type = 'text';
+                ctx.body = 'Page Not Found';
+        }
+    }
+    next && next();
+}

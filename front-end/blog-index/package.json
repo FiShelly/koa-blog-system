@@ -27,6 +27,7 @@
         "@angular/router": "^6.0.3",
         "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
         "core-js": "^2.5.4",
+        "koa": "^2.5.2",
         "moment": "^2.22.2",
         "rxjs": "^6.0.0",
         "ts-loader": "^4.5.0",

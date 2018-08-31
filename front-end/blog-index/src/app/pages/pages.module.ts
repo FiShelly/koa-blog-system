@@ -7,6 +7,7 @@ import {AboutComponent} from './about/about.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import {SharedComponentsModule} from '../shared-components/shared-components.module';
 import {RouterModule} from '@angular/router';
+import { Page404Component } from './page404/page404.component';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import {RouterModule} from '@angular/router';
         ArticleListComponent,
         TypetagComponent,
         AboutComponent,
-        ArticleDetailComponent
+        ArticleDetailComponent,
+        Page404Component
     ],
     exports: [
         IndexComponent,

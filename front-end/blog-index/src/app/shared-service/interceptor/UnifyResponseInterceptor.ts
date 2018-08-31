@@ -6,12 +6,12 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class UnifyResponseInterceptor implements HttpInterceptor {
-    
+
     constructor(
         private router: Router
     ) {
     }
-    
+
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(map(event => {
             if (event instanceof HttpResponse) {
@@ -28,7 +28,9 @@ export class UnifyResponseInterceptor implements HttpInterceptor {
                     //     status: item.code,
                     //     body: item.msg
                     // });
-                    throw new Error(item.msg);
+                    const error = new Error(item.msg);
+                    error.name = item.code;
+                    throw error;
                 }
             }
             return event;

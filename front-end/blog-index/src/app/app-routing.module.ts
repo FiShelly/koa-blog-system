@@ -5,6 +5,7 @@ import {ArticleListComponent} from './pages/article-list/article-list.component'
 import {ArticleDetailComponent} from './pages/article-detail/article-detail.component';
 import {TypetagComponent} from './pages/typetag/typetag.component';
 import {AboutComponent} from './pages/about/about.component';
+import {Page404Component} from './pages/page404/page404.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
     {path: 'article/:id', component: ArticleDetailComponent},
     {path: 'typetag', component: TypetagComponent},
     {path: 'about', component: AboutComponent},
-    {path: '**', redirectTo: '/index', pathMatch: 'full'},
+    {path: '404', component: Page404Component},
+    {path: '**', redirectTo: '/404', pathMatch: 'full'},
 
 ];
 

@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit, Optional, Inject} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {StorageService} from '../../shared-service/utils/storage.service';
 import {CommentService} from '../../shared-service/model/comment.service';
@@ -9,7 +9,6 @@ import * as moment from 'moment';
 import {validator} from '../../shared-service/utils/normal';
 import {EventBusService} from '../../shared-service/eventBus/event-bus.service';
 import {TransferState, makeStateKey} from '@angular/platform-browser';
-
 const ARTICLE_DETAIL_KEY = makeStateKey('article-detail');
 
 @Component({
@@ -39,6 +38,7 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
     issubmit: boolean;
     global: any = (<any>window).environment;
     isActive: string = 'in';
+
     constructor(
         private transferState: TransferState,
         private eventBus: EventBusService,
@@ -56,7 +56,6 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         setTimeout(() => {
             this.article.id = Number(this.route.snapshot.paramMap.get('id'));
-            console.log(this.article.id);
             const article = this.transferState.get(ARTICLE_DETAIL_KEY, null as any);
             if (article && this.article.id === article.id) {
                 this.article = article;
@@ -97,8 +96,10 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
                 this.transferState.set(ARTICLE_DETAIL_KEY, this.article);
             },
             error: (err) => {
-                alert(err.message);
-                this.router.navigateByUrl('/article');
+                if (err.name === 404) {
+                    this.transferState.set(ARTICLE_DETAIL_KEY, this.article);
+                }
+                this.router.navigateByUrl('/404');
             }
         });
     }

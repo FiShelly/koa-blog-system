@@ -14,14 +14,18 @@ global['document'] = win.document;
 
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('../public/blog-index/server/main');
 
-function ngSsrUtil (url, csrf_token) {
+function ngSsrUtil (ctx, csrf_token) {
     return renderModuleFactory(AppServerModuleNgFactory, {
         // Our index.html
         document: template.replace('${CSRF}', csrf_token),
-        url: url,
+        url: ctx.request.url,
         // DI so that we can get lazy-loading to work differently (since we need it to just instantly render it)
         extraProviders: [
-            provideModuleMap(LAZY_MODULE_MAP)
+            provideModuleMap(LAZY_MODULE_MAP),
+            {
+                provide: 'koaCtx',
+                useValue: ctx
+            }
         ]
     });
 }
