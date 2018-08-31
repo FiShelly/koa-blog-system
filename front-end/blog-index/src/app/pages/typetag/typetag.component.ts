@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MyMeta, Post, Typetag} from '../../models';
 import {TypetagService} from '../../shared-service/model/typetag.service';
 import {StorageService} from '../../shared-service/utils/storage.service';
@@ -14,20 +13,7 @@ const LIMIT = 9;
 @Component({
     selector: 'app-typetag',
     templateUrl: './typetag.component.html',
-    styleUrls: ['./typetag.component.scss'],
-    animations: [
-        trigger('flyInOut', [
-            state('in', style({transform: 'translateX(0)'})),
-            transition('void => *', [
-                style({transform: 'translateX(-100%)'}),
-                animate(100)
-
-            ]),
-            transition('* => void', [
-                animate(100, style({transform: 'translateX(100%)'}))
-            ])
-        ])
-    ]
+    styleUrls: ['./typetag.component.scss']
 })
 export class TypetagComponent implements OnInit, OnDestroy {
 
@@ -39,7 +25,6 @@ export class TypetagComponent implements OnInit, OnDestroy {
     ls: number = 9;
     private _scrollHander: EventListenerObject;
     global: any = (<any>window).environment;
-    isActive: string = '';
     constructor(
         private transferState: TransferState,
         private typetagService: TypetagService,
@@ -54,9 +39,7 @@ export class TypetagComponent implements OnInit, OnDestroy {
     ngOnInit() {
         let cacheTypeTag = null;
         let cacheTypeTags = this.transferState.get(TYPE_TAG_KEY, null as any);
-        if (!cacheTypeTags) {
-            this.isActive = 'in';
-        }
+
         if (!cacheTypeTags && this.storageService.create(true).getItem('is-browser')) {
             cacheTypeTag = this.storageService.create(false).getItem('cache-type-tag');
             cacheTypeTags = this.storageService.create(false).getItem('cache-type-tag-list');

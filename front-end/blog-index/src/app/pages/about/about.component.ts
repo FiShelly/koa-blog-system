@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MyMeta, User} from '../../models';
 import {UserService} from '../../shared-service/model/user.service';
 import {StorageService} from '../../shared-service/utils/storage.service';
@@ -11,26 +10,13 @@ const ABOUT_KEY = makeStateKey('about');
 @Component({
     selector: 'app-about',
     templateUrl: './about.component.html',
-    styleUrls: ['./about.component.scss'],
-    animations: [
-        trigger('flyInOut', [
-            state('in', style({transform: 'translateX(0)'})),
-            transition('void => *', [
-                style({transform: 'translateX(-100%)'}),
-                animate(100)
-            ]),
-            transition('* => void', [
-                animate(100, style({transform: 'translateX(100%)'}))
-            ])
-        ])
-    ],
+    styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
     hide: boolean;
     author: User;
     global: any = (<any>window).environment;
-    isActive: string = '';
-    
+
     constructor(
         private transferState: TransferState,
         private authorService: UserService,
@@ -41,9 +27,6 @@ export class AboutComponent implements OnInit {
 
     ngOnInit() {
         this.author = this.transferState.get(ABOUT_KEY, null as any);
-        if (!this.author) {
-            this.isActive = 'in';
-        }
         if (this.author && this.storageService.create(true).getItem('is-browser')) {
             this.author = this.storageService.create(true).getItem('author');
         }

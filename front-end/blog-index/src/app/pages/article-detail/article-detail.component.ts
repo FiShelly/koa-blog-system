@@ -1,5 +1,4 @@
 import {Component, OnInit, AfterViewInit, Optional, Inject} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {StorageService} from '../../shared-service/utils/storage.service';
 import {CommentService} from '../../shared-service/model/comment.service';
 import {PostService} from '../../shared-service/model/post.service';
@@ -14,20 +13,7 @@ const ARTICLE_DETAIL_KEY = makeStateKey('article-detail');
 @Component({
     selector: 'app-article-detail',
     templateUrl: './article-detail.component.html',
-    styleUrls: ['./article-detail.component.scss'],
-    animations: [
-        trigger('flyInOut', [
-            state('in', style({transform: 'translateX(0)'})),
-            transition('void => *', [
-                style({transform: 'translateX(-100%)'}),
-                animate(100)
-
-            ]),
-            transition('* => void', [
-                animate(100, style({transform: 'translateX(100%)'}))
-            ])
-        ])
-    ],
+    styleUrls: ['./article-detail.component.scss']
 })
 export class ArticleDetailComponent implements OnInit, AfterViewInit {
 
@@ -37,7 +23,6 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
     remember: boolean;
     issubmit: boolean;
     global: any = (<any>window).environment;
-    isActive: string = 'in';
 
     constructor(
         private transferState: TransferState,

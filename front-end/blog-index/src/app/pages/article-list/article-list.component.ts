@@ -1,7 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {MyMeta, Post} from '../../models';
 import {Router} from '@angular/router';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {PostService} from '../../shared-service/model/post.service';
 import {StorageService} from '../../shared-service/utils/storage.service';
 import {validator} from '../../shared-service/utils/normal';
@@ -14,20 +13,7 @@ const LIMIT = 9;
 @Component({
     selector: 'app-article-list',
     templateUrl: './article-list.component.html',
-    styleUrls: ['./article-list.component.scss'],
-    animations: [
-        trigger('flyInOut', [
-            state('in', style({transform: 'translateX(0)'})),
-            transition('void => *', [
-                style({transform: 'translateX(-100%)'}),
-                animate(100)
-
-            ]),
-            transition('* => void', [
-                animate(100, style({transform: 'translateX(100%)'}))
-            ])
-        ])
-    ]
+    styleUrls: ['./article-list.component.scss']
 })
 export class ArticleListComponent implements OnInit, OnDestroy {
 
@@ -36,7 +22,6 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     page: number = 1;
     ls: number = 9;
     global: any = (<any>window).environment;
-    isActive: string = '';
     private _scrollHander: EventListenerObject;
 
     constructor(
@@ -58,10 +43,6 @@ export class ArticleListComponent implements OnInit, OnDestroy {
         let cachePosts = null;
 
         cachePosts = this.transferState.get(ARTICLE_LIST_KEY, null as any);
-
-        if (!cachePosts) {
-            this.isActive = 'in';
-        }
 
         if (!cachePosts && this.storageService.create(true).getItem('is-browser')) {
             cachePosts = this.storageService.create(false).getItem('cache-post-list');
