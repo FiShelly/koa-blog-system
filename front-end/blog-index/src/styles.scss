@@ -201,3 +201,8 @@ footer{
     -webkit-animation-delay:1.04s;
 }
 
+router-outlet ~ * {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}

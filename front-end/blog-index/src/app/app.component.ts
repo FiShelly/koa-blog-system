@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Event, EventBusService} from './shared-service/eventBus/event-bus.service';
 import {MyMeta} from './models';
 import {Meta, Title} from '@angular/platform-browser';
@@ -6,7 +6,7 @@ import {NavigationEnd, NavigationStart, Router} from '@angular/router';
 import {filter, pairwise} from 'rxjs/operators';
 import {StorageService} from './shared-service/utils/storage.service';
 import {validator} from './shared-service/utils/normal';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import {animate, query, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
     selector: 'app-root',
@@ -14,18 +14,30 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     styleUrls: ['./app.component.scss'],
     animations: [
         trigger('flyInOut', [
-            state('in', style({transform: 'translateX(0)'})),
-            transition('void => *', [
-                style({transform: 'translateX(-100%)'}),
-                animate(100)
-            ]),
-            transition('* => void', [
-                animate(100, style({transform: 'translateX(100%)'}))
+            transition('* => *', [
+                query(
+                    ':enter',
+                    [style({opacity: 0})],
+                    {optional: true}
+                ),
+                query(
+                    ':leave',
+                    [style({opacity: 1}), animate('0.15s', style({opacity: 0}))],
+                    {optional: true}
+                ),
+                query(
+                    ':enter',
+                    [style({opacity: 0}), animate('0.15s', style({opacity: 1}))],
+                    {optional: true}
+                )
             ])
         ])
     ],
 })
 export class AppComponent implements OnInit, AfterViewInit {
+
+    // @ViewChild('outlet') outlet: any;
+
     constructor(
         private eventBus: EventBusService,
         private storageService: StorageService,
@@ -40,6 +52,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
+
+
         this.eventBus.on('update-meta', (data: Event) => {
             const meta: MyMeta = data.data;
             this.title.setTitle(meta.title);

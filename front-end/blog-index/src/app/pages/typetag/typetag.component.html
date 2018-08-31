@@ -2,7 +2,7 @@
     <div class="typetag-article">
         <div class="article" *ngFor="let article of postList" (click)="gotoArticle(article)">
             <h2 class="title">{{article.title}}</h2>
-            <h4>{{article.date}}</h4>
+            <h4>{{article.date  * 1000 | date:"yyyy-MM-dd HH:mm"  }}</h4>
             <p>{{article.abstract}}</p>
             <div class="article-footer">
                 <span class="read-more">阅读全文</span>

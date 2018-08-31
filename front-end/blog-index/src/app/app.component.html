@@ -1,3 +1,6 @@
 <app-my-header></app-my-header>
 <app-my-image-inturn></app-my-image-inturn>
-<router-outlet [@flyInOut]="'in'"></router-outlet>
+<div [@flyInOut]="o.isActivated ? o.activatedRoute : ''">
+    <router-outlet #o="outlet"></router-outlet>
+</div>
+<!--<router-outlet [@flyInOut]="outlet.isActivated+''" #outlet></router-outlet>-->
