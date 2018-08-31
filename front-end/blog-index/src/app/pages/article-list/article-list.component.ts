@@ -7,7 +7,7 @@ import {validator} from '../../shared-service/utils/normal';
 import {EventBusService} from '../../shared-service/eventBus/event-bus.service';
 import {TransferState, makeStateKey} from '@angular/platform-browser';
 
-const ARTICLE_LIST_KEY = makeStateKey('article-list');
+const ARTICLE_LIST_KEY = makeStateKey('cache-article-list');
 const LIMIT = 9;
 
 @Component({
@@ -19,8 +19,6 @@ export class ArticleListComponent implements OnInit, OnDestroy {
 
     postList: Post[] = [];
     hide: boolean = true;
-    page: number = 1;
-    ls: number = 9;
     global: any = (<any>window).environment;
     private _scrollHander: EventListenerObject;
 
@@ -42,10 +40,10 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     ngOnInit() {
         let cachePosts = null;
 
-        cachePosts = this.transferState.get(ARTICLE_LIST_KEY, null as any);
+        cachePosts = this.transferState.get(ARTICLE_LIST_KEY, null);
 
         if (!cachePosts && this.storageService.create(true).getItem('is-browser')) {
-            cachePosts = this.storageService.create(false).getItem('cache-post-list');
+            cachePosts = this.storageService.create(false).getItem(ARTICLE_LIST_KEY);
         }
 
         if (validator.isEmpty(cachePosts)) {
@@ -62,10 +60,10 @@ export class ArticleListComponent implements OnInit, OnDestroy {
 
     getPostList(): void {
         this.hide = true;
-        this.page = this.storageService.create(false).getItem('page') || 0;
+        this.removeScroll();
         this.postService.getList({
             limit: LIMIT,
-            offset: this.page * LIMIT
+            offset: this.postList.length
         }).subscribe({
             next: (data: any) => {
                 this.postList = [...this.postList, ...data.list.map(val => {
@@ -73,17 +71,16 @@ export class ArticleListComponent implements OnInit, OnDestroy {
                     return val;
                 })];
                 this.transferState.set(ARTICLE_LIST_KEY, this.postList);
-                this.storageService.create(false).setItem('cache-post-list', this.postList);
-                this.storageService.create(false).setItem('page', this.page + 1);
-                if (this.postList.length === LIMIT) {
-                    this.bindScroll();
-                }
+                this.storageService.create(false).setItem(ARTICLE_LIST_KEY, this.postList);
             },
             error: (err) => {
                 alert(err.message);
             },
             complete: () => {
                 this.hide = false;
+                if (!(this.postList.length % LIMIT)) {
+                    this.bindScroll();
+                }
             }
         });
     }

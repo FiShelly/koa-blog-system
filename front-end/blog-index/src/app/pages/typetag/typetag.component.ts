@@ -8,6 +8,7 @@ import {EventBusService} from '../../shared-service/eventBus/event-bus.service';
 import {TransferState, makeStateKey} from '@angular/platform-browser';
 
 const TYPE_TAG_KEY = makeStateKey('type-tag');
+const ARTICLE_LIST_KEY = makeStateKey('cache-article-list');
 const LIMIT = 9;
 
 @Component({
@@ -21,10 +22,9 @@ export class TypetagComponent implements OnInit, OnDestroy {
     postList: Post[] = [];
     typetag: Typetag = new Typetag();
     hide: boolean = true;
-    page: number = 1;
-    ls: number = 9;
     private _scrollHander: EventListenerObject;
     global: any = (<any>window).environment;
+
     constructor(
         private transferState: TransferState,
         private typetagService: TypetagService,
@@ -45,7 +45,12 @@ export class TypetagComponent implements OnInit, OnDestroy {
             cacheTypeTags = this.storageService.create(false).getItem('cache-type-tag-list');
         }
         if (!cacheTypeTag) {
-            const cachePostList = this.storageService.create(false).getItem('cache-post-list');
+            let cachePostList = this.transferState.get(ARTICLE_LIST_KEY, []);
+            if (!cachePostList.length) {
+                cachePostList = this.storageService.create(false).getItem(ARTICLE_LIST_KEY);
+            } else {
+                this.storageService.create(false).setItem(ARTICLE_LIST_KEY, cachePostList);
+            }
             if (cachePostList) {
                 this.postList = cachePostList;
                 this.hide = false;
@@ -59,6 +64,7 @@ export class TypetagComponent implements OnInit, OnDestroy {
 
         if (cacheTypeTags) {
             this.typetags = cacheTypeTags;
+            this.setMetaData(this.typetags);
             this.getArticleByOtherPage();
         } else {
             this.getTypetags();
@@ -108,10 +114,11 @@ export class TypetagComponent implements OnInit, OnDestroy {
 
     getArticles(): void {
         this.hide = true;
-        this.page = this.storageService.create(false).getItem('page') || 0;
+
+        this.removeScroll();
         this.postService.getList({
             limit: LIMIT,
-            offset: this.page * LIMIT
+            offset: this.postList.length
         }).subscribe({
             next: (data: any) => {
                 this.postList = [...this.postList, ...data.list.map(val => {
@@ -119,22 +126,23 @@ export class TypetagComponent implements OnInit, OnDestroy {
                     return val;
                 })];
 
-                this.storageService.create(false).setItem('cache-post-list', this.postList);
-                this.storageService.create(false).setItem('page', this.page + 1);
-                if (this.postList.length === LIMIT) {
-                    this.bindScroll();
-                }
+                this.storageService.create(false).setItem(ARTICLE_LIST_KEY, this.postList);
+                this.transferState.set(ARTICLE_LIST_KEY, this.postList);
+
             },
             error: (err) => {
                 alert(err.message);
             },
             complete: () => {
                 this.hide = false;
+                if (!(this.postList.length % LIMIT)) {
+                    this.bindScroll();
+                }
             }
         });
     }
 
-    setMetaData (data) {
+    setMetaData(data) {
         const keyword = data.map(val => val.name).join(',');
         const meta = new MyMeta();
         meta.title = '分类与标签 - Fishelly Idx.';

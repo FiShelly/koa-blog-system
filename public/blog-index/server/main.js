@@ -1468,7 +1468,7 @@ var storage_service_1 = __webpack_require__(/*! ../../shared-service/utils/stora
 var normal_1 = __webpack_require__(/*! ../../shared-service/utils/normal */ "./src/app/shared-service/utils/normal.ts");
 var event_bus_service_1 = __webpack_require__(/*! ../../shared-service/eventBus/event-bus.service */ "./src/app/shared-service/eventBus/event-bus.service.ts");
 var platform_browser_1 = __webpack_require__(/*! @angular/platform-browser */ "@angular/platform-browser");
-var ARTICLE_LIST_KEY = platform_browser_1.makeStateKey('article-list');
+var ARTICLE_LIST_KEY = platform_browser_1.makeStateKey('cache-article-list');
 var LIMIT = 9;
 var ArticleListComponent = /** @class */ (function () {
     function ArticleListComponent(transferState, postService, storageService, router, eventBus) {
@@ -1479,8 +1479,6 @@ var ArticleListComponent = /** @class */ (function () {
         this.eventBus = eventBus;
         this.postList = [];
         this.hide = true;
-        this.page = 1;
-        this.ls = 9;
         this.global = window.environment;
         this._scrollHander = this.scrollHandler.bind(this);
         var meta = new models_1.MyMeta();
@@ -1493,7 +1491,7 @@ var ArticleListComponent = /** @class */ (function () {
         var cachePosts = null;
         cachePosts = this.transferState.get(ARTICLE_LIST_KEY, null);
         if (!cachePosts && this.storageService.create(true).getItem('is-browser')) {
-            cachePosts = this.storageService.create(false).getItem('cache-post-list');
+            cachePosts = this.storageService.create(false).getItem(ARTICLE_LIST_KEY);
         }
         if (normal_1.validator.isEmpty(cachePosts)) {
             this.getPostList();
@@ -1509,10 +1507,10 @@ var ArticleListComponent = /** @class */ (function () {
     ArticleListComponent.prototype.getPostList = function () {
         var _this = this;
         this.hide = true;
-        this.page = this.storageService.create(false).getItem('page') || 0;
+        this.removeScroll();
         this.postService.getList({
             limit: LIMIT,
-            offset: this.page * LIMIT
+            offset: this.postList.length
         }).subscribe({
             next: function (data) {
                 _this.postList = _this.postList.concat(data.list.map(function (val) {
@@ -1520,17 +1518,16 @@ var ArticleListComponent = /** @class */ (function () {
                     return val;
                 }));
                 _this.transferState.set(ARTICLE_LIST_KEY, _this.postList);
-                _this.storageService.create(false).setItem('cache-post-list', _this.postList);
-                _this.storageService.create(false).setItem('page', _this.page + 1);
-                if (_this.postList.length === LIMIT) {
-                    _this.bindScroll();
-                }
+                _this.storageService.create(false).setItem(ARTICLE_LIST_KEY, _this.postList);
             },
             error: function (err) {
                 alert(err.message);
             },
             complete: function () {
                 _this.hide = false;
+                if (!(_this.postList.length % LIMIT)) {
+                    _this.bindScroll();
+                }
             }
         });
     };
@@ -1845,6 +1842,7 @@ var router_1 = __webpack_require__(/*! @angular/router */ "@angular/router");
 var event_bus_service_1 = __webpack_require__(/*! ../../shared-service/eventBus/event-bus.service */ "./src/app/shared-service/eventBus/event-bus.service.ts");
 var platform_browser_1 = __webpack_require__(/*! @angular/platform-browser */ "@angular/platform-browser");
 var TYPE_TAG_KEY = platform_browser_1.makeStateKey('type-tag');
+var ARTICLE_LIST_KEY = platform_browser_1.makeStateKey('cache-article-list');
 var LIMIT = 9;
 var TypetagComponent = /** @class */ (function () {
     function TypetagComponent(transferState, typetagService, storageService, postService, router, eventBus) {
@@ -1858,8 +1856,6 @@ var TypetagComponent = /** @class */ (function () {
         this.postList = [];
         this.typetag = new models_1.Typetag();
         this.hide = true;
-        this.page = 1;
-        this.ls = 9;
         this.global = window.environment;
         this._scrollHander = this.scrollHandler.bind(this);
     }
@@ -1871,7 +1867,13 @@ var TypetagComponent = /** @class */ (function () {
             cacheTypeTags = this.storageService.create(false).getItem('cache-type-tag-list');
         }
         if (!cacheTypeTag) {
-            var cachePostList = this.storageService.create(false).getItem('cache-post-list');
+            var cachePostList = this.transferState.get(ARTICLE_LIST_KEY, []);
+            if (!cachePostList.length) {
+                cachePostList = this.storageService.create(false).getItem(ARTICLE_LIST_KEY);
+            }
+            else {
+                this.storageService.create(false).setItem(ARTICLE_LIST_KEY, cachePostList);
+            }
             if (cachePostList) {
                 this.postList = cachePostList;
                 this.hide = false;
@@ -1886,6 +1888,7 @@ var TypetagComponent = /** @class */ (function () {
         }
         if (cacheTypeTags) {
             this.typetags = cacheTypeTags;
+            this.setMetaData(this.typetags);
             this.getArticleByOtherPage();
         }
         else {
@@ -1933,27 +1936,27 @@ var TypetagComponent = /** @class */ (function () {
     TypetagComponent.prototype.getArticles = function () {
         var _this = this;
         this.hide = true;
-        this.page = this.storageService.create(false).getItem('page') || 0;
+        this.removeScroll();
         this.postService.getList({
             limit: LIMIT,
-            offset: this.page * LIMIT
+            offset: this.postList.length
         }).subscribe({
             next: function (data) {
                 _this.postList = _this.postList.concat(data.list.map(function (val) {
                     val.coverSrc = "" + _this.global.apiURL.materialView + val.coverImg;
                     return val;
                 }));
-                _this.storageService.create(false).setItem('cache-post-list', _this.postList);
-                _this.storageService.create(false).setItem('page', _this.page + 1);
-                if (_this.postList.length === LIMIT) {
-                    _this.bindScroll();
-                }
+                _this.storageService.create(false).setItem(ARTICLE_LIST_KEY, _this.postList);
+                _this.transferState.set(ARTICLE_LIST_KEY, _this.postList);
             },
             error: function (err) {
                 alert(err.message);
             },
             complete: function () {
                 _this.hide = false;
+                if (!(_this.postList.length % LIMIT)) {
+                    _this.bindScroll();
+                }
             }
         });
     };
