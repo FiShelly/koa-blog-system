@@ -34,30 +34,30 @@ export class CgiComponent implements OnInit, AfterViewInit {
         {
             name: 'id',
             text: '#',
-            width: 65
+            width: 100
         },
         {
             name: 'content_kw',
             isForceHTML: true,
             text: '内容',
-            width: 300
-        },
-        {
-            name: 'type',
-            text: '日志分类',
-            width: 140
-        },
-        {
-            name: 'time',
-            text: '发布时间',
-            width: 135
+            width: 460
         },
         {
             name: 'ip_kw',
             text: 'ip',
             isForceHTML: true,
-            width: 60,
+            width: 120,
             defaultText: '0'
+        },
+        {
+            name: 'time',
+            text: '发布时间',
+            width: 138
+        },
+        {
+            name: 'type',
+            text: '日志分类',
+            width: 125
         }
     ];
     dataPage: any = {

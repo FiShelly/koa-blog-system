@@ -48,11 +48,6 @@ window.onerror = function (msg, url, line) {
 document.addEventListener('DOMContentLoaded', () => {
     platformBrowserDynamic().bootstrapModule(AppModule)
         .catch(err => console.log(err));
-    // const any: any = {};
-    // setTimeout(() => {
-    //     console.log(any.s.a);
-    // }, 2000);
-    console.log('e');
 });
 
 window.onload = () => {
