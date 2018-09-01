@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "start:dev": "node ./bin/www",
-    "start:prod": "pm2 start ./bind/www -i 0",
+    "start:prod": "pm2 start ./bin/www -i 0",
     "reload": "pm2 reload all"
   },
   "dependencies": {
