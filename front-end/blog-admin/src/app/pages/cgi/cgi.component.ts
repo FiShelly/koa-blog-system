@@ -20,7 +20,7 @@ export class CgiComponent implements OnInit, AfterViewInit {
     
     dataTotal: number = 0;
     listOperations: object = {
-        width: 100,
+        width: 85,
         text: '操作',
         list: [
             {
@@ -40,14 +40,14 @@ export class CgiComponent implements OnInit, AfterViewInit {
             name: 'content_kw',
             isForceHTML: true,
             text: '内容',
-            width: 460
+            width: 410
         },
         {
             name: 'ip_kw',
             text: 'ip',
             isForceHTML: true,
             width: 120,
-            defaultText: '0'
+            defaultText: '*'
         },
         {
             name: 'time',
@@ -57,7 +57,7 @@ export class CgiComponent implements OnInit, AfterViewInit {
         {
             name: 'type',
             text: '日志分类',
-            width: 125
+            width: 100
         }
     ];
     dataPage: any = {
