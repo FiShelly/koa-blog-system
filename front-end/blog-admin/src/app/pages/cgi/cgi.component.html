@@ -1,0 +1,35 @@
+<div class="frame">
+    <div class="mine-info">
+        <div class="cat-name">前端日志列表</div>
+        <app-input placeholder="请输入关键词"
+                   class="search-input"
+                   suffix_icon="&#xe67f;"
+                   [(ngModel)]="keyword"
+                   (keyup.enter)="search()"
+        >
+        </app-input>
+        <div class="cat-info">
+            <div class="post-count left">
+                <app-label>日志数量：</app-label>
+                <app-label>{{dataTotal}}</app-label>
+            </div>
+        </div>
+    </div>
+    <div class="list-container">
+        <app-table-shown-list
+            width="958"
+            [format]="listFormat"
+            [operations]="listOperations"
+            [dataList]="cgiList"
+            (op)="onOperation($event)"
+        ></app-table-shown-list>
+    </div>
+    <div class="ft">
+        <app-pagination
+            [total]="dataPage.total"
+            [current]="dataPage.current"
+            [limit]="dataPage.limit"
+            (changePage)="changePage($event)"
+        ></app-pagination>
+    </div>
+</div>

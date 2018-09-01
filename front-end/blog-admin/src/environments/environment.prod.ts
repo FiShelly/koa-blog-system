@@ -16,7 +16,8 @@ export const environment = {
         typetagListByType: `${pre_path}/web/cattag/list/`,
         typetagIncrement: `${pre_path}/web/cattag/increment/`,
         articleResFul: `${pre_path}/web/article/`,
-        commentResFul: `${pre_path}/web/comment/`
+        commentResFul: `${pre_path}/web/comment/`,
+        cgiResFul: `${pre_path}/web/cgi/`
     },
     webURL: {
         'index': pre_path,

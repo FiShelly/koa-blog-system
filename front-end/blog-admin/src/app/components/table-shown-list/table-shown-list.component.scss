@@ -23,6 +23,7 @@
 .table {
     width: 100%;
     max-width: 100%;
+    table-layout: fixed;
     /*margin-bottom: 20px;*/
 }
 
@@ -74,6 +75,7 @@ td, th {
     box-sizing: border-box;
     font-size: 14px;
     position: relative;
+    word-break: break-all;
     &.bg-grey {
         background-color: $bgGrey;
     }

@@ -56,6 +56,13 @@ const MENUDATA = [
         isLink: true,
         type: 'about-me',
         link: '/admin/about'
+    },
+    {
+        icon: '&#xe60c;',
+        text: '前端监控',
+        isLink: true,
+        type: 'cgi',
+        link: '/admin/cgi'
     }
 ];
 

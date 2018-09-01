@@ -45,7 +45,7 @@ app.use(cors({
     maxAge: 5,
     credentials: true,
     allowMethods: ['GET', 'POST', 'PUT'],
-    allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+    allowHeaders: ['Content-Type', 'Authorization', 'Accept','X-CSRF-Token'],
 }));
 
 // session middleware

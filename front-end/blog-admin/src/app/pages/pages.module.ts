@@ -10,6 +10,7 @@ import {PostListComponent} from './post-list/post-list.component';
 import {PagesRoutingModule} from './pages-routing.module';
 import {IndexComponent} from './index/index.component';
 import {SharedComponentsModule} from '../shared-components/shared-components.module';
+import { CgiComponent } from './cgi/cgi.component';
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import {SharedComponentsModule} from '../shared-components/shared-components.mod
         TypetagComponent,
         PostPublishComponent,
         PostListComponent,
-        IndexComponent
+        IndexComponent,
+        CgiComponent
     ],
     exports: []
 })

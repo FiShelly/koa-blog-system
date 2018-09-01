@@ -7,6 +7,7 @@ import {TypetagComponent} from './typetag/typetag.component';
 import {MaterialsComponent} from './materials/materials.component';
 import {CommentsComponent} from './comments/comments.component';
 import {IndexComponent} from './index/index.component';
+import {CgiComponent} from './cgi/cgi.component';
 
 const pagesRoute: Routes = [
     {
@@ -20,7 +21,8 @@ const pagesRoute: Routes = [
             {path: 'about', component: AboutComponent},
             {path: 'typetag', component: TypetagComponent},
             {path: 'materials', component: MaterialsComponent},
-            {path: 'comments', component: CommentsComponent}
+            {path: 'comments', component: CommentsComponent},
+            {path: 'cgi', component: CgiComponent}
         ]
     },
 ];

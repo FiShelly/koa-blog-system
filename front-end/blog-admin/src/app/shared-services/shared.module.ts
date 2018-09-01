@@ -9,6 +9,7 @@ import {MaterialService} from './model/material.service';
 import {TypetagService} from './model/typetag.service';
 import {PostService} from './model/post.service';
 import {CommentService} from './model/comment.service';
+import {CgiService} from './model/cgi.service';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {CommentService} from './model/comment.service';
             StorageService,
             TypetagService,
             PostService,
-            CommentService
+            CommentService,
+            CgiService
         ],
 })
 export class SharedModule {

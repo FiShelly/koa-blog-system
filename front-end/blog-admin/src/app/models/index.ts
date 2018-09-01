@@ -5,6 +5,7 @@ export * from './Typetag';
 export * from './Visitor';
 export * from './MenuItem';
 export * from './User';
+export * from './Cgi';
 export * from './Material';
 
 

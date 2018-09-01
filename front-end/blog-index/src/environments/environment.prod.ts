@@ -12,7 +12,9 @@ export const environment = {
         articleResFul: `${pre_path}/api/article/`,
         materialView: `${pre_path}/api/image/view/`,
         typetagResFul: `${pre_path}/api/cattag/`,
-        commentResFul: `${pre_path}/api/comment/`
+        commentResFul: `${pre_path}/api/comment/`,
+        cgiTime: `${pre_path}/api/cgi/time/`,
+        cgiError: `${pre_path}/api/cgi/error/`
     },
     webURL: {
         'index': pre_path
