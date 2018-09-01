@@ -25,7 +25,7 @@ const create = async function (ctx) {
         });
         return packData(200, 'success', article);
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -60,6 +60,7 @@ const findOneById = async function (ctx) {
         }
         return packData(200, 'success', article);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -70,6 +71,7 @@ const remove = async function (ctx) {
         const article = await articleService.update({status: 'delete'}, {id: params.id});
         return packData(200, 'success', article);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -85,6 +87,7 @@ const changeStatus = async function (ctx) {
         const article = await articleService.update({status: 'publish'}, {id: params.id});
         return packData(200, 'success', article);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -94,6 +97,7 @@ const findAll = async function (ctx) {
         const articles = await articleService.findAll();
         return packData(200, 'success', articles);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -113,6 +117,7 @@ const findAllByTypeTag = async function (ctx) {
         const articles = await articleService.findAll(args);
         return packData(200, 'success', articles);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -157,7 +162,7 @@ const findAllByPage = async function (ctx) {
         });
         return packData(200, 'success', articles);
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -193,7 +198,7 @@ const update = async function (ctx) {
         const article = await articleService.update(request, {id});
         return packData(200, 'success', article);
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -226,7 +231,7 @@ const incrementRead = async function (ctx) {
             return packData(404, 'error', 'data-not-find');
         }
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 

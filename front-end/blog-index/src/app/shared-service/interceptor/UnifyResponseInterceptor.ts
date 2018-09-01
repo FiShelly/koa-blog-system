@@ -1,4 +1,4 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {Injectable, Injector} from '@angular/core';
@@ -28,9 +28,11 @@ export class UnifyResponseInterceptor implements HttpInterceptor {
                     //     status: item.code,
                     //     body: item.msg
                     // });
-                    const error = new Error(item.msg);
-                    error.name = item.code;
-                    throw error;
+
+                    throw new HttpErrorResponse({
+                        error: item.msg,
+                        status: item.code
+                    });
                 }
             }
             return event;

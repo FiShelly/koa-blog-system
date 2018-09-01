@@ -20,8 +20,6 @@ router.get('/robots.txt', async function (ctx, next) {
     ctx.type = 'text';
     ctx.body =
         `
-        User-agent: Googlebot
-
         User-agent: *
         Allow: /
 

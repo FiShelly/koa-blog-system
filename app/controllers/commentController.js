@@ -18,7 +18,7 @@ const create = async function (ctx) {
         articleService.update({commentCount: article.commentCount + 1}, {id: request.article});
         return packData(200, 'success', comment);
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -32,6 +32,7 @@ const findOneById = async function (ctx) {
         }
         return packData(200, 'success', comment);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -49,6 +50,7 @@ const remove = async function (ctx) {
 
         return packData(200, 'success', comment);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -60,6 +62,7 @@ const findAll = async function (ctx) {
         const comments = await commentService.findAll();
         return packData(200, 'success', comments);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -99,7 +102,7 @@ const findAllByPage = async function (ctx) {
         });
         return packData(200, 'success', comments);
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -115,7 +118,7 @@ const findAllByArticle = async function (ctx) {
         });
         return packData(200, 'success', comments);
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -128,7 +131,7 @@ const update = async function (ctx) {
         const comment = await commentService.update(request, {id});
         return packData(200, 'success', comment);
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };

@@ -15,7 +15,7 @@ const create = async function(ctx, file) {
         const image = await imageService.create(request);
         return packData(200, 'success', image);
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -30,6 +30,7 @@ const findOneById = async function (ctx) {
         }
         return packData(200, 'success', image);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -41,6 +42,7 @@ const remove = async function(ctx) {
         const image = await imageService.delete({id: params.id});
         return packData(200, 'success', image);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -59,6 +61,7 @@ const findAll = async function (ctx) {
         });
         return result;
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -85,7 +88,7 @@ const findAllByPage = async function (ctx) {
         });
         return result;
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -98,7 +101,7 @@ const update = async function (ctx) {
         const image = await imageService.update(request, {id});
         return packData(200, 'success', image);
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };

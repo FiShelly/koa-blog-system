@@ -2135,9 +2135,10 @@ var UnifyResponseInterceptor = /** @class */ (function () {
                     //     status: item.code,
                     //     body: item.msg
                     // });
-                    var error = new Error(item.msg);
-                    error.name = item.code;
-                    throw error;
+                    throw new http_1.HttpErrorResponse({
+                        error: item.msg,
+                        status: item.code
+                    });
                 }
             }
             return event;

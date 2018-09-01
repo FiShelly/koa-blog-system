@@ -22,7 +22,7 @@ const login = async function (ctx) {
             return packData(401.1, 'error', 'login-invalidate');
         }
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -33,6 +33,7 @@ const create = async function (ctx) {
 
         return packData(200, 'success', user);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 
@@ -61,7 +62,7 @@ const findUserByLoginId = async function (ctx) {
         }
         return packData(200, 'success', user);
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -81,6 +82,7 @@ const updateUser = async function (ctx) {
         const user = await userService.update(request, {id});
         return packData(200, 'success', user);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -105,6 +107,7 @@ const updatePwd = async function (ctx) {
             return packData(412, 'error', 'input-invalidate-oldPwd');
         }
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };

@@ -9,7 +9,7 @@ const create = async function (ctx) {
         const categoryTag = await categoryTagService.create(request);
         return packData(200, 'success', categoryTag);
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -24,6 +24,7 @@ const findOneById = async function (ctx) {
         }
         return packData(200, 'success', categoryTag);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -35,6 +36,7 @@ const remove = async function (ctx) {
         const categoryTag = await categoryTagService.delete({id: params.id});
         return packData(200, 'success', categoryTag);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -46,6 +48,7 @@ const findAllByType = async function (ctx) {
         const categoryTag = await categoryTagService.findAll({type: params.type, name: kw});
         return packData(200, 'success', categoryTag);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -55,7 +58,7 @@ const findAll = async function (ctx) {
         const categoryTag = await categoryTagService.findAll();
         return packData(200, 'success', categoryTag);
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -68,6 +71,7 @@ const update = async function (ctx) {
         const categoryTag = await categoryTagService.update(request, {id});
         return packData(200, 'success', categoryTag);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
@@ -84,6 +88,7 @@ const increment = async function (ctx) {
         categoryTag = await  categoryTagService.update({count}, {id});
         return packData(200, 'success', categoryTag);
     } catch (e) {
+        ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
     }
 };
