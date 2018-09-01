@@ -1,6 +1,8 @@
+const LOG_PATH = './logs/';
+
 const serverConfig = {
     prot: 3200,
-    host: 'http://fishelly.top',
+    host: 'http://localhost:3200/',
     log: {
         appenders: {
             out: {
@@ -8,37 +10,37 @@ const serverConfig = {
             },
             http: {
                 type: 'dateFile',
-                filename: './logs/http',
+                filename: `${LOG_PATH}http`,
                 pattern: '-yyyy-MM-dd.log',
                 alwaysIncludePattern: true
             },
             error: {
                 type: 'dateFile',
-                filename: './logs/error',
+                filename: `${LOG_PATH}error`,
                 pattern: '-yyyy-MM-dd.log',
                 alwaysIncludePattern: true
             },
             app: {
                 'type': 'dateFile',
-                'filename': './logs/app',
+                filename: `${LOG_PATH}app`,
                 pattern: '-yyyy-MM-dd.log',
                 alwaysIncludePattern: true
             },
             startup: {
                 'type': 'dateFile',
-                'filename': './logs/startup',
+                filename: `${LOG_PATH}startup`,
                 pattern: '-yyyy-MM-dd.log',
                 alwaysIncludePattern: true
             },
             default: {
                 type: 'dateFile',
-                filename: './logs/default',
+                filename: `${LOG_PATH}default`,
                 'pattern': '-yyyy-MM-dd.log',
                 alwaysIncludePattern: true
             },
             mysql: {
                 type: 'dateFile',
-                filename: './logs/mysql',
+                filename: `${LOG_PATH}mysql`,
                 'pattern': '-yyyy-MM-dd.log',
                 alwaysIncludePattern: true
             }
@@ -52,6 +54,7 @@ const serverConfig = {
             mysql: {appenders: ['mysql'], level: 'info'}
         }
     }
+
 };
 
 module.exports = serverConfig;
