@@ -8,7 +8,9 @@ const errorMap = {
     'input-invalidate-oldPwd': '旧密码输入不正确',
     'data-not-find': '数据未找到或不存在',
     'no-logined': '未登录',
-    'too-frequent': '访问太频繁'
+    'too-frequent': '访问太频繁',
+    'must-be-image': '必须是图片',
+    'must-be-local-site': '必须是本站点访问'
 };
 
 const deepClone = function (data) {

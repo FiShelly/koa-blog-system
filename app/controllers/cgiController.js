@@ -5,16 +5,34 @@ const cgiService = require('../services/cgiService');
 const moment = require('moment');
 
 const create = async function (ctx) {
+    const query = ctx.request.query;
+    const host = ctx.headers.host;
+    if (!ctx.headers.accept.includes('image/')) {
+        return packData(412, 'error', 'must-be-image');
+    }
+    if (!host.includes('fishelly') ) {
+        return packData(412, 'error', 'must-be-local-site');
+    }
+    if (validator.isEmpty(query.type) || validator.isEmpty(query.report)) {
+        return packData(412, 'error', 'input-invalidate-empty');
+    }
+    const ip = ctx.ip;
+    const cip = ctx.session.cacheIp;
+    const curTime = moment().unix();
+    if (cip) {
+        if (curTime - cip.time < 3) {
+            return packData(403.1, 'error', 'too-frequent');
+        }
+    }
+    ctx.session.cacheIp = {ip, time: curTime, ids:[]};
+    const model = {
+        date: moment().unix(),
+        type: query.type,
+        content: query.report,
+        ip: ip
+    };
     try {
-        const query = ctx.request.query;
-        const model = {
-            date: moment().unix(),
-            type: query.type,
-            content: query.report,
-            ip: ctx.ip
-        };
-        const user = await cgiService.create(model);
-
+        await cgiService.create(model);
         return packData(200, 'success', model);
     } catch (e) {
         ctx.logger.getLogger('error').error(e);
