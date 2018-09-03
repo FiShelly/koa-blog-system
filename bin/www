@@ -39,7 +39,7 @@ if (config.useHttps) {
     httpsServer.listen(normalizePort(config.ssl.port || '443'));
     httpsServer.on('error', onError);
     httpsServer.on('listening', onListening);
-    httpsServer = http.createServer(function (req,res) {
+    httpServer = http.createServer(function (req,res) {
         res.writeHead(200,{"Content-type":"text/html"});
         res.write(`<html><body><script>window.location.href='${config.host}'</script></body></html>`);
         res.end();
