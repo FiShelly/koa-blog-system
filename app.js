@@ -16,6 +16,7 @@ const path = require('path');
 
 const appLogger = log4js.getLogger('app');
 const errorLogger = log4js.getLogger('error');
+
 const app = new Koa();
 
 const DEFAULT_FORMAT = ':remote-addr - -' +
@@ -45,13 +46,13 @@ app.use(cors({
     maxAge: 5,
     credentials: true,
     allowMethods: ['GET', 'POST', 'PUT'],
-    allowHeaders: ['Content-Type', 'Authorization', 'Accept','X-CSRF-Token'],
+    allowHeaders: ['Content-Type', 'Authorization', 'Accept', 'X-CSRF-Token'],
 }));
 
 // session middleware
 app.keys = ['user logined secret'];
 app.use(session({
-    key: 'koa:sess', /** cookie的名称，可以不管 */
+    key: 'koa:sess',
     maxAge: 7200000, /** (number) maxAge in ms (default is 1 days)，cookie的过期时间，这里表示2个小时 */
     overwrite: true, /** (boolean) can overwrite or not (default true) */
     httpOnly: true, /** (boolean) httpOnly or not (default true) */
@@ -68,11 +69,15 @@ app.use(async function (ctx, next) {
     await next();
 });
 
+
 // load static resource
 app.use(async (ctx, next) => {
-    const path = ctx.request.url;
-    if (path.includes('/public/')) {
-        await send(ctx, ctx.path, {root: `${__dirname}`});
+    const url = ctx.request.url;
+    if (url.includes('/public/')) {
+        await send(ctx, ctx.path, {
+            root: `${__dirname}`,
+            maxage: 365 * 24 * 60 * 60 * 1000 * 1000
+        });
     } else {
         await next();
     }
