@@ -1,8 +1,14 @@
 const LOG_PATH = './logs/';
 
 const serverConfig = {
-    prot: 3200,
+    port: 3200,
+    useHttps: false,
     host: 'http://localhost:3200/',
+    ssl: {
+        path: '',
+        key: '',
+        pem: ''
+    },
     log: {
         appenders: {
             out: {

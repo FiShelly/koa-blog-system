@@ -6,8 +6,10 @@
 const config = require('../config/server.config');
 const app = require('../app.js');
 const http = require('http');
+const https = require('https');
 const log4js = require('../middleware/logger');
 const logger = log4js.getLogger('startup');
+const fs = require('fs');
 /**
  * Get port from environment and store in Express.
  */
@@ -18,15 +20,27 @@ const port = normalizePort(config.port || '3200');
  * Create HTTP server.
  */
 
-const server = http.createServer(app.callback());
+const httpServer = http.createServer(app.callback());
+let httpsServer = null;
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+httpServer.listen(port);
+httpServer.on('error', onError);
+httpServer.on('listening', onListening);
+
+if (config.useHttps) {
+    httpsServer = https.createServer(app.callback(), {
+        key: fs.readFileSync(`${config.ssl.path}${config.ssl.key}`),
+        cert: fs.readFileSync(`${config.ssl.path}${config.ssl.pem}`)
+    });
+
+    httpServer.listen(normalizePort(config.port || '443'));
+    httpServer.on('error', onError);
+    httpServer.on('listening', onListening);
+}
 
 /**
  * Normalize a port into a number, string, or false.
@@ -83,9 +97,14 @@ function onError (error) {
  */
 
 function onListening () {
-    const addr = server.address();
+    let addr = httpServer.address();
     const bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + addr.port;
-    logger.info('Listening on ' + bind);
+    logger.info('HTTP Listening on ' + bind);
+
+    if (config.useHttps) {
+        addr = httpsServer.address();
+        logger.info('HTTPS Listening on ' + typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port);
+    }
 }
