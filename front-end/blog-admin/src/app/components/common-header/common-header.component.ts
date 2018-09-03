@@ -15,7 +15,7 @@ import {UserService} from '../../shared-services/model/user.service';
 export class CommonHeaderComponent implements OnInit, AfterViewInit {
     
     @Input() user: User = new User();
-    @Input() mainLink: String = 'http://www.fishelly.top';
+    @Input() mainLink: String = 'https://www.fishelly.top';
     @Input() showRight: boolean = false;
     
     constructor(

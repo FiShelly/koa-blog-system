@@ -20,16 +20,14 @@ const port = normalizePort(config.port || '80');
  * Create HTTP server.
  */
 
-const httpServer = http.createServer(app.callback());
+let httpServer = null;
 let httpsServer = null;
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-httpServer.listen(port);
-httpServer.on('error', onError);
-httpServer.on('listening', onListening);
+
 
 if (config.useHttps) {
     httpsServer = https.createServer({
@@ -41,7 +39,18 @@ if (config.useHttps) {
     httpsServer.listen(normalizePort(config.ssl.port || '443'));
     httpsServer.on('error', onError);
     httpsServer.on('listening', onListening);
+    httpsServer = http.createServer(function (req,res) {
+        res.writeHead(200,{"Content-type":"text/html"});
+        res.write(`<html><body><script>window.location.href='${config.host}'</script></body></html>`);
+        res.end();
+    })
+} else {
+    httpServer = http.createServer(app.callback())
 }
+
+httpServer.listen(port);
+httpServer.on('error', onError);
+httpServer.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.

@@ -2689,7 +2689,7 @@ exports.StorageService = StorageService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var pre_path = 'http://www.fishelly.top';
+var pre_path = 'https://www.fishelly.top';
 // const pre_path = 'http://localhost:3200';
 exports.environment = {
     production: true,
