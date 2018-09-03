@@ -37,9 +37,9 @@ if (config.useHttps) {
         cert: fs.readFileSync(`${config.ssl.path}${config.ssl.pem}`)
     });
 
-    httpServer.listen(normalizePort(config.port || '443'));
-    httpServer.on('error', onError);
-    httpServer.on('listening', onListening);
+    httpsServer.listen(normalizePort(config.port || '443'));
+    httpsServer.on('error', onError);
+    httpsServer.on('listening', onListening);
 }
 
 /**
