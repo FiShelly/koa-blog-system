@@ -14,7 +14,7 @@ const fs = require('fs');
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(config.port || '3200');
+const port = normalizePort(config.port || '80');
 
 /**
  * Create HTTP server.
@@ -37,7 +37,7 @@ if (config.useHttps) {
         cert: fs.readFileSync(`${config.ssl.path}${config.ssl.pem}`)
     });
 
-    httpsServer.listen(normalizePort(config.port || '443'));
+    httpsServer.listen(normalizePort(config.ssl.port || '443'));
     httpsServer.on('error', onError);
     httpsServer.on('listening', onListening);
 }
@@ -105,6 +105,6 @@ function onListening () {
 
     if (config.useHttps) {
         addr = httpsServer.address();
-        logger.info('HTTPS Listening on ' + typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port);
+        logger.info('HTTPS Listening on ' + config.ssl.port);
     }
 }

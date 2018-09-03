@@ -7,7 +7,8 @@ const serverConfig = {
     ssl: {
         path: '',
         key: '',
-        pem: ''
+        pem: '',
+        port: 443
     },
     log: {
         appenders: {
