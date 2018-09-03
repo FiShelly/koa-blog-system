@@ -34,7 +34,8 @@ httpServer.on('listening', onListening);
 if (config.useHttps) {
     httpsServer = https.createServer(app.callback(), {
         key: fs.readFileSync(`${config.ssl.path}${config.ssl.key}`),
-        cert: fs.readFileSync(`${config.ssl.path}${config.ssl.pem}`)
+        cert: fs.readFileSync(`${config.ssl.path}${config.ssl.pem}`),
+        passphrase: config.ssl.passphrase
     });
 
     httpsServer.listen(normalizePort(config.ssl.port || '443'));
