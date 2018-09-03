@@ -32,6 +32,7 @@ httpServer.on('error', onError);
 httpServer.on('listening', onListening);
 
 if (config.useHttps) {
+    console.log(fs.readFileSync(`${config.ssl.path}${config.ssl.key}`));
     httpsServer = https.createServer(app.callback(), {
         key: fs.readFileSync(`${config.ssl.path}${config.ssl.key}`),
         cert: fs.readFileSync(`${config.ssl.path}${config.ssl.pem}`),
