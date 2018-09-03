@@ -51,18 +51,18 @@ const MENUDATA = [
         link: '/admin/comments'
     },
     {
-        icon: '&#xe625;',
-        text: '关于我',
-        isLink: true,
-        type: 'about-me',
-        link: '/admin/about'
-    },
-    {
         icon: '&#xe60c;',
         text: '前端监控',
         isLink: true,
         type: 'cgi',
         link: '/admin/cgi'
+    },
+    {
+        icon: '&#xe625;',
+        text: '关于我',
+        isLink: true,
+        type: 'about-me',
+        link: '/admin/about'
     }
 ];
 

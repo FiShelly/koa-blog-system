@@ -9,6 +9,8 @@ import {SharedServiceModule} from './shared-service/shared-service.module';
 import {SharedComponentsModule} from './shared-components/shared-components.module';
 import {PagesModule} from './pages/pages.module';
 import {StorageService} from './shared-service/utils/storage.service';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
 
 @NgModule({
     imports: [
@@ -18,7 +20,8 @@ import {StorageService} from './shared-service/utils/storage.service';
         HttpClientModule,
         SharedServiceModule,
         SharedComponentsModule,
-        PagesModule
+        PagesModule,
+        ServiceWorkerModule.register('/public/blog-index/browser/ngsw-worker.js', {enabled: environment.production, scope: '/'})
     ],
     declarations: [
         AppComponent
