@@ -43,7 +43,7 @@ export class PostListComponent implements OnInit, AfterViewInit {
         {
             name: 'id',
             text: '#',
-            width: 65
+            width: 60
         },
         {
             name: 'kw_text',
@@ -59,7 +59,7 @@ export class PostListComponent implements OnInit, AfterViewInit {
         {
             name: 'time',
             text: '发布时间',
-            width: 135
+            width: 140
         },
         {
             name: 'readCount',
