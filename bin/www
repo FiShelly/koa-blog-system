@@ -27,26 +27,31 @@ let httpsServer = null;
  * Listen on provided port, on all network interfaces.
  */
 
-
-
 if (config.useHttps) {
     httpsServer = https.createServer({
         key: fs.readFileSync(`${config.ssl.path}${config.ssl.key}`),
         cert: fs.readFileSync(`${config.ssl.path}${config.ssl.pem}`),
         passphrase: config.ssl.passphrase
-    }, app.callback());
+    }, function (req, res) {
+        if (!req.headers.host.includes('://www')) {
+            const url = req.url.substr(1);
+            res.writeHead(301, {'Location': `${config.host}${url}`});
+        }
+        return app.callback()(req, res);
+    });
 
     httpsServer.listen(normalizePort(config.ssl.port || '443'));
     httpsServer.on('error', onError);
     httpsServer.on('listening', onListening);
-    httpServer = http.createServer(function (req,res) {
+    httpServer = http.createServer(function (req, res) {
         const url = req.url.substr(1);
-        res.writeHead(200,{"Content-type":"text/html"});
-        res.write(`<html><body><script>window.location.href='${config.host}${url}'</script></body></html>`);
-        res.end();
-    })
+        res.writeHead(301, {'Location': `${config.host}${url}`});
+        // res.writeHead(200,{"Content-type":"text/html"});
+        // res.write(`<html><body><script>window.location.href='${config.host}${url}'</script></body></html>`);
+        // res.end();
+    });
 } else {
-    httpServer = http.createServer(app.callback())
+    httpServer = http.createServer(app.callback());
 }
 
 httpServer.listen(port);
