@@ -33,7 +33,8 @@ if (config.useHttps) {
         cert: fs.readFileSync(`${config.ssl.path}${config.ssl.pem}`),
         passphrase: config.ssl.passphrase
     }, function (req, res) {
-        if (!req.headers.host.includes('://www')) {
+        console.log(req.headers.host,req.headers.host.includes('://www.'));
+        if (!req.headers.host.includes('://www.')) {
             const url = req.url.substr(1);
             res.writeHead(301, {'Location': `${config.host}${url}`});
             res.end();
