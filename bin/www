@@ -36,6 +36,7 @@ if (config.useHttps) {
         if (!req.headers.host.includes('://www')) {
             const url = req.url.substr(1);
             res.writeHead(301, {'Location': `${config.host}${url}`});
+            return;
         }
         return app.callback()(req, res);
     });
