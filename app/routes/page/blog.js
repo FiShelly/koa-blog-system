@@ -27,4 +27,8 @@ router.get('/robots.txt', async function (ctx, next) {
         `
 });
 
+router.get('/login', async function (ctx, next) {
+    ctx.response.redirect('/admin');
+});
+
 module.exports = router;
