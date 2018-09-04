@@ -14,10 +14,10 @@ import * as moment from 'moment';
     styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit, AfterViewInit {
-    
+
     keyword: string = '';
     status: string = 'all';
-    
+
     dataTotal: number = 0;
     listOperations: object = {
         width: 120,
@@ -76,7 +76,7 @@ export class PostListComponent implements OnInit, AfterViewInit {
         {
             name: 'status_str',
             text: '状态',
-            width: 80
+            width: 75
         },
     ];
     dataPage: any = {
@@ -93,7 +93,7 @@ export class PostListComponent implements OnInit, AfterViewInit {
         {text: '已发布', value: 'publish'},
         {text: '已删除', value: 'delete'},
     ];
-    
+
     constructor(
         private postService: PostService,
         private eventBusService: EventBusService,
@@ -105,7 +105,7 @@ export class PostListComponent implements OnInit, AfterViewInit {
             this.statusMap[val.value] = `<span class="${val.value}-status   ">${val.text}</span>`;
         });
     }
-    
+
     private commonAlert(title: string, msg: string, cb?: Function) {
         this.modalService.modal.alert({
             input: {
@@ -119,28 +119,28 @@ export class PostListComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     ngOnInit() {
     }
-    
+
     ngAfterViewInit() {
         this.refresh();
     }
-    
+
     changePage($e: number) {
         this.refresh($e - 1);
     }
-    
+
     search() {
         setTimeout(() => {
             this.refresh();
         });
     }
-    
+
     changeStatus() {
         this.refresh();
     }
-    
+
     refresh(page: number = 0) {
         this.loading = true;
         this.postService.getList({
@@ -170,7 +170,7 @@ export class PostListComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     handleDelete(post: Post) {
         this.postService.deletePost(post).subscribe({
             next: (item) => {
@@ -182,7 +182,7 @@ export class PostListComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     handlePublish(post: Post) {
         this.postService.putStatus(post, 'publish').subscribe({
             next: (item) => {
@@ -194,7 +194,7 @@ export class PostListComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     onOperation(e) {
         switch (e.op) {
             case 'edit':
@@ -228,5 +228,5 @@ export class PostListComponent implements OnInit, AfterViewInit {
                 break;
         }
     }
-    
+
 }
