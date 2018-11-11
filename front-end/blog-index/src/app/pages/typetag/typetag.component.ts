@@ -24,6 +24,7 @@ export class TypetagComponent implements OnInit, OnDestroy {
     hide: boolean = true;
     private _scrollHander: EventListenerObject;
     global: any = (<any>window).environment;
+    noMore: boolean = false;
 
     constructor(
         private transferState: TransferState,
@@ -121,6 +122,9 @@ export class TypetagComponent implements OnInit, OnDestroy {
             offset: this.postList.length
         }).subscribe({
             next: (data: any) => {
+                if (!data.list.length) {
+                    this.noMore = true;
+                }
                 this.postList = [...this.postList, ...data.list.map(val => {
                     val.coverSrc = `${this.global.apiURL.materialView}${val.coverImg}`;
                     return val;
@@ -181,6 +185,9 @@ export class TypetagComponent implements OnInit, OnDestroy {
     }
 
     scrollHandler() {
+        if (this.noMore) {
+            return;
+        }
         const a = document.documentElement.clientHeight;
         const b = Math.floor(document.documentElement.scrollTop === 0 ? document.body.scrollTop : document.documentElement.scrollTop);
         const c = document.documentElement.scrollTop === 0 ? document.body.scrollHeight : document.documentElement.scrollHeight;

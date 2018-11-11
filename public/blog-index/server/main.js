@@ -1895,6 +1895,7 @@ var TypetagComponent = /** @class */ (function () {
         this.typetag = new models_1.Typetag();
         this.hide = true;
         this.global = window.environment;
+        this.noMore = false;
         this._scrollHander = this.scrollHandler.bind(this);
     }
     TypetagComponent.prototype.ngOnInit = function () {
@@ -1980,6 +1981,9 @@ var TypetagComponent = /** @class */ (function () {
             offset: this.postList.length
         }).subscribe({
             next: function (data) {
+                if (!data.list.length) {
+                    _this.noMore = true;
+                }
                 _this.postList = _this.postList.concat(data.list.map(function (val) {
                     val.coverSrc = "" + _this.global.apiURL.materialView + val.coverImg;
                     return val;
@@ -2033,6 +2037,9 @@ var TypetagComponent = /** @class */ (function () {
         window.addEventListener('scroll', this._scrollHander, false);
     };
     TypetagComponent.prototype.scrollHandler = function () {
+        if (this.noMore) {
+            return;
+        }
         var a = document.documentElement.clientHeight;
         var b = Math.floor(document.documentElement.scrollTop === 0 ? document.body.scrollTop : document.documentElement.scrollTop);
         var c = document.documentElement.scrollTop === 0 ? document.body.scrollHeight : document.documentElement.scrollHeight;
