@@ -1232,6 +1232,7 @@ var moment = __webpack_require__(/*! moment */ "moment");
 var normal_1 = __webpack_require__(/*! ../../shared-service/utils/normal */ "./src/app/shared-service/utils/normal.ts");
 var event_bus_service_1 = __webpack_require__(/*! ../../shared-service/eventBus/event-bus.service */ "./src/app/shared-service/eventBus/event-bus.service.ts");
 var platform_browser_1 = __webpack_require__(/*! @angular/platform-browser */ "@angular/platform-browser");
+var rxjs_1 = __webpack_require__(/*! rxjs */ "rxjs");
 var ARTICLE_DETAIL_KEY = platform_browser_1.makeStateKey('article-detail');
 var ArticleDetailComponent = /** @class */ (function () {
     function ArticleDetailComponent(transferState, eventBus, storageService, commentService, articleService, router, route) {
@@ -1261,9 +1262,33 @@ var ArticleDetailComponent = /** @class */ (function () {
                 }
             }
             else {
-                _this.getArticle();
-                _this.getComment();
+                // forkJoin(this.getArticle(), this.getComment());
+                // this.getArticle();
+                // this.getComment();
+                _this.getArticleAndComment();
                 _this.setVisitor();
+            }
+        });
+    };
+    ArticleDetailComponent.prototype.getArticleAndComment = function () {
+        var _this = this;
+        var allHttp = rxjs_1.forkJoin(this.articleService.getPost(this.article.id), this.commentService.getList(this.article.id));
+        allHttp.subscribe({
+            next: function (values) {
+                _this.article = values[0];
+                _this.setMetaData(values[0]);
+                _this.article.coverSrc = "" + _this.global.apiURL.materialView + values[0].coverImg;
+                _this.transferState.set(ARTICLE_DETAIL_KEY, _this.article);
+                _this.comments = values[1];
+            },
+            error: function (err) {
+                if (err.name === 404) {
+                    _this.transferState.set(ARTICLE_DETAIL_KEY, _this.article);
+                    _this.router.navigateByUrl('/404');
+                }
+                else {
+                    alert(err.message);
+                }
             }
         });
     };

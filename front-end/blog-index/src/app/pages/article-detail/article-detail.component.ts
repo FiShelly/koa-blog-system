@@ -8,6 +8,8 @@ import * as moment from 'moment';
 import {validator} from '../../shared-service/utils/normal';
 import {EventBusService} from '../../shared-service/eventBus/event-bus.service';
 import {TransferState, makeStateKey} from '@angular/platform-browser';
+import {forkJoin} from 'rxjs';
+
 const ARTICLE_DETAIL_KEY = makeStateKey('article-detail');
 
 @Component({
@@ -48,9 +50,33 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
                     this.updateCount();
                 }
             } else {
-                this.getArticle();
-                this.getComment();
+                // forkJoin(this.getArticle(), this.getComment());
+                // this.getArticle();
+                // this.getComment();
+                this.getArticleAndComment();
                 this.setVisitor();
+            }
+        });
+    }
+
+    getArticleAndComment() {
+        const allHttp = forkJoin(this.articleService.getPost(this.article.id),
+            this.commentService.getList(this.article.id));
+        allHttp.subscribe({
+            next: (values) => {
+                this.article = values[0];
+                this.setMetaData(values[0]);
+                this.article.coverSrc = `${this.global.apiURL.materialView}${values[0].coverImg}`;
+                this.transferState.set(ARTICLE_DETAIL_KEY, this.article);
+                this.comments = values[1];
+            },
+            error: (err) => {
+                if (err.name === 404) {
+                    this.transferState.set(ARTICLE_DETAIL_KEY, this.article);
+                    this.router.navigateByUrl('/404');
+                } else {
+                    alert(err.message);
+                }
             }
         });
     }

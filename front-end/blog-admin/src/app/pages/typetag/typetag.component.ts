@@ -12,17 +12,17 @@ import {util} from '../../shared-services/utils/normal';
     styleUrls: ['./typetag.component.scss']
 })
 export class TypetagComponent implements OnInit, AfterViewInit {
-    
+
     keyword: string = '';
-    
+
     currentObj: any = {
         total: 0,
         type: 'type',
         title: '分类'
     };
-    
+
     listOperations: object = {
-        width: 150,
+        width: 140,
         text: '操作',
         list: [
             {
@@ -59,34 +59,34 @@ export class TypetagComponent implements OnInit, AfterViewInit {
             width: 180
         }
     ];
-    
+
     typeList: Typetag[] = [];
     tagList: Typetag[] = [];
-    
+
     loading: boolean = true;
-    
+
     constructor(
         private materialService: MaterialService,
         private typetagService: TypetagService,
         private modalService: ModalService
     ) {
     }
-    
+
     ngOnInit() {
     }
-    
+
     ngAfterViewInit() {
         this.refresh(this.currentObj.type);
     }
-    
-    
+
+
     changeTypeAndTag() {
         setTimeout(() => {
             this.currentObj.title = this.currentObj.type === 'type' ? '分类' : '标签';
             this.refresh(this.currentObj.type);
         });
     }
-    
+
     private commonAlert(title, msg) {
         this.modalService.modal.alert({
             input: {
@@ -95,7 +95,7 @@ export class TypetagComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     onAdd($e) {
         const title = this.currentObj.title;
         this.modalService.modal.prompt({
@@ -110,7 +110,7 @@ export class TypetagComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     addTypeOrTag(name: string) {
         const typeTag = new Typetag();
         typeTag.name = name;
@@ -125,11 +125,11 @@ export class TypetagComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     search() {
         this.refresh(this.currentObj.type, true);
     }
-    
+
     refresh(type: string, isForce?: boolean) {
         if (this[`${type}List`].length > 0 && !isForce) {
             this.currentObj.total = this[`${type}List`].length;
@@ -153,7 +153,7 @@ export class TypetagComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     handleEdit(typeTag: Typetag, newVal) {
         typeTag.name = newVal;
         this.typetagService.putTypeTag(typeTag).subscribe({
@@ -166,7 +166,7 @@ export class TypetagComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     handleDelete(typeTag: Typetag) {
         this.typetagService.deleteTypeTag(typeTag).subscribe({
             next: (item) => {
@@ -178,7 +178,7 @@ export class TypetagComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     onOperation(e) {
         const title = this.currentObj.title;
         switch (e.op) {
