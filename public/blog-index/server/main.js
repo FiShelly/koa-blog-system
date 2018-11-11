@@ -1234,6 +1234,7 @@ var event_bus_service_1 = __webpack_require__(/*! ../../shared-service/eventBus/
 var platform_browser_1 = __webpack_require__(/*! @angular/platform-browser */ "@angular/platform-browser");
 var rxjs_1 = __webpack_require__(/*! rxjs */ "rxjs");
 var ARTICLE_DETAIL_KEY = platform_browser_1.makeStateKey('article-detail');
+var ARTICLE_COMMENT_LIST_KEY = platform_browser_1.makeStateKey('article-comment-list');
 var ArticleDetailComponent = /** @class */ (function () {
     function ArticleDetailComponent(transferState, eventBus, storageService, commentService, articleService, router, route) {
         this.transferState = transferState;
@@ -1255,14 +1256,15 @@ var ArticleDetailComponent = /** @class */ (function () {
         setTimeout(function () {
             _this.article.id = Number(_this.route.snapshot.paramMap.get('id'));
             var article = _this.transferState.get(ARTICLE_DETAIL_KEY, null);
+            var commentList = _this.transferState.get(ARTICLE_COMMENT_LIST_KEY, []);
             if (article && _this.article.id === article.id) {
                 _this.article = article;
+                _this.comments = commentList;
                 if (_this.storageService.create(true).getItem('is-browser')) {
                     _this.updateCount();
                 }
             }
             else {
-                // forkJoin(this.getArticle(), this.getComment());
                 // this.getArticle();
                 // this.getComment();
                 _this.getArticleAndComment();
@@ -1275,20 +1277,20 @@ var ArticleDetailComponent = /** @class */ (function () {
         var allHttp = rxjs_1.forkJoin(this.articleService.getPost(this.article.id), this.commentService.getList(this.article.id));
         allHttp.subscribe({
             next: function (values) {
-                console.log(values);
                 _this.article = values[0];
                 _this.setMetaData(values[0]);
                 _this.article.coverSrc = "" + _this.global.apiURL.materialView + values[0].coverImg;
                 _this.transferState.set(ARTICLE_DETAIL_KEY, _this.article);
                 _this.comments = values[1].list;
+                _this.transferState.set(ARTICLE_COMMENT_LIST_KEY, _this.comments);
             },
             error: function (err) {
-                console.log(err);
                 if (err.name === 404) {
                     _this.transferState.set(ARTICLE_DETAIL_KEY, _this.article);
                     _this.router.navigateByUrl('/404');
                 }
                 else {
+                    _this.transferState.set(ARTICLE_COMMENT_LIST_KEY, []);
                     alert(err.message);
                 }
             }
@@ -1342,6 +1344,7 @@ var ArticleDetailComponent = /** @class */ (function () {
         this.commentService.getList(this.article.id).subscribe({
             next: function (data) {
                 _this.comments = data.list;
+                _this.transferState.set(ARTICLE_COMMENT_LIST_KEY, _this.comments);
             },
             error: function (err) {
                 alert(err.message);

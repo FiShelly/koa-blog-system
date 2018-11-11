@@ -11,6 +11,7 @@ import {TransferState, makeStateKey} from '@angular/platform-browser';
 import {forkJoin} from 'rxjs';
 
 const ARTICLE_DETAIL_KEY = makeStateKey('article-detail');
+const ARTICLE_COMMENT_LIST_KEY = makeStateKey('article-comment-list');
 
 @Component({
     selector: 'app-article-detail',
@@ -44,13 +45,14 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
             this.article.id = Number(this.route.snapshot.paramMap.get('id'));
             const article = this.transferState.get(ARTICLE_DETAIL_KEY, null as any);
+            const commentList = this.transferState.get(ARTICLE_COMMENT_LIST_KEY,[]);
             if (article && this.article.id === article.id) {
                 this.article = article;
+                this.comments = commentList;
                 if (this.storageService.create(true).getItem('is-browser')) {
                     this.updateCount();
                 }
             } else {
-                // forkJoin(this.getArticle(), this.getComment());
                 // this.getArticle();
                 // this.getComment();
                 this.getArticleAndComment();
@@ -64,19 +66,19 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
             this.commentService.getList(this.article.id));
         allHttp.subscribe({
             next: (values) => {
-                console.log(values);
                 this.article = values[0];
                 this.setMetaData(values[0]);
                 this.article.coverSrc = `${this.global.apiURL.materialView}${values[0].coverImg}`;
                 this.transferState.set(ARTICLE_DETAIL_KEY, this.article);
                 this.comments = values[1].list;
+                this.transferState.set(ARTICLE_COMMENT_LIST_KEY, this.comments);
             },
             error: (err) => {
-                console.log(err);
                 if (err.name === 404) {
                     this.transferState.set(ARTICLE_DETAIL_KEY, this.article);
                     this.router.navigateByUrl('/404');
                 } else {
+                    this.transferState.set(ARTICLE_COMMENT_LIST_KEY, []);
                     alert(err.message);
                 }
             }
@@ -134,6 +136,7 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
         this.commentService.getList(this.article.id).subscribe({
             next: (data) => {
                 this.comments = data.list;
+                this.transferState.set(ARTICLE_COMMENT_LIST_KEY, this.comments);
             },
             error: (err) => {
                 alert(err.message);
