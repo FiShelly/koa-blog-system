@@ -1511,6 +1511,7 @@ var ArticleListComponent = /** @class */ (function () {
         this.postList = [];
         this.hide = true;
         this.global = window.environment;
+        this.noMore = false;
         this._scrollHander = this.scrollHandler.bind(this);
         var meta = new models_1.MyMeta();
         meta.title = '文章列表 - Fishelly Idx.';
@@ -1544,6 +1545,9 @@ var ArticleListComponent = /** @class */ (function () {
             offset: this.postList.length
         }).subscribe({
             next: function (data) {
+                if (!data.list.length) {
+                    _this.noMore = true;
+                }
                 _this.postList = _this.postList.concat(data.list.map(function (val) {
                     val.coverSrc = "" + _this.global.apiURL.materialView + val.coverImg;
                     return val;
@@ -1570,6 +1574,9 @@ var ArticleListComponent = /** @class */ (function () {
         window.addEventListener('scroll', this._scrollHander, false);
     };
     ArticleListComponent.prototype.scrollHandler = function () {
+        if (this.noMore) {
+            return;
+        }
         var a = document.documentElement.clientHeight;
         var b = Math.floor(document.documentElement.scrollTop === 0 ? document.body.scrollTop : document.documentElement.scrollTop);
         var c = document.documentElement.scrollTop === 0 ? document.body.scrollHeight : document.documentElement.scrollHeight;

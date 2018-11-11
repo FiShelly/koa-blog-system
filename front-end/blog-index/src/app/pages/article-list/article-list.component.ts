@@ -20,6 +20,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     postList: Post[] = [];
     hide: boolean = true;
     global: any = (<any>window).environment;
+    noMore: boolean = false;
     private _scrollHander: EventListenerObject;
 
     constructor(
@@ -66,6 +67,9 @@ export class ArticleListComponent implements OnInit, OnDestroy {
             offset: this.postList.length
         }).subscribe({
             next: (data: any) => {
+                if (!data.list.length) {
+                    this.noMore = true;
+                }
                 this.postList = [...this.postList, ...data.list.map(val => {
                     val.coverSrc = `${this.global.apiURL.materialView}${val.coverImg}`;
                     return val;
@@ -95,6 +99,9 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     }
 
     scrollHandler() {
+        if (this.noMore) {
+            return;
+        }
         const a = document.documentElement.clientHeight;
         const b = Math.floor(document.documentElement.scrollTop === 0 ? document.body.scrollTop : document.documentElement.scrollTop);
         const c = document.documentElement.scrollTop === 0 ? document.body.scrollHeight : document.documentElement.scrollHeight;
