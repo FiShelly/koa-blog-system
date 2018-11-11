@@ -69,7 +69,7 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
                 this.setMetaData(values[0]);
                 this.article.coverSrc = `${this.global.apiURL.materialView}${values[0].coverImg}`;
                 this.transferState.set(ARTICLE_DETAIL_KEY, this.article);
-                this.comments = values[1];
+                this.comments = values[1].list;
             },
             error: (err) => {
                 console.log(err);

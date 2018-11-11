@@ -1280,7 +1280,7 @@ var ArticleDetailComponent = /** @class */ (function () {
                 _this.setMetaData(values[0]);
                 _this.article.coverSrc = "" + _this.global.apiURL.materialView + values[0].coverImg;
                 _this.transferState.set(ARTICLE_DETAIL_KEY, _this.article);
-                _this.comments = values[1];
+                _this.comments = values[1].list;
             },
             error: function (err) {
                 console.log(err);
