@@ -45,7 +45,7 @@ export class TypetagComponent implements OnInit, AfterViewInit {
             name: 'kw_text',
             isForceHTML: true,
             text: '名称',
-            width: 440
+            width: 400
         },
         {
             name: 'count',

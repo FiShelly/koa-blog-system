@@ -64,6 +64,7 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
             this.commentService.getList(this.article.id));
         allHttp.subscribe({
             next: (values) => {
+                console.log(values);
                 this.article = values[0];
                 this.setMetaData(values[0]);
                 this.article.coverSrc = `${this.global.apiURL.materialView}${values[0].coverImg}`;
@@ -71,6 +72,7 @@ export class ArticleDetailComponent implements OnInit, AfterViewInit {
                 this.comments = values[1];
             },
             error: (err) => {
+                console.log(err);
                 if (err.name === 404) {
                     this.transferState.set(ARTICLE_DETAIL_KEY, this.article);
                     this.router.navigateByUrl('/404');

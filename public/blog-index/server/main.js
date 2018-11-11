@@ -1275,6 +1275,7 @@ var ArticleDetailComponent = /** @class */ (function () {
         var allHttp = rxjs_1.forkJoin(this.articleService.getPost(this.article.id), this.commentService.getList(this.article.id));
         allHttp.subscribe({
             next: function (values) {
+                console.log(values);
                 _this.article = values[0];
                 _this.setMetaData(values[0]);
                 _this.article.coverSrc = "" + _this.global.apiURL.materialView + values[0].coverImg;
@@ -1282,6 +1283,7 @@ var ArticleDetailComponent = /** @class */ (function () {
                 _this.comments = values[1];
             },
             error: function (err) {
+                console.log(err);
                 if (err.name === 404) {
                     _this.transferState.set(ARTICLE_DETAIL_KEY, _this.article);
                     _this.router.navigateByUrl('/404');
