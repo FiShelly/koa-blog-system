@@ -1,5 +1,7 @@
-const pre_path = 'https://www.fishelly.top';
+// const pre_path = 'https://www.fishelly.top';
 // const pre_path = 'http://localhost:3200';
+const pre_path = '/';
+
 export const environment = {
     production: true,
     loginPageInfo: {
