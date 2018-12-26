@@ -3,6 +3,7 @@ const LOG_PATH = './logs/';
 const serverConfig = {
     port: 3200,
     useHttps: false,
+    oauthAPI: '',
     host: 'http://localhost:3200/',
     ssl: {
         path: '',

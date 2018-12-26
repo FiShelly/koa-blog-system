@@ -6,11 +6,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
 import {SharedModule} from './shared-services/shared.module';
 import {SharedComponentsModule} from './shared-components/shared-components.module';
+import { RedirectComponent } from './redirect/redirect.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        LoginComponent
+        LoginComponent,
+        RedirectComponent
     ],
     imports: [
         BrowserAnimationsModule,

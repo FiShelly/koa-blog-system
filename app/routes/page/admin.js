@@ -1,15 +1,19 @@
-const router = require('koa-router')();
+const adminRouter = require('koa-router')();
+const redirectRouter = require('koa-router')();
 const {readFileSync} = require('fs');
 const {join} = require('path');
 
 let template = null;
 
-router.get('**', async function (ctx, next) {
+async function fuc (ctx, next) {
     if (!template) {
         template = readFileSync(join(ctx._dir_path, 'public/blog-admin', 'index.html')).toString();
     }
     ctx.type = 'html';
     ctx.body = template.replace('${CSRF}', ctx.csrf);
-});
+}
 
-module.exports = router;
+adminRouter.get('**', fuc);
+redirectRouter.get('**', fuc);
+
+module.exports = {admin: adminRouter, redirect: redirectRouter};

@@ -26,6 +26,10 @@ export class UserService extends CommonService {
         });
     }
     
+    public getOAuthUser(): Observable<any> {
+        return this.hc.get<any>(`${this.apiURL.userResFul}info`);
+    }
+    
     public putUser(user: User): Observable<any> {
         return this.hc.put<User>(this.apiURL.userResFul, user);
     }

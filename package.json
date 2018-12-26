@@ -44,6 +44,8 @@
     "md5": "^2.2.1",
     "moment": "^2.22.2",
     "mysql2": "^1.5.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
     "rxjs": "^6.2.2",
     "sequelize": "^4.38.0",
     "socket.io": "^2.1.1",

@@ -1,8 +1,10 @@
 const normalUtil = require('../../utils/normal');
 const packData = normalUtil.packData;
 const validator = normalUtil.validator;
+const redirectData = normalUtil.redirectData;
 const userService = require('../services/userService');
 const md5 = require('md5');
+const rq = require('request-promise');
 
 const login = async function (ctx) {
     const request = ctx.request.body;
@@ -117,6 +119,39 @@ const logout = async function (ctx) {
     return packData(200, 'success', {});
 };
 
+const userInfo = async function (ctx) {
+    return packData(200, 'success', ctx.session.user);
+};
+
+const oauthLogin = async function (ctx) {
+    const request = ctx.request.query;
+    const token = request.access_token;
+    const api = ctx._server_config.oauthAPI;
+    if (!token) {
+        return redirectData(412, '/error', 'input-invalidate-empty');
+    }
+    try {
+        const opt = {
+            uri: api,
+            method: 'POST',
+            body: {
+                access_token: token
+            },
+            json: true
+        };
+        const data = await rq(opt);
+        if (data.code === 200) {
+            ctx.session.user = data.data;
+            return redirectData(302, '/redirect');
+        }
+        return redirectData(data.code, '/error', 'server-error');
+    } catch (e) {
+        console.log(e);
+        return redirectData(500, '/error', 'mysql-error');
+    }
+
+};
+
 module.exports = {
-    login, create, updateUser, findUserByLoginId, updatePwd, logout
+    login, create, updateUser, findUserByLoginId, updatePwd, logout, oauthLogin, userInfo
 };

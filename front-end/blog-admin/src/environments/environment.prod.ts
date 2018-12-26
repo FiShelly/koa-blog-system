@@ -7,17 +7,17 @@ export const environment = {
         sub_title: 'Web Front End'
     },
     apiURL: {
-        login: `${pre_path}/web/user/login`,
-        logout: `${pre_path}/web/user/logout`,
-        userResFul: `${pre_path}/web/user/`,
-        materialResFul: `${pre_path}/web/image/`,
-        materialView: `${pre_path}/web/image/view/`,
-        typetagResFul: `${pre_path}/web/cattag/`,
-        typetagListByType: `${pre_path}/web/cattag/list/`,
-        typetagIncrement: `${pre_path}/web/cattag/increment/`,
-        articleResFul: `${pre_path}/web/article/`,
-        commentResFul: `${pre_path}/web/comment/`,
-        cgiResFul: `${pre_path}/web/cgi/`
+        login: `/web/user/login`,
+        logout: `/web/user/logout`,
+        userResFul: `/web/user/`,
+        materialResFul: `/web/image/`,
+        materialView: `/web/image/view/`,
+        typetagResFul: `/web/cattag/`,
+        typetagListByType: `/web/cattag/list/`,
+        typetagIncrement: `/web/cattag/increment/`,
+        articleResFul: `/web/article/`,
+        commentResFul: `/web/comment/`,
+        cgiResFul: `/web/cgi/`
     },
     webURL: {
         'index': pre_path,

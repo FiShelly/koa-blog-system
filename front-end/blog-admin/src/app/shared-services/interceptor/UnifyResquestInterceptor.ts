@@ -18,7 +18,7 @@ export class UnifyResquestInterceptor implements HttpInterceptor {
     }
     
     static isIngore(url: string) {
-        return url.includes('/web/user/login');
+        return url.includes('/web/user/login') || url.includes('/web/user/info');
     }
     
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

@@ -10,11 +10,18 @@ const errorMap = {
     'no-logined': '未登录',
     'too-frequent': '访问太频繁',
     'must-be-image': '必须是图片',
-    'must-be-local-site': '必须是本站点访问'
+    'must-be-local-site': '必须是本站点访问',
+    'server-error': '服务器出错，请稍后再试'
 };
 
 const deepClone = function (data) {
     return JSON.parse(JSON.stringify(data));
+};
+
+const redirectData = function (status = 302, url, msg) {
+    return {
+        status, url, msg: errorMap[msg]
+    };
 };
 
 const _changeData = function (data) {
@@ -95,4 +102,4 @@ const validator = {
     }
 };
 
-module.exports = {packData, deepClone, validator};
+module.exports = {packData, deepClone, validator, redirectData};
