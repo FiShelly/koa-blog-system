@@ -126,7 +126,7 @@ const userInfo = async function (ctx) {
 const oauthLogin = async function (ctx) {
     const request = ctx.request.query;
     const token = request.access_token;
-    const api = ctx._server_config.oauthAPI;
+    const api = `${ctx._server_config.oauthAPI}?access_token=${token}`;
     if (!token) {
         return redirectData(412, '/error', 'input-invalidate-empty');
     }
@@ -134,9 +134,6 @@ const oauthLogin = async function (ctx) {
         const opt = {
             uri: api,
             method: 'GET',
-            body: {
-                access_token: token
-            },
             json: true
         };
         const data = await rq(opt);
