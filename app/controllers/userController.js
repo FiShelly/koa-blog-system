@@ -133,7 +133,7 @@ const oauthLogin = async function (ctx) {
     try {
         const opt = {
             uri: api,
-            method: 'POST',
+            method: 'GET',
             body: {
                 access_token: token
             },
