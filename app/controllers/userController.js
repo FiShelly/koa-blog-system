@@ -140,13 +140,14 @@ const oauthLogin = async function (ctx) {
             json: true
         };
         const data = await rq(opt);
+        ctx.logger.getLogger('info').info(data);
         if (data.code === 200) {
             ctx.session.user = data.data;
             return redirectData(302, '/redirect');
         }
         return redirectData(data.code, '/error', 'server-error');
     } catch (e) {
-        console.log(e);
+        ctx.logger.getLogger('error').error(e);
         return redirectData(500, '/error', 'mysql-error');
     }
 
