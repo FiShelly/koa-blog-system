@@ -140,7 +140,7 @@ const oauthLogin = async function (ctx) {
             json: true
         };
         const data = await rq(opt);
-        ctx.logger.getLogger('info').info(data);
+        ctx.logger.getLogger('default').info(data);
         if (data.code === 200) {
             ctx.session.user = data.data;
             return redirectData(302, '/redirect');
