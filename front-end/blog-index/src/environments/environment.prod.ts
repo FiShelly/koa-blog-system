@@ -1,4 +1,4 @@
-const pre_path = 'https://www.fishelly.top';
+const pre_path = '';
 // const pre_path = 'http://localhost:3200';
 
 export const environment = {
