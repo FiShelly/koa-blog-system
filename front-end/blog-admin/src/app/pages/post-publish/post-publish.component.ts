@@ -19,7 +19,7 @@ import {Post, Typetag} from '../../models';
 export class PostPublishComponent implements OnInit, AfterViewInit {
     @ViewChild(MarkDownComponent)
     private markdown: MarkDownComponent;
-    
+
     global: any = (<any>window).environment;
     typeList: Typetag[] = [];
     tagList: Typetag[] = [];
@@ -27,7 +27,7 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
     post: Post;
     postId: string = '';
     org_post: Post;
-    
+
     constructor(
         private typetagService: TypetagService,
         private postService: PostService,
@@ -39,11 +39,11 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
     ) {
         this.post = new Post();
     }
-    
+
     ngOnInit() {
         this.postId = this.route.snapshot.paramMap.get('id');
     }
-    
+
     ngAfterViewInit() {
         this.getTypetag('type');
         this.getTypetag('tag');
@@ -51,7 +51,7 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
             this.getPost();
         }
     }
-    
+
     private commonAlert(title: string, msg: string, cb?: Function) {
         this.modalService.modal.alert({
             input: {
@@ -65,7 +65,7 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     getPost() {
         this.loading = true;
         this.postService.getPost(Number(this.postId)).subscribe({
@@ -84,7 +84,7 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     getTypetag(type: string) {
         this.loading = true;
         this.typetagService.getList(type, '').subscribe({
@@ -99,7 +99,7 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     onSelectImage($event) {
         $event.stopPropagation();
         this.modalService.modal.imageSelect({
@@ -112,18 +112,18 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     getContent(status) {
         const content = this.markdown.getContent();
         this.post.status = status;
         this.post.articleMd = content.md;
         this.post.articleHtml = content.html;
     }
-    
+
     onGotoList() {
         this.router.navigateByUrl('/admin/post/list');
     }
-    
+
     checkData(): boolean {
         const post = this.post;
         let errorText = '';
@@ -144,7 +144,7 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
         }
         return false;
     }
-    
+
     compare() {
         const cur = this.post;
         const org = this.org_post;
@@ -163,7 +163,7 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
         }
         const org_filter = org.tag.filter(val => !cur.tag.includes(val));
         const cur_filter = cur.tag.filter(val => !org.tag.includes(val));
-        
+
         org_filter.forEach(val => {
             diff.push({
                 id: val,
@@ -171,7 +171,7 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
                 op: 'subtract'
             });
         });
-    
+
         cur_filter.forEach(val => {
             diff.push({
                 id: val,
@@ -179,10 +179,10 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
                 op: 'increment'
             });
         });
-        
+
         return diff;
     }
-    
+
     modifyPost(status: string) {
         const diff = this.compare();
         this.postService.putPost(this.post, diff).subscribe({
@@ -201,7 +201,7 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
             }
         });
     }
-    
+
     onPublish(status: string) {
         this.getContent(status);
         if (this.checkData()) {
@@ -220,7 +220,7 @@ export class PostPublishComponent implements OnInit, AfterViewInit {
                         this.onGotoList();
                     }
                 );
-                
+
             },
             error: (e) => {
                 this.commonAlert('警告', e.message);

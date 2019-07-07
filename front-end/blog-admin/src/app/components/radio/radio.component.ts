@@ -26,30 +26,34 @@ import {validator} from '../../shared-services/utils/normal';
 })
 export class RadioComponent implements OnInit, OnChanges, ControlValueAccessor, AfterViewInit {
     @ViewChild('content') content: any;
-    
+
     @Input() disabled: Boolean = false;
     @Input() label: String;
     @Input() model: any;
     @Input() name: String;
     @Output() modelChange: EventEmitter<any> = new EventEmitter<any>();
-    
+
     showLabel: Boolean = false;
     private isHasGroup = !!this.group;
-    
+
     constructor(
         @Optional() private group: RadioGroupComponent
     ) {
     }
-    
-    
+
+
     ngOnInit() {
         if (this.group) {
             this.group.disabledChange.subscribe(($e) => {
                 this.disabled = $e.currentValue;
             });
+            this.group.inputChange.subscribe(($e) => {
+                this.model = this.group.model;
+            });
+
         }
     }
-    
+
     ngAfterViewInit(): void {
         setTimeout(() => {
             const contentText = this.content && this.content.nativeElement.innerText;
@@ -69,12 +73,12 @@ export class RadioComponent implements OnInit, OnChanges, ControlValueAccessor, 
                 this.group.subscriber.push(update);
             }
         });
-        
+
     }
-    
+
     ngOnChanges(): void {
     }
-    
+
     handleInputChange(val: string): void {
         if (this.isHasGroup) {
             this.group.handleChange(val);
@@ -83,23 +87,23 @@ export class RadioComponent implements OnInit, OnChanges, ControlValueAccessor, 
         this.modelChange.emit(val);
         this.controlChange(val);
     }
-    
+
     writeValue(value: any): void {
         this.model = value;
     }
-    
+
     registerOnChange(fn: Function): void {
         this.controlChange = fn;
     }
-    
+
     registerOnTouched(fn: Function): void {
         this.controlTouch = fn;
     }
-    
+
     private controlChange: Function = () => {
     };
-    
+
     private controlTouch: Function = () => {
     };
-    
+
 }

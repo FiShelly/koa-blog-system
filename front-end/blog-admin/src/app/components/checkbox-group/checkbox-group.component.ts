@@ -24,20 +24,21 @@ import {CheckboxComponent} from '../checkbox/checkbox.component';
     }],
 })
 export class CheckboxGroupComponent implements OnInit, ControlValueAccessor, OnChanges {
-    
+
     @Input() disabled: Boolean = false;
     @Input() model: any[] = [];
     @Output() modelChange: EventEmitter<any> = new EventEmitter<any>();
-    
+
     disabledChange: EventEmitter<any> = new EventEmitter<any>();
+    inputChange: EventEmitter<any> = new EventEmitter<any>();
     // @ViewChildren(CheckboxComponent) checkboxChildren: QueryList<CheckboxComponent>;
     // @ContentChildren(CheckboxComponent) checkboxChildren: QueryList<CheckboxComponent>;
     // @ViewChildren(forwardRef(() => CheckboxComponent))
     // private checkboxChildren: CheckboxComponent;
-    
+
     constructor() {
     }
-    
+
     handleChange($event) {
         if ($event.checked) {
             this.model.push($event.label);
@@ -48,32 +49,35 @@ export class CheckboxGroupComponent implements OnInit, ControlValueAccessor, OnC
         this.modelChange.emit(this.model);
         this.controlChange(this.model);
     }
-    
+
     ngOnInit() {
     }
-    
+
     ngOnChanges(changes): void {
         if (changes.hasOwnProperty('disabled')) {
             this.disabledChange.emit(changes['disabled']);
         }
     }
-    
+
     writeValue(value: any): void {
         this.model = value;
+        if (value) {
+            this.inputChange.emit(value);
+        }
     }
-    
+
     registerOnChange(fn: Function): void {
         this.controlChange = fn;
     }
-    
+
     registerOnTouched(fn: Function): void {
         this.controlTouch = fn;
     }
-    
+
     private controlChange: Function = () => {
     };
-    
+
     private controlTouch: Function = () => {
     };
-    
+
 }

@@ -28,7 +28,7 @@ import {validator} from '../../shared-services/utils/normal';
 })
 export class CheckboxComponent implements OnInit, OnChanges, ControlValueAccessor, AfterViewInit {
     @ViewChild('content') content: any;
-    
+
     @Input() disabled: Boolean = false;
     @Input() label: String;
     @Input() model: any;
@@ -38,11 +38,11 @@ export class CheckboxComponent implements OnInit, OnChanges, ControlValueAccesso
     @Output() modelChange: EventEmitter<any> = new EventEmitter<any>();
     showLabel: Boolean = false;
     private isHasGroup = false;
-    
+
     constructor(@Optional() private group: CheckboxGroupComponent) {
-    
+
     }
-    
+
     isChecked() {
         if (this.isHasGroup) {
             this.model = this.group.model.includes(this.label);
@@ -53,15 +53,18 @@ export class CheckboxComponent implements OnInit, OnChanges, ControlValueAccesso
         }
         return this.label === this.model;
     }
-    
+
     ngOnInit() {
         if (this.group) {
             this.group.disabledChange.subscribe(($e) => {
                 this.disabled = $e.currentValue;
             });
+            this.group.inputChange.subscribe(($e) => {
+                this.checked = this.isChecked();
+            })
         }
     }
-    
+
     ngAfterViewInit(): void {
         setTimeout(() => {
             const contentText = this.content && this.content.nativeElement.innerText;
@@ -76,10 +79,10 @@ export class CheckboxComponent implements OnInit, OnChanges, ControlValueAccesso
             this.checked = this.isChecked();
         });
     }
-    
+
     ngOnChanges(): void {
     }
-    
+
     handleInputChange(val: string): void {
         if (this.isHasGroup) {
             this.group.handleChange({
@@ -92,23 +95,23 @@ export class CheckboxComponent implements OnInit, OnChanges, ControlValueAccesso
         this.modelChange.emit(val);
         this.controlChange(val);
     }
-    
+
     writeValue(value: any): void {
         this.model = value;
     }
-    
+
     registerOnChange(fn: Function): void {
         this.controlChange = fn;
     }
-    
+
     registerOnTouched(fn: Function): void {
         this.controlTouch = fn;
     }
-    
+
     private controlChange: Function = () => {
     };
-    
+
     private controlTouch: Function = () => {
     };
-    
+
 }

@@ -43,7 +43,7 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
 export class SelectComponent implements OnInit, OnChanges, OnDestroy, ControlValueAccessor, AfterViewInit {
     @ViewChild('frame') frame: any;
     @ViewChild('select') select: any;
-    
+
     @Input() disabled: Boolean = false;
     @Input() model: any = '';
     text: any = '';
@@ -51,17 +51,18 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy, ControlVal
     @Output() modelChange: EventEmitter<any> = new EventEmitter<any>();
     isActived: boolean = false;
     disabledChange: EventEmitter<any> = new EventEmitter<any>();
+    inputChange: EventEmitter<any> = new EventEmitter<any>();
     subscriber: Function[] = [];
     globalListener: Function;
-    
+
     private $body: Element = null;
-    
+
     constructor(
         private $renderer2: Renderer2
     ) {
         this.$body = document.querySelector('body');
     }
-    
+
     private computePosition() {
         const timer = setTimeout(() => {
             const elFrame = this.frame.nativeElement;
@@ -74,30 +75,30 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy, ControlVal
             clearTimeout(timer);
         });
     }
-    
+
     ngOnInit() {
         this.globalListener = this.$renderer2.listen('document', 'click', () => {
             this.isActived && this.toggleDrop();
         });
         // this.$renderer2.setStyle()
     }
-    
+
     ngOnChanges(changes): void {
         if (changes.hasOwnProperty('disabled')) {
             this.disabledChange.emit(changes['disabled']);
         }
     }
-    
+
     ngOnDestroy() {
         this.globalListener && this.globalListener();
         this.$renderer2.removeChild(this.$body, this.frame.nativeElement);
     }
-    
+
     ngAfterViewInit(): void {
         this.subscriber.forEach(sub => sub());
         this.computePosition();
     }
-    
+
     toggleDrop($e?: Event) {
         if (this.disabled) {
             return;
@@ -106,11 +107,11 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy, ControlVal
         this.computePosition();
         this.isActived = !this.isActived;
     }
-    
+
     updateText(label: string) {
         this.text = label;
     }
-    
+
     handleInputChange(val: any): void {
         this.model = val;
         this.controlChange(val);
@@ -118,23 +119,26 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy, ControlVal
         this.toggleDrop();
         this.modelChange.emit(val);
     }
-    
+
     writeValue(value: any): void {
         this.model = value;
+        if (value) {
+            this.inputChange.emit(value);
+        }
     }
-    
+
     registerOnChange(fn: Function): void {
         this.controlChange = fn;
     }
-    
+
     registerOnTouched(fn: Function): void {
         this.controlTouch = fn;
     }
-    
+
     private controlChange: Function = () => {
     };
-    
+
     private controlTouch: Function = () => {
     };
-    
+
 }
