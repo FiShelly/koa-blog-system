@@ -40,8 +40,7 @@ const findOneById = async function (ctx) {
         if (article.status !== 'publish') {
             return packData(404, 'error', 'data-not-find');
         }
-        article.tag = article.tag.split(',').filter(val => val).map(val => Number(val));
-        article.type = Number(article.type);
+        article.tag = article.tag.split(',').filter(val => val);
         if (ctx.request.url.includes('/api/')) {
             const allPromise = [];
             allPromise.push(categoryTagService.findOne({id: article.type}));

@@ -1,0 +1,10 @@
+{
+    "/web": {
+        "target": "https://www.fishelly.top",
+        "secure": false,
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/": ""
+        }
+    }
+}
