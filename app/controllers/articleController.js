@@ -50,7 +50,6 @@ const findOneById = async function (ctx) {
             const typetags = await Promise.all(allPromise);
             const tags = [];
             typetags.forEach((val, idx) => {
-                val = Number(val);
                 if (idx === 0) {
                     article.type = val;
                 } else {
