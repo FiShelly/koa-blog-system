@@ -45,7 +45,7 @@ const remove = async function (ctx) {
         const deleteCom = await commentService.delete({id: params.id});
 
         // const comment = results[0];
-        const article = articleService.findOne({id: comment.article});
+        const article = await articleService.findOne({id: comment.article});
         articleService.update({commentCount: article.commentCount - 1}, {id: request.article});
 
         return packData(200, 'success', deleteCom);
