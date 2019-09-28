@@ -46,7 +46,7 @@ const remove = async function (ctx) {
 
         // const comment = results[0];
         const article = await articleService.findOne({id: comment.article});
-        articleService.update({commentCount: article.commentCount - 1}, {id: request.article});
+        await articleService.update({commentCount: article.commentCount - 1}, {id: request.article});
 
         return packData(200, 'success', deleteCom);
     } catch (e) {
