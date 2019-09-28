@@ -41,14 +41,14 @@ const remove = async function (ctx) {
     const request = ctx.request.body;
     const params = ctx.params;
     try {
-        const results = await Promise.all([
-            commentService.delete({id: params.id}), articleService.findOne({id: request.article})
-        ]);
-        const comment = results[0];
-        const article = results[1];
+        const comment = await commentService.findOne({id: params.id});
+        const deleteCom = await commentService.delete({id: params.id});
+
+        // const comment = results[0];
+        const article = articleService.findOne({id: comment.article});
         articleService.update({commentCount: article.commentCount - 1}, {id: request.article});
 
-        return packData(200, 'success', comment);
+        return packData(200, 'success', deleteCom);
     } catch (e) {
         ctx.logger.getLogger('error').error(e);
         return packData(500, 'error', 'mysql-error');
