@@ -56,7 +56,7 @@ export class AboutComponent implements OnInit {
                 this.transferState.set(ABOUT_KEY, author);
             },
             error: (error) => {
-                alert(error.message);
+               alert && alert(error.message);
             }
         });
 

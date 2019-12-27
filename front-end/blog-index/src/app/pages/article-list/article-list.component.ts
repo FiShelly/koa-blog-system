@@ -78,7 +78,8 @@ export class ArticleListComponent implements OnInit, OnDestroy {
                 this.storageService.create(false).setItem(ARTICLE_LIST_KEY, this.postList);
             },
             error: (err) => {
-                alert(err.message);
+                console.log(err.message);
+                alert && alert(err.message);
             },
             complete: () => {
                 this.hide = false;

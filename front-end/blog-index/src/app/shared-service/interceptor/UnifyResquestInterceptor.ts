@@ -25,7 +25,7 @@ export class UnifyResquestInterceptor implements HttpInterceptor {
         if (!EXCLUDED_METHOD.includes(req.method.toUpperCase())) {
             const header = {
                 headers: new HttpHeaders({
-                    'x-csrf-token': this.ctx.csrf || (<any>window)._CSRF
+                    'x-csrf-token': (this.ctx && this.ctx.csrf) || (<any>window)._CSRF
                 })
             };
             req = req.clone(header);

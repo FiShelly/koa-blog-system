@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable, Optional} from '@angular/core';
 import {CommonService} from './common.service';
 import {Observable} from 'rxjs';
 import {Comment, Post} from '../../models';
