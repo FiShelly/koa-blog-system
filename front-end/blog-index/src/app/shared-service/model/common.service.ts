@@ -12,7 +12,7 @@ export class CommonService {
         protected hc: HttpClient,
         @Optional() @Inject('koaCtx') private ctx: any
     ) {
-        const apiUrl = (<any>window).environment.apiURL;
+        const apiUrl = JSON.parse(JSON.stringify((<any>window).environment.apiURL));
         if (this.ctx) {
             const url = this.ctx.request.origin;
             Object.keys(apiUrl).forEach(key => {

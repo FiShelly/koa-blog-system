@@ -2173,7 +2173,7 @@ var CommonService = /** @class */ (function () {
         this.hc = hc;
         this.ctx = ctx;
         this.apiURL = {};
-        var apiUrl = window.environment.apiURL;
+        var apiUrl = JSON.parse(JSON.stringify(window.environment.apiURL));
         if (this.ctx) {
             var url_1 = this.ctx.request.origin;
             Object.keys(apiUrl).forEach(function (key) {
