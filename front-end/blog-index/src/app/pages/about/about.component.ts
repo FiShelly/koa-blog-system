@@ -40,7 +40,7 @@ export class AboutComponent implements OnInit {
         const keyword = Object.keys(data).map(val => data[val]).join(',');
         const meta = new MyMeta();
         meta.title = '关于我 - Fishelly Idx.';
-        meta.keyword = `Fishelly个人博客的关于我页面,前端技术分享、学习经验,前端技术博客,全栈开发,Front end developer,Fullstack,JavaScript,ECMAScript,HTML(5),CSS(3)`;
+        meta.keyword = `Fishelly个人网站的关于我页面,前端技术分享、学习经验,前端技术网站,全栈开发,Front end developer,Fullstack,JavaScript,ECMAScript,HTML(5),CSS(3)`;
         meta.description = `Hello,I am Fishlly.I like front-end technology.And I hope one of my article can help you. ---${keyword}`;
         this.eventBus.emit('update-meta', meta);
     }

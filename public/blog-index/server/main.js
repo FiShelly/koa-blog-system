@@ -428,7 +428,7 @@ function View_MyHeaderComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0,
     } return ad; }, null, null)), i1.ɵdid(6, 671744, null, 0, i2.RouterLinkWithHref, [i2.Router, i2.ActivatedRoute, i3.LocationStrategy], { routerLink: [0, "routerLink"] }, null), (_l()(), i1.ɵted(-1, null, ["\u9996\u9875"])), (_l()(), i1.ɵeld(8, 0, null, null, 3, "a", [["routerLink", "/article"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) { var ad = true; if (("click" === en)) {
         var pd_0 = (i1.ɵnov(_v, 9).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false);
         ad = (pd_0 && ad);
-    } return ad; }, null, null)), i1.ɵdid(9, 671744, null, 0, i2.RouterLinkWithHref, [i2.Router, i2.ActivatedRoute, i3.LocationStrategy], { routerLink: [0, "routerLink"] }, null), (_l()(), i1.ɵeld(10, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["\u535A\u5BA2"])), (_l()(), i1.ɵeld(12, 0, null, null, 2, "a", [["routerLink", "/typetag"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) { var ad = true; if (("click" === en)) {
+    } return ad; }, null, null)), i1.ɵdid(9, 671744, null, 0, i2.RouterLinkWithHref, [i2.Router, i2.ActivatedRoute, i3.LocationStrategy], { routerLink: [0, "routerLink"] }, null), (_l()(), i1.ɵeld(10, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["\u6587\u7AE0"])), (_l()(), i1.ɵeld(12, 0, null, null, 2, "a", [["routerLink", "/typetag"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) { var ad = true; if (("click" === en)) {
         var pd_0 = (i1.ɵnov(_v, 13).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false);
         ad = (pd_0 && ad);
     } return ad; }, null, null)), i1.ɵdid(13, 671744, null, 0, i2.RouterLinkWithHref, [i2.Router, i2.ActivatedRoute, i3.LocationStrategy], { routerLink: [0, "routerLink"] }, null), (_l()(), i1.ɵted(-1, null, ["\u5206\u7C7B\u4E0E\u6807\u7B7E"])), (_l()(), i1.ɵeld(15, 0, null, null, 2, "a", [["routerLink", "/about"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) { var ad = true; if (("click" === en)) {
@@ -440,7 +440,7 @@ function View_MyHeaderComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0,
     } return ad; }, null, null)), i1.ɵdid(22, 671744, null, 0, i2.RouterLinkWithHref, [i2.Router, i2.ActivatedRoute, i3.LocationStrategy], { routerLink: [0, "routerLink"] }, null), (_l()(), i1.ɵted(-1, null, ["\u9996\u9875"])), (_l()(), i1.ɵeld(24, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), i1.ɵeld(25, 0, null, null, 2, "a", [["routerLink", "/article"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) { var ad = true; if (("click" === en)) {
         var pd_0 = (i1.ɵnov(_v, 26).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false);
         ad = (pd_0 && ad);
-    } return ad; }, null, null)), i1.ɵdid(26, 671744, null, 0, i2.RouterLinkWithHref, [i2.Router, i2.ActivatedRoute, i3.LocationStrategy], { routerLink: [0, "routerLink"] }, null), (_l()(), i1.ɵted(-1, null, ["\u535A\u5BA2"])), (_l()(), i1.ɵeld(28, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), i1.ɵeld(29, 0, null, null, 2, "a", [["routerLink", "/typetag"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) { var ad = true; if (("click" === en)) {
+    } return ad; }, null, null)), i1.ɵdid(26, 671744, null, 0, i2.RouterLinkWithHref, [i2.Router, i2.ActivatedRoute, i3.LocationStrategy], { routerLink: [0, "routerLink"] }, null), (_l()(), i1.ɵted(-1, null, ["\u6587\u7AE0"])), (_l()(), i1.ɵeld(28, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), i1.ɵeld(29, 0, null, null, 2, "a", [["routerLink", "/typetag"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) { var ad = true; if (("click" === en)) {
         var pd_0 = (i1.ɵnov(_v, 30).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false);
         ad = (pd_0 && ad);
     } return ad; }, null, null)), i1.ɵdid(30, 671744, null, 0, i2.RouterLinkWithHref, [i2.Router, i2.ActivatedRoute, i3.LocationStrategy], { routerLink: [0, "routerLink"] }, null), (_l()(), i1.ɵted(-1, null, ["\u5206\u7C7B\u4E0E\u6807\u7B7E"])), (_l()(), i1.ɵeld(32, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), i1.ɵeld(33, 0, null, null, 2, "a", [["routerLink", "/about"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) { var ad = true; if (("click" === en)) {
@@ -1033,7 +1033,7 @@ var AboutComponent = /** @class */ (function () {
         var keyword = Object.keys(data).map(function (val) { return data[val]; }).join(',');
         var meta = new models_1.MyMeta();
         meta.title = '关于我 - Fishelly Idx.';
-        meta.keyword = "Fishelly\u4E2A\u4EBA\u535A\u5BA2\u7684\u5173\u4E8E\u6211\u9875\u9762,\u524D\u7AEF\u6280\u672F\u5206\u4EAB\u3001\u5B66\u4E60\u7ECF\u9A8C,\u524D\u7AEF\u6280\u672F\u535A\u5BA2,\u5168\u6808\u5F00\u53D1,Front end developer,Fullstack,JavaScript,ECMAScript,HTML(5),CSS(3)";
+        meta.keyword = "Fishelly\u4E2A\u4EBA\u7F51\u7AD9\u7684\u5173\u4E8E\u6211\u9875\u9762,\u524D\u7AEF\u6280\u672F\u5206\u4EAB\u3001\u5B66\u4E60\u7ECF\u9A8C,\u524D\u7AEF\u6280\u672F\u7F51\u7AD9,\u5168\u6808\u5F00\u53D1,Front end developer,Fullstack,JavaScript,ECMAScript,HTML(5),CSS(3)";
         meta.description = "Hello,I am Fishlly.I like front-end technology.And I hope one of my article can help you. ---" + keyword;
         this.eventBus.emit('update-meta', meta);
     };
@@ -1079,14 +1079,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var i0 = __webpack_require__(/*! ./article-detail.component.scss.shim.ngstyle */ "./src/app/pages/article-detail/article-detail.component.scss.shim.ngstyle.js");
 var i1 = __webpack_require__(/*! @angular/core */ "@angular/core");
 var i2 = __webpack_require__(/*! @angular/common */ "@angular/common");
-var i3 = __webpack_require__(/*! @angular/forms */ "@angular/forms");
-var i4 = __webpack_require__(/*! ./article-detail.component */ "./src/app/pages/article-detail/article-detail.component.ts");
-var i5 = __webpack_require__(/*! @angular/platform-browser */ "@angular/platform-browser");
-var i6 = __webpack_require__(/*! ../../shared-service/eventBus/event-bus.service */ "./src/app/shared-service/eventBus/event-bus.service.ts");
-var i7 = __webpack_require__(/*! ../../shared-service/utils/storage.service */ "./src/app/shared-service/utils/storage.service.ts");
-var i8 = __webpack_require__(/*! ../../shared-service/model/comment.service */ "./src/app/shared-service/model/comment.service.ts");
-var i9 = __webpack_require__(/*! ../../shared-service/model/post.service */ "./src/app/shared-service/model/post.service.ts");
-var i10 = __webpack_require__(/*! @angular/router */ "@angular/router");
+var i3 = __webpack_require__(/*! ./article-detail.component */ "./src/app/pages/article-detail/article-detail.component.ts");
+var i4 = __webpack_require__(/*! @angular/platform-browser */ "@angular/platform-browser");
+var i5 = __webpack_require__(/*! ../../shared-service/eventBus/event-bus.service */ "./src/app/shared-service/eventBus/event-bus.service.ts");
+var i6 = __webpack_require__(/*! ../../shared-service/utils/storage.service */ "./src/app/shared-service/utils/storage.service.ts");
+var i7 = __webpack_require__(/*! ../../shared-service/model/comment.service */ "./src/app/shared-service/model/comment.service.ts");
+var i8 = __webpack_require__(/*! ../../shared-service/model/post.service */ "./src/app/shared-service/model/post.service.ts");
+var i9 = __webpack_require__(/*! @angular/router */ "@angular/router");
 var styles_ArticleDetailComponent = [i0.styles];
 var RenderType_ArticleDetailComponent = i1.ɵcrt({ encapsulation: 0, styles: styles_ArticleDetailComponent, data: {} });
 exports.RenderType_ArticleDetailComponent = RenderType_ArticleDetailComponent;
@@ -1094,97 +1093,14 @@ function View_ArticleDetailComponent_1(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵe
         var pd_0 = (_co.gotoTypetag(_v.context.$implicit) !== false);
         ad = (pd_0 && ad);
     } return ad; }, null, null)), (_l()(), i1.ɵted(1, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit.name; _ck(_v, 1, 0, currVal_0); }); }
-function View_ArticleDetailComponent_3(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 4, "div", [["class", "msg-reference"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), i1.ɵted(2, null, ["\u5F15\u7528", "\u7684\u7559\u8A00\uFF1A"])), (_l()(), i1.ɵeld(3, 0, null, null, 1, "p", [["class", "leave-msg-content"]], null, null, null, null, null)), (_l()(), i1.ɵted(4, null, [" ", " "]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.quotes.name; _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.parent.context.$implicit.quotes.content; _ck(_v, 4, 0, currVal_1); }); }
-function View_ArticleDetailComponent_2(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 22, "div", [["class", "about-msg leave-msg-item"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), i1.ɵeld(2, 0, null, null, 3, "a", [], [[8, "href", 4]], null, null, null, null)), (_l()(), i1.ɵeld(3, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i1.ɵted(4, null, ["", ""])), (_l()(), i1.ɵted(-1, null, ["\u8BF4\uFF1A"])), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_ArticleDetailComponent_3)), i1.ɵdid(7, 16384, null, 0, i2.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(8, 0, null, null, 1, "p", [["class", "leave-msg-content"]], null, null, null, null, null)), (_l()(), i1.ɵted(9, null, [" ", " "])), (_l()(), i1.ɵeld(10, 0, null, null, 12, "p", [["class", "leave-msg-other"]], null, null, null, null, null)), (_l()(), i1.ɵeld(11, 0, null, null, 2, "span", [], null, null, null, null, null)), (_l()(), i1.ɵted(12, null, ["", ""])), i1.ɵppd(13, 2), (_l()(), i1.ɵeld(14, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["\u00A0|\u00A0"])), (_l()(), i1.ɵeld(16, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i1.ɵted(17, null, ["", ""])), (_l()(), i1.ɵeld(18, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["\u00A0|\u00A0"])), (_l()(), i1.ɵeld(20, 0, null, null, 2, "span", [], null, null, null, null, null)), (_l()(), i1.ɵeld(21, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
-        var pd_0 = (_co.quote(_v.context.$implicit) !== false);
-        ad = (pd_0 && ad);
-    } return ad; }, null, null)), (_l()(), i1.ɵted(-1, null, ["\u5F15\u7528"]))], function (_ck, _v) { var currVal_2 = _v.context.$implicit.quotes; _ck(_v, 7, 0, currVal_2); }, function (_ck, _v) { var currVal_0 = i1.ɵinlineInterpolate(1, "", _v.context.$implicit.visitor.userIdx, ""); _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.context.$implicit.visitor.name; _ck(_v, 4, 0, currVal_1); var currVal_3 = _v.context.$implicit.content; _ck(_v, 9, 0, currVal_3); var currVal_4 = i1.ɵunv(_v, 12, 0, _ck(_v, 13, 0, i1.ɵnov(_v.parent, 0), (_v.context.$implicit.date * 1000), "yyyy-MM-dd HH:mm")); _ck(_v, 12, 0, currVal_4); var currVal_5 = (_v.context.index + 1); _ck(_v, 17, 0, currVal_5); }); }
-function View_ArticleDetailComponent_0(_l) { return i1.ɵvid(0, [i1.ɵpid(0, i2.DatePipe, [i1.LOCALE_ID]), (_l()(), i1.ɵeld(1, 0, null, null, 82, "div", [["class", "article-container"]], null, null, null, null, null)), (_l()(), i1.ɵeld(2, 0, null, null, 14, "div", [["class", "article-header"]], null, null, null, null, null)), (_l()(), i1.ɵeld(3, 0, null, null, 0, "img", [["alt", ""]], [[8, "src", 4]], null, null, null, null)), (_l()(), i1.ɵeld(4, 0, null, null, 12, "div", [["class", "article-title"]], null, null, null, null, null)), (_l()(), i1.ɵeld(5, 0, null, null, 1, "h1", [["class", "title"]], null, null, null, null, null)), (_l()(), i1.ɵted(6, null, ["", ""])), (_l()(), i1.ɵeld(7, 0, null, null, 7, "p", [], null, null, null, null, null)), (_l()(), i1.ɵted(8, null, ["", "\u00A0\u00A0|\u00A0\u00A0\u5206\u7C7B\uFF1A"])), i1.ɵppd(9, 2), (_l()(), i1.ɵeld(10, 0, null, null, 1, "span", [["class", "type-status"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+function View_ArticleDetailComponent_0(_l) { return i1.ɵvid(0, [i1.ɵpid(0, i2.DatePipe, [i1.LOCALE_ID]), (_l()(), i1.ɵeld(1, 0, null, null, 17, "div", [["class", "article-container"]], null, null, null, null, null)), (_l()(), i1.ɵeld(2, 0, null, null, 14, "div", [["class", "article-header"]], null, null, null, null, null)), (_l()(), i1.ɵeld(3, 0, null, null, 0, "img", [["alt", ""]], [[8, "src", 4]], null, null, null, null)), (_l()(), i1.ɵeld(4, 0, null, null, 12, "div", [["class", "article-title"]], null, null, null, null, null)), (_l()(), i1.ɵeld(5, 0, null, null, 1, "h1", [["class", "title"]], null, null, null, null, null)), (_l()(), i1.ɵted(6, null, ["", ""])), (_l()(), i1.ɵeld(7, 0, null, null, 7, "p", [], null, null, null, null, null)), (_l()(), i1.ɵted(8, null, ["", "\u00A0\u00A0|\u00A0\u00A0\u5206\u7C7B\uFF1A"])), i1.ɵppd(9, 2), (_l()(), i1.ɵeld(10, 0, null, null, 1, "span", [["class", "type-status"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
         var pd_0 = (_co.gotoTypetag(_co.article) !== false);
         ad = (pd_0 && ad);
-    } return ad; }, null, null)), (_l()(), i1.ɵted(11, null, ["", ""])), (_l()(), i1.ɵted(-1, null, ["\u00A0\u00A0|\u00A0\u00A0\u6807\u7B7E\uFF1A "])), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_ArticleDetailComponent_1)), i1.ɵdid(14, 278528, null, 0, i2.NgForOf, [i1.ViewContainerRef, i1.TemplateRef, i1.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i1.ɵeld(15, 0, null, null, 1, "p", [["class", "abstract"]], null, null, null, null, null)), (_l()(), i1.ɵted(16, null, ["\u6458\u8981\uFF1A", ""])), (_l()(), i1.ɵeld(17, 0, null, null, 66, "div", [["class", "article-content"]], null, null, null, null, null)), (_l()(), i1.ɵeld(18, 0, null, null, 0, "div", [["class", "col-md-offset-2 col-md-8 content"]], [[8, "innerHTML", 1]], null, null, null, null)), (_l()(), i1.ɵeld(19, 0, null, null, 64, "div", [["class", "col-md-offset-2 col-md-8 comment"]], null, null, null, null, null)), (_l()(), i1.ɵeld(20, 0, null, null, 63, "div", [["class", " type-article-list border-shadow"]], null, null, null, null, null)), (_l()(), i1.ɵeld(21, 0, null, null, 1, "h2", [["class", "comment-title"]], null, null, null, null, null)), (_l()(), i1.ɵted(22, null, ["\u7559\u8A00\uFF08", "\u6761\uFF09"])), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_ArticleDetailComponent_2)), i1.ɵdid(24, 278528, null, 0, i2.NgForOf, [i1.ViewContainerRef, i1.TemplateRef, i1.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i1.ɵeld(25, 0, null, null, 58, "div", [["class", "public-msg"]], null, null, null, null, null)), (_l()(), i1.ɵeld(26, 0, null, null, 1, "h2", [["class", "comment-title"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["\u53D1\u8868\u7559\u8A00"])), (_l()(), i1.ɵeld(28, 0, null, null, 55, "form", [["novalidate", ""], ["role", "form"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngSubmit"], [null, "submit"], [null, "reset"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("submit" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 30).onSubmit($event) !== false);
-        ad = (pd_0 && ad);
-    } if (("reset" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 30).onReset() !== false);
-        ad = (pd_1 && ad);
-    } if (("ngSubmit" === en)) {
-        var pd_2 = (_co.submitComment() !== false);
-        ad = (pd_2 && ad);
-    } return ad; }, null, null)), i1.ɵdid(29, 16384, null, 0, i3.ɵangular_packages_forms_forms_bg, [], null, null), i1.ɵdid(30, 4210688, null, 0, i3.NgForm, [[8, null], [8, null]], null, { ngSubmit: "ngSubmit" }), i1.ɵprd(2048, null, i3.ControlContainer, null, [i3.NgForm]), i1.ɵdid(32, 16384, null, 0, i3.NgControlStatusGroup, [[4, i3.ControlContainer]], null, null), (_l()(), i1.ɵeld(33, 0, null, null, 10, "div", [["class", "form-group comment"]], null, null, null, null, null)), (_l()(), i1.ɵeld(34, 0, null, null, 1, "label", [["for", "comment"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["\u7559\u8A00\u5185\u5BB9:"])), (_l()(), i1.ɵeld(36, 0, null, null, 7, "textarea", [["class", "form-control"], ["id", "comment"], ["name", "content"], ["placeholder", "\u8BF7\u8F93\u5165\u7559\u8A00"], ["required", ""]], [[1, "required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("input" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 37)._handleInput($event.target.value) !== false);
-        ad = (pd_0 && ad);
-    } if (("blur" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 37).onTouched() !== false);
-        ad = (pd_1 && ad);
-    } if (("compositionstart" === en)) {
-        var pd_2 = (i1.ɵnov(_v, 37)._compositionStart() !== false);
-        ad = (pd_2 && ad);
-    } if (("compositionend" === en)) {
-        var pd_3 = (i1.ɵnov(_v, 37)._compositionEnd($event.target.value) !== false);
-        ad = (pd_3 && ad);
-    } if (("ngModelChange" === en)) {
-        var pd_4 = ((_co.comment.content = $event) !== false);
-        ad = (pd_4 && ad);
-    } return ad; }, null, null)), i1.ɵdid(37, 16384, null, 0, i3.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i3.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(38, 16384, null, 0, i3.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i3.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i3.RequiredValidator]), i1.ɵprd(1024, null, i3.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i3.DefaultValueAccessor]), i1.ɵdid(41, 671744, null, 0, i3.NgModel, [[2, i3.ControlContainer], [6, i3.NG_VALIDATORS], [8, null], [6, i3.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, { update: "ngModelChange" }), i1.ɵprd(2048, null, i3.NgControl, null, [i3.NgModel]), i1.ɵdid(43, 16384, null, 0, i3.NgControlStatus, [[4, i3.NgControl]], null, null), (_l()(), i1.ɵeld(44, 0, null, null, 10, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(45, 0, null, null, 1, "label", [["for", "nickname"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["\u6635\u79F0:"])), (_l()(), i1.ɵeld(47, 0, null, null, 7, "input", [["class", "form-control "], ["id", "nickname"], ["name", "nickname"], ["placeholder", "\u8BF7\u8F93\u5165\u7559\u8A00\u6635\u79F0"], ["required", ""], ["type", "text"]], [[1, "required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("input" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 48)._handleInput($event.target.value) !== false);
-        ad = (pd_0 && ad);
-    } if (("blur" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 48).onTouched() !== false);
-        ad = (pd_1 && ad);
-    } if (("compositionstart" === en)) {
-        var pd_2 = (i1.ɵnov(_v, 48)._compositionStart() !== false);
-        ad = (pd_2 && ad);
-    } if (("compositionend" === en)) {
-        var pd_3 = (i1.ɵnov(_v, 48)._compositionEnd($event.target.value) !== false);
-        ad = (pd_3 && ad);
-    } if (("ngModelChange" === en)) {
-        var pd_4 = ((_co.comment.visitor.name = $event) !== false);
-        ad = (pd_4 && ad);
-    } return ad; }, null, null)), i1.ɵdid(48, 16384, null, 0, i3.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i3.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(49, 16384, null, 0, i3.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i3.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i3.RequiredValidator]), i1.ɵprd(1024, null, i3.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i3.DefaultValueAccessor]), i1.ɵdid(52, 671744, null, 0, i3.NgModel, [[2, i3.ControlContainer], [6, i3.NG_VALIDATORS], [8, null], [6, i3.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, { update: "ngModelChange" }), i1.ɵprd(2048, null, i3.NgControl, null, [i3.NgModel]), i1.ɵdid(54, 16384, null, 0, i3.NgControlStatus, [[4, i3.NgControl]], null, null), (_l()(), i1.ɵeld(55, 0, null, null, 8, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(56, 0, null, null, 1, "label", [["for", "email"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["\u90AE\u7BB1:"])), (_l()(), i1.ɵeld(58, 0, null, null, 5, "input", [["class", "form-control "], ["id", "email"], ["name", "email"], ["placeholder", "\u8BF7\u8F93\u5165\u7559\u8A00\u90AE\u7BB1"], ["type", "email"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("input" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 59)._handleInput($event.target.value) !== false);
-        ad = (pd_0 && ad);
-    } if (("blur" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 59).onTouched() !== false);
-        ad = (pd_1 && ad);
-    } if (("compositionstart" === en)) {
-        var pd_2 = (i1.ɵnov(_v, 59)._compositionStart() !== false);
-        ad = (pd_2 && ad);
-    } if (("compositionend" === en)) {
-        var pd_3 = (i1.ɵnov(_v, 59)._compositionEnd($event.target.value) !== false);
-        ad = (pd_3 && ad);
-    } if (("ngModelChange" === en)) {
-        var pd_4 = ((_co.comment.visitor.email = $event) !== false);
-        ad = (pd_4 && ad);
-    } return ad; }, null, null)), i1.ɵdid(59, 16384, null, 0, i3.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i3.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵprd(1024, null, i3.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i3.DefaultValueAccessor]), i1.ɵdid(61, 671744, null, 0, i3.NgModel, [[2, i3.ControlContainer], [8, null], [8, null], [6, i3.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, { update: "ngModelChange" }), i1.ɵprd(2048, null, i3.NgControl, null, [i3.NgModel]), i1.ɵdid(63, 16384, null, 0, i3.NgControlStatus, [[4, i3.NgControl]], null, null), (_l()(), i1.ɵeld(64, 0, null, null, 8, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(65, 0, null, null, 1, "label", [["for", "userIdx"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["\u4F60\u7684\u4E3B\u9875:"])), (_l()(), i1.ɵeld(67, 0, null, null, 5, "input", [["class", "form-control "], ["id", "userIdx"], ["name", "userIdx"], ["placeholder", "\u8BF7\u8F93\u5165\u4F60\u7684\u4E2A\u4EBA\u4E3B\u9875"], ["type", "url"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("input" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 68)._handleInput($event.target.value) !== false);
-        ad = (pd_0 && ad);
-    } if (("blur" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 68).onTouched() !== false);
-        ad = (pd_1 && ad);
-    } if (("compositionstart" === en)) {
-        var pd_2 = (i1.ɵnov(_v, 68)._compositionStart() !== false);
-        ad = (pd_2 && ad);
-    } if (("compositionend" === en)) {
-        var pd_3 = (i1.ɵnov(_v, 68)._compositionEnd($event.target.value) !== false);
-        ad = (pd_3 && ad);
-    } if (("ngModelChange" === en)) {
-        var pd_4 = ((_co.comment.visitor.userIdx = $event) !== false);
-        ad = (pd_4 && ad);
-    } return ad; }, null, null)), i1.ɵdid(68, 16384, null, 0, i3.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i3.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵprd(1024, null, i3.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i3.DefaultValueAccessor]), i1.ɵdid(70, 671744, null, 0, i3.NgModel, [[2, i3.ControlContainer], [8, null], [8, null], [6, i3.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, { update: "ngModelChange" }), i1.ɵprd(2048, null, i3.NgControl, null, [i3.NgModel]), i1.ɵdid(72, 16384, null, 0, i3.NgControlStatus, [[4, i3.NgControl]], null, null), (_l()(), i1.ɵeld(73, 0, null, null, 8, "div", [["class", "checkbox"]], null, null, null, null, null)), (_l()(), i1.ɵeld(74, 0, null, null, 7, "label", [], null, null, null, null, null)), (_l()(), i1.ɵeld(75, 0, null, null, 5, "input", [["name", "remember"], ["type", "checkbox"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "change"], [null, "blur"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("change" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 76).onChange($event.target.checked) !== false);
-        ad = (pd_0 && ad);
-    } if (("blur" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 76).onTouched() !== false);
-        ad = (pd_1 && ad);
-    } if (("ngModelChange" === en)) {
-        var pd_2 = ((_co.remember = $event) !== false);
-        ad = (pd_2 && ad);
-    } return ad; }, null, null)), i1.ɵdid(76, 16384, null, 0, i3.CheckboxControlValueAccessor, [i1.Renderer2, i1.ElementRef], null, null), i1.ɵprd(1024, null, i3.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i3.CheckboxControlValueAccessor]), i1.ɵdid(78, 671744, null, 0, i3.NgModel, [[2, i3.ControlContainer], [8, null], [8, null], [6, i3.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, { update: "ngModelChange" }), i1.ɵprd(2048, null, i3.NgControl, null, [i3.NgModel]), i1.ɵdid(80, 16384, null, 0, i3.NgControlStatus, [[4, i3.NgControl]], null, null), (_l()(), i1.ɵted(-1, null, [" \u8BB0\u4F4F\u4E2A\u4EBA\u4FE1\u606F "])), (_l()(), i1.ɵeld(82, 0, null, null, 1, "button", [["class", "btn btn-default"], ["type", "submit"]], [[8, "disabled", 0]], null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["\u63D0\u4EA4\u7559\u8A00"]))], function (_ck, _v) { var _co = _v.component; var currVal_4 = _co.article.tag; _ck(_v, 14, 0, currVal_4); var currVal_8 = _co.comments; _ck(_v, 24, 0, currVal_8); var currVal_24 = ""; _ck(_v, 38, 0, currVal_24); var currVal_25 = "content"; var currVal_26 = _co.comment.content; _ck(_v, 41, 0, currVal_25, currVal_26); var currVal_35 = ""; _ck(_v, 49, 0, currVal_35); var currVal_36 = "nickname"; var currVal_37 = _co.comment.visitor.name; _ck(_v, 52, 0, currVal_36, currVal_37); var currVal_45 = "email"; var currVal_46 = _co.comment.visitor.email; _ck(_v, 61, 0, currVal_45, currVal_46); var currVal_54 = "userIdx"; var currVal_55 = _co.comment.visitor.userIdx; _ck(_v, 70, 0, currVal_54, currVal_55); var currVal_63 = "remember"; var currVal_64 = _co.remember; _ck(_v, 78, 0, currVal_63, currVal_64); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.article.coverSrc; _ck(_v, 3, 0, currVal_0); var currVal_1 = _co.article.title; _ck(_v, 6, 0, currVal_1); var currVal_2 = i1.ɵunv(_v, 8, 0, _ck(_v, 9, 0, i1.ɵnov(_v, 0), (_co.article.date * 1000), "yyyy-MM-dd HH:mm")); _ck(_v, 8, 0, currVal_2); var currVal_3 = _co.article.type.name; _ck(_v, 11, 0, currVal_3); var currVal_5 = _co.article.abstract; _ck(_v, 16, 0, currVal_5); var currVal_6 = _co.article.articleHtml; _ck(_v, 18, 0, currVal_6); var currVal_7 = _co.comments.length; _ck(_v, 22, 0, currVal_7); var currVal_9 = i1.ɵnov(_v, 32).ngClassUntouched; var currVal_10 = i1.ɵnov(_v, 32).ngClassTouched; var currVal_11 = i1.ɵnov(_v, 32).ngClassPristine; var currVal_12 = i1.ɵnov(_v, 32).ngClassDirty; var currVal_13 = i1.ɵnov(_v, 32).ngClassValid; var currVal_14 = i1.ɵnov(_v, 32).ngClassInvalid; var currVal_15 = i1.ɵnov(_v, 32).ngClassPending; _ck(_v, 28, 0, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14, currVal_15); var currVal_16 = (i1.ɵnov(_v, 38).required ? "" : null); var currVal_17 = i1.ɵnov(_v, 43).ngClassUntouched; var currVal_18 = i1.ɵnov(_v, 43).ngClassTouched; var currVal_19 = i1.ɵnov(_v, 43).ngClassPristine; var currVal_20 = i1.ɵnov(_v, 43).ngClassDirty; var currVal_21 = i1.ɵnov(_v, 43).ngClassValid; var currVal_22 = i1.ɵnov(_v, 43).ngClassInvalid; var currVal_23 = i1.ɵnov(_v, 43).ngClassPending; _ck(_v, 36, 0, currVal_16, currVal_17, currVal_18, currVal_19, currVal_20, currVal_21, currVal_22, currVal_23); var currVal_27 = (i1.ɵnov(_v, 49).required ? "" : null); var currVal_28 = i1.ɵnov(_v, 54).ngClassUntouched; var currVal_29 = i1.ɵnov(_v, 54).ngClassTouched; var currVal_30 = i1.ɵnov(_v, 54).ngClassPristine; var currVal_31 = i1.ɵnov(_v, 54).ngClassDirty; var currVal_32 = i1.ɵnov(_v, 54).ngClassValid; var currVal_33 = i1.ɵnov(_v, 54).ngClassInvalid; var currVal_34 = i1.ɵnov(_v, 54).ngClassPending; _ck(_v, 47, 0, currVal_27, currVal_28, currVal_29, currVal_30, currVal_31, currVal_32, currVal_33, currVal_34); var currVal_38 = i1.ɵnov(_v, 63).ngClassUntouched; var currVal_39 = i1.ɵnov(_v, 63).ngClassTouched; var currVal_40 = i1.ɵnov(_v, 63).ngClassPristine; var currVal_41 = i1.ɵnov(_v, 63).ngClassDirty; var currVal_42 = i1.ɵnov(_v, 63).ngClassValid; var currVal_43 = i1.ɵnov(_v, 63).ngClassInvalid; var currVal_44 = i1.ɵnov(_v, 63).ngClassPending; _ck(_v, 58, 0, currVal_38, currVal_39, currVal_40, currVal_41, currVal_42, currVal_43, currVal_44); var currVal_47 = i1.ɵnov(_v, 72).ngClassUntouched; var currVal_48 = i1.ɵnov(_v, 72).ngClassTouched; var currVal_49 = i1.ɵnov(_v, 72).ngClassPristine; var currVal_50 = i1.ɵnov(_v, 72).ngClassDirty; var currVal_51 = i1.ɵnov(_v, 72).ngClassValid; var currVal_52 = i1.ɵnov(_v, 72).ngClassInvalid; var currVal_53 = i1.ɵnov(_v, 72).ngClassPending; _ck(_v, 67, 0, currVal_47, currVal_48, currVal_49, currVal_50, currVal_51, currVal_52, currVal_53); var currVal_56 = i1.ɵnov(_v, 80).ngClassUntouched; var currVal_57 = i1.ɵnov(_v, 80).ngClassTouched; var currVal_58 = i1.ɵnov(_v, 80).ngClassPristine; var currVal_59 = i1.ɵnov(_v, 80).ngClassDirty; var currVal_60 = i1.ɵnov(_v, 80).ngClassValid; var currVal_61 = i1.ɵnov(_v, 80).ngClassInvalid; var currVal_62 = i1.ɵnov(_v, 80).ngClassPending; _ck(_v, 75, 0, currVal_56, currVal_57, currVal_58, currVal_59, currVal_60, currVal_61, currVal_62); var currVal_65 = _co.issubmit; _ck(_v, 82, 0, currVal_65); }); }
+    } return ad; }, null, null)), (_l()(), i1.ɵted(11, null, ["", ""])), (_l()(), i1.ɵted(-1, null, ["\u00A0\u00A0|\u00A0\u00A0\u6807\u7B7E\uFF1A "])), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_ArticleDetailComponent_1)), i1.ɵdid(14, 278528, null, 0, i2.NgForOf, [i1.ViewContainerRef, i1.TemplateRef, i1.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i1.ɵeld(15, 0, null, null, 1, "p", [["class", "abstract"]], null, null, null, null, null)), (_l()(), i1.ɵted(16, null, ["\u6458\u8981\uFF1A", ""])), (_l()(), i1.ɵeld(17, 0, null, null, 1, "div", [["class", "article-content"]], null, null, null, null, null)), (_l()(), i1.ɵeld(18, 0, null, null, 0, "div", [["class", "col-md-offset-2 col-md-8 content"]], [[8, "innerHTML", 1]], null, null, null, null))], function (_ck, _v) { var _co = _v.component; var currVal_4 = _co.article.tag; _ck(_v, 14, 0, currVal_4); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.article.coverSrc; _ck(_v, 3, 0, currVal_0); var currVal_1 = _co.article.title; _ck(_v, 6, 0, currVal_1); var currVal_2 = i1.ɵunv(_v, 8, 0, _ck(_v, 9, 0, i1.ɵnov(_v, 0), (_co.article.date * 1000), "yyyy-MM-dd HH:mm")); _ck(_v, 8, 0, currVal_2); var currVal_3 = _co.article.type.name; _ck(_v, 11, 0, currVal_3); var currVal_5 = _co.article.abstract; _ck(_v, 16, 0, currVal_5); var currVal_6 = _co.article.articleHtml; _ck(_v, 18, 0, currVal_6); }); }
 exports.View_ArticleDetailComponent_0 = View_ArticleDetailComponent_0;
-function View_ArticleDetailComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-article-detail", [], null, null, null, View_ArticleDetailComponent_0, RenderType_ArticleDetailComponent)), i1.ɵdid(1, 4308992, null, 0, i4.ArticleDetailComponent, [i5.TransferState, i6.EventBusService, i7.StorageService, i8.CommentService, i9.PostService, i10.Router, i10.ActivatedRoute], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_ArticleDetailComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-article-detail", [], null, null, null, View_ArticleDetailComponent_0, RenderType_ArticleDetailComponent)), i1.ɵdid(1, 4308992, null, 0, i3.ArticleDetailComponent, [i4.TransferState, i5.EventBusService, i6.StorageService, i7.CommentService, i8.PostService, i9.Router, i9.ActivatedRoute], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 exports.View_ArticleDetailComponent_Host_0 = View_ArticleDetailComponent_Host_0;
-var ArticleDetailComponentNgFactory = i1.ɵccf("app-article-detail", i4.ArticleDetailComponent, View_ArticleDetailComponent_Host_0, {}, {}, []);
+var ArticleDetailComponentNgFactory = i1.ɵccf("app-article-detail", i3.ArticleDetailComponent, View_ArticleDetailComponent_Host_0, {}, {}, []);
 exports.ArticleDetailComponentNgFactory = ArticleDetailComponentNgFactory;
 
 
@@ -1515,8 +1431,8 @@ var ArticleListComponent = /** @class */ (function () {
         this._scrollHander = this.scrollHandler.bind(this);
         var meta = new models_1.MyMeta();
         meta.title = '文章列表 - Fishelly Idx.';
-        meta.keyword = 'Fishelly个人博客的文章列表页面,前端技术分享,前端学习经验,前端技术博客,全栈开发,Front end developer,Fullstack,JavaScript,ECMAScript,HTML(5),CSS(3)';
-        meta.description = '一个开源自用的个人博客的文章列表页面。在这里，我会记录自己在前端路上的学习经验,技术分享；以及遇到的问题和解决方案。同时，会向着全栈方向不断靠近。';
+        meta.keyword = 'Fishelly个人网站的文章列表页面,前端技术分享,前端学习经验,前端技术网站,全栈开发,Front end developer,Fullstack,JavaScript,ECMAScript,HTML(5),CSS(3)';
+        meta.description = '一个开源自用的个人网站的文章列表页面。在这里，我会记录自己在前端路上的学习经验,技术分享；以及遇到的问题和解决方案。同时，会向着全栈方向不断靠近。';
         this.eventBus.emit('update-meta', meta);
     }
     ArticleListComponent.prototype.ngOnInit = function () {
@@ -1623,7 +1539,7 @@ var i6 = __webpack_require__(/*! ../../shared-service/eventBus/event-bus.service
 var styles_IndexComponent = [i0.styles];
 var RenderType_IndexComponent = i1.ɵcrt({ encapsulation: 0, styles: styles_IndexComponent, data: {} });
 exports.RenderType_IndexComponent = RenderType_IndexComponent;
-function View_IndexComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-my-text-inturn", [], null, null, null, i2.View_MyTextInturnComponent_0, i2.RenderType_MyTextInturnComponent)), i1.ɵdid(1, 245760, null, 0, i3.MyTextInturnComponent, [i4.StorageService], null, null), (_l()(), i1.ɵeld(2, 0, null, null, 2, "footer", [], null, null, null, null, null)), (_l()(), i1.ɵeld(3, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" \u00A92016-2018 All Rights Reserved. Designed by Fishelly. \u7CA4ICP\u590717038119\u53F7. "]))], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_IndexComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-my-text-inturn", [], null, null, null, i2.View_MyTextInturnComponent_0, i2.RenderType_MyTextInturnComponent)), i1.ɵdid(1, 245760, null, 0, i3.MyTextInturnComponent, [i4.StorageService], null, null), (_l()(), i1.ɵeld(2, 0, null, null, 5, "footer", [], null, null, null, null, null)), (_l()(), i1.ɵeld(3, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" \u00A92016-\u81F3\u4ECA All Rights Reserved. Designed by Fishelly. "])), (_l()(), i1.ɵeld(5, 0, null, null, 1, "a", [["href", "http://www.beian.miit.gov.cn"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["\u7CA4ICP\u590717038119\u53F7"])), (_l()(), i1.ɵted(-1, null, [". "]))], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 exports.View_IndexComponent_0 = View_IndexComponent_0;
 function View_IndexComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-index", [], null, null, null, View_IndexComponent_0, RenderType_IndexComponent)), i1.ɵdid(1, 114688, null, 0, i5.IndexComponent, [i6.EventBusService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 exports.View_IndexComponent_Host_0 = View_IndexComponent_Host_0;
@@ -1673,8 +1589,8 @@ var IndexComponent = /** @class */ (function () {
         this.eventBus = eventBus;
         var meta = new models_1.MyMeta();
         meta.title = '首页 - Fishelly Idx.';
-        meta.keyword = 'Fishelly的个人博客,前端技术分享,前端学习经验,前端技术博客,全栈开发,Front end developer,Fullstack,JavaScript,ECMAScript,HTML(5),CSS(3)';
-        meta.description = '一个开源自用的个人博客。在这里，我会记录自己在前端路上的学习经验,技术分享；以及遇到的问题和解决方案。同时，会向着全栈方向不断靠近。';
+        meta.keyword = 'Fishelly的个人网站,前端技术分享,前端学习经验,前端技术网站,全栈开发,Front end developer,Fullstack,JavaScript,ECMAScript,HTML(5),CSS(3)';
+        meta.description = '一个开源自用的个人网站。在这里，我会记录自己在前端路上的学习经验,技术分享；以及遇到的问题和解决方案。同时，会向着全栈方向不断靠近。';
         eventBus.emit('update-meta', meta);
     }
     IndexComponent.prototype.ngOnInit = function () {
@@ -2006,8 +1922,8 @@ var TypetagComponent = /** @class */ (function () {
         var keyword = data.map(function (val) { return val.name; }).join(',');
         var meta = new models_1.MyMeta();
         meta.title = '分类与标签 - Fishelly Idx.';
-        meta.keyword = "Fishelly\u4E2A\u4EBA\u535A\u5BA2\u6807\u7B7E\u4E0E\u5206\u7C7B:" + keyword;
-        meta.description = "Fishelly\u4E2A\u4EBA\u535A\u5BA2\u7684\u6807\u7B7E\u4E0E\u5206\u7C7B\u9875\u9762\u3002" + keyword;
+        meta.keyword = "Fishelly\u4E2A\u4EBA\u7F51\u7AD9\u6807\u7B7E\u4E0E\u5206\u7C7B:" + keyword;
+        meta.description = "Fishelly\u4E2A\u4EBA\u7F51\u7AD9\u7684\u6807\u7B7E\u4E0E\u5206\u7C7B\u9875\u9762\u3002" + keyword;
         this.eventBus.emit('update-meta', meta);
     };
     TypetagComponent.prototype.getTypetags = function () {
@@ -2733,7 +2649,7 @@ exports.StorageService = StorageService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var pre_path = 'https://www.fishelly.top';
+var pre_path = '';
 // const pre_path = 'http://localhost:3200';
 exports.environment = {
     production: true,

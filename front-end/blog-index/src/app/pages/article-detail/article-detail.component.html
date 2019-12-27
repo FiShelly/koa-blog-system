@@ -13,71 +13,71 @@
     <div class="article-content">
         <div class="col-md-offset-2 col-md-8 content" [innerHtml]="article.articleHtml">
         </div>
-        <div class="col-md-offset-2 col-md-8 comment">
-            <div class=" type-article-list border-shadow">
-                <h2 class="comment-title">留言（{{comments.length}}条）</h2>
+        <!--<div class="col-md-offset-2 col-md-8 comment">-->
+            <!--<div class=" type-article-list border-shadow">-->
+                <!--<h2 class="comment-title">留言（{{comments.length}}条）</h2>-->
 
-                <div class="about-msg leave-msg-item" *ngFor="let comment of comments;let i = index">
-                    <p><a href="{{comment.visitor.userIdx}}"><span>{{comment.visitor.name}}</span>说：</a></p>
-                    <div class="msg-reference" *ngIf="comment.quotes">
-                        <p>引用{{comment.quotes.name}}的留言：</p>
+                <!--<div class="about-msg leave-msg-item" *ngFor="let comment of comments;let i = index">-->
+                    <!--<p><a href="{{comment.visitor.userIdx}}"><span>{{comment.visitor.name}}</span>说：</a></p>-->
+                    <!--<div class="msg-reference" *ngIf="comment.quotes">-->
+                        <!--<p>引用{{comment.quotes.name}}的留言：</p>-->
 
-                        <p class="leave-msg-content">
-                            {{comment.quotes.content}}
-                        </p>
-                    </div>
-                    <p class="leave-msg-content">
-                        {{comment.content}}
-                    </p>
+                        <!--<p class="leave-msg-content">-->
+                            <!--{{comment.quotes.content}}-->
+                        <!--</p>-->
+                    <!--</div>-->
+                    <!--<p class="leave-msg-content">-->
+                        <!--{{comment.content}}-->
+                    <!--</p>-->
 
-                    <p class="leave-msg-other">
-                        <span>{{(comment.date * 1000) | date:"yyyy-MM-dd HH:mm" }}</span>
-                        <span>&nbsp;|&nbsp;</span>
-                        <span>{{i+1}}</span>
-                        <span>&nbsp;|&nbsp;</span>
-                        <span><a (click)="quote(comment);">引用</a></span>
-                    </p>
-                </div>
+                    <!--<p class="leave-msg-other">-->
+                        <!--<span>{{(comment.date * 1000) | date:"yyyy-MM-dd HH:mm" }}</span>-->
+                        <!--<span>&nbsp;|&nbsp;</span>-->
+                        <!--<span>{{i+1}}</span>-->
+                        <!--<span>&nbsp;|&nbsp;</span>-->
+                        <!--<span><a (click)="quote(comment);">引用</a></span>-->
+                    <!--</p>-->
+                <!--</div>-->
 
-                <div class="public-msg">
-                    <h2 class="comment-title">发表留言</h2>
+                <!--<div class="public-msg">-->
+                    <!--<h2 class="comment-title">发表留言</h2>-->
 
-                    <form role="form" (ngSubmit)="submitComment();">
-                        <div class="form-group comment">
-                            <label for="comment">留言内容:</label>
-                            <textarea required class="form-control" id="comment" [(ngModel)]="comment.content"
-                                      name="content"
-                                      placeholder="请输入留言"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="nickname">昵称:</label>
-                            <input type="text" required class="form-control " id="nickname"
-                                   [(ngModel)]="comment.visitor.name"
-                                   name="nickname" placeholder="请输入留言昵称">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">邮箱:</label>
-                            <input type="email" class="form-control " id="email" [(ngModel)]="comment.visitor.email"
-                                   name="email"
-                                   placeholder="请输入留言邮箱">
-                        </div>
-                        <div class="form-group">
-                            <label for="userIdx">你的主页:</label>
-                            <input type="url" class="form-control " id="userIdx" [(ngModel)]="comment.visitor.userIdx"
-                                   name="userIdx"
-                                   placeholder="请输入你的个人主页">
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="remember" [(ngModel)]="remember"> 记住个人信息
-                            </label>
-                        </div>
-                        <button type="submit" [disabled]="issubmit" class="btn btn-default">提交留言</button>
-                    </form>
-                </div>
+                    <!--<form role="form" (ngSubmit)="submitComment();">-->
+                        <!--<div class="form-group comment">-->
+                            <!--<label for="comment">留言内容:</label>-->
+                            <!--<textarea required class="form-control" id="comment" [(ngModel)]="comment.content"-->
+                                      <!--name="content"-->
+                                      <!--placeholder="请输入留言"></textarea>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label for="nickname">昵称:</label>-->
+                            <!--<input type="text" required class="form-control " id="nickname"-->
+                                   <!--[(ngModel)]="comment.visitor.name"-->
+                                   <!--name="nickname" placeholder="请输入留言昵称">-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label for="email">邮箱:</label>-->
+                            <!--<input type="email" class="form-control " id="email" [(ngModel)]="comment.visitor.email"-->
+                                   <!--name="email"-->
+                                   <!--placeholder="请输入留言邮箱">-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label for="userIdx">你的主页:</label>-->
+                            <!--<input type="url" class="form-control " id="userIdx" [(ngModel)]="comment.visitor.userIdx"-->
+                                   <!--name="userIdx"-->
+                                   <!--placeholder="请输入你的个人主页">-->
+                        <!--</div>-->
+                        <!--<div class="checkbox">-->
+                            <!--<label>-->
+                                <!--<input type="checkbox" name="remember" [(ngModel)]="remember"> 记住个人信息-->
+                            <!--</label>-->
+                        <!--</div>-->
+                        <!--<button type="submit" [disabled]="issubmit" class="btn btn-default">提交留言</button>-->
+                    <!--</form>-->
+                <!--</div>-->
 
-            </div>
-        </div>
+            <!--</div>-->
+        <!--</div>-->
     </div>
 
 

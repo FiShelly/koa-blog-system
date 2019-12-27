@@ -150,8 +150,8 @@ export class TypetagComponent implements OnInit, OnDestroy {
         const keyword = data.map(val => val.name).join(',');
         const meta = new MyMeta();
         meta.title = '分类与标签 - Fishelly Idx.';
-        meta.keyword = `Fishelly个人博客标签与分类:${keyword}`;
-        meta.description = `Fishelly个人博客的标签与分类页面。${keyword}`;
+        meta.keyword = `Fishelly个人网站标签与分类:${keyword}`;
+        meta.description = `Fishelly个人网站的标签与分类页面。${keyword}`;
         this.eventBus.emit('update-meta', meta);
     }
 
