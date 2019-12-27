@@ -126,6 +126,10 @@ const findAllByPage = async function (ctx) {
     const request = ctx.request.query;
     let limit = request.limit;
     let offset = request.offset;
+    //TODO
+    if (typeof offset === 'object') {
+        offset = Number(offset[1])
+    }
     if (validator.isEmpty(limit) || validator.isEmpty(offset)) {
         return packData(412, 'error', 'input-invalidate-empty');
     }
