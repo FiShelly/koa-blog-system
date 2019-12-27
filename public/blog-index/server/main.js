@@ -1049,7 +1049,8 @@ var AboutComponent = /** @class */ (function () {
                 _this.transferState.set(ABOUT_KEY, author);
             },
             error: function (error) {
-                alert && alert(error.message);
+                console.log(error.message);
+                // alert && alert(error.message);
             }
         });
     };
@@ -1406,8 +1407,8 @@ var ArticleListComponent = /** @class */ (function () {
                 _this.storageService.create(false).setItem(ARTICLE_LIST_KEY, _this.postList);
             },
             error: function (err) {
-                console.log(err.message);
-                alert && alert(err.message);
+                console.log(err);
+                // alert && alert(err.message);
             },
             complete: function () {
                 _this.hide = false;
@@ -1816,7 +1817,8 @@ var TypetagComponent = /** @class */ (function () {
                 });
             },
             error: function (error) {
-                alert && alert(error.message);
+                console.log(error.message);
+                // alert && alert(error.message);
             },
             complete: function () {
                 _this.hide = false;
@@ -1843,7 +1845,8 @@ var TypetagComponent = /** @class */ (function () {
                 _this.transferState.set(ARTICLE_LIST_KEY, _this.postList);
             },
             error: function (err) {
-                alert && alert(err.message);
+                console.log(err.message);
+                // alert && alert(err.message);
             },
             complete: function () {
                 _this.hide = false;
@@ -1872,7 +1875,8 @@ var TypetagComponent = /** @class */ (function () {
                 _this.transferState.set(TYPE_TAG_KEY, _this.typetags);
             },
             error: function (err) {
-                alert && alert(err.message);
+                console.log(err.message);
+                // alert && alert(err.message);
             }
         });
     };

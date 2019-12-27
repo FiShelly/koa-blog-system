@@ -105,7 +105,8 @@ export class TypetagComponent implements OnInit, OnDestroy {
                 });
             },
             error: (error) => {
-                alert && alert(error.message);
+                console.log(error.message);
+                // alert && alert(error.message);
             },
             complete: () => {
                 this.hide = false;
@@ -135,7 +136,8 @@ export class TypetagComponent implements OnInit, OnDestroy {
 
             },
             error: (err) => {
-                alert && alert(err.message);
+                console.log(err.message);
+                // alert && alert(err.message);
             },
             complete: () => {
                 this.hide = false;
@@ -165,7 +167,8 @@ export class TypetagComponent implements OnInit, OnDestroy {
                 this.transferState.set(TYPE_TAG_KEY, this.typetags);
             },
             error: (err) => {
-                alert && alert(err.message);
+                console.log(err.message);
+                // alert && alert(err.message);
             }
         });
     }

@@ -19,8 +19,6 @@ function ngSsrUtil (ctx, csrf_token) {
         template = readFileSync(join(ctx._dir_path, 'public/blog-index/browser', 'index.html')).toString();
     }
 
-
-
     return renderModuleFactory(AppServerModuleNgFactory, {
         // Our index.html
         document: template.replace('${CSRF}', csrf_token),
