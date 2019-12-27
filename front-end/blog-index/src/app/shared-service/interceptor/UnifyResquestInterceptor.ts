@@ -1,7 +1,7 @@
 import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
-import {Injectable, Injector} from '@angular/core';
+import {Inject, Injectable, Injector, Optional} from '@angular/core';
 import {Router} from '@angular/router';
 import {StorageService} from '../utils/storage.service';
 import {validator} from '../utils/normal';
@@ -12,7 +12,8 @@ export class UnifyResquestInterceptor implements HttpInterceptor {
 
     constructor(
         private router: Router,
-        private storage: StorageService
+        private storage: StorageService,
+        @Optional() @Inject('koaCtx') private ctx: any
     ) {
     }
 
@@ -24,7 +25,7 @@ export class UnifyResquestInterceptor implements HttpInterceptor {
         if (!EXCLUDED_METHOD.includes(req.method.toUpperCase())) {
             const header = {
                 headers: new HttpHeaders({
-                    'x-csrf-token': (<any>window)._CSRF
+                    'x-csrf-token': this.ctx.csrf || (<any>window)._CSRF
                 })
             };
             req = req.clone(header);
